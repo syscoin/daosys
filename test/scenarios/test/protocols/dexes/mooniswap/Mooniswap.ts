@@ -18,7 +18,7 @@ import {
     WETH9__factory,
     IERC20
 
-} from '../../../../../typechain';
+} from '../../../../../../typechain';
 import { debug, trace } from 'console';
 import exp from 'constants';
 
@@ -28,7 +28,7 @@ import {
     createMooniswapPair,
     getMooniPoolIERC20s,
     getMooniPoolDecimals
-} from '../../../../fixtures/mooniswap.fixture'
+} from '../../../../../fixtures/mooniswap.fixture'
 import { BigNumberish } from 'ethers';
 import { Address } from 'ethereumjs-util';
 

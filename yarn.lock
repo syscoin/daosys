@@ -4269,6 +4269,7 @@ __metadata:
     solc: 0.8.9
     solhint: ^3.3.6
     solidity-coverage: ^0.7.17
+    solidity-docgen: ^0.6.0-beta.8
     stochasm: ^0.5.0
     ts-node: ^10.4.0
     typechain: ^7.0.0
@@ -6987,7 +6988,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"handlebars@npm:^4.0.1":
+"handlebars@npm:^4.0.1, handlebars@npm:^4.7.7":
   version: 4.7.7
   resolution: "handlebars@npm:4.7.7"
   dependencies:
@@ -12130,7 +12131,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"solidity-ast@npm:^0.4.15":
+"solidity-ast@npm:^0.4.15, solidity-ast@npm:^0.4.31":
   version: 0.4.31
   resolution: "solidity-ast@npm:0.4.31"
   checksum: 3b9b7cb0770e37de676ebcd5325081479e3b3c8a75bc31f6e570c7e8692845e6147d008b17be824c9cb1c75005ffdc59b659cc064cf06461fa024b8107852d4f
@@ -12169,6 +12170,18 @@ __metadata:
   bin:
     solidity-coverage: plugins/bin.js
   checksum: b7edad0add5ef761609a116915979cc6d52ea41a041ed6b45796eb2a9c2fc726c2e300c8a1d6b5e48402e9fd0526c7ee38ecdd01b50e52ac32b8e4084d603d27
+  languageName: node
+  linkType: hard
+
+"solidity-docgen@npm:^0.6.0-beta.8":
+  version: 0.6.0-beta.8
+  resolution: "solidity-docgen@npm:0.6.0-beta.8"
+  dependencies:
+    handlebars: ^4.7.7
+    solidity-ast: ^0.4.31
+  peerDependencies:
+    hardhat: ^2.8.0
+  checksum: 567b6ad485e38318e929f59c19d8dfdc21340071bcc428762cac62462da7367ce264835de1b70911dce21b6d4cd513de801b6c3f7549818cdbeefce00f716287
   languageName: node
   linkType: hard
 
