@@ -24,6 +24,10 @@ contract DelegateServiceFactory
     DelegateServiceFactoryLogic
 {
 
+  function calculateDeploymentAddress (bytes32 initCodeHash, bytes32 salt) external view returns (address newAddress) {
+    newAddress = _calculateDeploymentAddress(initCodeHash, salt);
+  }
+
   // TODO Restrict to Ownable
   // TODO Implement RBAC NFT
   function deployDelegateService(
@@ -31,6 +35,7 @@ contract DelegateServiceFactory
     bytes32 delegateServiceInterfaceId
   ) external returns (address delegateService) {
     delegateService = _deployDelegateService(delegateServiceCreationCode, delegateServiceInterfaceId);
+    require( IDelegateService(delegateService).registerDelegateService(delegateServiceInterfaceId), "DSFactory: DS registration failed." );
   }
 
   function getDelegateServiceRegistry() view external returns (address delegateServiceRegistry) {

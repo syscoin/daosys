@@ -15,6 +15,10 @@ contract DelegateServiceRegistryMock
     interfaceId = type(IDelegateServiceRegistry).interfaceId;
   }
 
+  function selfRegisterDelegateServiceFunctionSelector() pure external returns (bytes4 functionSelector){
+    functionSelector = IDelegateServiceRegistry.selfRegisterDelegateService.selector;
+  }
+
   function queryDelegateServiceAddressFunctionSelector() pure external returns (bytes4 functionSelector){
     functionSelector = IDelegateServiceRegistry.queryDelegateServiceAddress.selector;
   }

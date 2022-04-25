@@ -30,23 +30,25 @@ describe("ServiceProxyFactory", function () {
 
   // Messenger Delegate Service test variables
   let messengerDelegateService: MessengerDelegateService;
-  const IDelegateServiceInterfaceId = '0xd56eb69e';
+  const IDelegateServiceInterfaceId = '0xb38d1215';
   const getServiceDefFunctionSelector = '0xd56eb69e';
-  const IMessengerInterfaceId = "0xf8e6c6ac";
+  const IMessengerInterfaceId = '0xf8e6c6ac';
   const setMessageFunctionSelector = '0x368b8772';
   const getMessageFunctionSelector = '0xce6d41de';
 
   // Service Proxy test variables
   let proxy: ServiceProxyMock;
-  const IServiceProxyInterfaceId = '0x26ddf639';
+  const IServiceProxyInterfaceId = '0x805cef69';
   const getImplementationFunctionSelector = '0xdc9cc645';
   const initializeServiceProxyFunctionSelector = '0x5cc0292c';
-  const getDeploymentMetadataFunctionSelector = '0xa6811950';
+
+  const ICreate2DeploymentMetadataInterfaceId = '0x2e08c21c';
+  const getCreate2DeploymentMetadataFunctionSelector = '0x2e08c21c';
 
   let proxyAsMessenger: MessengerDelegateService;
 
   let delegateServiceRegistry: DelegateServiceRegistryMock;
-  const IDelegateServiceRegistryInterfaceId = '0xb0184e40';
+  const IDelegateServiceRegistryInterfaceId = '0x1fd72ff4';
   const queryDelegateServiceAddressFunctionSelector = '0x03714859';
   const bulkQueryDelegateServiceAddressFunctionSelector = '0xb3690619';
 
@@ -113,7 +115,7 @@ describe("ServiceProxyFactory", function () {
 
   describe("ServiceProxyFactory", function () {
 
-    describe("::MessengerDelegateService", function () {
+    describe("MessengerDelegateService", function () {
 
       describe("Messenger", function () {
 
@@ -144,7 +146,7 @@ describe("ServiceProxyFactory", function () {
 
       });
 
-      describe("DelegateService", function () {
+      describe("DelegateServiceMock", function () {
 
         describe("Validate interface and function selector computation", function () {
           it("IDelegateServiceInterfaceId.", async function () {
@@ -179,7 +181,7 @@ describe("ServiceProxyFactory", function () {
 
     });
 
-    describe("ServiceProxy", function () {
+    describe("ServiceProxyMock", function () {
 
       describe("Validate interface and function selector computation", function () {
         it("IServiceProxyInterfaceId.", async function () {
@@ -194,9 +196,13 @@ describe("ServiceProxyFactory", function () {
           expect(await proxy.initializeServiceProxyFunctionSelector())
             .to.equal(initializeServiceProxyFunctionSelector);
         });
-        it("getDeploymentMetadataFunctionSelector.", async function () {
-          expect(await proxy.getDeploymentMetadataFunctionSelector())
-            .to.equal(getDeploymentMetadataFunctionSelector);
+        it("ICreate2DeploymentMetadataInterfaceId.", async function () {
+          expect(await proxy.ICreate2DeploymentMetadataInterfaceId())
+            .to.equal(ICreate2DeploymentMetadataInterfaceId);
+        });
+        it("getCreate2DeploymentMetadataFunctionSelector.", async function () {
+          expect(await proxy.getCreate2DeploymentMetadataFunctionSelector())
+            .to.equal(getCreate2DeploymentMetadataFunctionSelector);
         });
       });
 
@@ -240,18 +246,18 @@ describe("ServiceProxyFactory", function () {
 
     });
 
-    describe("DelegateServiceRegistry", function () {
+    describe("DelegateServiceRegistryMock", function () {
 
       describe("Validate interface and function selector computation", function () {
-        it("IMessengerInterfaceId.", async function () {
+        it("IDelegateServiceRegistryInterfaceId.", async function () {
           expect(await delegateServiceRegistry.IDelegateServiceRegistryInterfaceId())
             .to.equal(IDelegateServiceRegistryInterfaceId);
         });
-        it("setMessageFunctionSelector.", async function () {
+        it("queryDelegateServiceAddressFunctionSelector.", async function () {
           expect(await delegateServiceRegistry.queryDelegateServiceAddressFunctionSelector())
             .to.equal(queryDelegateServiceAddressFunctionSelector);
         });
-        it("getMessageFunctionSelector.", async function () {
+        it("bulkQueryDelegateServiceAddressFunctionSelector.", async function () {
           expect(await delegateServiceRegistry.bulkQueryDelegateServiceAddressFunctionSelector())
             .to.equal(bulkQueryDelegateServiceAddressFunctionSelector);
         });
@@ -376,7 +382,7 @@ describe("ServiceProxyFactory", function () {
           await newServiceProxyAsMessenger.setMessage("Hello World!");
           expect(await newServiceProxyAsMessenger.getMessage()).to.equal("Hello World!");
 
-          const serviceProxyMetadata = await newServiceProxy.getDeploymentMetadata();
+          const serviceProxyMetadata = await newServiceProxy.getCreate2DeploymentMetadata();
 
           expect(serviceProxyMetadata.deploymentSalt).to.equal(
             await serviceProxyFactory.calculateDeploymentSalt(
@@ -386,7 +392,7 @@ describe("ServiceProxyFactory", function () {
                 ]
               )
             );
-          expect(serviceProxyMetadata.proxyFactoryAddress).to.equal(serviceProxyFactory.address);
+          expect(serviceProxyMetadata.deployerAddress).to.equal(serviceProxyFactory.address);
         });
       });
 

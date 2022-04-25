@@ -22,14 +22,14 @@ describe("Delegate Service Registry", function () {
 
   // TestService test variables
   let messengerDelegateService: MessengerDelegateService;
-  const IDelegateServiceInterfaceId = '0xd56eb69e';
+  const IDelegateServiceInterfaceId = '0xb38d1215';
   const getServiceDefFunctionSelector = '0xd56eb69e';
   const IMessengerInterfaceId = "0xf8e6c6ac";
   const setMessageFunctionSelector = '0x368b8772';
   const getMessageFunctionSelector = '0xce6d41de';
 
   let delegateServiceRegistry: DelegateServiceRegistryMock;
-  const IDelegateServiceRegistryInterfaceId = '0xb0184e40';
+  const IDelegateServiceRegistryInterfaceId = '0x1fd72ff4';
   const queryDelegateServiceAddressFunctionSelector = '0x03714859';
   const bulkQueryDelegateServiceAddressFunctionSelector = '0xb3690619';
 

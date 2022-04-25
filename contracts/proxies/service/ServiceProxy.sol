@@ -11,6 +11,10 @@ import {
 import {
   IDelegateService
 } from "contracts/service/delegate/interfaces/IDelegateService.sol";
+import {
+  Create2DeploymentMetadata,
+  ICreate2DeploymentMetadata
+} from "contracts/evm/create2/metadata/Create2DeploymentMetadata.sol";
 
 /**
  * @title Base proxy contract
@@ -19,6 +23,7 @@ contract ServiceProxy
   is
     IServiceProxy,
     ServiceProxyLogic,
+    Create2DeploymentMetadata,
     Proxy
 {
 
@@ -47,10 +52,9 @@ contract ServiceProxy
     bytes32 deploymentSalt
   ) external returns (bool success) {
 
-    _setDeploymentMetadata(
-      type(IServiceProxy).interfaceId,
-      deploymentSalt,
-      msg.sender
+    _setCreate2DeploymentMetaData(
+      msg.sender,
+      deploymentSalt
     );
 
     for(uint16 iteration = 0; delegateServices.length > iteration; iteration++) {
@@ -67,11 +71,11 @@ contract ServiceProxy
     success = true;
   }
 
-  function getDeploymentMetadata() view external returns (ServiceProxyMetadata memory serviceProxyMetadata) {
-    (
-      serviceProxyMetadata.deploymentSalt,
-      serviceProxyMetadata.proxyFactoryAddress
-    ) = _getDeploymentMetadata(type(IServiceProxy).interfaceId);
-  }
+  // function getDeploymentMetadata() view external returns (ServiceProxyMetadata memory serviceProxyMetadata) {
+  //   (
+  //     serviceProxyMetadata.deploymentSalt,
+  //     serviceProxyMetadata.proxyFactoryAddress
+  //   ) = _getDeploymentMetadata(type(IServiceProxy).interfaceId);
+  // }
 
 }

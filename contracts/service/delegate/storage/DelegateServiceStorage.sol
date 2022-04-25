@@ -82,4 +82,10 @@ library DelegateServiceStorageUtils {
     bootStrapperInitFunction = layout.bootStrapperInitFunction._getValue();
   }
 
+  function _getDelegateServiceInterfaceId(
+    DelegateServiceStorage.Layout storage layout
+  ) view internal returns (bytes4 delegateServiceInterfaceId) {
+    delegateServiceInterfaceId = layout.interfaceId._getValue();
+  }
+
 }

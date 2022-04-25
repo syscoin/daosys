@@ -22,6 +22,10 @@ contract DelegateServiceFactoryMock
     result = true;
   }
 
+  function calculateDeploymentAddressFunctionSelector() pure external returns (bytes4 functionSelector) {
+    functionSelector = IDelegateServiceFactory.calculateDeploymentAddress.selector;
+  }
+
   function IDelegateServiceFactoryInterfaceId() pure external returns (bytes4 interfaceId) {
     interfaceId = type(IDelegateServiceFactory).interfaceId;
   }

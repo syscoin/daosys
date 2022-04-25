@@ -38,7 +38,7 @@ describe('Factory', function () {
             const initCode = '0xfe';
 
             await expect(instance['deploy(bytes)'](initCode)).to.revertedWith(
-              'Factory: failed deployment',
+              'CreateUtils: failed deployment',
             );
           });
         });
@@ -75,7 +75,7 @@ describe('Factory', function () {
 
             await expect(
               instance['deployWithSalt(bytes,bytes32)'](initCode, salt),
-            ).to.revertedWith('Factory: failed deployment');
+            ).to.revertedWith('Create2Utils: failed deployment');
           });
 
           it('salt has already been used', async function () {
@@ -86,7 +86,7 @@ describe('Factory', function () {
 
             await expect(
               instance['deployWithSalt(bytes,bytes32)'](initCode, salt),
-            ).to.be.revertedWith('Factory: failed deployment');
+            ).to.be.revertedWith('Create2Utils: failed deployment');
           });
         });
       });

@@ -3,7 +3,8 @@ pragma solidity ^0.8.0;
 
 import {
   ServiceProxy,
-  IServiceProxy
+  IServiceProxy,
+  ICreate2DeploymentMetadata
 } from "contracts/proxies/service/ServiceProxy.sol";
 import {IDelegateService} from "contracts/service/delegate/interfaces/IDelegateService.sol";
 
@@ -40,8 +41,12 @@ contract ServiceProxyMock is ServiceProxy {
     functionSelector = IServiceProxy.initializeServiceProxy.selector;
   }
 
-  function getDeploymentMetadataFunctionSelector() pure external returns (bytes4 functionSelector) {
-    functionSelector = IServiceProxy.getDeploymentMetadata.selector;
+  function ICreate2DeploymentMetadataInterfaceId() pure external returns (bytes4 interfaceId) {
+    interfaceId = type(ICreate2DeploymentMetadata).interfaceId;
+  }
+
+  function getCreate2DeploymentMetadataFunctionSelector() pure external returns (bytes4 functionSelector) {
+    functionSelector = ICreate2DeploymentMetadata.getCreate2DeploymentMetadata.selector;
   }
 
 }

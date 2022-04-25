@@ -18,8 +18,8 @@ library ServiceProxyStorage {
 
   struct Layout {
     Bytes4ToAddress.Layout implementations;
-    Bytes32.Layout deploymentSalt;
-    Address.Layout proxyFactoryAddress;
+    // Bytes32.Layout deploymentSalt;
+    // Address.Layout proxyFactoryAddress;
   }
 
 }
@@ -79,30 +79,30 @@ library ServiceProxyStorageUtils {
     layout.implementations._unmapValue(functionSelector);
   }
 
-  function _setDeploymentSalt(
-    ServiceProxyStorage.Layout storage layout,
-    bytes32 deploymentSalt
-  ) internal {
-    layout.deploymentSalt._setValue(deploymentSalt);
-  }
+  // function _setDeploymentSalt(
+  //   ServiceProxyStorage.Layout storage layout,
+  //   bytes32 deploymentSalt
+  // ) internal {
+  //   layout.deploymentSalt._setValue(deploymentSalt);
+  // }
 
-  function _getDeploymentSalt(
-    ServiceProxyStorage.Layout storage layout
-  ) view internal returns (bytes32 deploymentSalt) {
-    deploymentSalt = layout.deploymentSalt._getValue();
-  }
+  // function _getDeploymentSalt(
+  //   ServiceProxyStorage.Layout storage layout
+  // ) view internal returns (bytes32 deploymentSalt) {
+  //   deploymentSalt = layout.deploymentSalt._getValue();
+  // }
 
-  function _setProxyFactory(
-    ServiceProxyStorage.Layout storage layout,
-    address proxyFactoryAddress
-  ) internal {
-    layout.proxyFactoryAddress._setValue(proxyFactoryAddress);
-  }
+  // function _setProxyFactory(
+  //   ServiceProxyStorage.Layout storage layout,
+  //   address proxyFactoryAddress
+  // ) internal {
+  //   layout.proxyFactoryAddress._setValue(proxyFactoryAddress);
+  // }
 
-  function _getProxyFactory(
-    ServiceProxyStorage.Layout storage layout
-  ) view internal returns (address proxyFactoryAddress) {
-    proxyFactoryAddress = layout.proxyFactoryAddress._getValue();
-  }
+  // function _getProxyFactory(
+  //   ServiceProxyStorage.Layout storage layout
+  // ) view internal returns (address proxyFactoryAddress) {
+  //   proxyFactoryAddress = layout.proxyFactoryAddress._getValue();
+  // }
 
 }
