@@ -12,10 +12,13 @@ import numpy as np
 
 class Liquidity():
     
+    YX_PRICE = 'YX'
+    XY_PRICE = 'XY'
+    
     def __init__(self, x_real, y_real):
         self.__x_real = x_real
         self.__y_real = y_real  
-        self.__swap_price = None 
+        self.__yx_swap_price = None 
         
     def get_x_real(self):
         return self.__x_real
@@ -23,9 +26,12 @@ class Liquidity():
     def get_y_real(self):
         return self.__y_real
     
-    def get_swap_price(self): 
-        return self.__swap_price    
-        
+    def get_swap_price(self, direction = 'YX'): 
+        if direction == self.YX_PRICE:
+            return self.__yx_swap_price
+        else: 
+            return 1/self.__yx_swap_price    
+          
     def set_y_real(self, y_real):
         self.__y_real = y_real
         
@@ -45,7 +51,7 @@ class Liquidity():
         return (self.__x_real*delta_y)/(self.__y_real+delta_y)
 
     def calc(self): 
-        self.__swap_price = self.__y_real / self.__x_real
+        self.__yx_swap_price = self.__y_real / self.__x_real
         return np.sqrt(self.__x_real*self.__y_real)    
          
     def swap(self, delta_x):
