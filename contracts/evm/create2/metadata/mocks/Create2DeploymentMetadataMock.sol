@@ -11,6 +11,17 @@ contract Create2DeploymentMetadataMock
     Create2DeploymentMetadata
 {
 
+  function setCreate2DeploymentMetadata(
+    address proxyFactoryAddress,
+    bytes32 deploymentSalt
+  ) external returns (bool success) {
+    _setCreate2DeploymentMetaData(
+      proxyFactoryAddress,
+      deploymentSalt
+    );
+    success = true;
+  }
+
   function ICreate2DeploymentMetadataInterfaceId() pure external returns (bytes4 interfaceId) {
     interfaceId = type(ICreate2DeploymentMetadata).interfaceId;
   }

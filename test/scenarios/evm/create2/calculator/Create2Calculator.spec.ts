@@ -15,8 +15,6 @@ describe('Create2Calculator', function () {
     instance = await new Create2Calculator__factory(deployer).deploy();
   });
 
-  // describeBehaviorOfFactory({ deploy: async () => instance });
-
   describe('Create2Calculator', function () {
 
     describe('#calculateDeploymentAddress', function () {
