@@ -4,7 +4,7 @@ import { ethers } from 'hardhat';
 import {
   CreateUtilsMock,
   CreateUtilsMock__factory
-} from '../../../../typechain';
+} from '../../../../../typechain';
 
 describe('Create2Utils', function () {
   

@@ -36,17 +36,17 @@ library Create2Utils {
    * @param salt input for deterministic address calculation
    * @return deploymentAddress Calculated deployment address
    */
-  function calculateDeploymentAddress(
-    address deployerAddress,
-    bytes32 creationCodeHash,
-    bytes32 salt
-  ) pure external returns (address deploymentAddress) {
-    deploymentAddress = _calculateDeploymentAddress(
-      deployerAddress,
-      creationCodeHash,
-      salt
-    );
-  }
+  // function calculateDeploymentAddress(
+  //   address deployerAddress,
+  //   bytes32 creationCodeHash,
+  //   bytes32 salt
+  // ) pure external returns (address deploymentAddress) {
+  //   deploymentAddress = _calculateDeploymentAddress(
+  //     deployerAddress,
+  //     creationCodeHash,
+  //     salt
+  //   );
+  // }
 
   /**
    * @notice deploy contract code using "CREATE2" opcode
