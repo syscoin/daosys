@@ -32,14 +32,14 @@ abstract contract Create2CalculatorLogic {
    * @param salt input for deterministic address calculation
    * @return deployment address of deployed contract
    */
-  function _deployWithSalt(
-    bytes memory creationCode,
-    bytes32 salt
-  ) internal returns (address deployment) {
-    deployment = Create2Utils._deployWithSalt(
-      creationCode,
-      salt
-    );
-  }
+  // function _deployWithSalt(
+  //   bytes memory creationCode,
+  //   bytes32 salt
+  // ) internal returns (address deployment) {
+  //   deployment = Create2Utils._deployWithSalt(
+  //     creationCode,
+  //     salt
+  //   );
+  // }
 
 }
