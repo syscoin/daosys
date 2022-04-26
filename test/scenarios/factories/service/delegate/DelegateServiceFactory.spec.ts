@@ -315,8 +315,6 @@ describe('Delegate Service Factory', function () {
           await newServiceProxyAsMessenger.setMessage("Hello World!");
           expect(await newServiceProxyAsMessenger.getMessage()).to.equal("Hello World!");
 
-
-
         });
       });
     });

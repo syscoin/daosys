@@ -2,10 +2,13 @@
 pragma solidity ^0.8.0;
 
 import {
-  Create2Utils
-} from "contracts/evm/create2/Create2Utils.sol";
+  Create2CalculatorLogic
+} from "contracts/evm/create2/calculator/logic/Create2CalculatorLogic.sol";
 
-library AddressBasedImplicitACLValidatorUtils {
+abstract contract AddressBasedImplicitACLValidatorLogic
+  is
+    Create2CalculatorLogic
+{
 
   function _validateAddressPedigree(
     address addressToValidate,
@@ -13,11 +16,12 @@ library AddressBasedImplicitACLValidatorUtils {
     bytes32 deploymentSalt
   ) view internal returns (bool wasDeployedFromDeployer) {
     wasDeployedFromDeployer = (
-      addressToValidate == Create2Utils._calculateDeploymentAddress(
+      addressToValidate == _calculateDeploymentAddress(
         deployer,
         addressToValidate.codehash,
         deploymentSalt
       )
     );
   }
+
 }

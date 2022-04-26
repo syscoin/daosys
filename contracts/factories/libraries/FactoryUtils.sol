@@ -6,7 +6,7 @@ import {
 } from "contracts/evm/create/CreateUtils.sol";
 import {
   Create2Utils
-} from "contracts/evm/create2/Create2Utils.sol";
+} from "contracts/evm/create2/libraries/Create2Utils.sol";
 
 /**
  * @title Factory for arbitrary code deployment using the "CREATE" and "CREATE2" opcodes
