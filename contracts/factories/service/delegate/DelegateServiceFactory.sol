@@ -19,12 +19,14 @@ import {
   IDelegateService
 } from "contracts/service/delegate/interfaces/IDelegateService.sol";
 
+import "hardhat/console.sol";
+
 contract DelegateServiceFactory
   is
     DelegateServiceFactoryLogic
 {
 
-  function calculateDeploymentAddress (bytes32 initCodeHash, bytes32 salt) external view returns (address newAddress) {
+  function calculateDeploymentAddress(bytes32 initCodeHash, bytes32 salt) external view returns (address newAddress) {
     newAddress = _calculateDeploymentAddress(initCodeHash, salt);
   }
 
@@ -35,6 +37,7 @@ contract DelegateServiceFactory
     bytes32 delegateServiceInterfaceId
   ) external returns (address delegateService) {
     delegateService = _deployDelegateService(delegateServiceCreationCode, delegateServiceInterfaceId);
+    console.log("DelegateServiceFactory:deployDelegateService:: New DelegateService address is %s", delegateService);
     require( IDelegateService(delegateService).registerDelegateService(delegateServiceInterfaceId), "DSFactory: DS registration failed." );
   }
 

@@ -2,18 +2,30 @@
 
 pragma solidity ^0.8.0;
 
-// import {Factory} from '../Factory.sol';
+import {
+  IFactory,
+  Factory
+} from 'contracts/factories/Factory.sol';
 
-// contract FactoryMock is Factory {
-//   function __deploy (bytes memory initCode) external returns (address deployment) {
-//     return _deploy(initCode);
-//   }
+contract FactoryMock is Factory {
+  function IFactoryInterfaceId() pure external returns (bytes4 interfaceId) {
+    interfaceId = type(IFactory).interfaceId;
+  }
 
-//   function __deploy (bytes memory initCode, bytes32 salt) external returns (address deployment) {
-//     return _deploy(initCode, salt);
-//   }
+  function deployFunctionSelector() pure external returns (bytes4 functionSelector) {
+    functionSelector = IFactory.deploy.selector;
+  }
 
-//   function __calculateDeploymentAddress (bytes32 initCodeHash, bytes32 salt) external view returns (address) {
-//     return _calculateDeploymentAddress(initCodeHash, salt);
-//   }
-// }
+  function deployWithSaltFunctionSelector() pure external returns (bytes4 functionSelector) {
+    functionSelector = IFactory.deployWithSalt.selector;
+  }
+
+  function calculateDeploymentAddressFunctionSelector() pure external returns (bytes4 functionSelector) {
+    functionSelector = IFactory.calculateDeploymentAddress.selector;
+  }
+
+  function calculateDeploymentAddressFromAddressFunctionSelector() pure external returns (bytes4 functionSelector) {
+    functionSelector = IFactory.calculateDeploymentAddressFromAddress.selector;
+  }
+
+}

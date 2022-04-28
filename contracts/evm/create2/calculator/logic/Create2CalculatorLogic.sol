@@ -25,21 +25,4 @@ abstract contract Create2CalculatorLogic {
     );
   }
 
-  /**
-   * @notice deploy contract code using "CREATE2" opcode
-   * @dev reverts if deployment is not successful (likely because salt has already been used)
-   * @param creationCode contract initialization code
-   * @param salt input for deterministic address calculation
-   * @return deployment address of deployed contract
-   */
-  // function _deployWithSalt(
-  //   bytes memory creationCode,
-  //   bytes32 salt
-  // ) internal returns (address deployment) {
-  //   deployment = Create2Utils._deployWithSalt(
-  //     creationCode,
-  //     salt
-  //   );
-  // }
-
 }

@@ -361,18 +361,17 @@ describe("ServiceProxyFactory", function () {
 
           await serviceProxyFactory.setDelegateServiceRegistry(delegateServiceRegistry.address);
 
-          const newServiceProxyAddress = await serviceProxyFactory.connect(deployer).callStatic["deployServiceProxy(bytes4[])"]
-            (
+          const newServiceProxyAddress = await serviceProxyFactory.connect(deployer).callStatic.deployServiceProxy(
               [
                 await messengerDelegateService.IMessengerInterfaceId()
               ]
             );
           expect(newServiceProxyAddress).to.be.properAddress;
           await serviceProxyFactory.connect(deployer).deployServiceProxy(
-            [
-              await messengerDelegateService.IMessengerInterfaceId()
-            ]
-          );
+              [
+                await messengerDelegateService.IMessengerInterfaceId()
+              ]
+            );
           newServiceProxyAsMessenger = await ethers.getContractAt("MessengerDelegateService", newServiceProxyAddress) as MessengerDelegateService;
           tracer.nameTags[newServiceProxyAsMessenger.address] = "ServiceProxyAsMessenger";
 

@@ -35,8 +35,8 @@ library FactoryUtils {
 
   function _calculateInitCodeHash(
     bytes memory creationCode
-  ) pure internal returns (bytes32 initCodeHash) {
-    initCodeHash = keccak256(creationCode);
+  ) pure internal returns (bytes32 creationCodeHash) {
+    creationCodeHash = keccak256(creationCode);
   }
 
   /**
