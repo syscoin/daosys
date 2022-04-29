@@ -43,7 +43,7 @@ abstract contract FactoryLogic {
       bytes32 initCodeHash,
       bytes32 salt
     ) pure internal returns (address deploymenAddress) {
-    deploymenAddress = _calculateDeploymentAddressFromAddress(
+    deploymenAddress = FactoryUtils._calculateDeploymentAddressFromAddress(
       deployer,
       initCodeHash,
       salt

@@ -2,8 +2,8 @@
 pragma solidity ^0.8.0;
 
 import {
-  Create2Utils
-} from "contracts/evm/create2/libraries/Create2Utils.sol";
+  FactoryUtils
+} from "contracts/factories/libraries/FactoryUtils.sol";
 
 abstract contract Create2CalculatorLogic {
 
@@ -18,7 +18,7 @@ abstract contract Create2CalculatorLogic {
     bytes32 creationCodeHash,
     bytes32 deploymentSalt
   ) pure internal returns (address deploymentAddress) {
-    deploymentAddress = Create2Utils._calculateDeploymentAddress(
+    deploymentAddress = FactoryUtils._calculateDeploymentAddressFromAddress(
       deployerAddress,
       creationCodeHash,
       deploymentSalt

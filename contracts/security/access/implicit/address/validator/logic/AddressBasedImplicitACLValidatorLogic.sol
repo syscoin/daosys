@@ -13,12 +13,14 @@ abstract contract AddressBasedImplicitACLValidatorLogic
 {
 
   function _validateAddressPedigree(
-    address addressToValidate,
     address deployer,
+    address addressToValidate,
     bytes32 deploymentSalt
   ) view internal returns (bool wasDeployedFromDeployer) {
 
+    console.log("AddressBasedImplicitACLValidatorLogic:_validateAddressPedigree:: Validating deployment from %s", deployer);
     console.log("AddressBasedImplicitACLValidatorLogic:_validateAddressPedigree:: Validating address %s", addressToValidate);
+    console.log("AddressBasedImplicitACLValidatorLogic:_validateAddressPedigree:: Validating salt %s", uint256(deploymentSalt) );
 
     address calculatedAddress = _calculateDeploymentAddress(
         deployer,
