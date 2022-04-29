@@ -26,10 +26,12 @@ describe("Service Proxy", function () {
   const getMessageFunctionSelector = '0xce6d41de';
 
   let proxy: ServiceProxyMock;
-  const IServiceProxyInterfaceId = '0x26ddf639';
+  const IServiceProxyInterfaceId = '0x805cef69';
   const getImplementationFunctionSelector = '0xdc9cc645';
   const initializeServiceProxyFunctionSelector = '0x5cc0292c';
-  const getDeploymentMetadataFunctionSelector = '0xa6811950';
+
+  const ICreate2DeploymentMetadataInterfaceId = '0x2e08c21c';
+  const getCreate2DeploymentMetadataFunctionSelector = '0x2e08c21c';
 
   let proxyAsMessenger: MessengerDelegateService;
 
@@ -92,9 +94,13 @@ describe("Service Proxy", function () {
         expect(await proxy.initializeServiceProxyFunctionSelector())
           .to.equal(initializeServiceProxyFunctionSelector);
       });
-      it("getDeploymentMetadataFunctionSelector.", async function () {
-        expect(await proxy.getDeploymentMetadataFunctionSelector())
-          .to.equal(getDeploymentMetadataFunctionSelector);
+      it("ICreate2DeploymentMetadataInterfaceId.", async function () {
+        expect(await proxy.ICreate2DeploymentMetadataInterfaceId())
+          .to.equal(ICreate2DeploymentMetadataInterfaceId);
+      });
+      it("getCreate2DeploymentMetadataFunctionSelector.", async function () {
+        expect(await proxy.getCreate2DeploymentMetadataFunctionSelector())
+          .to.equal(getCreate2DeploymentMetadataFunctionSelector);
       });
     });
 

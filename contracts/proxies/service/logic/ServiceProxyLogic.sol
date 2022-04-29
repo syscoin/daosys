@@ -37,27 +37,27 @@ abstract contract ServiceProxyLogic {
       ._unmapImplementation(functionSelector);
   }
 
-  function _setDeploymentMetadata(
-    bytes32 storageSlotSalt,
-    bytes32 deploymentSalt,
-    address proxyFactoryAddress
-  ) internal {
-    ServiceProxyStorageUtils._layout(storageSlotSalt)
-      ._setDeploymentSalt(deploymentSalt);
-    ServiceProxyStorageUtils._layout(storageSlotSalt)
-      ._setProxyFactory(proxyFactoryAddress);
-  }
+  // function _setDeploymentMetadata(
+  //   bytes32 storageSlotSalt,
+  //   bytes32 deploymentSalt,
+  //   address proxyFactoryAddress
+  // ) internal {
+  //   ServiceProxyStorageUtils._layout(storageSlotSalt)
+  //     ._setDeploymentSalt(deploymentSalt);
+  //   ServiceProxyStorageUtils._layout(storageSlotSalt)
+  //     ._setProxyFactory(proxyFactoryAddress);
+  // }
 
-  function _getDeploymentMetadata(
-    bytes32 storageSlotSalt
-  ) view internal returns (
-    bytes32 deploymentSalt,
-    address proxyFactoryAddress
-  ) {
-    deploymentSalt = ServiceProxyStorageUtils._layout(storageSlotSalt)
-      ._getDeploymentSalt();
-    proxyFactoryAddress = ServiceProxyStorageUtils._layout(storageSlotSalt)
-      ._getProxyFactory();
-  }
+  // function _getDeploymentMetadata(
+  //   bytes32 storageSlotSalt
+  // ) view internal returns (
+  //   bytes32 deploymentSalt,
+  //   address proxyFactoryAddress
+  // ) {
+  //   deploymentSalt = ServiceProxyStorageUtils._layout(storageSlotSalt)
+  //     ._getDeploymentSalt();
+  //   proxyFactoryAddress = ServiceProxyStorageUtils._layout(storageSlotSalt)
+  //     ._getProxyFactory();
+  // }
 
 }

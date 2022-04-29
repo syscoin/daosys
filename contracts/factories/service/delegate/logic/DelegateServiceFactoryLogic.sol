@@ -9,8 +9,11 @@ import {
   DelegateServiceFactoryStorage,
   DelegateServiceFactoryStorageUtils
 } from "contracts/factories/service/delegate/storage/DelegateServiceFactoryStorage.sol";
+import {
+  FactoryLogic
+} from "contracts/factories/logic/FactoryLogic.sol";
 
-abstract contract DelegateServiceFactoryLogic {
+abstract contract DelegateServiceFactoryLogic is FactoryLogic {
   
   using DelegateServiceFactoryStorageUtils for DelegateServiceFactoryStorage.Layout;
 

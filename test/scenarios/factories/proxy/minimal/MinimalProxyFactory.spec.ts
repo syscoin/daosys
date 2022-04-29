@@ -77,7 +77,7 @@ describe('MinimalProxyFactory', function () {
 
             await expect(
               instance['__deployMinimalProxyWithSalt(address,bytes32)'](target, salt),
-            ).to.be.revertedWith('Factory: failed deployment');
+            ).to.be.revertedWith('Create2Utils: failed deployment');
           });
         });
       });

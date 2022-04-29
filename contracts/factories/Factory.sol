@@ -5,13 +5,13 @@ pragma solidity ^0.8.0;
 import {
   FactoryLogic
 } from "contracts/factories/logic/FactoryLogic.sol";
-import {IFactory} from "./interfaces/Factory.sol";
+import {IFactory} from "./interfaces/IFactory.sol";
 
 /**
  * @title Factory for arbitrary code deployment using the "CREATE" and "CREATE2" opcodes
  */
 // TODO Make ownable.
-contract Factory is FactoryLogic {
+contract Factory is IFactory, FactoryLogic {
 
   /**
    * @notice deploy contract code using "CREATE" opcode

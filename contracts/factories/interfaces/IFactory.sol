@@ -22,7 +22,10 @@ interface IFactory {
    * @param salt input for deterministic address calculation
    * @return deployment address of deployed contract
    */
-  function deployWithSalt(bytes memory initCode, bytes32 salt) external returns (address deployment);
+  function deployWithSalt(
+    bytes memory initCode,
+    bytes32 salt
+  ) external returns (address deployment);
 
   /**
    * @notice calculate the _deployMetamorphicContract deployment address for a given salt
@@ -30,6 +33,15 @@ interface IFactory {
    * @param salt input for deterministic address calculation
    * @return newAddress deployment address
    */
-  function calculateDeploymentAddress (bytes32 initCodeHash, bytes32 salt) external view returns (address newAddress);
+  function calculateDeploymentAddress(
+    bytes32 initCodeHash,
+    bytes32 salt
+  ) external view returns (address newAddress);
+
+  function calculateDeploymentAddressFromAddress(
+    address deployer,
+    bytes32 initCodeHash,
+    bytes32 salt
+  ) pure external returns (address deploymenAddress);
 
 }

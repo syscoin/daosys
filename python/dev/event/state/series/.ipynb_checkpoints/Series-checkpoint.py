@@ -14,5 +14,8 @@ class Series():
     def get_state(self, index):
         return self.__states[index]  
     
+    def get_last_state(self):
+        return self.__states[-1]     
+    
     def add_state(self, state):
         return self.__states.append(copy.copy(state)) 

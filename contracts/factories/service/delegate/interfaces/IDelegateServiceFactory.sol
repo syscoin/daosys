@@ -7,6 +7,11 @@ pragma solidity ^0.8.0;
 
 interface IDelegateServiceFactory {
 
+  function calculateDeploymentAddress(
+    bytes32 initCodeHash,
+    bytes32 salt
+  ) view external returns (address newAddress);
+
   function deployDelegateService(
     bytes memory delegateServiceCreationCode,
     bytes32 delegateServiceInterfaceId

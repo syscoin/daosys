@@ -7,8 +7,21 @@ import {
   DelegateServiceStorageUtils
 } from "contracts/service/delegate/logic/DelegateServiceLogic.sol";
 import {IDelegateService} from "contracts/service/delegate/interfaces/IDelegateService.sol";
+import {IDelegateServiceFactory} from "contracts/factories/service/delegate/interfaces/IDelegateServiceFactory.sol";
+import {
+  IDelegateServiceRegistry
+} from "contracts/registries/service/delegate/interfaces/IDelegateServiceRegistry.sol";
+import {
+  Create2DeploymentMetadata,
+  ICreate2DeploymentMetadata
+} from "contracts/evm/create2/metadata/Create2DeploymentMetadata.sol";
 
-abstract contract DelegateService is IDelegateService, DelegateServiceLogic {
+abstract contract DelegateService
+  is
+    IDelegateService,
+    DelegateServiceLogic,
+    Create2DeploymentMetadata
+{
 
   using DelegateServiceStorageUtils for DelegateServiceStorage.Layout;
 
@@ -22,9 +35,21 @@ abstract contract DelegateService is IDelegateService, DelegateServiceLogic {
       type(IDelegateService).interfaceId,
       interfaceId,
       functionSelectors,
-        bootstrapper,
-        bootstrapperInitFunction
+      bootstrapper,
+      bootstrapperInitFunction
     );
+  }
+
+  function registerDelegateService(
+    bytes32 deploymentSalt
+  ) external returns (bool success) {
+    _setCreate2DeploymentMetaData(
+      msg.sender,
+      deploymentSalt
+    );
+    address delegateServiceRegistry = IDelegateServiceFactory(msg.sender).getDelegateServiceRegistry();
+    IDelegateServiceRegistry(delegateServiceRegistry).selfRegisterDelegateService(address(this));
+    success = true;
   }
 
   function getServiceDef() view external returns (ServiceDef memory serviceDef) {

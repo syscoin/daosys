@@ -17,5 +17,5 @@ interface IServiceProxy {
     bytes32 deploymentSalt
   ) external returns (bool success);
 
-  function getDeploymentMetadata() view external returns (ServiceProxyMetadata memory serviceProxyMetadata);
+  // function getDeploymentMetadata() view external returns (ServiceProxyMetadata memory serviceProxyMetadata);
 }

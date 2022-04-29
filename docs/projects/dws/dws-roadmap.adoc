@@ -1,0 +1,79 @@
+= DWS Roadmap
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-04-21
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+== Milestone 1 - Deploy Core Platform
+
+Secure a decentralized hosting platform.
+Platform must be able to host DAOSYS infrastructure.
+Platform must be able of accepting public deployments to rent excess capacity.
+
+* Secure hosting services owned by Syscoin Foundation to deploy arbitrary compute resources.
+** AWS
+** GCP
+** Private hardware
+* Deploy an Akash cluster registered as a public provider.
+
+== Milestone 2 - Automate Deployments
+
+* Deploy CI/CD administration pipeline using traditional solutions hosted on Foundation Akash cluster.
+** Gogs
+** Jenkins
+** Ansible
+*** Integrate Ansible using custom scripts to deploy to Akash.
+
+== Milestone 3 - Community Support
+
+* Deploy Presearch nodes using CI/CD pipeline.
+* Integrate DAOSYS vault to receive revenue from Presearch nodes.
+* Deploy Matrix servers using CI/CD pipeline.
+* Deploy Mastodon servers using CI/CD pipeline.
+
+== Milestone 4 - Supplemental Revenue
+
+* Deploy Polygon nodes using CI/CD pipeline.
+* Integrate DAOSYS vault to receive revenue from Polygon nodes.
+
+== Milestone 5 - Supplemental Revenue
+
+* Deploy Helium validators using CI/CD pipeline.
+* Integrate DAOSYS vault to receive revenue from Helium nods.
+
+== Milestone 6 - Supplemental Revenue
+
+* Deploy Raptoreum validators using CI/CD pipeline.
+* Integrate DAOSYS vault to receive revenue from Raptoreum nods.
+
+== Milestone 7 - Layered Decentralize Computing
+
+* Deploy Holochain validators using CI/CD pipeline.
+* Integrate DAOSYS vault to receive revenue from Raptoreum nods.
+
+== Milestone 8 - Syscoin L2 Expansion
+
+* Deploy Metis nodes using CI/CD pipeline.
+* Integrate DAOSYS vault to receive revenue from Metis nodes.
+
+== Milestone 9 - Syscoin L2 Expansion
+
+* Deploy Boba nodes using CI/CD pipeline.
+* Integrate DAOSYS vault to receive revenue from Boba nods.
+
+== Milestone 10 - L1 Bridge Security
+
+* Deploy ETH2 validators using CI/CD pipeline.
+* Integrate DAOSYS vault to receive revenue from ETH2 validators.

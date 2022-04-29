@@ -22,7 +22,7 @@ describe("Delegate Service", function () {
   let delegateServiceMock: DelegateServiceMock;
 
   // const erc165InterfaceID = "0x01ffc9a7";
-  const IDelegateServiceInterfaceId = '0xd56eb69e';
+  const IDelegateServiceInterfaceId = '0xb38d1215';
   const getServiceDefFunctionSelector = '0xd56eb69e';
 
   /* -------------------------------------------------------------------------- */

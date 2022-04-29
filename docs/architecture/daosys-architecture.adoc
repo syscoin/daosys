@@ -49,19 +49,3 @@ With emergency withdrawal or liquidation services to gracefully degrade if a ser
 image::images/architecture/daosys-architecture-01-ase-02-architecture.drawio.svg[align=center]
 
 include::./components/daosys-components.adoc[leveloffset=+1]
-
-=== Service Proxy 
-
-The Service Proxy is a special Service that is the target of the Minimal Proxies deployed by the Factory.
-It is published in the Service Registry under the invalid interface ID as defined in https://eips.ethereum.org/EIPS/eip-165[ERC-165].
-This allows for later factory instances to override the original Service Proxy implementation is desired.
-Because of this reserved interface ID, there is no need to declare the Service Proxy in a new Service Proxy configuration.
-
-The Service Proxy implements a `fallback() payable` function.
-This `fallback() payable` function uses the implicit variable `msg.sig` to lookup which address to use as the target of a `DELEGATECALL`.
-This is the Delegate Service configured when the Service Proxy was deployed from the factory.
-The transaction data is forwarded to the target Delegate Service.
-The target Delegate Service then executes it's implemented logic using the storage of the Service Proxy that issued the `DELEGATECALL`.
-
-A Service Proxy may need more complex transaction processing that is domain specific.
-This is defined in the Transaction Router design pattern.

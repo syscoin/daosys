@@ -17,6 +17,11 @@ contract DelegateServiceRegistry
     DelegateServiceLogic
 {
 
+
+  // TODO implement selfRegisterDelegateService as registering the msg.sender.
+  // TODO Add Address Based Implicit ACL
+
+
   function registerDelegateService(
     bytes4 delegateServiceInterfaceId,
     address delegateServiceAddress
@@ -30,6 +35,7 @@ contract DelegateServiceRegistry
   }
 
   // TODO Add Address Based Implicit ACL
+  // TODO Rename to introspectiveRegisterDelegateService
   function selfRegisterDelegateService(
     address delegateServiceAddress
   ) external returns (bool success) {

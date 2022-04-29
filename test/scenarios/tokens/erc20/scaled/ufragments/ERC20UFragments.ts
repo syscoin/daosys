@@ -184,7 +184,7 @@ describe("ERC20UFragments", function () {
         });
       });
     });
-    describe("#rebae()", function () {
+    describe("#rebase()", function () {
       describe("(address,uint256)", function () {
         it("Account can transfer tokens", async function () {
           await token.initialize(tokenName, tokenSymbol);

@@ -19,3 +19,5 @@ endif::[]
 include::daosys-component-delegate_service.adoc[leveloffset=+1]
 
 include::daosys-component-delegate_service_registry.adoc[leveloffset=+1]
+
+include::daosys-component-service_proxy.adoc[leveloffset=+1]

@@ -1,0 +1,474 @@
+{
+  "rootTopicKey": "76aac462-58cd-45bf-96de-6335109235db",
+  "editorRootTopicKey": "76aac462-58cd-45bf-96de-6335109235db",
+  "focusKey": "76aac462-58cd-45bf-96de-6335109235db",
+  "extData": {
+    "TOPIC_REFERENCE": {
+      "reference": {}
+    }
+  },
+  "topics": [
+    {
+      "key": "8f767507-4ab7-44a3-bb68-febe771a32a0",
+      "parentKey": "151056ce-3908-4337-b78e-bedaf301596c",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Presearch"
+        }
+      ]
+    },
+    {
+      "key": "8d14dbf9-4346-484c-af43-aaed06bc0828",
+      "parentKey": "6b8f17e5-0331-413d-9941-f7e4c1a24312",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Wonderverse"
+        }
+      ]
+    },
+    {
+      "key": "76aac462-58cd-45bf-96de-6335109235db",
+      "parentKey": null,
+      "subKeys": [
+        "dd815b68-6184-47b8-b1e7-532baf17c2b9"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Blockchain\nFoundry"
+        },
+        {
+          "type": "TOPOLOGY",
+          "data": {
+            "nodes": [],
+            "lines": [],
+            "lineName": "curve",
+            "fromArrowType": "",
+            "toArrowType": "triangleSolid",
+            "scale": 1,
+            "locked": 0
+          }
+        }
+      ]
+    },
+    {
+      "key": "4ec69f89-a528-454f-b311-075de98b6471",
+      "parentKey": "59470b7a-041c-49b6-ad38-56daecfd07cc",
+      "subKeys": [
+        "151056ce-3908-4337-b78e-bedaf301596c",
+        "68ade62b-e79d-4a3e-9b1b-9381005e5965",
+        "c76e5990-12dd-4b88-8cfc-462c2bf6364e",
+        "6b8f17e5-0331-413d-9941-f7e4c1a24312"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Akash"
+        }
+      ]
+    },
+    {
+      "key": "b1451ea7-6141-437c-9ccc-fcd2a7b097c9",
+      "parentKey": "1bcda460-5909-4291-8132-6e74baffb21d",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Arbitrum"
+        }
+      ]
+    },
+    {
+      "key": "dd815b68-6184-47b8-b1e7-532baf17c2b9",
+      "parentKey": "76aac462-58cd-45bf-96de-6335109235db",
+      "subKeys": [
+        "1bcda460-5909-4291-8132-6e74baffb21d",
+        "af302dc7-6b7d-46ee-a05e-9f5264f43f11"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Syscoin"
+        }
+      ]
+    },
+    {
+      "key": "c76e5990-12dd-4b88-8cfc-462c2bf6364e",
+      "parentKey": "4ec69f89-a528-454f-b311-075de98b6471",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "L2 Hosting"
+        }
+      ]
+    },
+    {
+      "key": "ebe62070-a58d-439b-a4e5-7a1bc87d2412",
+      "parentKey": "59470b7a-041c-49b6-ad38-56daecfd07cc",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Threenode"
+        }
+      ]
+    },
+    {
+      "key": "28d3d99a-7373-4cef-b7c5-693ba74c5baf",
+      "parentKey": "1bcda460-5909-4291-8132-6e74baffb21d",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Metis"
+        }
+      ]
+    },
+    {
+      "key": "d1c46324-2c65-4877-82b0-f3c1f561f2d8",
+      "parentKey": "6b8f17e5-0331-413d-9941-f7e4c1a24312",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Radicle"
+        }
+      ]
+    },
+    {
+      "key": "465ce5ca-037f-4c24-ab90-a45cf612bfb6",
+      "parentKey": "6b8f17e5-0331-413d-9941-f7e4c1a24312",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Dework"
+        }
+      ]
+    },
+    {
+      "key": "d03cef46-bf67-49f0-9370-fc88226e1a85",
+      "parentKey": "af302dc7-6b7d-46ee-a05e-9f5264f43f11",
+      "subKeys": [
+        "59470b7a-041c-49b6-ad38-56daecfd07cc"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "DWS"
+        }
+      ]
+    },
+    {
+      "key": "e87198fd-9971-49f0-8ebf-34cde9f1a34d",
+      "parentKey": "6b8f17e5-0331-413d-9941-f7e4c1a24312",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Jenkins"
+        }
+      ]
+    },
+    {
+      "key": "5a775847-9b41-4d9e-bf97-436076c77149",
+      "parentKey": "e04ea6b0-5328-4714-b9c9-da7df440dd6c",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Syscoin L1"
+        }
+      ]
+    },
+    {
+      "key": "bbf570bf-2425-498f-b7ba-d2f699766d03",
+      "parentKey": "3d35773d-afee-4eb5-a985-602ed8787f21",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Solidity External\nLibrary Linker"
+        }
+      ]
+    },
+    {
+      "key": "68ade62b-e79d-4a3e-9b1b-9381005e5965",
+      "parentKey": "4ec69f89-a528-454f-b311-075de98b6471",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Decentralzied\nBig Data"
+        }
+      ]
+    },
+    {
+      "key": "e04ea6b0-5328-4714-b9c9-da7df440dd6c",
+      "parentKey": "151056ce-3908-4337-b78e-bedaf301596c",
+      "subKeys": [
+        "5a775847-9b41-4d9e-bf97-436076c77149"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "GPU/ASIC/FPGA\nPassthrough"
+        }
+      ]
+    },
+    {
+      "key": "151056ce-3908-4337-b78e-bedaf301596c",
+      "parentKey": "4ec69f89-a528-454f-b311-075de98b6471",
+      "subKeys": [
+        "8f767507-4ab7-44a3-bb68-febe771a32a0",
+        "276ea129-9d69-4d9f-b408-053e24623846",
+        "56a70534-a71b-4266-92b4-683220aadab8",
+        "d136d1c5-880b-4afe-a493-8126d2a005ac",
+        "e04ea6b0-5328-4714-b9c9-da7df440dd6c"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "L1 Hosting"
+        }
+      ]
+    },
+    {
+      "key": "56a70534-a71b-4266-92b4-683220aadab8",
+      "parentKey": "151056ce-3908-4337-b78e-bedaf301596c",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Helium"
+        }
+      ]
+    },
+    {
+      "key": "af302dc7-6b7d-46ee-a05e-9f5264f43f11",
+      "parentKey": "dd815b68-6184-47b8-b1e7-532baf17c2b9",
+      "subKeys": [
+        "d03cef46-bf67-49f0-9370-fc88226e1a85",
+        "4f8b8cac-126f-45df-8bde-52e98cb7a18c"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "DAOSYS"
+        }
+      ]
+    },
+    {
+      "key": "276ea129-9d69-4d9f-b408-053e24623846",
+      "parentKey": "151056ce-3908-4337-b78e-bedaf301596c",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Handshake"
+        }
+      ]
+    },
+    {
+      "key": "4f8b8cac-126f-45df-8bde-52e98cb7a18c",
+      "parentKey": "af302dc7-6b7d-46ee-a05e-9f5264f43f11",
+      "subKeys": [
+        "3d35773d-afee-4eb5-a985-602ed8787f21"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "DAO Factory"
+        }
+      ]
+    },
+    {
+      "key": "d136d1c5-880b-4afe-a493-8126d2a005ac",
+      "parentKey": "151056ce-3908-4337-b78e-bedaf301596c",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Raptoreum"
+        }
+      ]
+    },
+    {
+      "key": "566eb1a3-6333-492f-b772-51e8e5524ec6",
+      "parentKey": "1bcda460-5909-4291-8132-6e74baffb21d",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Boba"
+        }
+      ]
+    },
+    {
+      "key": "3d35773d-afee-4eb5-a985-602ed8787f21",
+      "parentKey": "4f8b8cac-126f-45df-8bde-52e98cb7a18c",
+      "subKeys": [
+        "bbf570bf-2425-498f-b7ba-d2f699766d03"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "L2 Sequencer\nDeployment\nIntegration"
+        }
+      ]
+    },
+    {
+      "key": "1bcda460-5909-4291-8132-6e74baffb21d",
+      "parentKey": "dd815b68-6184-47b8-b1e7-532baf17c2b9",
+      "subKeys": [
+        "b1451ea7-6141-437c-9ccc-fcd2a7b097c9",
+        "28d3d99a-7373-4cef-b7c5-693ba74c5baf",
+        "566eb1a3-6333-492f-b772-51e8e5524ec6"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Syscoin L2"
+        }
+      ]
+    },
+    {
+      "key": "59470b7a-041c-49b6-ad38-56daecfd07cc",
+      "parentKey": "d03cef46-bf67-49f0-9370-fc88226e1a85",
+      "subKeys": [
+        "4ec69f89-a528-454f-b311-075de98b6471",
+        "ebe62070-a58d-439b-a4e5-7a1bc87d2412"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Decentralized\nGeneral Compute"
+        }
+      ]
+    },
+    {
+      "key": "6b8f17e5-0331-413d-9941-f7e4c1a24312",
+      "parentKey": "4ec69f89-a528-454f-b311-075de98b6471",
+      "subKeys": [
+        "d1c46324-2c65-4877-82b0-f3c1f561f2d8",
+        "465ce5ca-037f-4c24-ab90-a45cf612bfb6",
+        "8d14dbf9-4346-484c-af43-aaed06bc0828",
+        "e87198fd-9971-49f0-8ebf-34cde9f1a34d"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "CI/CD Pipeline"
+        }
+      ]
+    }
+  ],
+  "config": {
+    "readOnly": false,
+    "allowUndo": true,
+    "layoutDir": 2,
+    "theme": {
+      "name": "default",
+      "randomColor": true,
+      "background": "rgb(57,60,65)",
+      "highlightColor": "#50C9CE",
+      "marginH": 60,
+      "marginV": 20,
+      "contentStyle": {
+        "lineHeight": "1.5",
+        "fontSize": "16px"
+      },
+      "linkStyle": {
+        "lineRadius": 5,
+        "lineType": "curve",
+        "lineWidth": "3px"
+      },
+      "rootTopic": {
+        "contentStyle": {
+          "fontSize": "36px"
+        },
+        "subLinkStyle": {
+          "lineType": "curve",
+          "lineWidth": "3px"
+        }
+      },
+      "primaryTopic": {
+        "contentStyle": {
+          "fontSize": "24px"
+        },
+        "subLinkStyle": {
+          "lineType": "curve",
+          "lineWidth": "3px"
+        }
+      },
+      "normalTopic": {
+        "subLinkStyle": {
+          "lineType": "curve",
+          "lineWidth": "3px"
+        }
+      }
+    }
+  },
+  "formatVersion": "0.0"
+}

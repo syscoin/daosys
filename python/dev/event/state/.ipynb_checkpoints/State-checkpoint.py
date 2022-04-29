@@ -2,12 +2,13 @@ import copy
 from python.dev.math.interest import Yield
 
 class State():
-    def __init__(self, event):
+    def __init__(self, event, rebase = True):
         self.__event = event
         self.__tn = None
         self.__balance = 0
         self.__principle = 0
         self.__yield = 0
+        self.__rebase = rebase
   
     def init_first_state(self, t0):
         self.__tn = t0
@@ -17,6 +18,9 @@ class State():
     
     def get_principle(self):
         return self.__principle   
+    
+    def get_delta(self):
+        return self.__event.get_delta()      
     
     def get_timestamp(self):
         return self.__tn     
@@ -40,7 +44,7 @@ class State():
         self.__principle = self.__principle + self.__event.get_delta()
 
     def update_balance(self):
-        self.update_yield()
+        if(self.__rebase): self.update_yield()
         self.__balance = self.__balance + self.__yield + self.__event.get_delta()  
        
     def update_yield(self):

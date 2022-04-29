@@ -21,7 +21,7 @@ describe("Messenger Delegate Service", function () {
   // TestService test variables
   let messengerDelegateService: MessengerDelegateService;
 
-  const IDelegateServiceInterfaceId = '0xd56eb69e';
+  const IDelegateServiceInterfaceId = '0xb38d1215';
   const getServiceDefFunctionSelector = '0xd56eb69e';
   const IMessengerInterfaceId = "0xf8e6c6ac";
   const setMessageFunctionSelector = '0x368b8772';

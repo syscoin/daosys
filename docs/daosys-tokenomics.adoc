@@ -1,4 +1,5 @@
 = DAOSys Tokenomics
+ifndef::compositing[]
 :author: cyotee doge
 :email: cyotee@syscoin.org
 :revdate: 2022-02-19
@@ -9,12 +10,7 @@
 :sectnums:
 :data-uri:
 :stem:
-
-ifndef::compositing[]
 :imagesdir: ../
-endif::[]
-
-ifndef::compositing[]
 :compositing:
 endif::[]
 

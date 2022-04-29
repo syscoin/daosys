@@ -1,18 +1,27 @@
 # Custom Dictionary Words
 Aavegotchi
 Affero
+Akash
 antifragile
 asciimath
+Boba
 bootstrapper
 copyleft
 copyrightable
 daosys
 datatypes
 DELEGATECALL
+Gogs
 GONS
+Holochain
+includeprefix
 litepaper
+pathtoroot
 permissionless
+Presearch
+Raptoreum
 reimplementation
+Roadmap
 Roundtable
 Roundtables
 stochasm

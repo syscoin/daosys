@@ -10,8 +10,9 @@ ifndef::compositing[]
 :sectnums:
 :data-uri:
 :stem:
-
-:imagesdir: ../../
+:pathtoroot: ../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
 :compositing:
 endif::[]
 

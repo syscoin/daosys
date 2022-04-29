@@ -14,6 +14,11 @@ class StateSeries(Series):
         N = super().get_num_states()
         states = super().get_states()
         return [states[k].get_balance() for k in range(N)]
+    
+    def get_yield(self):
+        N = super().get_num_states()
+        states = super().get_states()
+        return [states[k].get_yield() for k in range(N)]    
 
     def get_ustamp(self):
         N = super().get_num_states()
