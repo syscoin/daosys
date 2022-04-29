@@ -1,2 +1,2 @@
 from .IPS import *
-from .AverageIPS import *
+from .ConstantIPS import *

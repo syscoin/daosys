@@ -1,12 +1,10 @@
 from python.dev.math.interest.ips import IPS
 
-class AverageIPS(IPS):
-    
+class ConstantIPS(IPS):
+        
     def calc_ips_from_state(self, state):
-        delta = state.get_delta()  
-        principle = state.get_principle() 
-        A0 = principle - delta
-        A1 = state.get_balance() - delta
+        A0 = state.get_principle() - state.get_delta() 
+        A1 = state.get_balance() - state.get_delta() 
         dt = state.get_event().get_time_delta()
         return self.calc_ips(A0, A1, dt)
     
