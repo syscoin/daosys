@@ -7,13 +7,14 @@ import "./security/ReentrancyGuard.sol";
 import {Math} from "./math/Math.sol";
 import "./math/SafeMath.sol";
 import {ERC20} from "./erc20/ERC20.sol";
+import {IERC20} from "./erc20/IERC20.sol";
 import "./libraries/UniERC20.sol";
 import "./libraries/Sqrt.sol";
 import {IFactory} from "./interfaces/IFactory.sol";
 import {VirtualBalance} from "./libraries/VirtualBalance.sol";
 
 
-contract Mooniswap is ERC20, ReentrancyGuard, Ownable {
+contract Mooniswap is IERC20, ERC20, ReentrancyGuard, Ownable {
     using Sqrt for uint256;
     using SafeMath for uint256;
     using UniERC20 for IERC20;
