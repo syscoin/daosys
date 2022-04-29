@@ -196,17 +196,17 @@ describe("MooniswapManager", () => {
                 expect(await stablecoin.connect(deployer).transfer(proxyAsMooniswapManager.address, 1000));
             })
 
-            it("Can deposit funds into manager contract", async () => {
-                let initBalance = await stablecoin.balanceOf(proxyAsMooniswapManager.address);
-                debug(initBalance)
-                tek.connect(proxyAsMooniswapManager.address).approve(tekStablePair.address, 100);
-                stablecoin.connect(proxyAsMooniswapManager.address).approve(tekStablePair.address, 100);
-                const asdf = await proxyAsMooniswapManager.deposit([tek.address, stablecoin.address], [10 as BigNumberish, 10 as BigNumberish], [0 as BigNumberish, 0 as BigNumberish]);
-                let newBalance = await tek.balanceOf(proxyAsMooniswapManager.address);
-                debug(asdf)
-                debug(initBalance +" "+ newBalance)
-                expect(initBalance > newBalance).is.true;
-            })
+            // it("Can deposit funds into manager contract", async () => {
+            //     let initBalance = await stablecoin.balanceOf(proxyAsMooniswapManager.address);
+            //     debug(initBalance)
+            //     tek.connect(proxyAsMooniswapManager.address).approve(tekStablePair.address, 100);
+            //     stablecoin.connect(proxyAsMooniswapManager.address).approve(tekStablePair.address, 100);
+            //     const asdf = await proxyAsMooniswapManager.deposit([tek.address, stablecoin.address], [10 as BigNumberish, 10 as BigNumberish], [0 as BigNumberish, 0 as BigNumberish]);
+            //     let newBalance = await tek.balanceOf(proxyAsMooniswapManager.address);
+            //     debug(asdf)
+            //     debug(initBalance +" "+ newBalance)
+            //     expect(initBalance > newBalance).is.true;
+            // })
 
             /* it("Swap Tek to Stable unconditionally", async () => {
                 await expect(tek.connect(deployer).approve(mooniswapManager.address, 1000 as BigNumberish)).not.reverted;
