@@ -1,13 +1,14 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 pragma solidity ^0.8.0;
 
+import "hardhat/console.sol";
+
 import {
   Create2CalculatorLogic
 } from "contracts/evm/create2/calculator/logic/Create2CalculatorLogic.sol";
+import {IFactory} from "contracts/factories/interfaces/IFactory.sol";
 
-import "hardhat/console.sol";
-
-abstract contract AddressBasedImplicitACLValidatorLogic
+abstract contract FactoryAwareAddressBasedImplicitACLValidatorLogic
   is
     Create2CalculatorLogic
 {
@@ -31,6 +32,7 @@ abstract contract AddressBasedImplicitACLValidatorLogic
     console.log("AddressBasedImplicitACLValidatorLogic:_validateAddressPedigree:: Calculated address %s", calculatedAddress);
 
     wasDeployedFromDeployer = (addressToValidate == calculatedAddress);
+    
   }
 
 }

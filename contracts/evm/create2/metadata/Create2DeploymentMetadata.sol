@@ -7,6 +7,9 @@ import {
 import {
   ICreate2DeploymentMetadata
 } from "contracts/evm/create2/metadata/interfaces/ICreate2DeploymentMetadata.sol";
+import {
+  Create2MetadataAdaptor
+} from "contracts/evm/create2/metadata/adaptors/Create2MetadataAdaptor.sol";
 
 abstract contract Create2DeploymentMetadata
   is
@@ -14,14 +17,33 @@ abstract contract Create2DeploymentMetadata
     ICreate2DeploymentMetadata
 {
 
+  modifier _onlyRelative(
+    address relationAssertion
+  ) {
+    require(
+      _validateCreate2AddressPedigree(relationAssertion),
+      "Create2DeploymentMetadata:_onlyRelative:: Not related."
+    );
+    _;
+  }
+
   function _setCreate2DeploymentMetaData(
-    address proxyFactoryAddress,
+    address factoryAddress,
     bytes32 deploymentSalt
   ) internal {
     Create2DeploymentMetadataLogic._setCreate2DeploymentMetaData(
       type(ICreate2DeploymentMetadata).interfaceId,
-      proxyFactoryAddress,
+      factoryAddress,
       deploymentSalt
+    );
+  }
+
+  function _validateCreate2AddressPedigree(
+    address create2MetadataAddress
+  ) internal view returns (bool isValid) {
+    isValid = Create2DeploymentMetadataLogic._validateCreate2AddressPedigree(
+      type(ICreate2DeploymentMetadata).interfaceId,
+      create2MetadataAddress
     );
   }
 
