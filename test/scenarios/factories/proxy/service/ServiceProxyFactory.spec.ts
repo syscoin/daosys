@@ -60,7 +60,6 @@ describe("ServiceProxyFactory", function () {
   const calculateDeploymentSaltFunctionSelector = '0x6e25b228';
   const deployServiceProxyFunctionSelector = '0xc8c74d33';
 
-  // let newServiceProxyAddress: string;
   let newServiceProxyAsMessenger: MessengerDelegateService;
   let newServiceProxy: ServiceProxyMock;
 

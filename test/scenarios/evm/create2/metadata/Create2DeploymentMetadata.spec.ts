@@ -25,7 +25,7 @@ describe('Create2DeploymentMetadata', function () {
 
   beforeEach(async function () {
     [deployer] = await ethers.getSigners();
-    
+
     create2Metadata = await new Create2DeploymentMetadataMock__factory(deployer).deploy();
     tracer.nameTags[create2Metadata.address] = "Create2DeploymentMetadata";
   });
@@ -37,7 +37,6 @@ describe('Create2DeploymentMetadata', function () {
         it('Returns configured metadata ', async function () {
           const initCode = create2Metadata.deployTransaction.data;
           const initCodeHash = ethers.utils.keccak256(initCode);
-          // const salt = ethers.utils.randomBytes(32);
 
           await create2Metadata.setCreate2DeploymentMetadata(
             deployer.address,
