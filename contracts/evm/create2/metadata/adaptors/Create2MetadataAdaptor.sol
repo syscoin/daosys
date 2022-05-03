@@ -7,17 +7,24 @@ import {
 
 library Create2MetadataAdaptor {
 
+  function _initCreate2DeploymentMetadata(
+    address target,
+    bytes32 deploymentSalt
+  ) internal returns (bool success) {
+    success = ICreate2DeploymentMetadata(target).initCreate2DeploymentMetadata(deploymentSalt);
+  }
+
   function _getCreate2Metadata(
-    address create2Address
+    address target
   ) internal view returns (
     address factory,
     bytes32 deploymentSalt
   ) {
-    ICreate2DeploymentMetadata.Create2DeploymentMetadata memory create2Metadata = ICreate2DeploymentMetadata(create2Address)
+    ICreate2DeploymentMetadata.Create2DeploymentMetadata memory create2Metadata = ICreate2DeploymentMetadata(target)
       .getCreate2DeploymentMetadata();
 
     factory = create2Metadata.deployerAddress;
     deploymentSalt = create2Metadata.deploymentSalt;
   }
-  
+
 }

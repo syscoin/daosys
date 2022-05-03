@@ -54,6 +54,16 @@ abstract contract Create2DeploymentMetadataLogic {
     );
   }
 
+  function _validateFactory(
+    bytes32 storageSlotSalt,
+    address factoryAddress
+  ) internal view returns (bool isValid) {
+    isValid = (
+        factoryAddress == Create2DeploymentMetadataStorageUtils._layout(storageSlotSalt)
+          ._getCreate2Factory()
+      );
+  }
+
   function _getCreate2DeploymentMetadata(
     bytes32 storageSlotSalt
   ) view internal returns (
