@@ -30,17 +30,17 @@ contract DelegateServiceFactory
     newAddress = _calculateDeploymentAddress(initCodeHash, salt);
   }
 
-  function calculateDeploymentAddressFromAddress(
-      address deployer,
-      bytes32 initCodeHash,
-      bytes32 salt
-    ) pure external returns (address deploymenAddress) {
-    deploymenAddress = _calculateDeploymentAddressFromAddress(
-      deployer,
-      initCodeHash,
-      salt
-    );
-  }
+  // function calculateDeploymentAddressFromAddress(
+  //     address deployer,
+  //     bytes32 initCodeHash,
+  //     bytes32 salt
+  //   ) pure external returns (address deploymenAddress) {
+  //   deploymenAddress = _calculateDeploymentAddressFromAddress(
+  //     deployer,
+  //     initCodeHash,
+  //     salt
+  //   );
+  // }
 
   // TODO Restrict to Ownable
   // TODO Implement RBAC NFT

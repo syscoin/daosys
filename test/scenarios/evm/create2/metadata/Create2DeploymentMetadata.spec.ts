@@ -6,7 +6,9 @@ import {
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import {
   Create2DeploymentMetadataMock,
-  Create2DeploymentMetadataMock__factory
+  Create2DeploymentMetadataMock__factory,
+  FactoryMock,
+  FactoryMock__factory
 } from '../../../../../typechain';
 
 describe('Create2DeploymentMetadata', function () {
@@ -14,7 +16,7 @@ describe('Create2DeploymentMetadata', function () {
   // Test Wallets
   let deployer: SignerWithAddress;
   
-  let instance: Create2DeploymentMetadataMock;
+  let create2Metadata: Create2DeploymentMetadataMock;
 
   before(async function () {
     // Tagging address(0) as "System" in logs.
@@ -23,7 +25,9 @@ describe('Create2DeploymentMetadata', function () {
 
   beforeEach(async function () {
     [deployer] = await ethers.getSigners();
-    instance = await new Create2DeploymentMetadataMock__factory(deployer).deploy();
+    
+    create2Metadata = await new Create2DeploymentMetadataMock__factory(deployer).deploy();
+    tracer.nameTags[create2Metadata.address] = "Create2DeploymentMetadata";
   });
 
   describe('Create2DeploymentMetadata', function () {
@@ -31,16 +35,16 @@ describe('Create2DeploymentMetadata', function () {
     describe('#getCreate2DeploymentMetadata', function () {
       describe('()', function () {
         it('Returns configured metadata ', async function () {
-          const initCode = instance.deployTransaction.data;
+          const initCode = create2Metadata.deployTransaction.data;
           const initCodeHash = ethers.utils.keccak256(initCode);
           // const salt = ethers.utils.randomBytes(32);
 
-          await instance.setCreate2DeploymentMetadata(
+          await create2Metadata.setCreate2DeploymentMetadata(
             deployer.address,
             initCodeHash
           );
 
-          const metadata = await instance.getCreate2DeploymentMetadata();
+          const metadata = await create2Metadata.getCreate2DeploymentMetadata();
 
           expect(metadata.deployerAddress).to.equal(deployer.address);
           expect(metadata.deploymentSalt).to.equal(initCodeHash);
