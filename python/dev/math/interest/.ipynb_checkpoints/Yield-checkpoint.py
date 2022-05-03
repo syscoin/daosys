@@ -3,16 +3,12 @@ HOURS_IN_DAY = 24
 SECONDS_IN_HOUR = 3600
 
 class Yield():
-    def __init__(self, balance, delta_t, apy):
-        self.__balance = balance
-        self.__delta_t = delta_t
-        self.__apy = apy
              
     def __seconds_per_year(self):
         return DAYS_IN_YEAR*HOURS_IN_DAY*SECONDS_IN_HOUR
 
-    def apply(self):  
-        multiplier = 1 + self.__apy
+    def apply(self, A0, delta_t, apy):  
+        multiplier = 1 + apy
         freq = self.__seconds_per_year()
-        new_balance = self.__balance*(multiplier)**(self.__delta_t/freq)
-        return new_balance-self.__balance
+        A1 = A0*(multiplier)**(delta_t/freq)
+        return A1-A0

@@ -50,6 +50,6 @@ class State():
     def update_yield(self):
         t_delta = self.__event.get_time_delta()
         apy = self.__event.get_apy()        
-        self.__yield = Yield(self.__balance, t_delta, apy).apply()
+        self.__yield = Yield().apply(self.__balance, t_delta, apy)
         
         
