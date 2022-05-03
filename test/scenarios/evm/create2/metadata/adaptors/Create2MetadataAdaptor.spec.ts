@@ -21,7 +21,7 @@ import {
   // ServiceProxyFactoryMock__factory
 } from '../../../../../../typechain';
 
-describe.only('Create2MetadataAdaptor', function () {
+describe('Create2MetadataAdaptor', function () {
 
   // Control values for tests
   const invalidInterfaceId = "0xffffffff";
