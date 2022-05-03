@@ -10,11 +10,11 @@ contract Create2MetadataFactoryMock
     Create2MetadataFactory
 {
 
-  function deployWithMetadata(
+  function __deployWithMetadata(
     bytes memory creationCode,
     bytes32 deploymentSalt
   ) external returns (address deployment) {
-    deployment = _deployWithMetadata(
+    deployment =Create2MetadataFactory._deployWithMetadata(
       creationCode,
       deploymentSalt
     );

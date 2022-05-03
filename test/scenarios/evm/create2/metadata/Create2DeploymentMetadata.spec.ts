@@ -35,21 +35,22 @@ describe('Create2DeploymentMetadata', function () {
     describe('#getCreate2DeploymentMetadata', function () {
       describe('()', function () {
         it('Returns configured metadata ', async function () {
-          const initCode = create2Metadata.deployTransaction.data;
-          const initCodeHash = ethers.utils.keccak256(initCode);
+          const creationCode = create2Metadata.deployTransaction.data;
+          const codeHash = ethers.utils.keccak256(creationCode);
 
           await create2Metadata.setCreate2DeploymentMetadata(
             deployer.address,
-            initCodeHash
+            codeHash
           );
 
           const metadata = await create2Metadata.getCreate2DeploymentMetadata();
 
           expect(metadata.deployerAddress).to.equal(deployer.address);
-          expect(metadata.deploymentSalt).to.equal(initCodeHash);
+          expect(metadata.deploymentSalt).to.equal(codeHash);
 
         });
       });
     });
   });
+
 });

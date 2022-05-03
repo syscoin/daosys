@@ -25,7 +25,7 @@ abstract contract Create2MetadataFactory
   function _deployWithMetadata(
     bytes memory creationCode,
     bytes32 deploymentSalt
-  ) internal returns (address deployment) {
+  ) internal virtual returns (address deployment) {
     deployment = _deployWithSalt(
       creationCode,
       deploymentSalt
