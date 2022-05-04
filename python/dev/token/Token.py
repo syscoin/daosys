@@ -3,24 +3,29 @@ from python.dev.token.address import TokenAddress
 
 class Token():
     
-    def __init__(self, name, supply = None, addresses = None):
-        self.__tname = name
-        self.__supply = TokenSupply() if supply == None else supply
+    def __init__(self, name, symbol = None, supply = None, addresses = None):
+        self.__name = name
+        self.__symbol = symbol
+        self.__supply_obj = TokenSupply() if supply == None else supply
         self.__addresses = TokenAddress(self.__supply.get_gons_per_fragment()) if addresses == None else addresses
-               
-    def set_token(self, token):
-        self.__tname = token.get_name()
-        self.__supply = token.get_supply()
-        self.__addresses = token.get_addresses()
+
+    def get_name(self):
+        return self.__name  
+
+    def get_symbol(self):
+        return self.__symbol         
         
     def get_addresses(self):
         return self.__addresses
     
-    def get_supply(self):
-        return self.__supply    
-      
-    def get_name(self):
-        return self.__tname       
+    def get_supply_obj(self):
+        return self.__supply_obj  
+
+    def balance_of(self, user_address):
+        return self.__addresses.get_balance(user_address)      
+
+    def total_supply(self):
+        return self.__supply_obj.get_total_supply()             
     
     def set_rate(self, native_rate):
         self.__native_rate = native_rate 
@@ -29,13 +34,10 @@ class Token():
         self.__addresses = addresses
         
     def set_total_supply(self, total_supply):
-        return self.__supply.set_total_supply(total_supply)       
+        return self.__supply_obj.set_total_supply(total_supply)       
 
     def gen_address(self):
-        return self.__addresses.gen_key()
-    
-    def get_balance(self, user_address):
-        return self.__addresses.get_balance(user_address)    
+        return self.__addresses.gen_key()   
     
     def get_balance_deposits(self, addresses = None):
         if(addresses == None):
