@@ -11,7 +11,7 @@ import {
   // FactoryMock__factory
 } from '../../../../../typechain';
 
-describe.only('Create2DeploymentMetadata', function () {
+describe('Create2DeploymentMetadata', function () {
   
   // Test Wallets
   let deployer: SignerWithAddress;
