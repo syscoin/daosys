@@ -44,8 +44,12 @@ class Token():
         self.__addresses.delta_balance(-delta, from_address)
         self.__addresses.delta_balance(delta, to_address) 
 
-    def mint():
-        pass                         
+    def mint(self, init_balance = 0):
+
+        init_addr = self.gen_address()
+        self.deposit(init_balance, init_addr)
+
+        return init_addr                         
 
     def gen_address(self):
         return self.__addresses.gen_key()   
