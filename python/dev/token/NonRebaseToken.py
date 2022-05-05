@@ -24,7 +24,7 @@ class NonRebaseToken(Token):
     def add_event(self, event):
         
         addresses = super().get_addresses()
-        supply = super().get_supply()
+        supply = super().get_supply_obj()
         address = event.get_address()
         delta = event.get_delta()
         
