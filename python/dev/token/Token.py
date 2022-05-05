@@ -1,6 +1,7 @@
 from python.dev.token.supply import TokenSupply
 from python.dev.token.address import TokenAddress
 
+
 class Token():
 
     TYPE_DEPOSIT = 'DEPOSIT'

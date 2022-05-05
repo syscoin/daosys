@@ -4,7 +4,7 @@ from python.dev.math.interest import Yield
 class State():
     def __init__(self, event, rebase = True):
         self.__event = event
-        self.__tn = None
+        self.__tn = 0
         self.__balance = 0
         self.__principle = 0
         self.__yield = 0
