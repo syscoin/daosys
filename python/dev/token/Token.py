@@ -2,12 +2,16 @@ from python.dev.token.supply import TokenSupply
 from python.dev.token.address import TokenAddress
 
 class Token():
+
+    TYPE_DEPOSIT = 'DEPOSIT'
+    TYPE_REBASE = 'REBASE'
+    TYPE_DEBT = 'DEBT'
     
     def __init__(self, name, symbol = None, supply = None, addresses = None):
         self.__name = name
         self.__symbol = symbol
         self.__supply_obj = TokenSupply() if supply == None else supply
-        self.__addresses = TokenAddress(self.__supply.get_gons_per_fragment()) if addresses == None else addresses
+        self.__addresses = TokenAddress(self.__supply_obj.get_gons_per_fragment()) if addresses == None else addresses
 
     def get_name(self):
         return self.__name  
@@ -21,20 +25,27 @@ class Token():
     def get_supply_obj(self):
         return self.__supply_obj  
 
-    def balance_of(self, user_address):
-        return self.__addresses.get_balance(user_address)      
-
-    def total_supply(self):
-        return self.__supply_obj.get_total_supply()             
-    
     def set_rate(self, native_rate):
         self.__native_rate = native_rate 
         
     def set_addresses(self, addresses):
         self.__addresses = addresses
-        
+
     def set_total_supply(self, total_supply):
-        return self.__supply_obj.set_total_supply(total_supply)       
+        return self.__supply_obj.set_total_supply(total_supply)            
+
+    def balance_of(self, user_address):
+        return self.__addresses.get_balance(user_address)      
+
+    def total_supply(self):
+        return self.__supply_obj.get_total_supply()  
+
+    def transfer_from(self, from_address, to_address, delta):
+        self.__addresses.delta_balance(-delta, from_address)
+        self.__addresses.delta_balance(delta, to_address) 
+
+    def mint():
+        pass                         
 
     def gen_address(self):
         return self.__addresses.gen_key()   
@@ -55,11 +66,7 @@ class Token():
         else:    
             self.__addresses.delta_balance(delta, address)
  
-        self.__supply.rebase(delta) 
-    
-    def transfer(self, delta, from_address, to_address):
-        self.__addresses.delta_balance(-delta, from_address)
-        self.__addresses.delta_balance(delta, to_address)
+        self.__supply_obj.rebase(delta) 
      
     def rebase(self, delta):
-        self.__supply.rebase(delta)  
+        self.__supply_obj.rebase(delta)  
