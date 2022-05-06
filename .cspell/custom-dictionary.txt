@@ -11,6 +11,7 @@ copyrightable
 daosys
 datatypes
 DELEGATECALL
+gantt
 Gogs
 GONS
 Holochain
@@ -27,5 +28,7 @@ Roundtables
 stochasm
 struct
 syscoin
+tokenomic
 Tokenomics
 Vyper
+WSYS
