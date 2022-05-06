@@ -7,8 +7,6 @@ import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import {
   Create2DeploymentMetadataMock,
   Create2DeploymentMetadataMock__factory,
-  // FactoryMock,
-  // FactoryMock__factory
 } from '../../../../../typechain';
 
 describe('Create2DeploymentMetadata', function () {
