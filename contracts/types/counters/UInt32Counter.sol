@@ -2,40 +2,41 @@
 pragma solidity ^0.8.0;
 
 import {
-    UInt64,
-    UInt64Utils
-} from "../primitives/UInt64.sol";
+    UInt32,
+    UInt32Utils
+} from "../primitives/UInt32.sol"
 
 /* -------------------------------------------------------------------------- */
-/*                            SECION Uint64Counter                            */
+/*                            SECION Uint32Counter                            */
 /* -------------------------------------------------------------------------- */
 
-library UInt64Counter {
+library UInt32Count {
 
     struct Layout {
-        UInt64.Layout count;
+        UInt32.Layout count;
     }
 
 }
 
 /* -------------------------------------------------------------------------- */
-/*                           !SECION Uint64Counter                            */
+/*                           !SECION Uint32Counter                            */
 /* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
-/*                         SECTION Uint64CounterUtils                         */
+/*                         SECTION Uint32CounterUtils                         */
 /* -------------------------------------------------------------------------- */
 
-library UInt64CounterUtils {
+library UInt32CountUtils {
 
-    using UInt64CounterUtils for UInt64Counter.Layout;
-    using UInt64Utils for UInt64.Layout;
+    using UInt32CounterUtils for UInt32Count.Layout;
+    using UInt32Utils for UInt32.Layout;
 
-    bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(UInt64Counter).creationCode);
+
+    bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(UInt32Count).creationcode);
 
     function _structSlot() pure internal returns (bytes32 structSlot) {
         structSlot = STRUCT_STORAGE_SLOT
-            ^ UInt64Utils._structSlot();
+            ^ UInt32Utils._structSLot();
     }
 
     function _saltStorageSlot(
@@ -45,31 +46,32 @@ library UInt64CounterUtils {
             ^_structSlot();
     }
 
-  /**
+   /**
    * @notice Could be optimized by having the exposing interface caclulate and store
    *  the storage slot as a constant.
    *  Storage slot is computed during runtime to facilitate development during
    *  standardization.
    */
-    function _layout(bytes32 salt) pure internal returns (UInt64Counter.Layout storage layout) {
+    function _layout( bytes32 salt ) pure internal returns ( UInt32Count.Layout storage layout ) {
         bytes32 saltedSlot = _saltStorageSlot(salt);
         assembly{ layout.slot := saltedSlot }
     }
 
     function _current(
-        UInt64Counter.Layout storage layout
-    ) view internal returns (uint64 currentCount) {
+        UInt32Count.Layout storage layout
+    ) view internal returns (uint32 currentCount) {
         currentCount = layout.count._getValue();
     }
 
     function _next(
-        UInt64Counter.Layout storage layout
-    ) internal returns (uint64 lastCount) {
-        lastCount = layout.count.__getValue();
+        UInt32Count.Layout storage layout
+    ) internal returns (uint32 lastCount) {
+        lastCount = layout.count._getValue();
         layout.count._setValue(++lastCount);
     }
 
 }
+
 /* -------------------------------------------------------------------------- */
-/*                        !SECTION Uint64CounterUtils                         */
+/*                        !SECTION Uint32CounterUtils                         */
 /* -------------------------------------------------------------------------- */
