@@ -28,6 +28,9 @@ library UInt128Counter {
 
 library UInt128CounterUtils {
 
+    using UInt128CounterUtils for UInt128Counter.Layout;
+    using UInt128Utils for UInt128.Layout;
+
     bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(UInt128).creationCode);
 
     function _structSlot() pure internal returns (bytes32 structSlot) {

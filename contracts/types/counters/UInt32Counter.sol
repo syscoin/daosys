@@ -10,7 +10,7 @@ import {
 /*                            SECION Uint32Counter                            */
 /* -------------------------------------------------------------------------- */
 
-library UInt32Count {
+library Uint32Counter {
 
     struct Layout {
         UInt32.Layout count;
@@ -26,9 +26,9 @@ library UInt32Count {
 /*                         SECTION Uint32CounterUtils                         */
 /* -------------------------------------------------------------------------- */
 
-library UInt32CountUtils {
+library UInt32CounterUtils {
 
-    using UInt32CounterUtils for UInt32Count.Layout;
+    using UInt32CounterUtils for Uint32Counter.Layout;
     using UInt32Utils for UInt32.Layout;
 
 
