@@ -31,13 +31,16 @@ library UInt128CounterUtils {
     using UInt128CounterUtils for UInt128Counter.Layout;
     using UInt128Utils for UInt128.Layout;
 
-    bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(UInt128).creationCode);
+    bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(UInt128Counter).creationCode);
 
     function _structSlot() pure internal returns (bytes32 structSlot) {
-        structSlot = STRUCT_STORAGE_SLOT;
+        structSlot = STRUCT_STORAGE_SLOT
+            ^ UInt16Utils._structSlot();
     }
 
-    function _saltStorageSlot(bytes32 storageSlotSalt) pure internal returns (bytes32 saltedStorageSlot) {
+    function _saltStorageSlot(
+        bytes32 storageSlotSalt
+    ) pure internal returns (bytes32 saltedStorageSlot) {
         saltedStorageSlot = storageSlotSalt
         ^_structSlot();
     }
@@ -48,8 +51,7 @@ library UInt128CounterUtils {
    *  Storage slot is computed during runtime to facilitate development during
    *  standardization.
    */
-
-    function _layout(bytes32 salt) pure internal returns (UInt128Counter.Layout storage layout) {
+    function _layout( bytes32 salt ) pure internal returns ( UInt128Counter.Layout storage layout ) {
         bytes32 saltedSlot = _saltStorageSlot(salt);
         assembly{ layout.slot := saltedSlot }
     }
