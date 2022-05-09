@@ -50,7 +50,7 @@ class RebaseToken(Token):
         current_time = state.get_timestamp()
             
         self.__state_map.add_state(state, address) 
-        self.__clock.update(current_time)                
+        self.__clock.update(time_delta)                
         supply.rebase(delta)  
                 
         

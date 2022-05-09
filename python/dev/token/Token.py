@@ -33,7 +33,7 @@ class Token():
         self.__addresses = addresses
 
     def set_total_supply(self, total_supply):
-        return self.__supply_obj.set_total_supply(total_supply)            
+        return self.__supply_obj.set_total_supply(total_supply)        
 
     def balance_of(self, user_address):
         return self.__addresses.get_balance(user_address)      
@@ -46,7 +46,6 @@ class Token():
         self.__addresses.delta_balance(delta, to_address) 
 
     def mint(self, init_balance = 0):
-
         init_addr = self.gen_address()
         self.deposit(init_balance, init_addr)
 
@@ -64,8 +63,7 @@ class Token():
             
         return sum(deposits)
     
-    def deposit(self, delta, address):
-        
+    def deposit(self, delta, address):  
         if(not self.__addresses.address_exist(address)):
             self.__addresses.set_balance(delta, address)
         else:    

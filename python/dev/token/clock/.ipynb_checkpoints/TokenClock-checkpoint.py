@@ -10,7 +10,7 @@ class TokenClock():
         return self.__time
     
     def get_time_stamp(self):
-        return datetime.fromtimestamp(self.__time)    
+        return datetime.fromtimestamp(self.__time)  
     
     def set_time(self, time):
         self.__time = time

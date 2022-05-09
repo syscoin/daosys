@@ -2,6 +2,7 @@ import copy
 from python.dev.math.interest import Yield
 
 class State():
+    
     def __init__(self, event, rebase = True):
         self.__event = event
         self.__tn = 0
