@@ -13,7 +13,7 @@ class EventQueue():
     def add_event(self, event):
         self.__queue.put(event)
         
-    def get_event(self, event):
+    def get_event(self):
         return self.__queue.get()  
     
     def n_events()
