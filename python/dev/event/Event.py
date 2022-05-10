@@ -4,7 +4,7 @@ class Event(ABC):
     
     EVENT_DEPOSIT = 'DEPOSIT'
     EVENT_WITHDRAW = 'WITHDRAW'
-    EVENT_TRADE = 'TRADE'
+    EVENT_REBASE = 'REBASE'
     
     @abstractmethod
     def get_time_delta(self):
