@@ -1,21 +1,21 @@
 from python.dev.simulation import SimulationOrchestrator
 from python.dev.simulation import EventQueue
-from python.dev.simulation.Agent import Agent
 
 class EventExecutor():
     
-    def __init__(self, orchestrator):
-        self.__orchestrator = SimulationOrchestrator()
-        self.__queue = {}
+    def __init__(self, queue, orchestrator):
+        self.__queue = queue
+        self.__orchestrator = orchestrator
 
-    def get_handle(self, agent):   
-        return 'agent_handle'
+    def run(self):
         
-    def add_event(self, event, agent_handle):
-        self.__queue[agent_handle].add_event(event)        
+        process_queue = True
         
-    def execute_next(self, agent_handle):
-        event = self.__queue[agent_handle].get_event()
-        self.__orchestrator.apply(event)
+        while(process_queue):
+            event = self.__queue.get_event()
+            event_complete = self.__orchestrator.apply(event)          
+            process_queue = len(self.__queue) != 0 and event_complete
+        
+        return True
         
         
