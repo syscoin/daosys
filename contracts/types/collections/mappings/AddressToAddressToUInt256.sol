@@ -34,6 +34,13 @@ library AddressToAddressToUInt256Utils {
       ^ _structSlot();
   }
 
+  /**
+   * @notice Could be optimized by having the exposing interface caclulate and store
+   *  the storage slot as a constant.
+   *  Storage slot is computed during runtime to facilitate development during
+   *  standardization.
+   */
+
   function _layout( bytes32 salt ) pure internal returns ( AddressToAddressToUInt256.Layout storage layout ) {
     bytes32 saltedSlot = _saltStorageSlot(salt);
     assembly{ layout.slot := saltedSlot }

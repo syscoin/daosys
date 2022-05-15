@@ -2,33 +2,32 @@
 pragma solidity ^0.8.0;
 
 /* -------------------------------------------------------------------------- */
-/*                             SECTION UInt256Set                             */
+/*                             SECTION BoolSet                                */
 /* -------------------------------------------------------------------------- */
 
-library UInt256Set {
+library BoolSet {
 
   struct Enumerable {
     // 1-indexed to allow 0 to signify nonexistence
-    mapping( uint256 => uint256 ) _indexes;
-    uint256[] _values;
-    uint256 _maxValue;
+    mapping( bool => uint256 ) _indexes;
+    bool[] _values;
   }
 
   struct Layout {
-    UInt256Set.Enumerable uint256Set;
+    BoolSet.Enumerable BoolSet;
   }
 
 }
 
 /* -------------------------------------------------------------------------- */
-/*                             !SECTION UInt256Set                            */
+/*                             !SECTION BoolSet                               */
 /* -------------------------------------------------------------------------- */
 
-library UInt256SetUtils {
+library BoolSetUtils {
 
-  using UInt256SetUtils for UInt256Set.Enumerable;
+  using BoolSetUtils for BoolSet.Enumerable;
 
-  bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(UInt256Set).creationCode);
+  bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(BoolSet).creationCode);
 
   function _structSlot() pure internal returns (bytes32 structSlot) {
     structSlot = STRUCT_STORAGE_SLOT;
@@ -47,33 +46,29 @@ library UInt256SetUtils {
    *  Storage slot is computed during runtime to facilitate development during
    *  standardization.
    */
-  function _layout( bytes32 salt ) pure internal returns ( UInt256Set.Layout storage layout ) {
+  function _layout( bytes32 salt ) pure internal returns ( BoolSet.Layout storage layout ) {
     bytes32 saltedSlot = _saltStorageSlot(salt);
     assembly{ layout.slot := saltedSlot }
   }
 
   function _at(
-    UInt256Set.Enumerable storage set,
+    BoolSet.Enumerable storage set,
     uint index
-  ) internal view returns (uint256) {
+  ) internal view returns (bool) {
     require(set._values.length > index, 'EnumerableSet: index out of bounds');
     return set._values[index];
   }
 
   function _contains(
-    UInt256Set.Enumerable storage set,
-    uint256 value
-  ) 
-    internal
-    view
-    returns (bool)
-  {
+    BoolSet.Enumerable storage set,
+    bool value
+  ) internal view returns (bool) {
     return set._indexes[value] != 0;
   }
 
   function _indexOf(
-    UInt256Set.Enumerable storage set,
-    uint256 value
+    BoolSet.Enumerable storage set,
+    bool value
   ) internal view returns (uint) {
     unchecked {
       return set._indexes[value] - 1;
@@ -81,21 +76,18 @@ library UInt256SetUtils {
   }
 
   function _length(
-    UInt256Set.Enumerable storage set
+    BoolSet.Enumerable storage set
   ) internal view returns (uint) {
     return set._values.length;
   }
 
   function _add(
-    UInt256Set.Enumerable storage set,
-    uint256 value
+    BoolSet.Enumerable storage set,
+    bool value
   ) internal returns (bool) {
     if (!_contains(set, value)) {
       set._values.push(value);
       set._indexes[value] = set._values.length;
-      if(set._maxValue < value) {
-        set._maxValue = value;
-      }
       return true;
     } else {
       return false;
@@ -103,14 +95,14 @@ library UInt256SetUtils {
   }
 
   function _remove(
-    UInt256Set.Enumerable storage set,
-    uint256 value
+    BoolSet.Enumerable storage set,
+    bool value
   ) internal returns (bool) {
     uint valueIndex = set._indexes[value];
 
     if (valueIndex != 0) {
       uint index = valueIndex - 1;
-      uint256 last = set._values[set._values.length - 1];
+      bool last = set._values[set._values.length - 1];
 
       // move last value to now-vacant index
 
@@ -128,16 +120,8 @@ library UInt256SetUtils {
     }
   }
 
-  function _setAsArray(
-    UInt256Set.Enumerable storage set
-  ) internal view returns ( uint256[] storage rawSet ) {
+  function _setAsArray( BoolSet.Enumerable storage set ) internal view returns ( bool[] storage rawSet ) {
     rawSet = set._values;
-  }
-
-  function _max(
-    UInt256Set.Enumerable storage set
-  ) view internal returns (uint256 maxValue) {
-    maxValue = set._maxValue;
   }
 
 }

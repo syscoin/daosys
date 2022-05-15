@@ -10,7 +10,7 @@ library Bytes8Set {
     struct Enumerable {
         // 1-indexed to allow 0 to signify nonexistence
         mapping( bytes8 => uint256 ) _indexes;
-        bytes8[] _value;
+        bytes8[] _values;
     }
 
     struct Layout {
@@ -34,13 +34,14 @@ library Bytes8SetUtils {
 
     bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(Bytes8Set).creationCode);
 
-    function _structSlot() pure internal returns () {
-        
+    function _structSlot() pure internal returns (bytes32 structSlot) {
+        structSlot = STRUCT_STORAGE_SLOT;
     }
 
-}
-
-
+    function _saltStorageSlot(bytes32 storageSlotSalt) pure internal returns (bytes32 saltedStorageSlot) {
+        saltedStorageSlot = storageSlotSalt
+            ^_structSlot();
+    }
 
   /**
    * @notice Could be optimized by having the exposing interface caclulate and store
@@ -48,8 +49,52 @@ library Bytes8SetUtils {
    *  Storage slot is computed during runtime to facilitate development during
    *  standardization.
    */
-  
+    function _layout( bytes32 salt ) pure internal returns (Bytes8Set.Layout storage layout) {
+        bytes32 saltedSlot = _saltStorageSlot(salt);
+        assembly{ layout.slot := saltedSlot }
+    }
 
+    function _at(
+        Bytes8Set.Enumerable storage set,
+        uint index
+    ) view internal returns (bytes8) {
+        require(set._values.length > index, 'EnumerableSet: index out of bounds');
+        return set._values[index];
+    }
+
+    function _contains(
+        Bytes8Set.Enumerable storage set,
+        bytes8 value
+    ) view internal returns (bool) {
+        return set._indexes[value] != 0;
+    }
+
+    function _indexOf(
+        Bytes8Set.Enumerable storage set,
+        bytes8 value
+    ) view internal returns (uint) {
+        return set._values
+    }
+
+    function _length(
+        Bytes8Set.Enumerable storage set
+    ) view internal returns (uint) {
+        return set._values.length;
+    }
+
+    function _add() internal returns () {
+
+    }
+
+    function _remove() internal {
+
+    }
+
+    function _getSetAsArray( Bytes8Set.Enumerable storage set ) view internal returns ( bytes8[] storage rawSet ) {
+        rawSet = set._values;
+    }
+
+}
 
 /* -------------------------------------------------------------------------- */
 /*                            !SECTION Bytes4SetOps                           */

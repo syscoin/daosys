@@ -18,7 +18,7 @@ library Bytes4ToAddressUtils {
 
   using AddressUtils for Address.Layout;
 
-  bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(Bytes4ToAddress).creationCode);
+  bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(Bytes4ToAddress).creationCode);
 
   function _structSlot() pure internal returns (bytes32 structSlot) {
     structSlot = STRUCT_STORAGE_SLOT

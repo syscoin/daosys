@@ -66,11 +66,7 @@ library Bytes4SetUtils {
   function _contains(
     Bytes4Set.Enumerable storage set,
     bytes4 value
-  ) 
-    internal
-    view
-    returns (bool)
-  {
+  ) internal view returns (bool) {
     return set._indexes[value] != 0;
   }
 

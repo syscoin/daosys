@@ -2,29 +2,29 @@
 pragma solidity ^0.8.0;
 
 import {
-  UInt256,
-  UInt256Utils
-} from "../../primitives/UInt256.sol";
+  UInt128,
+  UInt128Utils
+} from "../../primitives/UInt128.sol";
 
-library AddressToUInt256 {
+library AddressToUInt128 {
 
   // NOTE Should only use language primitives as key pending research on the consistency of using a struct.
   struct Layout {
-    mapping(address => UInt256.Layout) value;
+    mapping(address => UInt128.Layout) value;
   }
 
 }
 
-library AddressToUInt256Utils {
+library AddressToUInt128Utils {
 
-  using AddressToUInt256Utils for AddressToUInt256.Layout;
-  using UInt256Utils for UInt256.Layout;
+  using AddressToUInt128Utils for AddressToUInt128.Layout;
+  using UInt128Utils for UInt128.Layout;
 
-  bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(AddressToUInt256).creationCode);
+  bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(AddressToUInt128).creationCode);
 
   function _structSlot() pure internal returns (bytes32 structSlot) {
     structSlot = STRUCT_STORAGE_SLOT
-      ^ UInt256Utils._structSlot();
+      ^ UInt128Utils._structSlot();
   }
 
   function _saltStorageSlot(
@@ -41,28 +41,28 @@ library AddressToUInt256Utils {
    *  standardization.
    */
 
-  function _layout( bytes32 salt ) pure internal returns ( AddressToUInt256.Layout storage layout ) {
+  function _layout( bytes32 salt ) pure internal returns ( AddressToUInt128.Layout storage layout ) {
     bytes32 saltedSlot = _saltStorageSlot(salt);
     assembly{ layout.slot := saltedSlot }
   }
 
   function _mapValue(
-    AddressToUInt256.Layout storage layout,
+    AddressToUInt128.Layout storage layout,
     address key,
-    uint256 newValue
+    uint128 newValue
   ) internal {
     layout.value[key]._setValue(newValue);
   }
 
   function _queryValue(
-    AddressToUInt256.Layout storage layout,
+    AddressToUInt128.Layout storage layout,
     address key
-  ) view internal returns (uint256 value) {
+  ) view internal returns (uint128 value) {
     value = layout.value[key]._getValue();
   }
 
   function _unmapValue(
-    AddressToUInt256.Layout storage layout,
+    AddressToUInt128.Layout storage layout,
     address key
   ) internal {
     layout.value[key]._wipeValue();
