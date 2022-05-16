@@ -2,6 +2,8 @@ from abc import *
 
 class Action(ABC):
     
+    TYPE_TRADE = 'TRADE'
+    TYPE_WITHDRAWAL = 'WITHDRAWAL'
     TYPE_DEPOSIT = 'DEPOSIT'
     TYPE_REBASE = 'REBASE'
     TYPE_MINT = 'MINT'    
