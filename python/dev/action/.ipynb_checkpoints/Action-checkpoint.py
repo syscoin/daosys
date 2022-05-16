@@ -9,13 +9,17 @@ class Action(ABC):
     TYPE_MINT = 'MINT'    
     
     @abstractmethod
-    def apply(self, target, agents)
+    def apply(self, agents):
         pass
+
+    @abstractmethod
+    def get_target(self):
+        pass   
     
     @abstractmethod
-    def set_type(self, type_action)
-        pass
-    
+    def get_user(self):
+        pass    
+         
     @abstractmethod
     def get_type(self):
         pass

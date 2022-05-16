@@ -1,6 +1,6 @@
-from python.dev.event import Event
+from python.dev.event import TokenEvent
 
-class Rebase(Event):
+class Rebase(TokenEvent):
     
     def __init__(self, apy, t_delta, address = None):
         self.__t_delta = t_delta
@@ -21,4 +21,4 @@ class Rebase(Event):
         return self.__address
     
     def type_of(self):
-        return Event.EVENT_REBASE
+        return TokenEvent.EVENT_REBASE

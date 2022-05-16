@@ -1,6 +1,6 @@
-from python.dev.event import Event
+from python.dev.event import TokenEvent
 
-class Withdraw(Event):
+class Withdraw(TokenEvent):
     
     def __init__(self, apy, delta, t_delta, address = None):
         self.__t_delta = t_delta
@@ -21,4 +21,4 @@ class Withdraw(Event):
         return self.__address    
     
     def type_of(self):
-        return Event.EVENT_WITHDRAW  
+        return TokenEvent.EVENT_WITHDRAW  

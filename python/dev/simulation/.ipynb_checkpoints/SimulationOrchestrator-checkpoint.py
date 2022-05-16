@@ -1,21 +1,16 @@
-from python.dev.simulation import SimulationTarget
-
 class SimulationOrchestrator():
     
     def __init__(self, exe = None):
         self.__agents = {}
         
-    def apply(self, event):    
+    def apply(self, action):    
         
-        user = event.get_user()
-        target = event.get_target()
-        action = event.get_action()
+        user = action.get_user()
+        target = action.get_target()
+        action_type = action.get_type()
         self.add_agent(target)
         
-        return self.execute(action, target)
+        return action.apply(self.__agents)
    
-    def add_agent(self, target)
-        self.__agents[target.get_name()] = target
-
-    def execute(self, action, target)
-        return action.apply(target, agents)       
+    def add_agent(self, target):
+        self.__agents[target.get_name()] = target     

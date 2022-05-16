@@ -46,6 +46,8 @@ class State():
 
     def update_balance(self):
         if(self.__rebase): self.update_yield()
+        self.__balance = self.__balance + self.__yield + self.__event.get_delta()  
+       
     def update_yield(self):
         t_delta = self.__event.get_time_delta()
         apy = self.__event.get_apy()        
