@@ -8,7 +8,7 @@ class MintAction(Action):
         self.__user = user
               
     def apply(self, agents):
-        pass
+        return True
         
     def get_user(self):
         return self.__user

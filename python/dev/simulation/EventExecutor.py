@@ -12,9 +12,10 @@ class EventExecutor():
         process_queue = True
         
         while(process_queue):
+            n = self.__queue.n_events()
             event = self.__queue.get_event()
             event_complete = self.__orchestrator.apply(event)          
-            process_queue = len(self.__queue) != 0 and event_complete
+            process_queue = self.__queue.n_events() != 0 and event_complete
         
         return True
         

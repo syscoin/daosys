@@ -16,5 +16,5 @@ class EventQueue():
     def get_event(self):
         return self.__queue.get()  
     
-    def n_events():
+    def n_events(self):
         return self.__queue.qsize()
