@@ -13,14 +13,14 @@ class EventQueue():
     def add_event(self, event):
         self.__queue.put(event)
 
-    def add_events(self, event_arr):
-        for k in range(len(event_arr)):
-            self.__queue.put(event_arr[k])
+    def add_batch(self, event_batch):
+        for k in range(len(event_batch)):
+            self.__queue.put(event_batch[k])
             
-    def add_successive_events(self, event_arr1, event_arr2):
-        for k in range(len(event_arr1)):
-            self.__queue.put(event_arr1[k])  
-            self.__queue.put(event_arr2[k])
+    def add_batches(self, event_batch1, event_batch2):
+        for k in range(len(event_batch1)):
+            self.__queue.put(event_batch1[k])  
+            self.__queue.put(event_batch2[k])
 
     def get_event(self):
         return self.__queue.get()  
