@@ -14,7 +14,7 @@ library Bytes8Set {
     }
 
     struct Layout {
-        Bytes4Set.Enumerable set;
+        Bytes8Set.Enumerable set;
     }
 
 }
@@ -38,7 +38,9 @@ library Bytes8SetUtils {
         structSlot = STRUCT_STORAGE_SLOT;
     }
 
-    function _saltStorageSlot(bytes32 storageSlotSalt) pure internal returns (bytes32 saltedStorageSlot) {
+    function _saltStorageSlot(
+        bytes32 storageSlotSalt
+    ) pure internal returns (bytes32 saltedStorageSlot) {
         saltedStorageSlot = storageSlotSalt
             ^_structSlot();
     }
@@ -49,7 +51,7 @@ library Bytes8SetUtils {
    *  Storage slot is computed during runtime to facilitate development during
    *  standardization.
    */
-    function _layout( bytes32 salt ) pure internal returns (Bytes8Set.Layout storage layout) {
+    function _layout( bytes32 salt ) pure internal returns ( Bytes8Set.Layout storage layout ) {
         bytes32 saltedSlot = _saltStorageSlot(salt);
         assembly{ layout.slot := saltedSlot }
     }
@@ -73,7 +75,9 @@ library Bytes8SetUtils {
         Bytes8Set.Enumerable storage set,
         bytes8 value
     ) view internal returns (uint) {
-        return set._values
+        unchecked {
+            return set._indexes[value] - 1;
+        }
     }
 
     function _length(
@@ -82,12 +86,43 @@ library Bytes8SetUtils {
         return set._values.length;
     }
 
-    function _add() internal returns () {
-
+    function _add(
+        Bytes8Set.Enumerable storage set
+        bytes8 value
+    ) internal returns (bool) {
+        if (!_contains(set, value)) {
+            set._values.push(value);
+            set._indexes[value] = set._values.length;
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    function _remove() internal {
+    function _remove(
+        Bytes8Set.Enumerable storage set,
+        bytes8 value
+    ) internal returns (bool) {
+        uint valueIndex = set._indexes[value];
 
+        if(valueIndex != 0) {
+            uint index = valueIndex - 1;
+            bytes8 last = set._values[set._values.length - 1];
+
+            // move last value to now-vacant index
+
+            set._values[index] = last;
+            set._indexes[last] = _index + 1;
+
+            // clear last index
+
+            set._values.pop();
+            delete set._indexes[value];
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
     function _getSetAsArray( Bytes8Set.Enumerable storage set ) view internal returns ( bytes8[] storage rawSet ) {

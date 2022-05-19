@@ -2,29 +2,29 @@
 pragma solidity ^0.8.0;
 
 import {
-  UInt256,
-  UInt256Utils
-} from "../../primitives/UInt256.sol";
+  UInt16,
+  UInt16Utils
+} from "../primitives/UInt16.sol";
 
-library AddressToUInt256 {
+library AddressToUInt16 {
 
   // NOTE Should only use language primitives as key pending research on the consistency of using a struct.
   struct Layout {
-    mapping(address => UInt256.Layout) value;
+    mapping(address -> UInt16.Layout) value;
   }
 
 }
 
-library AddressToUInt256Utils {
+library AddressToUInt16Utils {
 
-  using AddressToUInt256Utils for AddressToUInt256.Layout;
-  using UInt256Utils for UInt256.Layout;
+  using AddressToUInt16Utils for AddressToUInt16.Layout;
+  using UInt16Utils for UInt16.Layout;
 
-  bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(AddressToUInt256).creationCode);
+  bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(AddressToUInt16).creationCode);
 
   function _structSlot() pure internal returns (bytes32 structSlot) {
     structSlot = STRUCT_STORAGE_SLOT
-      ^ UInt256Utils._structSlot();
+      ^ UInt16Utils._structSlot();
   }
 
   function _saltStorageSlot(
@@ -40,28 +40,30 @@ library AddressToUInt256Utils {
    *  Storage slot is computed during runtime to facilitate development during
    *  standardization.
    */
-  function _layout( bytes32 salt ) pure internal returns ( AddressToUInt256.Layout storage layout ) {
-    bytes32 saltedSlot = _saltStorageSlot(salt);
-    assembly{ layout.slot := saltedSlot }
+  function _layout(
+      bytes32 salt
+    ) pure internal returns (AddressToUInt16.Layout storage layout) {
+      bytes32 saltedSlot = _saltStorageSlot(salt);
+      assembly{ layout.slot := saltedSlot }
   }
 
   function _mapValue(
-    AddressToUInt256.Layout storage layout,
+    AddressToUInt16.Layout storage layout,
     address key,
-    uint256 newValue
+    uint16 newValue
   ) internal {
     layout.value[key]._setValue(newValue);
   }
 
   function _queryValue(
-    AddressToUInt256.Layout storage layout,
+    AddressToUInt16.Layout storage layout,
     address key
-  ) view internal returns (uint256 value) {
-    value = layout.value[key]._getValue();
+  ) view internal returns (uint16 value) {
+    value = layout.value[key]._getValue();    
   }
 
-  function _unmapValue(
-    AddressToUInt256.Layout storage layout,
+  function _unMapValue(
+    AddressToUInt16.Layout storage layout,
     address key
   ) internal {
     layout.value[key]._wipeValue();
