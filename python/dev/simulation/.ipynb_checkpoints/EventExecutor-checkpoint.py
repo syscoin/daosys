@@ -22,6 +22,4 @@ class EventExecutor():
             event_complete = self.__orchestrator.apply(event)          
             process_queue = self.__queue.get_n_events() != 0 and event_complete
         
-        return process_queue
-        
         
