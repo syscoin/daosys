@@ -1,21 +1,19 @@
-class Action():
-    
-    def __init__(self, token_event, target, user):
-        self.__token_event = token_event
-        self.__target = target
-        self.__user = user
-              
+from abc import *
+
+class Action(ABC):
+             
+    @abstractmethod        
     def apply(self, agents):
-        return True
-        
+        pass
+    @abstractmethod     
     def get_user(self):
-        return self.__user
-    
+        pass
+    @abstractmethod 
     def get_target(self):
-        return self.__target    
-        
+        pass    
+    @abstractmethod     
     def get_type(self):
-        return self.__token_event.type_of()
+        pass
     
     
         

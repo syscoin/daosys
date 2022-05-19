@@ -1,13 +1,15 @@
+from abc import *
 
-class Agent():
+class Agent(ABC):
     
     TYPE_USER = 'USER'
     TYPE_TOKEN = 'TOKEN'
     
-    def __init__(self, agent_name, agent_type):
-        self.__name = agent_name
-        self.__type = agent_type
-    
+    @abstractmethod    
     def get_name(self):
-        return self.__name
+        pass
+    @abstractmethod    
+    def get_type(self):
+        pass
+
         

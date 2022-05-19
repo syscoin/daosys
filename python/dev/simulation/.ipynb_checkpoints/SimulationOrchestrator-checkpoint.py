@@ -9,6 +9,8 @@ class SimulationOrchestrator():
         target = action.get_target()
         action_type = action.get_type()
         self.add_agent(target)
+
+        # print('action: {} user: {} target: {}'.format(action_type, user.get_name(), target.get_name()))
         
         return action.apply(self.__agents)
    
