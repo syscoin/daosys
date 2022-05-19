@@ -28,7 +28,7 @@ describe('Create2Calculator', function () {
             instance.address,
             initCodeHash,
             salt
-          ),
+          )
         ).to.equal(
           ethers.utils.getCreate2Address(instance.address, salt, initCodeHash),
         );

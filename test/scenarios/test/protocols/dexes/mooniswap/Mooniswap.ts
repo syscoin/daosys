@@ -17,17 +17,20 @@ import {
     WETH9,
     WETH9__factory,
     IERC20
+
 } from '../../../../../../typechain';
-import { trace } from 'console';
+import { debug, trace } from 'console';
 import exp from 'constants';
 
-import {
-  initializeMooniswap,
-  createMooniswapPair,
-  mooniswapPairCreateArgs
+import { 
+    addLiquidity, 
+    initializeMooniswap, 
+    createMooniswapPair,
+    getMooniPoolIERC20s,
+    getMooniPoolDecimals
 } from '../../../../../fixtures/mooniswap.fixture'
-
-
+import { BigNumberish } from 'ethers';
+import { Address } from 'ethereumjs-util';
 
 describe("Mooniswap", () => {
 
@@ -59,7 +62,7 @@ describe("Mooniswap", () => {
 
         tracer.nameTags[weth.address] = "WETH"
 
-      stablecoin = await new MooniMockERC20__factory(deployer).deploy(
+        stablecoin = await new MooniMockERC20__factory(deployer).deploy(
             ethers.utils.parseEther("1000000000")
         );
 
@@ -81,6 +84,51 @@ describe("Mooniswap", () => {
         expect(mooniswap.address).to.be.properAddress;
         expect(tekStablePair.address).to.be.properAddress;
     })
+
+    describe("Test Liquidity and Swap Logic", async () =>{
+        
+        beforeEach(async () => {
+            const poolTokens = await getMooniPoolIERC20s({signer: deployer, mooniPool: tekStablePair, tokenObjects: [tek, stablecoin]})
+            const poolDecimals = await getMooniPoolDecimals({signer: deployer, mooniPool: tekStablePair, tokenObjects: [tek, stablecoin], tokenAmounts: ["100", "100"]})
+            await addLiquidity({sender: deployer, mooniswap: tekStablePair, tokenList: poolTokens, amountList: poolDecimals});
+        })
+
+        it("Swap Tek to Stable unconditionally", async () => {
+            const stableBalanceInit = await stablecoin.balanceOf(deployer.address);
+            const tekBalanceInit = await tek.balanceOf(deployer.address);
+            await expect(tekStablePair.connect(deployer).swap(tek.address, stablecoin.address, 10 as BigNumberish, 0 as BigNumberish, ethers.constants.AddressZero)).not.reverted;
+            const stableBalanceNew = await stablecoin.balanceOf(deployer.address);
+            const tekBalanceNew = await tek.balanceOf(deployer.address);
+            expect(tekBalanceNew < tekBalanceInit)
+            expect(stableBalanceNew > stableBalanceInit)
+        })
+
+        it("Swap Tek to Stable expecting minimum amount", async () => {
+            const stableBalanceInit = await stablecoin.balanceOf(deployer.address);
+            const tekBalanceInit = await tek.balanceOf(deployer.address);
+            const stableDecimals = await stablecoin.decimals()
+            const tekDecimals = await tek.decimals()
+            const amoutOfStableExpected = ethers.utils.parseUnits("1", stableDecimals)
+            let amountOfTekTraded = ethers.utils.parseUnits("1", tekDecimals)
+
+            // 1 tek -> 1 stable not possible when pool is 100:100, will revert
+            await expect(tekStablePair.connect(deployer).swap(tek.address, stablecoin.address, amountOfTekTraded, amoutOfStableExpected, ethers.constants.AddressZero)).reverted;
+            let stableBalanceNew = await stablecoin.balanceOf(deployer.address);
+            let tekBalanceNew = await tek.balanceOf(deployer.address);
+            expect(tekBalanceNew === tekBalanceInit)
+            expect(stableBalanceNew === stableBalanceInit)
+
+            // 10 >> 1 when pool is 100:100, will pass
+            amountOfTekTraded = ethers.utils.parseUnits("10", tekDecimals)
+            await expect(tekStablePair.connect(deployer).swap(tek.address, stablecoin.address, amountOfTekTraded, amoutOfStableExpected, ethers.constants.AddressZero)).not.reverted;
+            stableBalanceNew = await stablecoin.balanceOf(deployer.address);
+            tekBalanceNew = await tek.balanceOf(deployer.address);
+            expect(tekBalanceNew < tekBalanceInit)
+            expect(stableBalanceNew > stableBalanceInit)
+        })
+    })
+    
+    
 
     // it("mint lp tokens work correctly", async () => {
     //     await expect(tek.approve(tekStablePair.address, ethers.utils.parseUnits("5", 9))).not.reverted;

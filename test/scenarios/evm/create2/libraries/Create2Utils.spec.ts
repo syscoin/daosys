@@ -40,6 +40,7 @@ describe('Factory', function () {
           expect(await ethers.provider.getCode(address)).to.equal(
             await ethers.provider.getCode(create2Utils.address),
           );
+          
         });
 
         describe('reverts if', function () {
@@ -50,6 +51,7 @@ describe('Factory', function () {
             await expect(
               create2Utils.deployWithSalt(initCode, salt),
             ).to.revertedWith('Create2Utils: failed deployment');
+
           });
 
           it('salt has already been used', async function () {
@@ -61,6 +63,7 @@ describe('Factory', function () {
             await expect(
               create2Utils.deployWithSalt(initCode, salt),
             ).to.be.revertedWith('Create2Utils: failed deployment');
+
           });
         });
       });
@@ -81,6 +84,36 @@ describe('Factory', function () {
         ).to.equal(
           ethers.utils.getCreate2Address(create2Utils.address, salt, initCodeHash),
         );
+
+      });
+
+      it('calculated address of not-yet-deployed contract matches deployed contract', async function () {
+        const initCode = create2Utils.deployTransaction.data;
+        const initCodeHash = ethers.utils.keccak256(initCode);
+        const salt = ethers.utils.randomBytes(32);
+
+        expect(
+          await create2Utils.callStatic.calculateDeploymentAddress(
+            create2Utils.address,
+            initCodeHash,
+            salt
+          ),
+        ).to.equal(
+          ethers.utils.getCreate2Address(create2Utils.address, salt, initCodeHash),
+        );
+
+        const address = await create2Utils.callStatic.deployWithSalt(initCode, salt);
+
+        await create2Utils.deployWithSalt(initCode, salt);
+
+        expect(address).to.equal(
+          await create2Utils.callStatic.calculateDeploymentAddress(
+            create2Utils.address,
+            initCodeHash,
+            salt,
+          ),
+        );
+
       });
     });
   });

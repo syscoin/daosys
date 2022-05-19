@@ -30,7 +30,7 @@ describe("Service Proxy", function () {
   const getImplementationFunctionSelector = '0xdc9cc645';
   const initializeServiceProxyFunctionSelector = '0x5cc0292c';
 
-  const ICreate2DeploymentMetadataInterfaceId = '0x2e08c21c';
+  const ICreate2DeploymentMetadataInterfaceId = '0x2f6fb0fb';
   const getCreate2DeploymentMetadataFunctionSelector = '0x2e08c21c';
 
   let proxyAsMessenger: MessengerDelegateService;
