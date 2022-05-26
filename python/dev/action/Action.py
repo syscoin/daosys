@@ -6,6 +6,9 @@ class Action(ABC):
     def apply(self, agents):
         pass
     @abstractmethod     
+    def get_event(self):
+        pass    
+    @abstractmethod     
     def get_user(self):
         pass
     @abstractmethod 

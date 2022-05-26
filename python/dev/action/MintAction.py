@@ -32,6 +32,9 @@ class  MintAction(Action):
         self.__target.set_token_type(token_type)
                 
         return True
+    
+    def get_event(self):
+        return self.__token_event    
         
     def get_user(self):
         return self.__user

@@ -31,6 +31,9 @@ class DepositBatch(Batch):
     def get_user(self):
         return self.__user
     
+    def get_mint_event(self):
+        return self.__mint_event    
+    
     def get_time_deltas(self):
         return self.__time_del  
     
@@ -55,7 +58,7 @@ class DepositBatch(Batch):
         else:
             return self.__token_del          
        
-    def simulate_events(self, apy, n_events):
+    def generate_events(self, apy, n_events):
         self.__token_del = self.gen_token_deltas(n_events)
         self.__time_del = self.gen_time_deltas(n_events)
         mint_id = self.__mint_event.get_id()

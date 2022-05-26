@@ -6,6 +6,7 @@ class TokenEvent(ABC):
     EVENT_WITHDRAW = 'WITHDRAW'
     EVENT_REBASE = 'REBASE'
     EVENT_MINT = 'MINT'
+    EVENT_SWAP = 'SWAP'
         
     @abstractmethod
     def get_time_delta(self):

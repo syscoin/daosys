@@ -23,5 +23,8 @@ class Deposit(TokenEvent):
     def get_address(self):
         return self.__address
     
+    def set_address(self, address):
+        self.__address = address      
+    
     def type_of(self):
         return TokenEvent.EVENT_DEPOSIT

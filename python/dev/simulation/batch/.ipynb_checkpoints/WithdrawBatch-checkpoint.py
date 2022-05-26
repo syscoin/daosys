@@ -33,6 +33,9 @@ class WithdrawBatch(Batch):
     def get_user(self):
         return self.__user  
     
+    def get_mint_event(self):
+        return self.__mint_event       
+    
     def get_time_deltas(self):
         return self.__time_del  
     
@@ -57,7 +60,7 @@ class WithdrawBatch(Batch):
         else:
             return self.__token_del  
        
-    def simulate_events(self, apy, n_events):
+    def generate_events(self, apy, n_events):
         
         self.__token_del = self.gen_token_deltas(n_events)
         self.__time_del = self.gen_time_deltas(n_events)
@@ -65,6 +68,7 @@ class WithdrawBatch(Batch):
         events = []
         
         for k in range(n_events):
+            
             event = Withdraw(apy, self.__token_del[k], self.__time_del[k])
             events.append(WithdrawAction(event, self.__target, self.__user, mint_id))
             

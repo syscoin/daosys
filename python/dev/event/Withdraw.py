@@ -21,7 +21,10 @@ class Withdraw(TokenEvent):
         return self.__apy 
 
     def get_address(self):
-        return self.__address        
+        return self.__address  
+    
+    def set_address(self, address):
+        self.__address = address     
       
     def type_of(self):
         return TokenEvent.EVENT_WITHDRAW  
