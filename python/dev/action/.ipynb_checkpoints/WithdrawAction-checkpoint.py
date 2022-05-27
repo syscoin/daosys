@@ -20,6 +20,9 @@ class WithdrawAction(Action):
         
         return True
     
+    def get_mint_id(self):
+        return self.__mint_id      
+    
     def get_event(self):
         return self.__token_event    
         
@@ -27,7 +30,10 @@ class WithdrawAction(Action):
         return self.__user
     
     def get_target(self):
-        return self.__target    
+        return self.__target   
+    
+    def get_mint_id(self):
+        return self.__mint_id      
         
     def get_type(self):
         return self.__token_event.type_of()

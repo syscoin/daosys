@@ -11,6 +11,7 @@ class  MintAction(Action):
         self.__token_event = token_event
         self.__target = target
         self.__user = user
+        self.__mint_id = token_event.get_id()
               
     def apply(self, agents):
         
@@ -41,6 +42,9 @@ class  MintAction(Action):
     
     def get_target(self):
         return self.__target    
+        
+    def get_mint_id(self):
+        return self.__mint_id          
         
     def get_type(self):
         return self.__token_event.type_of()

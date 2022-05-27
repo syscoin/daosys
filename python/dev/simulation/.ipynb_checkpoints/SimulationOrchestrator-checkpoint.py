@@ -10,6 +10,10 @@ class SimulationOrchestrator():
         action_type = action.get_type()
         self.add_agent(target)
         
+        #delta = action.get_event().get_delta()
+        #mint_id = action.get_mint_id()       
+        #print('type {} addr {} delta {}'.format(action_type,mint_id,delta))
+        
         return action.apply(self.__agents)
    
     def add_agent(self, target):

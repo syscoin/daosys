@@ -17,6 +17,9 @@ class Action(ABC):
     @abstractmethod     
     def get_type(self):
         pass
+    @abstractmethod     
+    def get_mint_id(self):
+        pass    
     
     
         

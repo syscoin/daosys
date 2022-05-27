@@ -9,7 +9,7 @@ from python.dev.action import SwapAction
 
 class SwapBatch(Batch):
     
-    def __init__(self, deposit_batch, withdraw_batch):
+    def __init__(self, withdraw_batch, deposit_batch):
         self.__deposit_batch = deposit_batch
         self.__withdraw_batch = withdraw_batch
         self.__user = deposit_batch.get_user()
@@ -66,11 +66,15 @@ class SwapBatch(Batch):
         events = []
         
         for k in range(n_events):
+            
+            w_event = Withdraw(apy, self.__token_del[k], self.__time_del[k])
+            withdraw_action = WithdrawAction(w_event, w_target, w_user, w_mint_id)
+     
             d_event = Deposit(apy, self.__token_del[k], self.__time_del[k])
             deposit_action = DepositAction(d_event, d_target, d_user, d_mint_id)
-            w_event = Withdraw(apy, self.__token_del[k], self.__time_del[k])
-            withdraw_action = WithdrawAction(w_event, w_target, w_user, w_mint_id)            
-            events.append(SwapAction(withdraw_action,deposit_action))
             
+            swap_action = SwapAction(withdraw_action,deposit_action)            
+            events.append(swap_action)
+
         return events   
     
