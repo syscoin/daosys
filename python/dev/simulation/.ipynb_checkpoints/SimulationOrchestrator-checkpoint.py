@@ -1,7 +1,8 @@
 class SimulationOrchestrator():
     
-    def __init__(self, exe = None):
+    def __init__(self, verbose = False):
         self.__agents = {}
+        self.__verbose = verbose
         
     def apply(self, action):    
         
@@ -9,8 +10,11 @@ class SimulationOrchestrator():
         target = action.get_target()
         action_type = action.get_type()
         self.add_agent(target)
-
-        # print('action: {} user: {} target: {}'.format(action_type, user.get_name(), target.get_name()))
+        
+        if(self.__verbose):
+            delta = action.get_event().get_delta()
+            mint_id = action.get_mint_id()       
+            print('type {} addr {} delta {}'.format(action_type,mint_id,delta))
         
         return action.apply(self.__agents)
    

@@ -12,7 +12,7 @@ class Batch(ABC):
         pass    
     
     @abstractmethod
-    def simulate_events(self):
+    def generate_events(self):
         pass
 
     

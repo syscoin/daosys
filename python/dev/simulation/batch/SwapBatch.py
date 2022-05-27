@@ -3,24 +3,22 @@ from python.dev.math.model import TokenDeltaModel
 from python.dev.simulation.batch import Batch
 from python.dev.event import Deposit
 from python.dev.action import DepositAction
+from python.dev.event import Withdraw
+from python.dev.action import WithdrawAction
+from python.dev.action import SwapAction
 
-class DepositBatch(Batch):
+class SwapBatch(Batch):
     
-    def __init__(self, target, user, mint_event):
-        self.__target = target
-        self.__user = user
-        self.__mint_event = mint_event 
+    def __init__(self, withdraw_batch, deposit_batch):
+        self.__deposit_batch = deposit_batch
+        self.__withdraw_batch = withdraw_batch
+        self.__user = deposit_batch.get_user()
+        self.__target = deposit_batch.get_target()
         self.__shape = 1
         self.__scale = 100
-        self.__no_time_delay = False
+        self.__no_time_delay = False        
         self.__token_del = []  
-        self.__time_del = []        
- 
-    def set_token_delta_shape(self, token_delta_shape):
-        self.__shape = token_delta_shape
-        
-    def set_token_delta_scale(self, token_delta_scale):
-        self.__scale = token_delta_scale 
+        self.__time_del = []          
         
     def set_no_time_delay(self, no_time_delay):
         self.__no_time_delay = no_time_delay         
@@ -30,9 +28,6 @@ class DepositBatch(Batch):
     
     def get_user(self):
         return self.__user
-    
-    def get_mint_event(self):
-        return self.__mint_event    
     
     def get_time_deltas(self):
         return self.__time_del  
@@ -61,12 +56,25 @@ class DepositBatch(Batch):
     def generate_events(self, apy, n_events):
         self.__token_del = self.gen_token_deltas(n_events)
         self.__time_del = self.gen_time_deltas(n_events)
-        mint_id = self.__mint_event.get_id()
+        w_mint_id = self.__withdraw_batch.get_mint_event().get_id()
+        d_mint_id = self.__deposit_batch.get_mint_event().get_id()
+        w_target = self.__withdraw_batch.get_target()
+        d_target = self.__deposit_batch.get_target()
+        w_user = self.__withdraw_batch.get_user()
+        d_user = self.__deposit_batch.get_user()        
+        
         events = []
         
         for k in range(n_events):
-            event = Deposit(apy, self.__token_del[k], self.__time_del[k])
-            events.append(DepositAction(event, self.__target, self.__user, mint_id))
             
+            w_event = Withdraw(apy, self.__token_del[k], self.__time_del[k])
+            withdraw_action = WithdrawAction(w_event, w_target, w_user, w_mint_id)
+     
+            d_event = Deposit(apy, self.__token_del[k], self.__time_del[k])
+            deposit_action = DepositAction(d_event, d_target, d_user, d_mint_id)
+            
+            swap_action = SwapAction(withdraw_action,deposit_action)            
+            events.append(swap_action)
+
         return events   
     

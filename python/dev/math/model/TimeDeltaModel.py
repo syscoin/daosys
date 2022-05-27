@@ -1,9 +1,16 @@
 import numpy as np
 
-class TimeDeltaModel():             
+class TimeDeltaModel():   
+    
+    
+    def __init__(self, no_time_delay = False):
+        self.__no_time_delay = no_time_delay
 
     def apply(self, n = 1, p = 0.00001):  
-        if(n == 1):
+        
+        if(self.__no_time_delay):
+            return [0] * n
+        elif(n == 1):
             return np.random.negative_binomial(1, p)  
         else:
             

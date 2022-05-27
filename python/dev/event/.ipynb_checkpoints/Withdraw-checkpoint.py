@@ -9,6 +9,7 @@ class Withdraw(TokenEvent):
         self.__t_delta = t_delta
         self.__delta = -delta
         self.__apy = apy
+        self.__address = address if address != None else address
         
     def get_time_delta(self):
         return self.__t_delta  
@@ -18,6 +19,12 @@ class Withdraw(TokenEvent):
     
     def get_apy(self):
         return self.__apy 
+
+    def get_address(self):
+        return self.__address  
+    
+    def set_address(self, address):
+        self.__address = address     
       
     def type_of(self):
         return TokenEvent.EVENT_WITHDRAW  

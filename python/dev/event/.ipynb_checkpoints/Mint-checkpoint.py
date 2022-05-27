@@ -6,10 +6,9 @@ class Mint(TokenEvent):
     TYPE_REBASE = 'REBASE'
     TYPE_NONREBASE = 'NONREBASE'      
         
-    def __init__(self, delta, apy, target, is_rebase):
+    def __init__(self, delta, apy, is_rebase):
         self.__delta = delta
         self.__apy = apy
-        self.__target = target
         self.__is_rebase = is_rebase
         self.__mint_id = uuid.uuid4().int
         self.__t_delta = 0
@@ -24,7 +23,7 @@ class Mint(TokenEvent):
     def get_time_delta(self):
         return self.__t_delta
     
-    def get_mint_id(self):
+    def get_id(self):
         return self.__mint_id        
     
     def type_of(self):
