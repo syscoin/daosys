@@ -1,10 +1,9 @@
 from python.dev.action import Action
-from python.dev.event import Swap
-from python.dev.event import TokenEvent
 
-class SwapAction(Action):
+
+class InitLPAction(Action):
     
-    def __init__(self, withdraw_action, deposit_action):
+    def __init__(self, mint_action1, mint_action2):
         
         self.__withdraw_action = withdraw_action
         self.__deposit_action = deposit_action

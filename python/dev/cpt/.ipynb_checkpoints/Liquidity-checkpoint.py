@@ -51,8 +51,11 @@ class Liquidity():
         return (self.__x_real*delta_y)/(self.__y_real+delta_y)
 
     def calc(self): 
-        self.__yx_swap_price = self.__y_real / self.__x_real
-        return np.sqrt(self.__x_real*self.__y_real)    
+        if(self.__x_real != 0):
+            self.__yx_swap_price = self.__y_real / self.__x_real
+            return np.sqrt(self.__x_real*self.__y_real)   
+        else:
+            return None
          
     def swap(self, delta_x):
         

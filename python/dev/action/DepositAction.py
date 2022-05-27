@@ -20,7 +20,6 @@ class DepositAction(Action):
         
         return True
     
-    
     def get_mint_id(self):
         return self.__mint_id  
 
