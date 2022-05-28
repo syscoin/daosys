@@ -6,9 +6,10 @@ class LiquidityPool():
         self.__name = name
         self.__user = user
         self.__liquidity = Liquidity(0,0)
+        self.__liquidity_val = 0
   
     def update_event(self, lp_event):
-        lp_event.update(self.__liquidity)
+        self.__liquidity_val = lp_event.update(self.__liquidity)
 
     def get_name(self):
         return self.__name   
@@ -20,7 +21,7 @@ class LiquidityPool():
         return self.__liquidity 
     
     def get_liquidity_val(self):
-        return self.__liquidity.calc()     
+        return self.__liquidity_val     
    
     def get_price(self):
         return self.__liquidity.get_swap_price()

@@ -12,9 +12,10 @@ class SimulationOrchestrator():
         self.add_agent(target)
         
         if(self.__verbose):
+            name = action.get_target().get_name()
             delta = action.get_event().get_delta()
             mint_id = action.get_mint_id()       
-            print('type {} addr {} delta {}'.format(action_type,mint_id,delta))
+            print('type {} name {} delta {}'.format(action_type,name,delta))
         
         return action.apply(self.__agents)
    
