@@ -15,7 +15,6 @@ class DepositAction(Action):
         address = self.__target.get_address(self.__mint_id)        
         self.__token_event.set_address(address)
         token.add_event(self.__token_event)                
-   
         self.__target.set_token(token)        
         
         return True

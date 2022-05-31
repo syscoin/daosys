@@ -4,6 +4,9 @@ from python.dev.event import TokenEvent
 
 class SwapAction(Action):
     
+    ACTION_TYPE_WITHDRAW = 'WITHDRAW'
+    ACTION_TYPE_DEPOSIT = 'DEPOSIT '
+    
     def __init__(self, withdraw_action, deposit_action):
         
         self.__withdraw_action = withdraw_action
@@ -25,8 +28,11 @@ class SwapAction(Action):
     def get_user(self):
         return self.__deposit_action.get_user()
     
-    def get_target(self):
-        return self.__deposit_action.get_target() 
+    def get_target(self, action_type = ACTION_TYPE_DEPOSIT):
+        if(action_type == self.ACTION_TYPE_DEPOSIT):
+            return self.__deposit_action.get_target() 
+        elif(action_type == self.ACTION_TYPE_WITHDRAW):
+            return self.__withdraw_action.get_target()
     
     def get_mint_id(self):
         return self.__deposit_action.get_mint_id()     

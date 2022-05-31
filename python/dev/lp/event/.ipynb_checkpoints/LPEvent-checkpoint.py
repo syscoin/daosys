@@ -13,6 +13,14 @@ class LPEvent(ABC):
     
     @abstractmethod
     def get_type(self):
-        pass    
+        pass 
+    
+    @abstractmethod
+    def get_liquidity(self):
+        pass   
+    
+    @abstractmethod
+    def get_action(self):
+        pass         
    
     

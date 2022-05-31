@@ -2,7 +2,14 @@ class SimulationOrchestrator():
     
     def __init__(self, verbose = False):
         self.__agents = {}
+        self.__liquidity_pools = {}
         self.__verbose = verbose
+  
+    def get_liquidity_pools(self):
+        return self.__liquidity_pools 
+
+    def get_liquidity_pool(self, name):
+        return self.__liquidity_pools[name]        
         
     def apply(self, action):    
         
@@ -18,6 +25,9 @@ class SimulationOrchestrator():
             print('type {} name {} delta {}'.format(action_type,name,delta))
         
         return action.apply(self.__agents)
-   
+
+    def add_liquidity_pool(self, name, lp):
+        self.__liquidity_pools[name] = lp    
+         
     def add_agent(self, target):
         self.__agents[target.get_name()] = target     
