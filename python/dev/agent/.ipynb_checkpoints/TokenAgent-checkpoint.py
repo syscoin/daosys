@@ -40,8 +40,11 @@ class TokenAgent():
         self.__token_index += 1    
         
     def reset_token_index(self):
-        self.__token_index = 0       
+        self.__token_index = 0 
+        
+    def check_lp_pool(self, lp_pool_name):  
+        return lp_pool_name in self.__lp_pools
     
     def add_address(self, mint_id, address):
-        self.__addresses[mint_id] = address
+        self.__addresses[mint_id] = address  
         
