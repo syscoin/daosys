@@ -3,9 +3,9 @@ from python.dev.event import TokenEvent
 class Swap(TokenEvent):
    
     def __init__(self, withdraw_event, deposit_event):
-        self.__t_delta = withdraw_event.get_time_delta()
-        self.__delta = withdraw_event.get_delta()
-        self.__from_address = withdraw_event.get_address() 
+        self.__t_delta = deposit_event.get_time_delta()
+        self.__delta = deposit_event.get_delta()
+        self.__from_address = deposit_event.get_address() 
         self.__to_address = deposit_event.get_address()
         
     def get_time_delta(self):
