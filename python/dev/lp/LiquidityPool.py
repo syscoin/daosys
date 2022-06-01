@@ -45,7 +45,3 @@ class LiquidityPool():
    
     def get_y(self):
         return self.__liquidity.get_y_real()
-   
-
-    
-        

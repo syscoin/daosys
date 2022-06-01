@@ -3,6 +3,7 @@ from python.dev.math.model import TokenDeltaModel
 from python.dev.simulation.batch import Batch
 from python.dev.event import Withdraw
 from python.dev.action import WithdrawAction
+from python.dev.math.basic import IDGenerator
 
 
 class WithdrawBatch(Batch):
@@ -42,35 +43,40 @@ class WithdrawBatch(Batch):
     def get_token_deltas(self):
         return self.__token_del 
     
+    def get_batch_type(self):
+        return Batch.BATCH_WITHDRAW      
+    
     def set_time_deltas(self, time_deltas):
         self.__time_del = time_deltas
     
     def set_token_deltas(self, token_deltas):
         self.__token_del = token_deltas  
         
-    def gen_time_deltas(self, n_events):
+    def gen_name(self):
+        random_alphanumeric = IDGenerator().apply(3)
+        target_name = self.__target.get_name()
+        batch_type =  self.get_batch_type()
+        return batch_type + '_' + target_name + random_alphanumeric      
+            
+    def gen_time_delta(self, index):
         if(self.__time_del == []):
-            return TimeDeltaModel(self.__no_time_delay).apply(n_events)
+            return TimeDeltaModel(self.__no_time_delay).apply()
         else:
-            return self.__time_del
-    
-    def gen_token_deltas(self, n_events):
+            return self.__time_del[index]         
+        
+    def gen_token_delta(self, index):
         if(self.__token_del == []):
-            return TokenDeltaModel(self.__shape,self.__scale).apply(n_events)
+            return TokenDeltaModel(self.__shape,self.__scale).apply()
         else:
-            return self.__token_del  
+            return self.__token_del[index]          
        
-    def generate_events(self, apy, n_events):
-        
-        self.__token_del = self.gen_token_deltas(n_events)
-        self.__time_del = self.gen_time_deltas(n_events)
-        mint_id = self.__mint_event.get_id()
-        events = []
-        
-        for k in range(n_events):
+    def generate_event(self, apy, n):
+        token_delta = self.gen_token_delta(n)
+        time_delta = self.gen_time_delta(n)
+        mint_id = self.__mint_event.get_id()     
+        event = Withdraw(apy, token_delta, time_delta)
             
-            event = Withdraw(apy, self.__token_del[k], self.__time_del[k])
-            events.append(WithdrawAction(event, self.__target, self.__user, mint_id))
-            
-        return events   
+        return WithdrawAction(event, self.__target, self.__user, mint_id) 
+        
+           
     
