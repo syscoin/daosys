@@ -36,4 +36,4 @@ class BatchSet():
             for action in self.__batch_actions:
                 c+=1
                 print('[task {}] {}'.format(c, action) )
-        
+            print('')
