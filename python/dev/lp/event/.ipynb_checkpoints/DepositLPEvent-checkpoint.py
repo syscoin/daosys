@@ -25,7 +25,6 @@ class DepositLPEvent(LPEvent):
             token_yield = self.__retrieve_token_yield(token_address)
             token_delta = self.__retrieve_token_delta()
             token_delta = token_delta + token_yield
-            #print('token_address {}'.format(token_address))
             if(token_name == x_name): liquidity.delta_x(token_delta)
             if(token_name == y_name): liquidity.delta_y(token_delta)
         elif(token_type == Mint.TYPE_NONREBASE):
@@ -34,7 +33,6 @@ class DepositLPEvent(LPEvent):
             if(token_name == y_name): liquidity.delta_y(token_delta)
             
         L = liquidity.calc()
-        #print('liquidity {}'.format(L))
         self.set_liquidity(liquidity)
         
         return L
