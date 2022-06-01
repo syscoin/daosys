@@ -7,15 +7,10 @@ class EventExecutor():
         self.__queue = queue
         self.__orchestrator = orchestrator
 
-    def __pre_config_queue(self):
-        if(not self.__queue.is_post_configure()):
-            self.__queue.post_configure()
-        
     def run(self):
         
         process_queue = True
-        self.__pre_config_queue()
-        
+
         while(process_queue):
             event = self.__queue.get_event()
             event_complete = self.__orchestrator.apply(event)          

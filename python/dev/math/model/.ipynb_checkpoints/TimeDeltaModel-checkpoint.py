@@ -9,7 +9,7 @@ class TimeDeltaModel():
     def apply(self, n = 1, p = 0.00001):  
         
         if(self.__no_time_delay):
-            return [0] * n
+            return [0] * n if n > 1 else 0
         elif(n == 1):
             return np.random.negative_binomial(1, p)  
         else:
