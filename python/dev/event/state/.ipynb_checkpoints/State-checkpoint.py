@@ -2,9 +2,10 @@ import copy
 from python.dev.math.interest import Yield
 
 class State():
+    
     def __init__(self, event, rebase = True):
         self.__event = event
-        self.__tn = None
+        self.__tn = 0
         self.__balance = 0
         self.__principle = 0
         self.__yield = 0
@@ -50,6 +51,6 @@ class State():
     def update_yield(self):
         t_delta = self.__event.get_time_delta()
         apy = self.__event.get_apy()        
-        self.__yield = Yield(self.__balance, t_delta, apy).apply()
+        self.__yield = Yield().apply(self.__balance, t_delta, apy)
         
         

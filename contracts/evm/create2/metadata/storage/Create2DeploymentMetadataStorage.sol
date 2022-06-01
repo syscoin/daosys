@@ -13,8 +13,8 @@ import {
 library Create2DeploymentMetadataStorage {
 
   struct Layout {
+    Address.Layout factoryAddress;
     Bytes32.Layout deploymentSalt;
-    Address.Layout proxyFactoryAddress;
   }
 
 }
@@ -47,21 +47,29 @@ library Create2DeploymentMetadataStorageUtils {
 
   function _setCreate2DeploymentMetaData(
     Create2DeploymentMetadataStorage.Layout storage layout,
-    address proxyFactoryAddress,
+    address factoryAddress,
     bytes32 deploymentSalt
   ) internal {
     layout.deploymentSalt._setValue(deploymentSalt);
-    layout.proxyFactoryAddress._setValue(proxyFactoryAddress);
+    layout.factoryAddress._setValue(factoryAddress);
   }
 
   function _getCreate2DeploymentMetadata(
     Create2DeploymentMetadataStorage.Layout storage layout
   ) view internal returns (
-    address proxyFactoryAddress,
+    address factoryAddress,
     bytes32 deploymentSalt
   ) {
-    proxyFactoryAddress = layout.proxyFactoryAddress._getValue();
+    factoryAddress = layout.factoryAddress._getValue();
     deploymentSalt = layout.deploymentSalt._getValue();
+  }
+
+  function _getCreate2Factory(
+    Create2DeploymentMetadataStorage.Layout storage layout
+  ) view internal returns (
+    address factoryAddress
+  ) {
+    factoryAddress = layout.factoryAddress._getValue();
   }
 
 }

@@ -32,6 +32,10 @@ contract MessengerDelegateService
     interfaceId = type(IDelegateService).interfaceId;
   }
 
+  function registerDelegateServiceFunctionSelector() pure external returns (bytes4 functionSelector) {
+    functionSelector = IDelegateService.registerDelegateService.selector;
+  }
+
   function getServiceDefFunctionSelector() pure external returns (bytes4 functionSelector) {
     functionSelector = IDelegateService.getServiceDef.selector;
   }

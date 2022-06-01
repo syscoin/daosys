@@ -52,7 +52,7 @@ describe('Delegate Service Factory', function () {
   const getImplementationFunctionSelector = '0xdc9cc645';
   const initializeServiceProxyFunctionSelector = '0x5cc0292c';
 
-  const ICreate2DeploymentMetadataInterfaceId = '0x2e08c21c';
+  const ICreate2DeploymentMetadataInterfaceId = '0x2f6fb0fb';
   const getCreate2DeploymentMetadataFunctionSelector = '0x2e08c21c';
 
   let proxyAsMessenger: MessengerDelegateService;
@@ -235,13 +235,13 @@ describe('Delegate Service Factory', function () {
           const DSCreationCode = messengerDelegateService.deployTransaction.data;
 
           const newDelegateService = await delegateServiceFactory
-            .callStatic["deployDelegateService(bytes,bytes32)"](DSCreationCode, IMessengerInterfaceId);
+            .callStatic.deployDelegateService(DSCreationCode, IMessengerInterfaceId);
           expect(newDelegateService).to.be.properAddress;
 
           await delegateServiceFactory.deployDelegateService(DSCreationCode, IMessengerInterfaceId);
 
           newMessengerDS = await ethers.getContractAt("MessengerDelegateService", newDelegateService) as MessengerDelegateService;
-          tracer.nameTags[newMessengerDS.address] = "ProxyAsMessenger";
+          tracer.nameTags[newMessengerDS.address] = "New Messenger DS";
 
           expect(await ethers.provider.getCode(newDelegateService)).to.equal(
             await ethers.provider.getCode(messengerDelegateService.address)
@@ -303,12 +303,7 @@ describe('Delegate Service Factory', function () {
           const newMessengerDSMetadata = await newMessengerDS.getCreate2DeploymentMetadata();
 
           expect(newMessengerDSMetadata.deploymentSalt).to.equal(
-            await serviceProxyFactory.calculateDeploymentSalt(
-              ethers.constants.AddressZero,
-              [
-                await messengerDelegateService.IMessengerInterfaceId()
-              ]
-            )
+            ethers.BigNumber.from(IMessengerInterfaceId).shl(224).toHexString()
           );
           expect(newMessengerDSMetadata.deployerAddress).to.equal(delegateServiceFactory.address);
 
