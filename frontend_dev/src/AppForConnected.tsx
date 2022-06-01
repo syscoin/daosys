@@ -1,17 +1,19 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { Card, Col, Row } from 'react-bootstrap'
-import { CommonSettings } from './common/CommonSettings'
-import { Contracts } from './common/Contracts'
+import { LeftBar } from './common/LeftBar'
+import { Contract } from './common/Contract'
 
 export const AppForConnected: FC<{}> = () => {
+    const [selectedContract, setSelectedContract] = useState<string>('');
+
     return (
         <>
-            <Row className="mt-2">
-                <Col sm={6} md={6}>
-                    <Contracts />
+            <Row className='mt-3'>
+                <Col sm={4} md={4} xs={4}>
+                    <LeftBar onSelected={(selected) => setSelectedContract(selected)} />
                 </Col>
-                <Col sm={6} md={6}>
-                    <CommonSettings/>    
+                <Col sm={8} md={8} xs={8}>
+                    <Contract path={selectedContract}/>
                 </Col>
             </Row>
         </>

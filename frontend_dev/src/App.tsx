@@ -8,6 +8,8 @@ import { ConfigureLocalNetwork } from './ConfigureLocalNetwork';
 export const App: FC<{}> = () => {
   const { account, activateBrowserWallet } = useEthers()
 
+  
+
   return (
     <Container fluid>
       <Row>
