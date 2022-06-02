@@ -12,7 +12,7 @@ class LiquidityPool():
         self.__liquidity_val = 0
         self.__lp_events = LPEventSeries(lp_name)
   
-    def update_event(self, lp_event):
+    def update_event(self, lp_event):        
         self.__liquidity_val = lp_event.update(self.__liquidity)
         self.__lp_events.add_event(lp_event)
     

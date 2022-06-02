@@ -18,10 +18,11 @@ class DepositLPEvent(LPEvent):
         
         token_type = target.get_token_type()
         token_name = target.get_name()
-        target.update_token_index()
+        token_address = self.__retrieve_address()
+        target.update_token_index(token_address)
         
         if(token_type == Mint.TYPE_REBASE):
-            token_address = self.__retrieve_address()
+            
             token_yield = self.__retrieve_token_yield(token_address)
             token_delta = self.__retrieve_token_delta()
             token_delta = token_delta + token_yield

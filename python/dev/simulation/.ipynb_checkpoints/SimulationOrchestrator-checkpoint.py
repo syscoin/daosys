@@ -21,12 +21,15 @@ class SimulationOrchestrator():
         
     def apply(self, action):    
             
-        target = action.get_target()
-        self.add_agent(target)
-    
-        is_complete = action.apply(self.__agents)
+        #target = action.get_target()
+        #self.add_agent(target)
+        is_complete = action.apply(self.__agents) 
+        
+        
         self.__update_lp(action)
-        if(self.__verbose): self.__verbose(action)
+        if(self.__verbose): self.__print_out(action)
+        
+        
         
         return is_complete
 
@@ -47,10 +50,10 @@ class SimulationOrchestrator():
             if(self.__mint_queue.qsize()  <= 0):
                 self.__mint_queue.put(action)
             else: 
-                m_action1 = self.__mint_queue.get() 
+                m_action1 = self.__mint_queue.get()                 
                 lp.update_event(MintLPEvent(m_action1,action)) 
         elif(action.get_type() == TokenEvent.EVENT_DEPOSIT): 
-             lp.update_event(DepositLPEvent(action))
+            lp.update_event(DepositLPEvent(action))
         elif(action.get_type() == TokenEvent.EVENT_SWAP): 
              lp.update_event(SwapLPEvent(action))        
     
@@ -67,10 +70,11 @@ class SimulationOrchestrator():
         else:
             return None
         
-    def __verbose(self, action):
+    def __print_out(self, action):
         name = action.get_target().get_name()
         delta = action.get_event().get_delta()
         mint_id = action.get_mint_id()    
         action_type = action.get_type()
-        print('type {} name {} delta {}'.format(action_type, name, delta))         
+        address = action.get_target().get_address(mint_id) 
+        print('type {} name {} delta {}'.format(action_type, name, address))         
         

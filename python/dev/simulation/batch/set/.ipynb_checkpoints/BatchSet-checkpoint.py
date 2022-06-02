@@ -22,10 +22,10 @@ class BatchSet():
                 event = self.__batches[batch_name].generate_event(apy, k)
                 events.append(event)
                 
-        self.print_actions(n_events) 
+        self.print_out(n_events) 
         return events
     
-    def print_actions(self, n_events, verbose = None):
+    def print_out(self, n_events, verbose = None):
         
         verbose = self.__verbose if verbose == None else verbose
         if(verbose):

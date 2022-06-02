@@ -13,9 +13,13 @@ class MintLPEvent(LPEvent):
         
         target1 = self.__mint_action1.get_target()
         target2 = self.__mint_action2.get_target()
-        target1.reset_token_index()
-        target2.reset_token_index()
-
+        
+        address1 = self.__retrieve_address(self.__mint_action1)
+        address2 = self.__retrieve_address(self.__mint_action2)
+        
+        target1.reset_token_indices(address1)
+        target2.reset_token_indices(address2)
+        
         x_delta = self.__mint_action1.get_event().get_delta()
         y_delta = self.__mint_action2.get_event().get_delta()
         
@@ -43,6 +47,10 @@ class MintLPEvent(LPEvent):
         return self.__mint_action1    
 
     def get_type(self):
-        return LPEvent.EVENT_LP_MINT    
+        return LPEvent.EVENT_LP_MINT  
+    
+    def __retrieve_address(self, mint_action):
+        mint_id = mint_action.get_mint_id()
+        return mint_action.get_target().get_address(mint_id)
    
     
