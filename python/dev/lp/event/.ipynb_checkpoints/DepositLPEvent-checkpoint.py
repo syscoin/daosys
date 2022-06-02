@@ -21,8 +21,7 @@ class DepositLPEvent(LPEvent):
         token_address = self.__retrieve_address()
         target.update_token_index(token_address)
         
-        if(token_type == Mint.TYPE_REBASE):
-            
+        if(token_type == Mint.TYPE_REBASE):       
             token_yield = self.__retrieve_token_yield(token_address)
             token_delta = self.__retrieve_token_delta()
             token_delta = token_delta + token_yield
@@ -45,7 +44,10 @@ class DepositLPEvent(LPEvent):
         return self.__liquidity        
     
     def get_action(self):
-        return self.__deposit_action      
+        return self.__deposit_action 
+    
+    def get_type(self):
+        return LPEvent.EVENT_LP_DEPOSIT     
         
     def __retrieve_address(self):
         mint_id = self.__deposit_action.get_mint_id()
@@ -58,7 +60,6 @@ class DepositLPEvent(LPEvent):
     def __retrieve_token_delta(self):
         return self.__deposit_action.get_event().get_delta()    
 
-    def get_type(self):
-        return LPEvent.EVENT_LP_DEPOSIT     
+    
    
     

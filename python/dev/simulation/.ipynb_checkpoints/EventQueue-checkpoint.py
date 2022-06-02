@@ -20,7 +20,6 @@ class EventQueue():
     def get_event_batches(self):
         return self.__event_batches 
       
-
     def add_event(self, event):
         self.__queue.put(event)
   
