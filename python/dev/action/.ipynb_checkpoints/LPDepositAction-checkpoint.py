@@ -44,14 +44,12 @@ class LPDepositAction(DepositAction):
             
         lp_events = super().get_target().get_lp().get_lp_events()    
         liq_val = lp_events.get_event(-1).get_liquidity().get_liquidity_val()
-
-            
+      
         if (token_index == 0):
             delta = liq_val
         else:
             prev_liq_val = super().get_target().get_lp_val()
             delta = liq_val - prev_liq_val
-            print('{} delta {} prev {}'.format(token_index, liq_val, prev_liq_val)) 
 
         super().get_target().set_lp_val(liq_val)    
            
