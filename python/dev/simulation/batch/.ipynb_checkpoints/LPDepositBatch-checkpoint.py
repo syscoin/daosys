@@ -8,7 +8,7 @@ class LPDepositBatch(DepositBatch):
         super().__init__(target, user, mint_event)
              
     def generate_event(self, apy, n):
-        token_delta = self.gen_token_delta(n)
+
         time_delta = self.gen_time_delta(n)
         mint_id = super().get_mint_event().get_id() 
         target = super().get_target()

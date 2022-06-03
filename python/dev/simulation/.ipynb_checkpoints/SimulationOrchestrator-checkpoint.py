@@ -27,8 +27,9 @@ class SimulationOrchestrator():
         
         return is_complete
 
-    def add_liquidity_pool(self, name, lp):
-        self.__liquidity_pools[name] = lp 
+    def add_liquidity_pool(self, lp):
+        lp_name = lp.get_name()
+        self.__liquidity_pools[lp_name] = lp 
         self.__add_liquidity_pool_targets(lp)
          
     def add_agent(self, target):

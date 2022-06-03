@@ -2,18 +2,16 @@ from python.dev.agent import TokenAgent
 
 class LPTokenAgent(TokenAgent):
       
-    def __init__(self, agent_name, x_target, y_target, lp = None):
-        super().__init__(agent_name)
-        self.__x_target = x_target
-        self.__y_target = y_target    
+    def __init__(self, agent_name, lp):
+        super().__init__(agent_name) 
         self.__lp = lp 
         self.__lp_val = None
 
     def get_x_target(self):
-        return self.__x_target         
+        return self.__lp.get_x_target()         
         
     def get_y_target(self):
-        return self.__y_target     
+        return self.__lp.get_x_target()      
 
     def get_lp(self):
         return self.__lp     
