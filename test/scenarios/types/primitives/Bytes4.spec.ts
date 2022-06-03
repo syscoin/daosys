@@ -20,7 +20,7 @@ describe("Bytes4 Test Suite", function () {
   // Test variables
   let bytes4Mock: Bytes4Mock;
   const testBytes4 = "0xffffffff";
-  const structSlot = "0x9160a198e9ecffd73bfd82ea4a479ee923c405fcbffbf3137c458b96971c15f5";
+  const structSlot = "0xa42ffceb5f472c4e21d53d02e0877ae7f98f4cd1e70d010e951e9f2492b0c552";
 
   /* -------------------------------------------------------------------------- */
   /*                        SECTION Before All Test Hook                        */

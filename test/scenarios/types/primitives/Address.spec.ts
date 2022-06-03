@@ -9,7 +9,7 @@ import {
   AddressMock__factory
 } from '../../../../typechain';
 
-describe("Bytes4 Test Suite", function () {
+describe("Address Test Suite", function () {
 
   // Control values for tests
   const invalidInterfaceId = "0xffffffff";
@@ -20,7 +20,7 @@ describe("Bytes4 Test Suite", function () {
   // Test variables
   let addressMock: AddressMock;
   const testAddress = ethers.constants.AddressZero;
-  const structSlot = "0x9b9d3d0de62a41675fc431b7f4106f7fe2e232918102f0e1aff45744bf72ace4";
+  const structSlot = "0x140acb968e266063482a7632af581ef49a242ea1574b67fb077e05b973974e3a";
 
   /* -------------------------------------------------------------------------- */
   /*                        SECTION Before All Test Hook                        */
