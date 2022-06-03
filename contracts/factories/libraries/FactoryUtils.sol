@@ -31,6 +31,13 @@ library FactoryUtils {
    */
   function _deployWithSalt(bytes memory creationCode, bytes32 salt) internal returns (address deploymentAddress) {
     deploymentAddress = Create2Utils._deployWithSalt(creationCode, salt);
+    require(deploymentAddress == FactoryUtils
+      ._calculateDeploymentAddress(
+        keccak256(creationCode),
+        salt
+      ),
+      "FactoryUtils:_deployWithSalt:: Deployed address does not match expected address"
+    );
   }
 
   function _calculateInitCodeHash(
@@ -46,7 +53,7 @@ library FactoryUtils {
    * @return deploymentAddress Calculated deployment address
    */
   function _calculateDeploymentAddress(bytes32 creationCodeHash, bytes32 salt) view internal returns (address deploymentAddress) {
-    deploymentAddress = Create2Utils._calculateDeploymentAddress(
+    deploymentAddress = FactoryUtils._calculateDeploymentAddressFromAddress(
       address(this),
       creationCodeHash,
       salt

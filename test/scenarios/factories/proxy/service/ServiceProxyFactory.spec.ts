@@ -42,7 +42,7 @@ describe("ServiceProxyFactory", function () {
   const getImplementationFunctionSelector = '0xdc9cc645';
   const initializeServiceProxyFunctionSelector = '0x5cc0292c';
 
-  const ICreate2DeploymentMetadataInterfaceId = '0x2e08c21c';
+  const ICreate2DeploymentMetadataInterfaceId = '0x2f6fb0fb';
   const getCreate2DeploymentMetadataFunctionSelector = '0x2e08c21c';
 
   let proxyAsMessenger: MessengerDelegateService;
@@ -60,7 +60,6 @@ describe("ServiceProxyFactory", function () {
   const calculateDeploymentSaltFunctionSelector = '0x6e25b228';
   const deployServiceProxyFunctionSelector = '0xc8c74d33';
 
-  // let newServiceProxyAddress: string;
   let newServiceProxyAsMessenger: MessengerDelegateService;
   let newServiceProxy: ServiceProxyMock;
 

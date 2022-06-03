@@ -12,6 +12,7 @@ class Series():
         return len(self.__states)   
     
     def get_state(self, index):
+        #print('{} {}'.format(len(self.__states),index))
         return self.__states[index]  
     
     def get_last_state(self):

@@ -26,6 +26,10 @@ contract Create2DeploymentMetadataMock
     interfaceId = type(ICreate2DeploymentMetadata).interfaceId;
   }
 
+  function initCreate2DeploymentMetadataFunctionSelector() pure external returns (bytes4 functionSelector) {
+    functionSelector = ICreate2DeploymentMetadata.initCreate2DeploymentMetadata.selector;
+  }
+
   function getCreate2DeploymentMetadataFunctionSelector() pure external returns (bytes4 functionSelector) {
     functionSelector = ICreate2DeploymentMetadata.getCreate2DeploymentMetadata.selector;
   }
