@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import {
     UInt32,
     UInt32Utils
-} from "../primitives/UInt32.sol"
+} from "../primitives/UInt32.sol";
 
 /* -------------------------------------------------------------------------- */
 /*                            SECION Uint32Counter                            */
@@ -32,11 +32,11 @@ library UInt32CounterUtils {
     using UInt32Utils for UInt32.Layout;
 
 
-    bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(UInt32Count).creationcode);
+    bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(Uint32Counter).creationCode);
 
     function _structSlot() pure internal returns (bytes32 structSlot) {
         structSlot = STRUCT_STORAGE_SLOT
-            ^ UInt32Utils._structSLot();
+            ^ UInt32Utils._structSlot();
     }
 
     function _saltStorageSlot(
@@ -52,19 +52,19 @@ library UInt32CounterUtils {
    *  Storage slot is computed during runtime to facilitate development during
    *  standardization.
    */
-    function _layout( bytes32 salt ) pure internal returns ( UInt32Count.Layout storage layout ) {
+    function _layout( bytes32 salt ) pure internal returns ( Uint32Counter.Layout storage layout ) {
         bytes32 saltedSlot = _saltStorageSlot(salt);
         assembly{ layout.slot := saltedSlot }
     }
 
     function _current(
-        UInt32Count.Layout storage layout
+        Uint32Counter.Layout storage layout
     ) view internal returns (uint32 currentCount) {
         currentCount = layout.count._getValue();
     }
 
     function _next(
-        UInt32Count.Layout storage layout
+        Uint32Counter.Layout storage layout
     ) internal returns (uint32 lastCount) {
         lastCount = layout.count._getValue();
         layout.count._setValue(++lastCount);

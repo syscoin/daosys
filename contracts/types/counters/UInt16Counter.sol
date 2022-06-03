@@ -5,7 +5,7 @@ pragma solidity ^0.8.0;
 import {
     UInt16,
     UInt16Utils
-}   from "../primitives/UInt16.sol"
+} from "../primitives/UInt16.sol";
 
 /* -------------------------------------------------------------------------- */
 /*                            SECION Uint16Counter                           */
@@ -14,7 +14,7 @@ import {
 library UInt16Counter {
 
     struct Layout {
-        UInt16Utils.Layout count;
+        UInt16.Layout count;
     }
 
 }
@@ -32,11 +32,11 @@ library UInt16CounterUtils {
     using UInt16CounterUtils for UInt16Counter.Layout;
     using UInt16Utils for UInt16.Layout;
 
-    bytes32 constant internal STRUCT_STORAGE_SLOT = keccak(type(UInt16Counter).creationcode());
+    bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(UInt16Counter).creationCode);
 
     function _structSlot() pure internal returns (bytes32 structSlot) {
         structSlot = STRUCT_STORAGE_SLOT
-            ^ UInt16._structSlot();
+            ^ UInt16Utils._structSlot();
     }
 
     function _saltStorageSlot( bytes32 storageSlotSalt ) pure internal returns (bytes32 saltedStorageSlot) {

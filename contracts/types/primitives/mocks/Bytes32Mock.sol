@@ -5,8 +5,7 @@ pragma solidity ^0.8.0;
 import {
     Bytes32,
     Bytes32Utils
-    from "../Bytes32.sol";
-}
+} from "../Bytes32.sol";
 
 contract Bytes32Mock {
 

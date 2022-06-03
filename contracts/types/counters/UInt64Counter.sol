@@ -65,7 +65,7 @@ library UInt64CounterUtils {
     function _next(
         UInt64Counter.Layout storage layout
     ) internal returns (uint64 lastCount) {
-        lastCount = layout.count.__getValue();
+        lastCount = layout.count._getValue();
         layout.count._setValue(++lastCount);
     }
 

@@ -4,8 +4,7 @@ pragma solidity ^0.8.0;
 import {
     UInt128,
     UInt128Utils
-    from "../UInt128.sol";
-}
+} from "../UInt128.sol";
 
 contract UInt128Mock {
 
