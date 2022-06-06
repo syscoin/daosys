@@ -31,7 +31,19 @@ class SwapLPEvent(LPEvent):
         L = liquidity.swap(token_delta)
         self.set_liquidity(liquidity)
         
-        return L  
+        return L 
+    
+    def set_liquidity(self, liquidity):
+        self.__liquidity = copy.copy(liquidity)
+        
+    def get_liquidity(self):
+        return self.__liquidity        
+    
+    def get_action(self):
+        return self.__swap_action       
+
+    def get_type(self):
+        return LPEvent.EVENT_LP_SWAP      
    
     def __update_index(self, action_type):
         token_address = self.__retrieve_address(action_type)
@@ -49,16 +61,6 @@ class SwapLPEvent(LPEvent):
     def __retrieve_token_delta(self):
         return self.__swap_action.get_event().get_delta()  
     
-    def set_liquidity(self, liquidity):
-        self.__liquidity = copy.copy(liquidity)
-        
-    def get_liquidity(self):
-        return self.__liquidity        
-    
-    def get_action(self):
-        return self.__swap_action       
-
-    def get_type(self):
-        return LPEvent.EVENT_LP_SWAP     
+   
    
     

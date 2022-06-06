@@ -15,7 +15,7 @@ class LiquidityPool():
     def update_event(self, lp_event):        
         self.__liquidity_val = lp_event.update(self.__liquidity)
         self.__lp_events.add_event(lp_event)
-    
+  
     def get_lp_events(self):
         return self.__lp_events
 

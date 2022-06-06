@@ -29,7 +29,7 @@ class BatchSet():
         
         verbose = self.__verbose if verbose == None else verbose
         if(verbose):
-            print('======== Action Set ===========')
+            print('======== Batch Set Tasks ===========')
             print('# name: {}'.format(self.__name))
             print('# num_repeats: {} \n'.format(n_events))
             c = 0

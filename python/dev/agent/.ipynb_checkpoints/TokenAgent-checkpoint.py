@@ -45,7 +45,6 @@ class TokenAgent():
         
     def update_token_index(self, address):
         self.__token_indices[address] += 1  
-
         
     def reset_token_indices(self, address):
         if (not (address in self.__token_indices)):

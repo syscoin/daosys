@@ -20,21 +20,16 @@ class SimulationOrchestrator():
         return self.__liquidity_pools[name]        
         
     def apply(self, action):    
-            
-        #target = action.get_target()
-        #self.add_agent(target)
-        is_complete = action.apply(self.__agents) 
-        
-        
+
+        is_complete = action.apply(self.__agents)   
         self.__update_lp(action)
         if(self.__verbose): self.__print_out(action)
         
-        
-        
         return is_complete
 
-    def add_liquidity_pool(self, name, lp):
-        self.__liquidity_pools[name] = lp 
+    def add_liquidity_pool(self, lp):
+        lp_name = lp.get_name()
+        self.__liquidity_pools[lp_name] = lp 
         self.__add_liquidity_pool_targets(lp)
          
     def add_agent(self, target):
@@ -55,7 +50,7 @@ class SimulationOrchestrator():
         elif(action.get_type() == TokenEvent.EVENT_DEPOSIT): 
             lp.update_event(DepositLPEvent(action))
         elif(action.get_type() == TokenEvent.EVENT_SWAP): 
-             lp.update_event(SwapLPEvent(action))        
+            lp.update_event(SwapLPEvent(action))        
     
     def __add_liquidity_pool_targets(self, lp):    
         x_target_name = lp.get_x_target().get_name()
