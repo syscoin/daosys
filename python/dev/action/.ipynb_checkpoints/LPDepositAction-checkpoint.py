@@ -19,22 +19,16 @@ class LPDepositAction(DepositAction):
     def apply(self, agents):
         
         mint_id = super().get_mint_id()   
-        
-        
         token = super().get_target().get_token()        
         address = super().get_target().get_address(mint_id) 
         token_index = super().get_target().get_token_index(address)
         apy = super().get_event().get_apy()
         t_delta = super().get_event().get_time_delta()
-        
-        
-
         delta = self.__calc_delta(token_index)
-
         event = Deposit(apy, delta, t_delta, address)
         token.add_event(event)                
-        super().get_target().set_token(token)
         
+        super().get_target().set_token(token) 
         super().get_target().update_token_index(address)
         
         return True
