@@ -9,7 +9,7 @@ import {
   AddressMock__factory
 } from '../../../../typechain';
 
-describe("Address Test Suite", function () {
+describe.only("Address Test Suite", function () {
 
   // Control values for tests
   const invalidInterfaceId = "0xffffffff";
