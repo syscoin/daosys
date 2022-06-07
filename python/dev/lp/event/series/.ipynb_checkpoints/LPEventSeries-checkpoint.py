@@ -25,6 +25,9 @@ class LPEventSeries():
     def get_events(self):
         return self.__events 
     
+    def get_event(self, index):
+        return self.__events[index]    
+    
     def get_num_events(self):
         return len(self.__events)   
     
@@ -58,18 +61,11 @@ class LPEventSeries():
 
     def __retrieve_time_stamp(self, address):
         index = self.get_last_event().get_action().get_target().get_token_index(address)
-        token = self.get_last_event().get_action().get_target().get_token()
-        
-        
-        
+        token = self.get_last_event().get_action().get_target().get_token() 
         return token.get_state_series(address).get_state(index).get_timestamp()                
     def __retrieve_address(self):
         action = self.get_last_event().get_action()
         mint_id = action.get_mint_id()        
-        
-        
-        #print(action)
-        
         addresses = action.get_target().get_address(mint_id)        
         return action.get_target().get_address(mint_id)   
 

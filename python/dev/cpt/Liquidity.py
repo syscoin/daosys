@@ -9,6 +9,7 @@
 # Link: https://atiselsts.github.io/pdfs/uniswap-v3-liquidity-math.pdf
 
 import numpy as np
+import copy
 
 class Liquidity():
     
@@ -36,8 +37,8 @@ class Liquidity():
         return self.__y_name      
     
     def get_liquidity_val(self):
-        return self.__liquidity_val    
-    
+        return self.__liquidity_val  
+      
     def get_swap_price(self, direction = 'YX'): 
         if direction == self.YX_PRICE:
             return self.__yx_swap_price
@@ -54,7 +55,7 @@ class Liquidity():
         self.__x_name = x_name  
     
     def set_y_name(self, y_name):
-        self.__y_name = y_name           
+        self.__y_name = y_name   
         
     def delta_x(self, x_new):
         self.__x_real = self.__x_real + x_new  
@@ -69,10 +70,11 @@ class Liquidity():
         return (self.__x_real*delta_y)/(self.__y_real+delta_y)
 
     def calc(self): 
+        self.__prev_liquidity_val = copy.copy(self.__liquidity_val)
         if(self.__x_real != 0):
             self.__yx_swap_price = self.__y_real / self.__x_real
             self.__liquidity_val = np.sqrt(self.__x_real*self.__y_real)
-            
+
         return self.__liquidity_val
          
     def swap(self, delta_x):
