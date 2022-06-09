@@ -28,3 +28,5 @@ yarn.lock
 *.lock
 
 .VSCodeCounter/
+
+yarn-error.log

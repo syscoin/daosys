@@ -28,7 +28,7 @@ abstract contract ERC20UFragmentsLogic {
 
   function _getBaseAmountPerFragment(
     bytes32 storageSlotSalt
-  ) view internal returns (uint256 baseAmountPerFragment) {
+  ) virtual view internal returns (uint256 baseAmountPerFragment) {
     baseAmountPerFragment = ERC20UFragmentsUtils._layout(storageSlotSalt)
       ._getBaseAmountPerFragment();
   }
