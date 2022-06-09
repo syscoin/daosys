@@ -20,7 +20,7 @@ import {
   UniV2LPCompatIndexingUFragmentsERC20__factory
 } from '../../../../../../../../typechain';
 
-describe.only("UniV2LPCompatIndexingUFragmentsERC20", function () {
+describe("UniV2LPCompatIndexingUFragmentsERC20", function () {
 
   // Control values for tests
   const invalidInterfaceId = "0xffffffff";
@@ -353,6 +353,12 @@ describe.only("UniV2LPCompatIndexingUFragmentsERC20", function () {
           )
         ).to.changeTokenBalance(testToken1, deployer, ethers.utils.parseEther("0.906610893880149131"));
 
+        expect(
+          await indexToken.totalSupply()
+        ).to.equal(
+          ethers.utils.parseEther("10.999999999999998900")
+        );
+
         await oracle.connect(deployer).update();
 
         expect(await oracle.consult(weth.address, ethers.utils.parseEther("1.0")))
@@ -386,6 +392,12 @@ describe.only("UniV2LPCompatIndexingUFragmentsERC20", function () {
             ethers.constants.MaxUint256
           )
         ).to.changeTokenBalance(weth, deployer, ethers.utils.parseEther("0.994550668459521908"));
+
+        expect(
+          await indexToken.totalSupply()
+        ).to.equal(
+          ethers.utils.parseEther("10.005449331540477091")
+        );
 
         expect(await oracle.getAmountOut(weth.address, ethers.utils.parseEther("1.0"))).to.equal(ethers.utils.parseEther("0.906161864469506945"));
         expect(await oracle.getAmountOut(testToken1.address, ethers.utils.parseEther("1.0"))).to.equal(ethers.utils.parseEther("0.907104936214045344"));
