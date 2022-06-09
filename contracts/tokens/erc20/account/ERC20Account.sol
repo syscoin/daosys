@@ -38,7 +38,7 @@ abstract contract ERC20Account is ERC20AccountLogic {
   }
 
   function _totalSupply(
-    bytes32 storageSlotSalt) internal view returns (uint256 supply) {
+    bytes32 storageSlotSalt) virtual view internal returns (uint256 supply) {
     supply = _getTotalSupply(storageSlotSalt);
   }
 
