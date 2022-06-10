@@ -87,7 +87,7 @@ describe("UniswapCalculator", () => {
                     .with.equal(expectedToken1Amt)
             });
 
-            it("check balance after aditional deposit", async () => {
+            it("check balance after additional deposit", async () => {
                 await token0.transfer(tokenPair.address, expandToNDecimals(1, 18));
                 await token1.transfer(tokenPair.address, expandToNDecimals(1, 18));
                 await tokenPair.mint(deployer.address)
@@ -251,7 +251,7 @@ describe("UniswapCalculator", () => {
             console.log(await token1.balanceOf(lpHolder.address));
 
             expect(await token1.balanceOf(lpHolder.address))
-                .to.equal(expandToNDecimals(1, 18))
+              .to.equal(ethers.utils.parseUnits("1.143796003294946288", "ether"));
 
             expect(await tokenPair.balanceOf(lpHolder.address))
                 .to.equal(lpBal.sub(exitQuote))
