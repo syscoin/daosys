@@ -4,13 +4,11 @@ pragma solidity ^0.8.0;
 import {
     UInt128,
     UInt128Utils
-    from "../UInt128.sol";
-}
+} from "contracts/types/primitives/UInt128.sol";
 
 contract UInt128Mock {
 
     using UInt128Utils for UInt128.Layout;
-
 
     function setUInt128(uint128 newValue) external returns (bool result) {
         UInt128Utils._layout(UInt128Utils._structSlot())._setValue(newValue);

@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import {
   Bool,
   BoolUtils
-} from "../../primitives/BoolUtils.sol";
+} from "contracts/types/primitives/Bool.sol";
 
 library AddressToBool {
 

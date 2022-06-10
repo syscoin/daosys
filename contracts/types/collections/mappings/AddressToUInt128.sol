@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import {
   UInt128,
   UInt128Utils
-} from "../../primitives/UInt128.sol";
+} from "contracts/types/primitives/UInt128.sol";
 
 library AddressToUInt128 {
 

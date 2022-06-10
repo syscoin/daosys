@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 pragma solidity ^0.8.0;
 
+import {
+  Bool,
+  BoolUtils
+} from "contracts/types/primitives/Bool.sol";
 
 /* -------------------------------------------------------------------------- */
 /*                             SECTION Bool                                   */
@@ -13,6 +17,7 @@ library Bool {
   }
 
 }
+
 /* -------------------------------------------------------------------------- */
 /*                             !SECTION Bool                                  */
 /* -------------------------------------------------------------------------- */

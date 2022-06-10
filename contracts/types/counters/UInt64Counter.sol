@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import {
     UInt64,
     UInt64Utils
-} from "../primitives/UInt64.sol";
+} from "contracts/types/primitives/UInt64.sol";
 
 /* -------------------------------------------------------------------------- */
 /*                            SECION Uint64Counter                            */

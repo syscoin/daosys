@@ -4,13 +4,13 @@ pragma solidity ^0.8.0;
 import {
     UInt32,
     UInt32Utils
-} from "../primitives/UInt32.sol"
+} from "contracts/types/primitives/UInt32.sol";
 
 library AddressToUInt32 {
 
     // NOTE Should only use language primitives as key pending research on the consistency of using a struct.
     struct Layout {
-        mapping(address -> UInt32.Layout) value;
+        mapping(address => UInt32.Layout) value;
     }
     
 }

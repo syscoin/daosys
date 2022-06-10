@@ -1,16 +1,16 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later 
  pragma solidity ^0.8.0;
 
-    import {
-        UInt64,
-        UInt64Utils
-    } from "../primitives/UInt64.sol";
+import {
+    UInt64,
+    UInt64Utils
+} from "contracts/types/primitives/UInt64.sol";
  
  library AddressToUInt64 {
 
     // NOTE Should only use language primitives as key pending research on the consistency of using a struct.
     struct Layout {
-        mapping(address -> UInt64.Layout) value; 
+        mapping(address => UInt64.Layout) value; 
     }
 
  }

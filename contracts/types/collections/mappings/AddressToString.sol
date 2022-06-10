@@ -4,13 +4,13 @@ pragma solidity ^0.8.0;
 import {
     String,
     StringUtils
-} from "../primitives/String.sol"
+} from "contracts/types/primitives/String.sol";
 
 library AddressToString {
 
     // NOTE Should only use language primitives as key pending research on the consistency of using a struct.
     struct Layout {
-        mapping(address -> String.Layout) value;
+        mapping(address => String.Layout) value;
     }
 
 }

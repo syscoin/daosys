@@ -33,7 +33,7 @@ library UInt16Utils {
         bytes32 storageSlotSalt
     ) pure internal returns (bytes32 saltedStorageSlot) {
         saltedStorageSlot = storageSlotSalt
-        ^ _structSlot();
+            ^ _structSlot();
     }
 
     /**
@@ -43,17 +43,17 @@ library UInt16Utils {
    *  standardization.
    */
 
-   function _layout( bytes32 salt) pure internal returns (UInt8.Layout storage layout ) {
+   function _layout( bytes32 salt) pure internal returns (UInt16.Layout storage layout ) {
        bytes32 saltedSlot = _saltStorageSlot(salt);
        assembly{ layout.slot := saltedSlot }
+    }
 
    function _setValue(
        UInt16.Layout storage layout,
        uint16 newValue
     ) internal {
         layout.value = newValue;
-
-   }
+    }
 
    function _getValue(
        UInt16.Layout storage layout

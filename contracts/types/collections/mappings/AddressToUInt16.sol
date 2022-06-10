@@ -4,13 +4,13 @@ pragma solidity ^0.8.0;
 import {
   UInt16,
   UInt16Utils
-} from "../primitives/UInt16.sol";
+} from "contracts/types/primitives/UInt16.sol";
 
 library AddressToUInt16 {
 
   // NOTE Should only use language primitives as key pending research on the consistency of using a struct.
   struct Layout {
-    mapping(address -> UInt16.Layout) value;
+    mapping(address => UInt16.Layout) value;
   }
 
 }

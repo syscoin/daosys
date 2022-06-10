@@ -1,6 +1,11 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 pragma solidity ^0.8.0;
 
+import {
+  UInt32,
+  UInt32Utils
+} from "contracts/types/primitives/UInt32.sol";
+
 /* -------------------------------------------------------------------------- */
 /*                             SECTION UInt32Set                              */
 /* -------------------------------------------------------------------------- */
@@ -9,7 +14,7 @@ library UInt32Set {
 
   struct Enumerable {
     // 1-indexed to allow 0 to signify nonexistence
-    mapping( UInt32Set => uint256 ) _indexes;
+    mapping( uint32 => uint256 ) _indexes;
     uint32[] _values;
     uint32 _maxValue;
   }

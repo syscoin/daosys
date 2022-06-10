@@ -1,6 +1,12 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 pragma solidity ^0.8.0;
 
+
+import {
+  Bytes16,
+  Bytes16Utils
+} from "contracts/types/primitives/Bytes16.sol";
+
 /* -------------------------------------------------------------------------- */
 /*                             SECTION Bytes16Set                              */
 /* -------------------------------------------------------------------------- */
@@ -8,6 +14,7 @@ pragma solidity ^0.8.0;
 library Bytes16Set {
   
   struct Enumerable {
+    
     // 1-indexed to allow 0 to signify nonexistence
     mapping( bytes16 => uint256 ) _indexes;
     bytes16[] _values;

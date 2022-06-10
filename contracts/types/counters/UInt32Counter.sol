@@ -4,13 +4,13 @@ pragma solidity ^0.8.0;
 import {
     UInt32,
     UInt32Utils
-} from "../primitives/UInt32.sol"
+} from "contracts/types/primitives/UInt32.sol";
 
 /* -------------------------------------------------------------------------- */
-/*                            SECION Uint32Counter                            */
+/*                            SECION UInt32Counter                            */
 /* -------------------------------------------------------------------------- */
 
-library Uint32Counter {
+library UInt32Counter {
 
     struct Layout {
         UInt32.Layout count;
@@ -19,11 +19,11 @@ library Uint32Counter {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                           !SECION Uint32Counter                            */
+/*                           !SECION UInt32Counter                            */
 /* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
-/*                         SECTION Uint32CounterUtils                         */
+/*                         SECTION UInt32CounterUtils                         */
 /* -------------------------------------------------------------------------- */
 
 library UInt32CounterUtils {
@@ -31,7 +31,7 @@ library UInt32CounterUtils {
     using UInt32CounterUtils for Uint32Counter.Layout;
     using UInt32Utils for UInt32.Layout;
 
-    bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(Uint32Counter).creationcode);
+    bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(UInt32Counter).creationcode);
 
     function _structSlot() pure internal returns (bytes32 structSlot) {
         structSlot = STRUCT_STORAGE_SLOT

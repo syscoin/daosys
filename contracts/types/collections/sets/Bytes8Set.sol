@@ -1,8 +1,13 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 pragma solidity ^0.8.0;
 
+import {
+  Bytes8,
+  Bytes8Utils
+} from "contracts/types/primitives/Bytes8.sol";
+
 /* -------------------------------------------------------------------------- */
-/*                             SECTION Bytes4Set                              */
+/*                             SECTION Bytes8Set                              */
 /* -------------------------------------------------------------------------- */
 
 library Bytes8Set {
@@ -21,11 +26,11 @@ library Bytes8Set {
 
 
 /* -------------------------------------------------------------------------- */
-/*                             !SECTION Bytes4Set                             */
+/*                             !SECTION Bytes8Set                             */
 /* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
-/*                            SECTION Bytes4SetOps                            */
+/*                            SECTION Bytes8SetUtils                          */
 /* -------------------------------------------------------------------------- */
 
 library Bytes8SetUtils {
@@ -87,7 +92,7 @@ library Bytes8SetUtils {
     }
 
     function _add(
-        Bytes8Set.Enumerable storage set
+        Bytes8Set.Enumerable storage set,
         bytes8 value
     ) internal returns (bool) {
         if (!_contains(set, value)) {
@@ -112,7 +117,7 @@ library Bytes8SetUtils {
             // move last value to now-vacant index
 
             set._values[index] = last;
-            set._indexes[last] = _index + 1;
+            set._indexes[last] = index + 1;
 
             // clear last index
 
@@ -132,5 +137,5 @@ library Bytes8SetUtils {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                            !SECTION Bytes4SetOps                           */
+/*                            !SECTION Bytes8SetUtils                         */
 /* -------------------------------------------------------------------------- */

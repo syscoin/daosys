@@ -1,6 +1,11 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 pragma solidity ^0.8.0;
 
+import {
+  UInt64,
+  UInt64Utils
+} from "contracts/types/primitives/UInt64.sol";
+
 /* -------------------------------------------------------------------------- */
 /*                             SECTION UInt64Set                              */
 /* -------------------------------------------------------------------------- */
@@ -9,7 +14,7 @@ library UInt64Set {
 
   struct Enumerable {
     // 1-indexed to allow 0 to signify nonexistence
-    mapping( UInt64Set => uint256 ) _indexes;
+    mapping( uint64 => uint256 ) _indexes;
     uint64[] _values;
     uint64 _maxValue;
   }
@@ -25,7 +30,7 @@ library UInt64Set {
 /* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
-/*                            SECTION UInt64SetOps                            */
+/*                            SECTION UInt64SetUtils                          */
 /* -------------------------------------------------------------------------- */
 
 library UInt64SetUtils {
@@ -143,5 +148,5 @@ library UInt64SetUtils {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                            !SECTION UInt64SetOps                           */
+/*                            !SECTION UInt64SetUtils                         */
 /* -------------------------------------------------------------------------- */

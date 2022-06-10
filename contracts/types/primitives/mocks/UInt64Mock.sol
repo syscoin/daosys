@@ -4,13 +4,11 @@ pragma solidity ^0.8.0;
 import {
     UInt64,
     UInt64Utils
-    from "../UInt64.sol";
-}
+} from "contracts/types/primitives/UInt64.sol";
 
 contract UInt64Mock {
 
     using UInt64Utils for UInt64.Layout;
-
 
     function setUInt64(uint64 newValue) external returns (bool result) {
         UInt64Utils._layout(UInt64Utils._structSlot())._setValue(newValue);

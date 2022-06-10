@@ -1,11 +1,10 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-
 pragma solidity ^0.8.0;
 
 import {
   UInt256Counter,
   UInt256CounterUtils
-} from "../../counters/UInt256Counter.sol";
+} from "contracts/types/counters/UInt256Counter.sol";
 
 library AddressToUInt256Counter {
 

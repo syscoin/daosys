@@ -31,7 +31,7 @@ library UInt128Utils {
         bytes32 storageSlotSalt
         ) pure internal returns (bytes32 saltedStorageSlot) {
         saltedStorageSlot = storageSlotSalt
-        ^_structSlot();
+            ^ _structSlot();
     }
 
     /**
@@ -41,7 +41,7 @@ library UInt128Utils {
    *  standardization.
    */
 
-    function _layout( bytes32 salt) pure internal returns ( UInt128.Layout storage layout ) {
+    function _layout( bytes32 salt ) pure internal returns ( UInt128.Layout storage layout ) {
         bytes32 saltedSlot = _saltStorageSlot(salt);
         assembly{ layout.slot := saltedSlot }
     }

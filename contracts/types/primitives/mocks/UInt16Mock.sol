@@ -5,8 +5,7 @@ pragma solidity ^0.8.0;
 import {
     UInt16,
     UInt16Utils
-    from "../UInt16.sol";
-}
+} from "contracts/types/primitives/UInt16.sol";
 
 contract UInt16Mock {
 

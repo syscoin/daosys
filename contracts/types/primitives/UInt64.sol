@@ -2,22 +2,22 @@
 pragma solidity ^0.8.0;
 
 /* -------------------------------------------------------------------------- */
-/*                               SECTION UINT64                               */
+/*                               SECTION UInt64                               */
 /* -------------------------------------------------------------------------- */
 
 library UInt64 {
 
-    struct UInt64 {
+    struct Layout {
         uint64 value;
     }
 }
 
 /* -------------------------------------------------------------------------- */
-/*                              !SECTION UINT64                               */
+/*                              !SECTION UInt64                               */
 /* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
-/*                            SECTION Uint64Utils                             */
+/*                            SECTION UInt64Utils                             */
 /* -------------------------------------------------------------------------- */
 
 library UInt64Utils {
@@ -31,8 +31,8 @@ library UInt64Utils {
     function _saltStorageSlot(
         bytes32 storageSlotSalt
         ) pure internal returns (bytes32 saltedStorageSlot) {
-        saltedStorageSlot = storageSlotSalt;
-        ^_structSlot();
+        saltedStorageSlot = storageSlotSalt
+            ^ _structSlot();
     }
 
     /**
@@ -66,10 +66,6 @@ library UInt64Utils {
     }
 
 }
-
-
-  
-
 
 /* -------------------------------------------------------------------------- */
 /*                            !SECTION Uint64Utils                            */

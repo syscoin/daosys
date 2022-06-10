@@ -3,14 +3,14 @@ pragma solidity ^0.8.0;
 
 import {
     UInt8,
-    UInt8String
-} from "../primitives/UInt8.sol"
+    UInt8Utils
+} from "contracts/types/primitives/UInt8.sol";
 
 library AddressToUInt8 {
 
     // NOTE Should only use language primitives as key pending research on the consistency of using a struct.
     struct Layout {
-
+        mapping(address => UInt8.Layout) value;
     }
 
 }
