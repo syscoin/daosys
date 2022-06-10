@@ -8,7 +8,7 @@ import {
 import {
   MooniswapManagerMock,
   IMooniswapManager
-} from "../../../mocks/MooniswapManagerMock.sol";
+} from "contracts/protocols/mooniswap/adaptors/liquidity/mocks/MooniswapManagerMock.sol";
 
 contract MooniswapManagerDelegateService
   is

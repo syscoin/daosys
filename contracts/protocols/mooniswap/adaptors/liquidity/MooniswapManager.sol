@@ -4,10 +4,10 @@ pragma solidity ^0.8.0;
 
 import "hardhat/console.sol";
 
-import "./interfaces/IMooniswapManager.sol";
-import "./internal/MooniswapManagerInternal.sol";
-import "../protocols/dexes/mooniswap/erc20/IERC20.sol";
-import {Mooniswap} from "../protocols/dexes/mooniswap/Mooniswap.sol";
+import "contracts/protocols/mooniswap/adaptors/liquidity/interfaces/IMooniswapManager.sol";
+import "contracts/protocols/mooniswap/adaptors/liquidity/internal/MooniswapManagerInternal.sol";
+import "contracts/test/protocols/dexes/mooniswap/erc20/IERC20.sol";
+import {Mooniswap} from "contracts/test/protocols/dexes/mooniswap/Mooniswap.sol";
 
 contract MooniswapManager is IMooniswapManager, MooniswapManagerInternal {
     function getPoolAddress()

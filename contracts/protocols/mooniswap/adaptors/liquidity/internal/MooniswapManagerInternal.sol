@@ -3,9 +3,9 @@
 pragma solidity ^0.8.0;
 
 import {IMooniswapManager} from "../interfaces/IMooniswapManager.sol";
-import "../../protocols/dexes/mooniswap/erc20/IERC20.sol";
-import {Mooniswap} from "../../protocols/dexes/mooniswap/Mooniswap.sol";
-import {MooniFactory} from "../../protocols/dexes/mooniswap/MooniFactory.sol";
+import {IERC20} from "contracts/test/protocols/dexes/mooniswap/erc20/IERC20.sol";
+import {Mooniswap} from "contracts/test/protocols/dexes/mooniswap/Mooniswap.sol";
+import {MooniFactory} from "contracts/test/protocols/dexes/mooniswap/MooniFactory.sol";
 import {MooniswapManagerStorage, MooniswapManagerStorageUtils} from "../storage/MooniswapManagerStorage.sol";
 import "hardhat/console.sol";
 
