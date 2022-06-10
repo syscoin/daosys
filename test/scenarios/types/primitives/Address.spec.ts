@@ -20,7 +20,7 @@ describe("Address Test Suite", function () {
   // Test variables
   let addressMock: AddressMock;
   const testAddress = ethers.constants.AddressZero;
-  const structSlot = "0x140acb968e266063482a7632af581ef49a242ea1574b67fb077e05b973974e3a";
+  const structSlot = "0x16a0fb756410b37e9fd244fafa990604ec6c1dcdb430214454323ee259395f05";
 
   /* -------------------------------------------------------------------------- */
   /*                        SECTION Before All Test Hook                        */
@@ -59,7 +59,7 @@ describe("Address Test Suite", function () {
   /* -------------------------------------------------------------------------- */
 
     // TODO Test rest of StringUtils on String.
-  describe("Bytes4", function () {
+  describe("Address", function () {
 
     describe("Validate structSlot consistency", function () {
       it("getStructSlot().", async function () {

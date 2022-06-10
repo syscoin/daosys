@@ -8,14 +8,14 @@
   "license": "AGPL-3.0-or-later",
   "scripts": {
     "clean": "yarn run hardhat clean",
-    "compile": "yarn run hardhat compile",
+    "compile": "yarn run hardhat compile && yarn run hardhat typechain",
     "typechain": "yarn run hardhat typechain",
     "test": "yarn run hardhat test",
     "coverage": "yarn run hardhat coverage",
     "storage-layout": "yarn run hardhat storage-layout",
-    "build": "yarn run hardhat compile --show-stack-traces && lerna run tsc",
-    "clean-build": "yarn run hardhat clean && yarn run hardhat compile  && yarn run hardhat test --logs",
-    "full-build": "yarn run hardhat clean && yarn run hardhat compile && yarn run hardhat test --logs && yarn docs",
+    "build": "yarn run hardhat clean && yarn run hardhat compile && yarn run hardhat typechain && yarn run hardhat test --logs && lerna run tsc",
+    "clean-build": "yarn run hardhat clean && yarn run hardhat compile && yarn run hardhat test --logs",
+    "full-build": "yarn run hardhat clean && yarn run hardhat compile && yarn run hardhat typechain && yarn run hardhat test --logs && yarn docs",
     "docs": "asciidoctor-reducer --preserve-conditionals -o README.adoc readme-template.adoc && asciidoctor-reducer --preserve-conditionals -o docs/projects/dws/dws-whitepaper-template.adoc docs/projects/dws/dws-whitepaper.adoc"
   },
   "devDependencies": {
@@ -47,6 +47,7 @@
     "hardhat-spdx-license-identifier": "^2.0.3",
     "hardhat-storage-layout": "^0.1.6",
     "hardhat-tracer": "^1.1.0-rc.6",
+    "lerna": "^5.1.1",
     "solidity-coverage": "^0.7.21",
     "stochasm": "^0.5.0",
     "ts-node": "^10.8.1",

@@ -46,6 +46,7 @@ async function exec() {
 
 describe('Supply Precision', function () {
   it('should successfully run simulation', async function () {
+    this.timeout(500000);
     await exec()
   })
 })

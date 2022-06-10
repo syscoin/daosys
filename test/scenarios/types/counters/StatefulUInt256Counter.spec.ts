@@ -7,7 +7,7 @@ import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import {
   StatefulUInt256CounterMock,
   StatefulUInt256CounterMock__factory
-} from '../../../../../typechain';
+} from '../../../../typechain';
 
 /* -------------------------------------------------------------------------- */
 /*                SECTION StatefulUInt256CounterMock Test Suite               */

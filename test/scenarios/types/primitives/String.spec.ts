@@ -20,7 +20,7 @@ describe("String Test Suite", function () {
   // Test variables
   let stringMock: StringMock;
   const testString = "Hello World!";
-  const structSlot = "0x70ce79e4d2f6d9e568ffd32b1e4bc846df4ff182f5ee3b4c84d6d6eb8b8e61ff";
+  const structSlot = "0xe9066f049f5acb23982ad303fe492b754aab733c981cd1348554b62e80b0a672";
 
   /* -------------------------------------------------------------------------- */
   /*                        SECTION Before All Test Hook                        */
