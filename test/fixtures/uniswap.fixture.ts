@@ -15,12 +15,12 @@ import {
     MooniMockERC20,
     UniswapV2Factory__factory,
     UniswapV2Pair__factory,
-    UniswapV2Pair
+    UniswapV2Pair,
+    UniswapV2Factory
 } from '../../typechain';
 import { debug, trace } from 'console';
 import exp from 'constants';
 import { Contract, Signer } from 'ethers';
-import { UniswapV2Factory } from '../../typechain/UniswapV2Factory';
 import {
     BigNumber,
     ethers
