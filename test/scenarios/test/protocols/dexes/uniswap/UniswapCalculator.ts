@@ -6,12 +6,11 @@ import {
     ERC20Managed,
     ERC20Managed__factory,
     UniswapLiquidityCalculator,
+    UniswapLiquidityCalculator__factory,
     UniswapV2Factory,
     UniswapV2Pair,
     UniswapV2Pair__factory
 } from '../../../../../../typechain';
-import { UniswapV2Factory__factory } from '../../../../../../typechain/factories/UniswapV2Factory__factory';
-import { UniswapLiquidityCalculator__factory } from '../../../../../../typechain/factories/UniswapLiquidityCalculator__factory';
 import { BigNumber, Contract } from 'ethers';
 import { constants } from 'ethers';
 import { createUniswapPair, expandToNDecimals, sqrt } from '../../../../../fixtures/uniswap.fixture';
