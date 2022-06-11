@@ -29,26 +29,28 @@ library AddressToStringUtils {
 
     function _saltStorageSlot(
         bytes32 storageSlotSalt
-    ) pure internal returns ( bytes32 saltedStorageSlot ) {
+    ) pure internal returns (bytes32 saltedStorageSlot) {
         saltedStorageSlot = storageSlotSalt
             ^ _structSlot();
     }
 
-  /**
-   * @notice Could be optimized by having the exposing interface caclulate and store
-   *  the storage slot as a constant.
-   *  Storage slot is computed during runtime to facilitate development during
-   *  standardization.
-   */
-    function _layout( bytes32 salt ) pure internal returns ( AddressToString.Layout storage layout ) {
+   /**
+    * @notice Could be optimized by having the exposing interface caclulate and store
+    *  the storage slot as a constant.
+    *  Storage slot is computed during runtime to facilitate development during
+    *  standardization.
+    */
+    function _layout(
+        bytes32 salt
+    ) pure internal returns (AddressToString.Layout storage layout) {
         bytes32 saltedSlot = _saltStorageSlot(salt);
-        assembly{ layout.slot := saltedSlot }
+        assembly { layout.slot := saltedSlot }
     }
 
     function _mapValue(
         AddressToString.Layout storage layout,
         address key,
-        string newValue
+        string memory newValue
     ) internal {
         layout.value[key]._setValue(newValue);
     }
@@ -56,7 +58,7 @@ library AddressToStringUtils {
     function _queryValue(
         AddressToString.Layout storage layout,
         address key
-    ) view internal returns (string value) {
+    ) view internal returns (string memory value) {
         value = layout.value[key]._getValue();
     }
 
@@ -69,5 +71,9 @@ library AddressToStringUtils {
     }
 
 }
+
+
+
+
 
 

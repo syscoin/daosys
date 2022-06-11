@@ -7,7 +7,7 @@ import {
 } from "contracts/types/primitives/UInt64.sol";
 
 /* -------------------------------------------------------------------------- */
-/*                            SECION Uint64Counter                            */
+/*                            SECION UInt64Counter                            */
 /* -------------------------------------------------------------------------- */
 
 library UInt64Counter {
@@ -19,11 +19,11 @@ library UInt64Counter {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                           !SECION Uint64Counter                            */
+/*                           !SECION UInt64Counter                            */
 /* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
-/*                         SECTION Uint64CounterUtils                         */
+/*                         SECTION UInt64CounterUtils                         */
 /* -------------------------------------------------------------------------- */
 
 library UInt64CounterUtils {
@@ -65,11 +65,11 @@ library UInt64CounterUtils {
     function _next(
         UInt64Counter.Layout storage layout
     ) internal returns (uint64 lastCount) {
-        lastCount = layout.count.__getValue();
+        lastCount = layout.count._getValue();
         layout.count._setValue(++lastCount);
     }
 
 }
 /* -------------------------------------------------------------------------- */
-/*                        !SECTION Uint64CounterUtils                         */
+/*                        !SECTION UInt64CounterUtils                         */
 /* -------------------------------------------------------------------------- */

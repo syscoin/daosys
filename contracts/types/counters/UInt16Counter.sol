@@ -7,7 +7,7 @@ import {
 }   from "contracts/types/primitives/UInt16.sol";
 
 /* -------------------------------------------------------------------------- */
-/*                            SECION Uint16Counter                           */
+/*                            SECION UInt16Counter                            */
 /* -------------------------------------------------------------------------- */
 
 library UInt16Counter {
@@ -19,11 +19,11 @@ library UInt16Counter {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                           !SECION Uint16Counter                           */
+/*                           !SECION UInt16Counter                            */
 /* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
-/*                         SECTION Uint16CounterUtils                        */
+/*                         SECTION UInt16CounterUtils                         */
 /* -------------------------------------------------------------------------- */
 
 library UInt16CounterUtils {
@@ -31,7 +31,7 @@ library UInt16CounterUtils {
     using UInt16CounterUtils for UInt16Counter.Layout;
     using UInt16Utils for UInt16.Layout;
 
-    bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(UInt16Counter).creationcode);
+    bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(UInt16Counter).creationCode);
 
     function _structSlot() pure internal returns (bytes32 structSlot) {
         structSlot = STRUCT_STORAGE_SLOT
@@ -72,5 +72,5 @@ library UInt16CounterUtils {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                        !SECTION Uint16CounterUtils                        */
+/*                        !SECTION UInt16CounterUtils                         */
 /* -------------------------------------------------------------------------- */

@@ -115,7 +115,7 @@ library UInt16SetUtils {
 
     if (valueIndex != 0) {
       uint index = valueIndex - 1;
-      uint32 last = set._values[set._values.length - 1];
+      uint16 last = set._values[set._values.length - 1];
 
       // move last value to now-vacant index
 
@@ -148,5 +148,5 @@ library UInt16SetUtils {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                            !SECTION UInt16SetOps                           */
+/*                            !SECTION UInt16SetUtils                         */
 /* -------------------------------------------------------------------------- */
