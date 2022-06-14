@@ -43,7 +43,7 @@ class TokenAgent():
     def set_token_type(self, token_type):
         self.__token_type = token_type   
         
-    def update_token_index(self, address):
+    def update_token_index(self, address):        
         self.__token_indices[address] += 1  
         
     def reset_token_indices(self, address):

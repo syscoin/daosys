@@ -4,6 +4,7 @@ from python.dev.event.state import State
 from python.dev.token.clock import TokenClock
 from python.dev.token import Token
 from python.dev.event import Deposit
+import copy
 
 class NonRebaseToken(Token):
     
