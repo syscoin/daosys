@@ -7,8 +7,6 @@ class TokenEvent(ABC):
     EVENT_REBASE = 'REBASE'
     EVENT_MINT = 'MINT'
     EVENT_SWAP = 'SWAP'
-    EVENT_DEPOSIT_LPX = 'DEPOSIT_LPX'
-    EVENT_DEPOSIT_LPY = 'DEPOSIT_LPY'
         
     @abstractmethod
     def get_time_delta(self):

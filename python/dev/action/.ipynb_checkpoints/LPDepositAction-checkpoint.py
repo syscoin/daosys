@@ -1,11 +1,17 @@
 from python.dev.action import DepositAction
+from python.dev.action import Action
 from python.dev.event import Deposit
+from python.dev.event import TokenEvent
+from python.dev.lp.event import DepositLPEvent
 import copy
 
-class LPDepositAction(DepositAction):
+class LPDepositAction(Action):
     
-    def __init__(self, token_event, target, user, mint_id = None):
-        super().__init__(token_event, target, user, mint_id)
+    def __init__(self, action, target, user, mint_id = None):
+        self.__action = action
+        self.__target = target
+        self.__user = user
+        self.__mint_id = mint_id        
         self.__x_target = target.get_x_target()
         self.__y_target = target.get_y_target()
         self.__prev_liquidity_val = 0
@@ -15,37 +21,67 @@ class LPDepositAction(DepositAction):
 
     def set_prev_liquidity(self, prev_liquidity):
         self.__prev_liquidity_val = copy.copy(prev_liquidity)
+        
+    def get_mint_id(self):
+        return self.__mint_id  
+
+    def get_event(self):
+        return self.__action.get_event()
+
+    def get_user(self):
+        return self.__user
+    
+    def get_target(self):
+        return self.__target    
+        
+    def get_type(self):
+        return TokenEvent.EVENT_DEPOSIT      
 
     def apply(self, agents):
         
-        mint_id = super().get_mint_id()   
-        token = super().get_target().get_token()        
-        address = super().get_target().get_address(mint_id) 
-        token_index = super().get_target().get_token_index(address)
-        apy = super().get_event().get_apy()
-        t_delta = super().get_event().get_time_delta()
-        delta = self.__calc_delta(token_index)
+        mint_id = self.get_mint_id()   
+        token = self.get_target().get_token()        
+        address = self.get_target().get_address(mint_id) 
+        token_index = self.get_target().get_token_index(address)
+        apy = self.get_event().get_apy()  
+        t_delta = self.get_event().get_time_delta()
+        delta = -self.get_event().get_delta()    
+        self.__action.apply(agents)
+        
         event = Deposit(apy, delta, t_delta, address)
+        self.__update_lp(event)
+        lp_delta = self.__calc_delta(token_index)
+
+        event = Deposit(apy, lp_delta, t_delta, address)
         token.add_event(event)                
         
-        super().get_target().set_token(token) 
-        super().get_target().update_token_index(address)
+        self.get_target().set_token(token) 
+        self.get_target().update_token_index(address)
         
         return True
     
     
+    def __update_lp(self, event):
+        
+        lp = self.get_target().get_lp()
+        target = self.__action.get_target()
+        user = self.__action.get_user()
+        mint_id = self.__action.get_mint_id() 
+        action = DepositAction(event, target, user, mint_id)    
+        lp.update_event(DepositLPEvent(action))
+    
     def __calc_delta(self, token_index):
             
-        lp_events = super().get_target().get_lp().get_lp_events()    
+        lp_events = self.get_target().get_lp().get_lp_events()    
         liq_val = lp_events.get_event(-1).get_liquidity().get_liquidity_val()
-      
+        
         if (token_index == 0):
             delta = liq_val
         else:
-            prev_liq_val = super().get_target().get_lp_val()
+            prev_liq_val = self.get_target().get_lp_val()
             delta = liq_val - prev_liq_val
 
-        super().get_target().set_lp_val(liq_val)    
+        self.get_target().set_lp_val(liq_val)    
            
         return delta
 

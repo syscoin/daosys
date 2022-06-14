@@ -27,7 +27,7 @@ class TokenAgent():
     def get_token_type(self):
         return self.__token_type 
     
-    def get_token_indices(self):    
+    def get_token_indices(self):   
         return self.__token_indices
 
     def get_token_index(self, address):

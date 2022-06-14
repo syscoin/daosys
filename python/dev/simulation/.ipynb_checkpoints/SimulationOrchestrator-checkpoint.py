@@ -22,7 +22,7 @@ class SimulationOrchestrator():
     def apply(self, action):    
 
         is_complete = action.apply(self.__agents)   
-        self.__update_lp(action)
+        #self.__update_lp(action)
         if(self.__verbose): self.__print_out(action)
         
         return is_complete
@@ -38,7 +38,9 @@ class SimulationOrchestrator():
     def __update_lp(self, action): 
         target = action.get_target()
         lp_name = self.__check_liquidity_pool(target)
-        if(lp_name != None): self.__update_lp_queue(action, lp_name)                    
+        if(lp_name != None): self.__update_lp_queue(action, lp_name) 
+        
+        
     def __update_lp_queue(self, action, lp_name):
         lp = self.get_liquidity_pool(lp_name)     
         if(action.get_type() == TokenEvent.EVENT_MINT):                    
@@ -71,5 +73,5 @@ class SimulationOrchestrator():
         mint_id = action.get_mint_id()    
         action_type = action.get_type()
         address = action.get_target().get_address(mint_id) 
-        print('type {} name {} delta {}'.format(action_type, name, address))         
+        print('type {} name {} delta {}'.format(action_type, name, delta))         
         

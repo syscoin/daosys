@@ -11,7 +11,7 @@ class LPTokenAgent(TokenAgent):
         return self.__lp.get_x_target()         
         
     def get_y_target(self):
-        return self.__lp.get_x_target()      
+        return self.__lp.get_y_target()      
 
     def get_lp(self):
         return self.__lp     

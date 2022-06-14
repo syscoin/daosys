@@ -8,7 +8,7 @@ class LiquidityPool():
         self.__user = user
         self.__x_target = x_target
         self.__y_target = y_target
-        self.__liquidity = Liquidity(0,0)
+        self.__liquidity = Liquidity(0,0,self.__x_target.get_name(),self.__y_target.get_name())
         self.__liquidity_val = 0
         self.__lp_events = LPEventSeries(lp_name)
   
