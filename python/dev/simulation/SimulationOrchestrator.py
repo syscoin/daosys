@@ -10,6 +10,9 @@ class SimulationOrchestrator():
         self.__agents = {}
         self.__verbose = verbose
         self.__mint_queue = queue.Queue()
+        
+    def get_verbose(self):
+        return self.__verbose
          
     def apply(self, action):    
 
@@ -27,6 +30,6 @@ class SimulationOrchestrator():
         delta = abs(action.get_event().get_delta())
         mint_id = action.get_mint_id()    
         action_type = action.get_type()
-        address = action.get_target().get_address(mint_id) 
+        address = action.get_target().get_address(mint_id)         
         print('{} {} {} for {}'.format(action_type, delta, name, user))         
         
