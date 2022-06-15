@@ -95,7 +95,7 @@ export const Contract: FC<ContractProps> = ({ path }) => {
                             </Card.Header>
                             <Card.Body>
                                 {Object.keys(contract.functions).map((item, index) => {
-                                    return <ContractMethod methodName={item} key={`contractMethod-${index}`} contractInterface={cInterface}/>
+                                    return <ContractMethod contractInstance={contract} methodName={item} key={`contractMethod-${index}`} contractInterface={cInterface}/>
                                 })}
                             </Card.Body>
                         </Card>
