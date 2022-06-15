@@ -34,7 +34,7 @@ class WithdrawChainAction(Action):
         token = self.get_target().get_token()        
         address = self.get_target().get_address(mint_id) 
         apy = self.get_event().get_apy()  
-        t_delta = self.get_event().get_time_delta()
+        t_delta = 0
         delta = abs(self.get_event().get_delta())    
         
         event = Withdraw(apy, delta, t_delta, address)

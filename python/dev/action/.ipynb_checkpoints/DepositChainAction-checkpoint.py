@@ -44,8 +44,8 @@ class DepositChainAction(Action):
         address = self.get_target().get_address(mint_id) 
         token_index = self.get_target().get_token_index(address)
         apy = self.get_event().get_apy()  
-        t_delta = self.get_event().get_time_delta()
-        delta = -self.get_event().get_delta()    
+        t_delta = 0
+        delta = abs(self.get_event().get_delta())    
         self.__action.apply(agents)
         
         event = Deposit(apy, delta, t_delta, address)
