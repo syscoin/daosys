@@ -36,5 +36,5 @@ class TokenAddress():
         if(new_balance >= 0): 
             self.__gon_balances[user_address] = new_balance
         else:
-            print('Error, negative balance')
+            print('TokenAddress Error, negative balance')
      

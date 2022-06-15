@@ -4,6 +4,7 @@ from python.dev.event.state import State
 from python.dev.token.clock import TokenClock
 from python.dev.token import Token
 from python.dev.event import Deposit
+import copy
 
 class NonRebaseToken(Token):
     
@@ -41,7 +42,7 @@ class NonRebaseToken(Token):
         delta = event.get_delta()
         time_delta = event.get_time_delta()
           
-        state = self.__state_map.get_states(address).get_last_state()
+        state = copy.copy(self.__state_map.get_states(address).get_last_state()) 
         state.update_event(event)            
         addresses.delta_balance(delta, address)
             

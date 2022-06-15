@@ -2,7 +2,7 @@ from python.dev.action import DepositAction
 from python.dev.event import Deposit
 import copy
 
-class LPDepositAction(DepositAction):
+class LPYDepositAction(DepositAction):
     
     def __init__(self, token_event, target, user, mint_id = None):
         super().__init__(token_event, target, user, mint_id)
