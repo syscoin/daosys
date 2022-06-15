@@ -21,7 +21,7 @@ library Bytes16Set {
   }
 
   struct Layout {
-    Bytes16Set.Enumerable set;
+    Bytes16Set.Enumerable Bytes16Set;
   }
 
 }

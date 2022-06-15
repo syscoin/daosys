@@ -19,7 +19,7 @@ library Bytes8Set {
     }
 
     struct Layout {
-        Bytes8Set.Enumerable set;
+        Bytes8Set.Enumerable Bytes8Set;
     }
 
 }

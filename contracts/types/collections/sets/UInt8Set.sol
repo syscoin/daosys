@@ -2,41 +2,42 @@
 pragma solidity ^0.8.0;
 
 import {
-  Bytes32,
-  Bytes32Utils
-} from "contracts/types/primitives/Bytes32.sol";
+  UInt8,
+  UInt8Utils
+} from "contracts/types/primitives/UInt8.sol";
 
 /* -------------------------------------------------------------------------- */
-/*                             SECTION Bytes32Set                             */
+/*                             SECTION UInt8Set                               */
 /* -------------------------------------------------------------------------- */
 
-library Bytes32Set {
-  
+library UInt8Set {
+
   struct Enumerable {
     // 1-indexed to allow 0 to signify nonexistence
-    mapping( bytes32 => uint256 ) _indexes;
-    bytes32[] _values;
+    mapping( uint8 => uint256 ) _indexes;
+    uint8[] _values;
+    uint8 _maxValue;
   }
 
   struct Layout {
-    Bytes32Set.Enumerable Bytes32Set;
+    UInt8Set.Enumerable UInt8Set;
   }
 
 }
 
 /* -------------------------------------------------------------------------- */
-/*                             !SECTION Bytes32Set                            */
+/*                             !SECTION UInt8Set                              */
 /* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
-/*                            SECTION Bytes32SetUtils                         */
+/*                            SECTION UInt8SetUtils                           */
 /* -------------------------------------------------------------------------- */
 
-library Bytes32SetUtils {
+library UInt8SetUtils {
 
-  using Bytes32SetUtils for Bytes32Set.Enumerable;
+  using UInt8SetUtils for UInt8Set.Enumerable;
 
-  bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(Bytes32Set).creationCode);
+  bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(UInt8Set).creationCode);
 
   function _structSlot() pure internal returns (bytes32 structSlot) {
     structSlot = STRUCT_STORAGE_SLOT;
@@ -55,29 +56,29 @@ library Bytes32SetUtils {
    *  Storage slot is computed during runtime to facilitate development during
    *  standardization.
    */
-  function _layout( bytes32 salt ) pure internal returns ( Bytes32Set.Layout storage layout ) {
+  function _layout( bytes32 salt ) pure internal returns ( UInt8Set.Layout storage layout ) {
     bytes32 saltedSlot = _saltStorageSlot(salt);
     assembly{ layout.slot := saltedSlot }
   }
 
   function _at(
-    Bytes32Set.Enumerable storage set,
+    UInt8Set.Enumerable storage set,
     uint index
-  ) internal view returns (bytes32) {
+  ) internal view returns (uint8) {
     require(set._values.length > index, 'EnumerableSet: index out of bounds');
     return set._values[index];
   }
 
   function _contains(
-    Bytes32Set.Enumerable storage set,
-    bytes32 value
+    UInt8Set.Enumerable storage set,
+    uint8 value
   ) internal view returns (bool) {
     return set._indexes[value] != 0;
   }
 
   function _indexOf(
-    Bytes32Set.Enumerable storage set,
-    bytes32 value
+    UInt8Set.Enumerable storage set,
+    uint8 value
   ) internal view returns (uint) {
     unchecked {
       return set._indexes[value] - 1;
@@ -85,18 +86,21 @@ library Bytes32SetUtils {
   }
 
   function _length(
-    Bytes32Set.Enumerable storage set
+    UInt8Set.Enumerable storage set
   ) internal view returns (uint) {
     return set._values.length;
   }
 
   function _add(
-    Bytes32Set.Enumerable storage set,
-    bytes32 value
+    UInt8Set.Enumerable storage set,
+    uint8 value
   ) internal returns (bool) {
     if (!_contains(set, value)) {
       set._values.push(value);
       set._indexes[value] = set._values.length;
+      if(set._maxValue < value) {
+        set._maxValue = value;
+      }
       return true;
     } else {
       return false;
@@ -104,14 +108,14 @@ library Bytes32SetUtils {
   }
 
   function _remove(
-    Bytes32Set.Enumerable storage set,
-    bytes32 value
+    UInt8Set.Enumerable storage set,
+    uint8 value
   ) internal returns (bool) {
     uint valueIndex = set._indexes[value];
 
     if (valueIndex != 0) {
       uint index = valueIndex - 1;
-      bytes32 last = set._values[set._values.length - 1];
+      uint8 last = set._values[set._values.length - 1];
 
       // move last value to now-vacant index
 
@@ -129,12 +133,20 @@ library Bytes32SetUtils {
     }
   }
 
-  function _getSetAsArray( Bytes32Set.Enumerable storage set ) internal view returns ( bytes32[] storage rawSet ) {
+  function _setAsArray(
+    UInt8Set.Enumerable storage set
+  ) internal view returns ( uint8[] storage rawSet ) {
     rawSet = set._values;
+  }
+
+  function _max(
+    UInt8Set.Enumerable storage set
+  ) view internal returns (uint8 maxValue) {
+    maxValue = set._maxValue;
   }
 
 }
 
 /* -------------------------------------------------------------------------- */
-/*                            !SECTION Bytes32SetUtils                        */
+/*                            !SECTION UInt8SetUtils                          */
 /* -------------------------------------------------------------------------- */

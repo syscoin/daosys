@@ -21,7 +21,7 @@ library UInt256Set {
   }
 
   struct Layout {
-    UInt256Set.Enumerable uint256Set;
+    UInt256Set.Enumerable UInt256Set;
   }
 
 }

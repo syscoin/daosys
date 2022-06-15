@@ -19,7 +19,7 @@ library AddressSet {
   }
 
   struct Layout {
-    AddressSet.Enumerable addressSet;
+    AddressSet.Enumerable AddressSet;
   }
 
 }
