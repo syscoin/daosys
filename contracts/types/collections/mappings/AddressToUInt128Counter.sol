@@ -2,43 +2,43 @@
 pragma solidity ^0.8.0;
 
 import {
-  UInt256Counter,
-  UInt256CounterUtils
-} from "contracts/types/counters/UInt256Counter.sol";
+  UInt128Counter,
+  UInt128CounterUtils
+} from "contracts/types/counters/UInt128Counter.sol";
 
 /* -------------------------------------------------------------------------- */
-/*                      SECTION AddressToUInt256Counter                       */
+/*                      SECTION AddressToUInt128Counter                       */
 /* -------------------------------------------------------------------------- */
 
-library AddressToUInt256Counter {
+library AddressToUInt128Counter {
 
   /*
    * @note Only primitives are used because using a struct would result in using the storage slot
    */
   struct Layout {
-    mapping(address => UInt256Counter.Layout ) counterForAddress;
+    mapping(address => UInt128Counter.Layout ) counterForAddress;
   }
 
 }
 
 /* -------------------------------------------------------------------------- */
-/*                     !SECTION AddressToUInt256Counter                       */
+/*                     !SECTION AddressToUInt128Counter                       */
 /* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
-/*                    SECTION AddressToUInt256CounterUtils                    */
+/*                    SECTION AddressToUInt128CounterUtils                    */
 /* -------------------------------------------------------------------------- */
 
-library AddressToUInt256CounterUtils {
+library AddressToUInt128CounterUtils {
 
-  using AddressToUInt256CounterUtils for AddressToUInt256Counter.Layout;
-  using UInt256CounterUtils for UInt256Counter.Layout;
+  using AddressToUInt128CounterUtils for AddressToUInt128Counter.Layout;
+  using UInt128CounterUtils for UInt128Counter.Layout;
 
-  bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(AddressToUInt256Counter).creationCode);
+  bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(AddressToUInt128Counter).creationCode);
 
   function _structSlot() pure internal returns (bytes32 structSlot) {
     structSlot = STRUCT_STORAGE_SLOT
-      ^ UInt256CounterUtils._structSlot();
+      ^ UInt128CounterUtils._structSlot();
   }
 
   function _saltStorageSlot(
@@ -54,27 +54,27 @@ library AddressToUInt256CounterUtils {
    *  Storage slot is computed during runtime to facilitate development during
    *  standardization.
    */
-  function _layout( bytes32 salt ) pure internal returns ( AddressToUInt256Counter.Layout storage layout ) {
+  function _layout( bytes32 salt ) pure internal returns ( AddressToUInt128Counter.Layout storage layout ) {
     bytes32 saltedSlot = _saltStorageSlot(salt);
     assembly{ layout.slot := saltedSlot }
   }
 
   function _current(
-    AddressToUInt256Counter.Layout storage layout,
+    AddressToUInt128Counter.Layout storage layout,
     address addressQuery
-  ) view internal returns (uint256 currentCount) {
+  ) view internal returns (uint128 currentCount) {
     currentCount = layout.counterForAddress[addressQuery]._current();
   }
 
   function _nextForAddress(
-    AddressToUInt256Counter.Layout storage layout,
+    AddressToUInt128Counter.Layout storage layout,
     address addressQuery
-  ) internal returns (uint256 lastCount) {
+  ) internal returns (uint128 lastCount) {
     lastCount = layout.counterForAddress[addressQuery]._next();
   }
 
 }
 
 /* -------------------------------------------------------------------------- */
-/*                   !SECTION AddressToUInt256CounterUtils                    */
+/*                   !SECTION AddressToUInt128CounterUtils                    */
 /* -------------------------------------------------------------------------- */

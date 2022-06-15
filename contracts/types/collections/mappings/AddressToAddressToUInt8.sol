@@ -2,41 +2,41 @@
 pragma solidity ^0.8.0;
 
 import {
-  UInt128,
-  UInt128Utils
-} from "contracts/types/primitives/UInt128.sol";
+  UInt8,
+  UInt8Utils
+} from "contracts/types/primitives/UInt8.sol";
 
 /* -------------------------------------------------------------------------- */
-/*                      SECTION AddressToAddressToUInt128                     */
+/*                      SECTION AddressToAddressToUInt8                       */
 /* -------------------------------------------------------------------------- */
 
-library AddressToAddressToUInt128 {
+library AddressToAddressToUInt8 {
 
   // NOTE Should only use language primitives as key pending research on the consistency of using a struct.
   struct Layout {
-    mapping(address => mapping(address => UInt128.Layout)) value;
+    mapping(address => mapping(address => UInt8.Layout)) value;
   }
 
 }
 
 /* -------------------------------------------------------------------------- */
-/*                     !SECTION AddressToAddressToUInt128                     */
+/*                     !SECTION AddressToAddressToUInt8                       */
 /* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
-/*                   SECTION AddressToAddressToUInt128Utils                   */
+/*                   SECTION AddressToAddressToUInt8Utils                     */
 /* -------------------------------------------------------------------------- */
 
-library AddressToAddressToUInt128Utils {
+library AddressToAddressToUInt8Utils {
 
-  using AddressToAddressToUInt128Utils for AddressToAddressToUInt128.Layout;
-  using UInt128Utils for UInt128.Layout;
+  using AddressToAddressToUInt8Utils for AddressToAddressToUInt8.Layout;
+  using UInt8Utils for UInt8.Layout;
 
-  bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(AddressToAddressToUInt128).creationCode);
+  bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(AddressToAddressToUInt8).creationCode);
 
   function _structSlot() pure internal returns (bytes32 structSlot) {
     structSlot = STRUCT_STORAGE_SLOT
-      ^ UInt128Utils._structSlot();
+      ^ UInt8Utils._structSlot();
   }
 
   function _saltStorageSlot(
@@ -52,30 +52,30 @@ library AddressToAddressToUInt128Utils {
    *  Storage slot is computed during runtime to facilitate development during
    *  standardization.
    */
-  function _layout( bytes32 salt ) pure internal returns ( AddressToAddressToUInt128.Layout storage layout ) {
+  function _layout( bytes32 salt ) pure internal returns ( AddressToAddressToUInt8.Layout storage layout ) {
     bytes32 saltedSlot = _saltStorageSlot(salt);
     assembly{ layout.slot := saltedSlot }
   }
 
   function _mapValue(
-    AddressToAddressToUInt128.Layout storage layout,
+    AddressToAddressToUInt8.Layout storage layout,
     address key,
     address foreignKey,
-    uint128 newValue
+    uint8 newValue
   ) internal {
     layout.value[key][foreignKey]._setValue(newValue);
   }
 
   function _queryValue(
-    AddressToAddressToUInt128.Layout storage layout,
+    AddressToAddressToUInt8.Layout storage layout,
     address key,
     address foreignKey
-  ) view internal returns (uint128 value) {
+  ) view internal returns (uint8 value) {
     value = layout.value[key][foreignKey]._getValue();
   }
 
   function _unmapValue(
-    AddressToAddressToUInt128.Layout storage layout,
+    AddressToAddressToUInt8.Layout storage layout,
     address key,
     address foreignKey
   ) internal {
@@ -86,5 +86,5 @@ library AddressToAddressToUInt128Utils {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                  !SECTION AddressToAddressToUInt128Utils                   */
+/*                  !SECTION AddressToAddressToUInt8Utils                     */
 /* -------------------------------------------------------------------------- */

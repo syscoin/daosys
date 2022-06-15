@@ -6,6 +6,10 @@ import {
   UInt256Utils
 } from "contracts/types/primitives/UInt256.sol";
 
+/* -------------------------------------------------------------------------- */
+/*                      SECTION AddressToAddressToUInt256                     */
+/* -------------------------------------------------------------------------- */
+
 library AddressToAddressToUInt256 {
 
   // NOTE Should only use language primitives as key pending research on the consistency of using a struct.
@@ -14,6 +18,14 @@ library AddressToAddressToUInt256 {
   }
 
 }
+
+/* -------------------------------------------------------------------------- */
+/*                     !SECTION AddressToAddressToUInt256                     */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                   SECTION AddressToAddressToUInt256Utils                   */
+/* -------------------------------------------------------------------------- */
 
 library AddressToAddressToUInt256Utils {
 
@@ -40,7 +52,6 @@ library AddressToAddressToUInt256Utils {
    *  Storage slot is computed during runtime to facilitate development during
    *  standardization.
    */
-
   function _layout( bytes32 salt ) pure internal returns ( AddressToAddressToUInt256.Layout storage layout ) {
     bytes32 saltedSlot = _saltStorageSlot(salt);
     assembly{ layout.slot := saltedSlot }
@@ -73,3 +84,7 @@ library AddressToAddressToUInt256Utils {
   }
 
 }
+
+/* -------------------------------------------------------------------------- */
+/*                    !SECTION AddressToAddressToUInt256Utils                 */
+/* -------------------------------------------------------------------------- */
