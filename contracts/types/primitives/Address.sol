@@ -23,6 +23,8 @@ library Address {
 
 library AddressUtils {
 
+  using AddressUtils for address;
+
   bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(Address).creationCode);
 
   function _structSlot() pure internal returns (bytes32 structSlot) {
@@ -126,6 +128,25 @@ library AddressUtils {
       revert(error);
     }
   }
+
+  /**
+     * @dev Imitates a Solidity high-level call (i.e. a regular function call to a contract), relaxing the requirement
+     * on the return value: the return value is optional (but if data is returned, it must not be false).
+     * @param target The token targeted by the call.
+     * @param data The call data (encoded using abi.encode or one of its variants).
+     */
+    function _callOptionalReturn(address target, bytes memory data) private {
+      // We need to perform a low level call here, to bypass Solidity's return data size checking mechanism, since
+      // we're implementing it ourselves. We use {Address.functionCall} to perform this call, which verifies that
+      // the target address contains contract code and also asserts for success in the low-level call.
+
+      bytes memory returndata = target._functionCallWithError(data, "AddressUtils: low-level call failed");
+      if (returndata.length > 0) {
+        // Return data is optional
+        require(abi.decode(returndata, (bool)), "AddressUtils: operation did not succeed");
+      }
+      
+    }
 
   function _calculateDeploymentAddressFromAddress(
       address deployer,

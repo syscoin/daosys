@@ -8,19 +8,19 @@ import {
   AddressUtils
 } from "contracts/types/collections/mappings/key/uint256/UInt256ToAddress.sol";
 
-library ERC1155IndexingVaultStorage {
+library ERC1155IndexingVaultDDSAStorage {
 
   struct Layout {
     UInt256ToAddress.Layout underlyingTokenForTokenID;
   }
 }
 
-library ERC1155IndexingVaultStorageUtils {
+library ERC1155IndexingVaultDDSAStorageUtils {
   
   using AddressUtils for Address.Layout;
   using UInt256ToAddressUtils for UInt256ToAddress.Layout;
 
-  bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(ERC1155IndexingVaultStorage).creationCode);
+  bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(ERC1155IndexingVaultDDSAStorage).creationCode);
 
   function _structSlot() pure internal returns (bytes32 structSlot) {
     structSlot = STRUCT_STORAGE_SLOT
@@ -40,13 +40,13 @@ library ERC1155IndexingVaultStorageUtils {
    *  Storage slot is computed during runtime to facilitate development during
    *  standardization.
    */
-  function _layout( bytes32 salt ) pure internal returns ( ERC1155IndexingVaultStorage.Layout storage layout ) {
+  function _layout( bytes32 salt ) pure internal returns ( ERC1155IndexingVaultDDSAStorage.Layout storage layout ) {
     bytes32 saltedSlot = _saltStorageSlot(salt);
     assembly{ layout.slot := saltedSlot }
   }
 
   function _setUnderlyingToken(
-    ERC1155IndexingVaultStorage.Layout storage layout,
+    ERC1155IndexingVaultDDSAStorage.Layout storage layout,
     uint256 tokenID,
     address newUnderlyingToken
   ) internal {
@@ -58,7 +58,7 @@ library ERC1155IndexingVaultStorageUtils {
   }
 
   function _getUnderlyingToken(
-    ERC1155IndexingVaultStorage.Layout storage layout,
+    ERC1155IndexingVaultDDSAStorage.Layout storage layout,
     uint256 tokenID
   ) view internal returns (address underLyingToken) {
     underLyingToken = layout.underlyingTokenForTokenID

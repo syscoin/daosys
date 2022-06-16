@@ -12,16 +12,6 @@ abstract contract ERC20UFragmentsLogic {
 
   bytes32 constant private STORAGE_SLOT = keccak256(type(ERC20UFragmentsStorage).creationCode);
 
-  // uint256 private constant MAX_UINT256 = type(uint256).max;
-
-  // function _getDefaultSlot() pure internal returns (bytes32 defaultSlot) {
-  //   defaultSlot = STORAGE_SLOT;
-  // }
-
-  // function _layout(bytes32 slot) pure internal returns (ERC20UFragmentsStorage.Layout storage layout) {
-  //   layout = ERC20UFragmentsUtils._layout(slot);
-  // }
-
   function _getScaledDecimals() pure internal returns (uint8 scaledDecimals) {
     scaledDecimals = ERC20UFragmentsUtils._getScaledDecimals();
   }

@@ -36,7 +36,7 @@ interface IERC20UFragments is IERC20 {
     uint256 amount
   ) override(IERC20) external returns (bool success);
 
-  function initialize(
+  function initializeERC20UFragments(
     string memory newName,
     string memory newSymbol
   ) external;

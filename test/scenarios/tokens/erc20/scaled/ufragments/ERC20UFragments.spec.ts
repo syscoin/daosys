@@ -62,21 +62,21 @@ describe("ERC20UFragments", function () {
   describe("ERC20UFragments", function () {
     describe("#name()", function () {
       it("Can read name", async function () {
-        await token.initialize(tokenName, tokenSymbol);
+        await token.initializeERC20UFragments(tokenName, tokenSymbol);
         expect(await token.name()).to.equal(tokenName);
       });
     });
 
     describe("#symbol()", function () {
       it("Can read symbol", async function () {
-        await token.initialize(tokenName, tokenSymbol);
+        await token.initializeERC20UFragments(tokenName, tokenSymbol);
         expect(await token.symbol()).to.equal(tokenSymbol);
       });
     });
 
     describe("#decimals()", function () {
       it("Can read symbol", async function () {
-        await token.initialize(tokenName, tokenSymbol);
+        await token.initializeERC20UFragments(tokenName, tokenSymbol);
         expect(await token.decimals()).to.equal(tokenDecimals);
       });
     });
@@ -85,12 +85,12 @@ describe("ERC20UFragments", function () {
       describe("(address,uint256)", function () {
         describe("#allowance()", function () {
           it("Can set and read name.", async function () {
-            await token.initialize(tokenName, tokenSymbol);
+            await token.initializeERC20UFragments(tokenName, tokenSymbol);
             await token.connect(deployer).approve(spender.address, 100);
             expect(await token.allowance(deployer.address, spender.address)).to.equal(100);
           });
           it("Emits Approval event.", async function () {
-            await token.initialize(tokenName, tokenSymbol);
+            await token.initializeERC20UFragments(tokenName, tokenSymbol);
             expect(token.connect(deployer).approve(spender.address, 100))
               .to.emit(token, "Approval")
               .withArgs(deployer.address, spender.address, 100);
@@ -102,7 +102,7 @@ describe("ERC20UFragments", function () {
     describe("#totalSupply()", function () {
       describe("(address)", function () {
         it("Reports total supply correctly", async function () {
-          await token.initialize(tokenName, tokenSymbol);
+          await token.initializeERC20UFragments(tokenName, tokenSymbol);
           expect(await token.connect(deployer).totalSupply())
             .to.equal(tokenSupply);
         });
@@ -111,7 +111,7 @@ describe("ERC20UFragments", function () {
     describe("#balanceOf()", function () {
       describe("(address)", function () {
         it("Reports balance correctly", async function () {
-          await token.initialize(tokenName, tokenSymbol);
+          await token.initializeERC20UFragments(tokenName, tokenSymbol);
           expect(await token.connect(deployer).balanceOf(deployer.address))
             .to.equal(tokenSupply);
         });
@@ -120,7 +120,7 @@ describe("ERC20UFragments", function () {
     describe("#transfer()", function () {
       describe("(address,uint256)", function () {
         it("Account can transfer tokens", async function () {
-          await token.initialize(tokenName, tokenSymbol);
+          await token.initializeERC20UFragments(tokenName, tokenSymbol);
           await expect(() => token.connect(deployer)
             .transfer(
               spender.address,
@@ -143,7 +143,7 @@ describe("ERC20UFragments", function () {
     describe("#transferFrom()", function () {
       describe("(address,address,uint256)", function () {
         it("Spender can transfer tokens for another account", async function () {
-          await token.initialize(tokenName, tokenSymbol);
+          await token.initializeERC20UFragments(tokenName, tokenSymbol);
           await token.connect(deployer)
             .approve(spender.address, ethers.utils.parseUnits("100.0", "gwei"));
           expect(await token.allowance(deployer.address, spender.address))
@@ -167,7 +167,7 @@ describe("ERC20UFragments", function () {
           );
         });
         it("Spender can not transfer more tokens than approved for another account", async function () {
-          await token.initialize(tokenName, tokenSymbol);
+          await token.initializeERC20UFragments(tokenName, tokenSymbol);
           await token.connect(deployer)
             .approve(spender.address, 100);
           expect(await token.allowance(deployer.address, spender.address))
@@ -187,7 +187,7 @@ describe("ERC20UFragments", function () {
     describe("#rebase()", function () {
       describe("(address,uint256)", function () {
         it("Account can transfer tokens", async function () {
-          await token.initialize(tokenName, tokenSymbol);
+          await token.initializeERC20UFragments(tokenName, tokenSymbol);
           await expect(() => token.connect(deployer)
             .rebase(
               ethers.utils.parseUnits(

@@ -8,6 +8,8 @@ import {IERC20UFragments} from "contracts/tokens/erc20/scaled/ufragments/interfa
 import {IERC20} from "contracts/tokens/erc20/interfaces/IERC20.sol";
 import {FullMath} from "contracts/math/FullMath.sol";
 
+import "hardhat/console.sol";
+
 contract ERC20UFragments
   is
     IERC20UFragments,
@@ -30,11 +32,11 @@ contract ERC20UFragments
     tokenDecimals = _getScaledDecimals();
   }
 
-  function totalSupply() override(IERC20UFragments) external view returns (uint256 supply) {
+  function totalSupply() override(IERC20UFragments) external virtual view returns (uint256 supply) {
     supply = _totalSupply(type(IERC20).interfaceId);
   }
 
-  function balanceOf(address account) external view override(IERC20UFragments) returns (uint256 balance) {
+  function balanceOf(address account) external virtual view override(IERC20UFragments) returns (uint256 balance) {
     balance = _balanceOf(type(IERC20).interfaceId, account) / _getBaseAmountPerFragment(type(IERC20UFragments).interfaceId);
   }
 
@@ -94,7 +96,7 @@ contract ERC20UFragments
   // Use the highest value that fits in a uint256 for max granularity.
   uint256 internal constant TOTAL_GONS = MAX_UINT256 - (MAX_UINT256 % INITIAL_FRAGMENTS_SUPPLY);
 
-  function initialize(
+  function initializeERC20UFragments(
     string memory newName,
     string memory newSymbol
   ) external {
@@ -102,20 +104,26 @@ contract ERC20UFragments
       type(IERC20).interfaceId,
       newName
     );
+    console.log("ERC20 UFragments Name: ", _getName(type(IERC20).interfaceId));
     _setSymbol(
       type(IERC20).interfaceId,
       newSymbol
     );
+    console.log("ERC20 UFragments Symbol: ", _getSymbol(type(IERC20).interfaceId));
     _setDecimals(
       type(IERC20).interfaceId,
       DECIMALS
     );
+    console.log("ERC20 UFragments Decimals: ", _getDecimals(type(IERC20).interfaceId));
 
     _setTotalSupply(type(IERC20).interfaceId, INITIAL_FRAGMENTS_SUPPLY);
+    console.log("ERC20 UFragments Total Supply: ", _getTotalSupply(type(IERC20).interfaceId));
     _setBalance(type(IERC20).interfaceId, msg.sender, TOTAL_GONS);
+    console.log("ERC20 UFragments Deployer Balance: ", _getBalance(type(IERC20).interfaceId, msg.sender));
     _setBaseAmountPerFragment(
       type(IERC20UFragments).interfaceId,
       TOTAL_GONS / _totalSupply(type(IERC20).interfaceId) );
+    console.log("ERC20 UFragments Base Amount per Fragments: ", _getBaseAmountPerFragment(type(IERC20).interfaceId));
 
     emit Transfer(address(0), msg.sender, _totalSupply(type(IERC20).interfaceId) );
   }

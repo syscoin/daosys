@@ -2,7 +2,9 @@
 pragma solidity ^0.8.0;
 
 import {
-  ERC20UFragments
+  ERC20UFragments,
+  IERC20UFragments,
+  IERC20
 } from "contracts/tokens/erc20/scaled/ufragments/ERC20UFragments.sol";
 import {
   IUniswapV2Pair
@@ -25,7 +27,7 @@ contract UniV2LPCompatIndexingUFragmentsERC20
     _indexedToken = indexedToken;
   }
 
-  function _calculateIndexedAmount() view internal returns (uint256 indexAmount) {
+  function _calculateIndexedAmount() virtual view internal returns (uint256 indexAmount) {
     uint256 balance = IUniswapV2Pair(_uniV2Pair).balanceOf(address(this));
 
     (uint256 reserve0, uint256 reserve1, uint32 blockTimestamp) = IUniswapV2Pair(_uniV2Pair).getReserves();
@@ -38,12 +40,12 @@ contract UniV2LPCompatIndexingUFragmentsERC20
 
   function _getBaseAmountPerFragment(
     bytes32 storageSlotSalt
-  ) override view internal returns (uint256 baseAmountPerFragment) {
+  ) override virtual view internal returns (uint256 baseAmountPerFragment) {
     baseAmountPerFragment = TOTAL_GONS / _calculateIndexedAmount();
   }
 
   function _totalSupply(
-    bytes32 storageSlotSalt) override view internal returns (uint256 supply) {
+    bytes32 storageSlotSalt) override virtual view internal returns (uint256 supply) {
     supply = _calculateIndexedAmount();
   }
 

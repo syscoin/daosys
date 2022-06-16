@@ -16,7 +16,7 @@ abstract contract Ownable
     ImmutableModifiers
 {
 
-  function _init(address newOwner) virtual internal isNotImmutable(OwnableStorageUtils._saltStorageSlot(type(IERC173).interfaceId)) {
+  function _initOwnable(address newOwner) virtual internal isNotImmutable(OwnableStorageUtils._saltStorageSlot(type(IERC173).interfaceId)) {
     _setOwner(
       type(IERC173).interfaceId,
       newOwner
