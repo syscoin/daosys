@@ -5,7 +5,7 @@ pragma solidity ^0.8.0;
 import {
   Bytes4,
   Bytes4Utils
-} from "../Bytes4.sol";
+} from "contracts/types/primitives/Bytes4.sol";
 
 contract Bytes4Mock {
 

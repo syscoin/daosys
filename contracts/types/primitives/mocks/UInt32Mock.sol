@@ -5,7 +5,7 @@ pragma solidity ^0.8.0;
 import {
   UInt32,
   UInt32Utils
-} from "../UInt32.sol";
+} from "contracts/types/primitives/UInt32.sol";
 
 contract UInt32Mock {
 
