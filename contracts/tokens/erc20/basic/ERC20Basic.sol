@@ -7,26 +7,26 @@ import {IERC20} from "../interfaces/IERC20.sol";
 
 contract ERC20Basic is IERC20, ERC20Account, ERC20Metadata {
 
-  constructor(
-    string memory newName,
-    string memory newSymbol,
-    uint8 newDecimals,
-    uint256 supply
-  ) {
-    _setName(
-      type(IERC20).interfaceId,
-      newName
-    );
-    _setSymbol(
-      type(IERC20).interfaceId,
-      newSymbol
-    );
-    _setDecimals(
-      type(IERC20).interfaceId,
-      newDecimals
-    );
-    _mint(type(IERC20).interfaceId, msg.sender,supply);
-  }
+  // constructor(
+  //   string memory newName,
+  //   string memory newSymbol,
+  //   uint8 newDecimals,
+  //   uint256 supply
+  // ) {
+  //   _setName(
+  //     type(IERC20).interfaceId,
+  //     newName
+  //   );
+  //   _setSymbol(
+  //     type(IERC20).interfaceId,
+  //     newSymbol
+  //   );
+  //   _setDecimals(
+  //     type(IERC20).interfaceId,
+  //     newDecimals
+  //   );
+  //   _mint(type(IERC20).interfaceId, msg.sender,supply);
+  // }
 
   function name() override(IERC20) view external returns (string memory tokenName) {
     tokenName = _name(type(IERC20).interfaceId);

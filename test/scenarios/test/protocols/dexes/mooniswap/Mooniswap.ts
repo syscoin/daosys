@@ -12,8 +12,8 @@ import {
     // ERC20,
     MooniMockERC20,
     MooniMockERC20__factory,
-    ERC20Managed,
-    ERC20Managed__factory,
+    ERC20ManagedMock,
+    ERC20ManagedMock__factory,
     WETH9,
     WETH9__factory,
     IERC20
@@ -36,7 +36,7 @@ describe("Mooniswap", () => {
 
 
     let deployer: SignerWithAddress;
-    let tek: ERC20Managed;
+  let tek: ERC20ManagedMock;
     let weth: WETH9;
     let stablecoin: MooniMockERC20;
     let mooniswap: MooniFactory;
@@ -49,7 +49,7 @@ describe("Mooniswap", () => {
     beforeEach(async () => {
         [deployer] = await ethers.getSigners();
 
-        tek = await new ERC20Managed__factory(deployer).deploy(
+      tek = await new ERC20ManagedMock__factory(deployer).deploy(
             "TEK",
             "TEK",
             9,

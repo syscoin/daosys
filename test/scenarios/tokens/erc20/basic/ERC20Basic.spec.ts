@@ -5,8 +5,8 @@ import {
 import { expect } from "chai";
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import {
-  ERC20Basic,
-  ERC20Basic__factory
+  ERC20BasicMock,
+  ERC20BasicMock__factory
 } from '../../../../../typechain';
 
 describe("ERC20Basic", function () {
@@ -19,7 +19,7 @@ describe("ERC20Basic", function () {
   let spender: SignerWithAddress;
 
   // ERC20Basic test variables
-  let token: ERC20Basic;
+  let token: ERC20BasicMock;
   const tokenName = "TestToken";
   const tokenSymbol = "TT";
   const tokenDecimals = 18;
@@ -50,7 +50,7 @@ describe("ERC20Basic", function () {
     tracer.nameTags[deployer.address] = "Deployer";
     tracer.nameTags[spender.address] = "Spender";
 
-    token = await new ERC20Basic__factory(deployer).deploy(
+    token = await new ERC20BasicMock__factory(deployer).deploy(
       tokenName,
       tokenSymbol,
       tokenDecimals,
