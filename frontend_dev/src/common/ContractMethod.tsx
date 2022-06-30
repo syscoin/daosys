@@ -20,7 +20,7 @@ export const ContractMethod: FC<ContractMethodProps> = (props: ContractMethodPro
     const [errorDetails, setErrorDetails] = useState<string>('');
     const [results, setResults] = useState<{ error: boolean, message?: any | Falsy, results: any | Falsy } | Falsy>(null);
 
-   
+
     const { library } = useEthers();
 
 
@@ -31,7 +31,7 @@ export const ContractMethod: FC<ContractMethodProps> = (props: ContractMethodPro
         console.log(props.methodName)
         let funcName = props.methodName.substring(0, props.methodName.indexOf('(')) ?? props.methodName;
 
-        if (funcName === '' ) {
+        if (funcName === '') {
             funcName = props.methodName
         }
 
@@ -126,20 +126,26 @@ export const ContractMethod: FC<ContractMethodProps> = (props: ContractMethodPro
 
                     </Button>
                     <hr />
-                    <Row>
-                        <Col sm={12}>
-                            <h4>Input</h4>
-                            <ul>
-                                {params.map((item, index) => <li key={`param-${index}`}>{item}</li>)}
-                            </ul>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col sm={12}>
-                            <h4>Output</h4>
-                            <OutputsPresenter {...results as OutputsPresenterProps} />
-                        </Col>
-                    </Row>
+                    {(inputs && inputs?.length > 0) && <>
+                        <Row>
+                            <Col sm={12}>
+                                <h4>Input</h4>
+                                <ul>
+                                    {params.map((item, index) => <li key={`param-${index}`}>{item}</li>)}
+                                </ul>
+                            </Col>
+                        </Row>
+                    </>}
+
+                    {(results && results.results.length > 0) && <>
+                        <Row>
+                            <Col sm={12}>
+                                <h4>Output</h4>
+                                <OutputsPresenter {...results as OutputsPresenterProps} />
+                            </Col>
+                        </Row>
+                    </>}
+
 
                 </Card.Footer>
             </Card>
