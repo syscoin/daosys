@@ -1,10 +1,10 @@
 import { FunctionFragment, Interface, ParamType } from "@ethersproject/abi"
-import { CallResult, useCall, useContractFunction, useEthers, useNetwork } from "@usedapp/core"
-import { count } from "console"
+import { useEthers } from "@usedapp/core"
+import { Falsy } from "@usedapp/core/dist/esm/src/model/types"
 import { Contract } from "ethers"
-import { stat } from "fs"
 import React, { FC, useEffect, useState } from "react"
-import { Button, Card } from "react-bootstrap"
+import { Button, Card, Col, Row } from "react-bootstrap"
+import { OutputsPresenter, OutputsPresenterProps } from "./OutputsPresenter"
 
 export interface ContractMethodProps {
     methodName: string,
@@ -18,20 +18,48 @@ export const ContractMethod: FC<ContractMethodProps> = (props: ContractMethodPro
     const [stateMutability, setStateMutability] = useState<string>('');
     const [params, setParams] = useState<any[]>([]);
     const [errorDetails, setErrorDetails] = useState<string>('');
-    // const [results, setResults] = useState<CallResult | null>(null);
+    const [results, setResults] = useState<{ error: boolean, message?: any | Falsy, results: any | Falsy } | Falsy>(null);
 
-    const {library} = useEthers();
+   
+    const { library } = useEthers();
 
 
+    const execute = async () => {
 
-    useEffect(() => {
-        if (stateMutability === 'view' && inputs?.length === 0 && library) {
-            console.log('VIEW auto call');
-            props.contractInstance.connect(library.getSigner())[props.methodName].call(props.contractInstance, params).then((res) => {
-                console.log(res)
-            }).catch(e => setErrorDetails(e.toString()));
+        const contract = props.contractInstance;
+        console.log(contract);
+        console.log(props.methodName)
+        let funcName = props.methodName.substring(0, props.methodName.indexOf('(')) ?? props.methodName;
+
+        if (funcName === '' ) {
+            funcName = props.methodName
         }
-    }, [stateMutability, inputs])
+
+        console.log(funcName)
+        try {
+            const response = await contract.functions[funcName](...params)
+            setResults({ error: false, results: response });
+        } catch (e) {
+            console.log(e)
+            setResults({ error: true, results: e });
+        }
+
+
+
+        // console.log(props.contractInstance.address);
+
+        // console.log("Executing method. "+ props.methodName.substring(0, props.methodName.indexOf('(')));
+
+        // if (params.length > 0) {
+
+        //     console.log(params);
+
+        //     await send(...params)
+        // } else {
+        //     await send();
+        // }
+
+    }
 
     const changeParamsState = (index: number, value: any) => {
         const paramsClone = [...params];
@@ -64,7 +92,7 @@ export const ContractMethod: FC<ContractMethodProps> = (props: ContractMethodPro
                 <Card.Header>
                     {props.methodName} <i>{stateMutability}</i>
                 </Card.Header>
-                {( inputs && inputs.length > 0) && <>
+                {(inputs && inputs.length > 0) && <>
                     <Card.Body>
                         {inputs?.map((item, index) => {
 
@@ -89,18 +117,30 @@ export const ContractMethod: FC<ContractMethodProps> = (props: ContractMethodPro
 
                     {errorDetails.length > 0 && <>
                         <div className="alert alert-danger">
-                            {errorDetails}    
+                            {errorDetails}
                         </div>
                     </>}
 
-                    <Button variant="primary">
+                    <Button variant="primary" onClick={() => execute()}>
                         Execute
 
                     </Button>
+                    <hr />
+                    <Row>
+                        <Col sm={12}>
+                            <h4>Input</h4>
+                            <ul>
+                                {params.map((item, index) => <li key={`param-${index}`}>{item}</li>)}
+                            </ul>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col sm={12}>
+                            <h4>Output</h4>
+                            <OutputsPresenter {...results as OutputsPresenterProps} />
+                        </Col>
+                    </Row>
 
-                    <p>
-                        {params.map((item, index) => <li key={`param-${index}`}>{item}</li>)}
-                    </p>
                 </Card.Footer>
             </Card>
         </>
