@@ -59,6 +59,9 @@ export const Contract: FC<ContractProps> = ({ path }) => {
         if ('' !== path) {
             fetchAbi().then((response) => {
                 setAbiRaw(response)
+                setDeployedAddress('')
+                setContract(null)
+                setCInterface(null)
             }).catch(e => console.debug(e));
         }
     }, [path]);
@@ -96,7 +99,7 @@ export const Contract: FC<ContractProps> = ({ path }) => {
                         </Card.Header>
                         <Card.Footer>
                             {String(errors).length > 0 && <Error message={errors} hideAfter={3} onHide = {async () => setErrors('') }/>}
-                            <input onChange={(e) => setDeployedAddress(e.target.value)} type="text" id="contractAddress" className="form-control" placeholder="Enter deployed contract address." />
+                            <input onChange={(e) => setDeployedAddress(e.target.value)} value={deployedAddress} type="text" id="contractAddress" className="form-control" placeholder="Enter deployed contract address." />
                         </Card.Footer>
                     </Card>
 

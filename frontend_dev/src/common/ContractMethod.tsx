@@ -115,7 +115,7 @@ export const ContractMethod: FC<ContractMethodProps> = (props: ContractMethodPro
                 </>}
                 <Card.Footer>
 
-                    {errorDetails.length > 0 && <>
+                    {errorDetails.length > 3 && <>
                         <div className="alert alert-danger">
                             {errorDetails}
                         </div>
