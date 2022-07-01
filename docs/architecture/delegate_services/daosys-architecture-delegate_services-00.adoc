@@ -1,4 +1,4 @@
-= Design Patterns
+= Autonomous Service Engine Delegate Services
 ifndef::compositing[]
 :author: cyotee doge
 :email: cyotee@syscoin.org
@@ -15,11 +15,3 @@ ifndef::compositing[]
 :includeprefix: {pathtoroot}
 :compositing:
 endif::[]
-
-include::daosys-design_pattern-factory.adoc[leveloffset=+1]
-
-include::daosys-design_pattern-proxy.adoc[leveloffset=+1]
-
-include::daosys_design_pattern-diamond.adoc[leveloffset=+1]
-
-include::daosys-design_pattern-transaction_router.adoc[leveloffset=+1]

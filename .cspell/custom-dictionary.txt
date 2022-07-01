@@ -10,6 +10,7 @@ copyleft
 copyrightable
 daosys
 datatypes
+ddsa
 DELEGATECALL
 gantt
 Gogs
@@ -23,6 +24,7 @@ Presearch
 Raptoreum
 reimplementation
 Roadmap
+rollux
 Roundtable
 Roundtables
 stochasm

@@ -10,7 +10,7 @@ ifndef::compositing[]
 :sectnums:
 :data-uri:
 :stem: asciimath
-:pathtoroot: ../../
+:pathtoroot: ../../../
 :imagesdir: {pathtoroot}
 :includeprefix: {pathtoroot}
 :compositing:
@@ -137,7 +137,7 @@ This is akin to the solution for the Infinite Hotel Paradox.
 By including the set of possible values in the distribution formula for that set of values, you get an ever expanding variance in the distribution.
 A simple diagram explaining this is below.
 
-image::images/architecture/daosys-architecture-01-ase-01-storage-01-deterministically_dynamic_storage_allocation.drawio.svg[align=center]
+image::images/architecture/design_patterns/daosys-design_patterns-01-ddsa.drawio.svg[align=center]
 
 The storage slots for the discrete data types are combined using a bitwise XOR operation.
 This does abstract out the exact order of the datatypes in the Diamond Storage struct.

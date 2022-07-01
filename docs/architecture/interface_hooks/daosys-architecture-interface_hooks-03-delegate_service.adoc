@@ -1,4 +1,4 @@
-= Delegate Services
+= Autonomous Service Engine IDelegateService Interface Hook
 ifndef::compositing[]
 :author: cyotee doge
 :email: cyotee@syscoin.org
@@ -10,7 +10,7 @@ ifndef::compositing[]
 :sectnums:
 :data-uri:
 :stem: asciimath
-:pathtoroot: ../../
+:pathtoroot: ../../../
 :imagesdir: {pathtoroot}
 :includeprefix: {pathtoroot}
 :compositing:

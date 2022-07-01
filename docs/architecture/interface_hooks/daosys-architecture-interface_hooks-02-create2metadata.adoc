@@ -1,4 +1,4 @@
-= Delegate Services
+= Autonomous Service Engine ICreate2Metadata Interface Hook
 ifndef::compositing[]
 :author: cyotee doge
 :email: cyotee@syscoin.org
@@ -15,9 +15,3 @@ ifndef::compositing[]
 :includeprefix: {pathtoroot}
 :compositing:
 endif::[]
-
-include::daosys-component-delegate_service.adoc[leveloffset=+1]
-
-include::daosys-component-delegate_service_registry.adoc[leveloffset=+1]
-
-include::daosys-component-service_proxy.adoc[leveloffset=+1]
