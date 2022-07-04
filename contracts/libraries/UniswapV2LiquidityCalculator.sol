@@ -188,6 +188,7 @@ library UniswapLiquidityCalculator {
         settlementAmount = calcQuote(pair, lpAmountToWithdraw, settlementToken);
     }
 
+
     function reduceExposureToTargetQuote(
     address uniV2LP,
     address holder,
@@ -215,14 +216,9 @@ library UniswapLiquidityCalculator {
             // stack too deep
             (uint reserveI, uint reserveO) = settlementToken == tokenA ? (reserveA, reserveB) : (reserveB, reserveA);
             uint256 supply = pair.totalSupply();
-            
+
             lpAmount = calcLpSettlement(reserveI, reserveO, targetSettlementAmount, supply);
-            
-            lpAmount2 = 254402803080275500;
-            console.log("lpAmount %s", lpAmount);
-            console.log("lpAmount2 %s", lpAmount2);
-
-
+    
         }  
         lpAmountToWithdraw = lpAmount > pair.balanceOf(holder) ? 0 : lpAmount;
     }
