@@ -1,0 +1,31 @@
+= ASE Service Proxy Factory (SPF) Delegate Service
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-02-19
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+The ASE Service Proxy Factory (SPF) Delegate Service deploys new proxies configured with the delegate service specified by the user.
+
+The ASE SPF deploys new proxies using the following workflow.
+
+* Users provide the ERC165 interface IDs of the delegate services they wish to have configured.
+* The ASE SPF deploys a Minimal Proxy that delegates to the Service Proxy Delegate Service.
+* The ASE then provides the ERC165 interface IDs the user provided to the new Minimal Proxy by calling the `initServiceProxy(bytes4[] memory)` function.
+* The <<ASE Service Proxy Delegate Service>> then gets the Delegate Service Registry address by calling the `getDelegateServiceRegistry()` function on the ASE SPF through the `IDelegateServiceRegistryAware` interface.
+* The <<ASE Service Proxy Delegate Service>> gets the Delegate Service addresses to initialize within the new proxy by calling the `bulkQueryDelegateService(bytes4[] memory)` function of the Delegate Service Registry through the <<ASE IDelegateService Interface Hook>>.
+* The <<ASE Service Proxy Delegate Service>> then iterates through the retrieved Delegate Service address to get the Service Definition of each by calling the `getServiceDef()` function through the <<ASE IDelegateService Interface Hook>>.
+* The <<ASE Service Proxy Delegate Service>> maps the function selectors from the retrieved Service Definitions as Delegate Services for the new proxy.
+
+// TODO include NatSpec generated docs.

@@ -1,0 +1,32 @@
+= ASE ERC165 Interface Hook
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-02-19
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+The ASE makes use of https://eips.ethereum.org/EIPS/eip-165[ERC-165] as sanity checks for interacting with other contracts as part of the ecosystem.
+Every part of the ASE, services, delegate service, and deployed proxies, is expected to expose the https://eips.ethereum.org/EIPS/eip-165[ERC-165] interface.
+Service Proxies update the ERC165 storage with their mapped delegate services upon deployment.
+
+This is a DDSA compliant implementation of https://eips.ethereum.org/EIPS/eip-165[ERC-165].
+
+*Documentation Pending final implementation.*
+
+// TODO Write docs for implementation.
+
+// [source, solidity]
+// ----
+// include::../../../contracts/introspection/erc165/storage/ERC165Storage.sol[lines="1..-1"]
+// ----

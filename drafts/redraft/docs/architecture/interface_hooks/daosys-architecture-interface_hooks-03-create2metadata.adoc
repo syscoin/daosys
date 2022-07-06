@@ -1,0 +1,53 @@
+= ASE ICreate2Metadata Interface Hook
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-07-01
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+All contracts deployed through the ASE, new service proxies and delegate service, store the metadata for their deployment.
+This includes the factory address they were deployed from, and the value used to salt their deployment.
+Combined with the contract's `codehash` this can be used to recalculate the contract's address from the assertion of it's ICreate2DeploymentMetadata.Create2Metadata.
+
+[source, solidity]
+----
+include::../../../contracts/evm/create2/metadata/interfaces/ICreate2DeploymentMetadata.sol[lines="1..-1"]
+----
+
+The recalculated address is used to validate the pedigree of addresses used in any contract deployed by this platform.
+This allows Delegate Services to bootstrap trust based on an assertion of Create2DeploymentMetadata.
+
+*Documentation Pending final implementation.*
+
+// TODO Write docs for implementation.
+
+// [source, solidity]
+// ----
+// include::../../../contracts/evm/create2/metadata/storage/Create2DeploymentMetadataStorage.sol[lines="1..-1"]
+// ----
+
+// [source, solidity]
+// ----
+// include::../../../contracts/evm/create2/metadata/logic/Create2DeploymentMetadataLogic.sol[lines="1..-1"]
+// ----
+
+// [source, solidity]
+// ----
+// include::../../../contracts/evm/create2/metadata/interfaces/ICreate2DeploymentMetadata.sol[lines="1..-1"]
+// ----
+
+// [source, solidity]
+// ----
+// include::../../../contracts/evm/create2/metadata/Create2DeploymentMetadata.sol[lines="1..-1"]
+// ----

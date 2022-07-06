@@ -6,23 +6,53 @@ import {
   MessengerLogic
 } from "contracts/test/messenger/logic/MessengerLogic.sol";
 
+/**
+ * @title IMessenger endpoint exposing the domain logic from the MessengerLogic library.
+ * @notice Will be refactored into external library.
+ */
 contract Messenger
   is
-    IMessenger,
-    MessengerLogic
+    IMessenger
 {
 
-  function setMessage(
+  bytes32 internal constant IMESSENGER_STORAGE_SLOT_SALT = bytes32(
+    type(IMessenger).interfaceId
+  );
+
+  function _setMessage(
     string memory message
-  ) override(IMessenger) virtual external returns (bool success) {
-    _setMessage(
-      type(IMessenger).interfaceId,
+  )
+    internal virtual
+    returns (bool success)
+  {
+    MessengerLogic._setMessage(
+      IMESSENGER_STORAGE_SLOT_SALT,
       message);
     success = true;
   }
 
-  function getMessage() override(IMessenger) view virtual external returns (string memory message) {
-    message = _getMessage(type(IMessenger).interfaceId);
+  function setMessage(
+    string memory message
+  ) 
+    external virtual override(IMessenger)
+    returns (bool success)
+  {
+    _setMessage(message);
+    success = true;
+  }
+
+  function _getMessage()
+    internal view virtual
+    returns (string memory message)
+  {
+    message = MessengerLogic._getMessage(IMESSENGER_STORAGE_SLOT_SALT);
+  }
+
+  function getMessage()
+    external view virtual override(IMessenger)
+    returns (string memory message)
+  {
+    message = _getMessage();
   }
 
 }

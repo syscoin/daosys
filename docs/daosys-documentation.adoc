@@ -1,4 +1,5 @@
 = DAOSYS Documentation
+ifndef::compositing[]
 :author: cyotee doge
 :email: cyotee@syscoin.org
 :revdate: 2022-07-01
@@ -6,6 +7,8 @@
 :revremark: Initial draft.
 :toc:
 :toclevels: 6
+:sectanchors:
+:sectlinks:
 :sectnums:
 :data-uri:
 :stem: asciimath
@@ -13,8 +16,27 @@
 :imagesdir: {pathtoroot}
 :includeprefix: {pathtoroot}
 :compositing:
+endif::[]
 
 :leveloffset: +1
+
+= Autonomous Service Engine Architecture
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-07-01
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectanchors:
+:sectlinks:
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
 :compositing:
 endif::[]
 
@@ -23,7 +45,7 @@ The architecture merges the Diamond Proxy and Factory design patterns.
 Users may have the factory deploy a proxy configured with the functionality they wish.
 This allows users to compose a variety of functionality in a single proxy.
 
-// include::./design_patterns/daosys-design_patterns-00.adoc[leveloffset=+1]
+include::design_patterns/daosys-design_patterns-00.adoc[leveloffset=+1]
 
 // include::./core/daosys-architecture-core-00.adoc[leveloffset=+1]
 
@@ -35,6 +57,6 @@ This allows users to compose a variety of functionality in a single proxy.
 
 // include::./rollux/daosys-rollux.adoc[leveloffset=+1]
 
-include::./ddsa_types/daosys-architecture-ddsa_types.adoc[leveloffset=+1]
+include::ddsa_types/daosys-architecture-ddsa_types.adoc[leveloffset=+1]
 
 :leveloffset!:

@@ -1,0 +1,81 @@
+= DAOSYS Dev DAO Sample Use Case
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-07-01
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 5
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+Alice would like to start a software development DAO.
+She has a project idea to launch, and would like to solicit donations to support the development of the project.
+Alice would like to allow the public to offer donations for specific feature requests.
+Alice will use the DAOSYS platform to launch her DAO.
+
+Alice would like users to be able to deposit any of an approved list of assets into Pegasys liquidity.
+They will receive tokens that index their contribution to the DAO.
+Users may consolidate those positions into the Roundtable Vault NFT to fund Quests.
+Quests are funded through collateralized allocations of the approved assets with a minimum market value required per sprint.
+
+Alice goes to the DAOSYS factory UI and selects the features she would like to include in her DAO.
+
+* Underlying Asset Access Control List
+* Pegasys DEX Liquidity Management Vault 
+* Underlying Asset Index Token Generation
+* Roundtable Index Consolidation Vault NFT
+* Quest Collateralized Bounty Pools
+
+== Underlying Asset Access Control List
+
+Alice would like to limit deposits to a selection of assets.
+She is willing to accept donations involving liquidity pools that contain at least one of the approved assets.
+This will be an immutable list to ensure security.
+If anyone would like to add new assets a new vault approving those assets will have to be created.
+
+== Pegasys DEX Liquidity Management Vault
+
+Alice would like to coordinate capital in Pegasys DEX liquidity for Quests.
+DEV DAO will include the Pegasys DEX Trade-To-Enter Liquidity Management Delegate Service.
+When a user deposits an approved token, the DAO will trade as needed to enter liquidity.
+
+The vault is integrated with the Service Proxy Factory so that it can deploy new vaults as needed based on deposits.
+The new vaults must consist of an underlying Pegasys DEX liquidity pool containing at least one of the approved assets.
+To create a new vault, a user must provide the LP token, or a combination of both assets at the current price point, or the desired price point for new pools.
+A instance of the Uniswap V2 Compatible Underlying Asset Rebasing Index Vault will be deployed.
+
+== Underlying Asset Rebasing Index Token Generation
+
+When a new vault is created, rebasing index tokens are deployed to represent the underlying assets in that pool.
+These rebasing index tokens are used in the Quest Bounty Pools to fund feature request development.
+The Pegasys DEX Liquidity Management Vaults will provide these rebasing index tokens when a user deposits either asset in the vault.
+The vault will manage trading deposits as needed to enter liquidity and distributing the rebasing index tokens.
+Users can expect to always receive a combination of both rebasing index tokens for a given Pegasys DEX liquidity pool when they deposit either or both assets.
+
+== Roundtable Index Consolidation Vault NFT
+
+Once someone has deposited into one of the DAOs vaults, they may deposit any of the rebasing index tokens from the list of approved assets into the Roundtable Vault NFT.
+The Roundtable Vault NFT provides it's own rebasing index tokens that consolidate the various index tokens from the liquidity pool vaults.
+When users deposit into the Roundtable Vault NFT they are provided rebasing index tokens that present the aggregate of the rebasing index tokens from the liquidity pool vaults, along with a NFT representing their governance tier for deploying quests.
+
+The Roundtable Vault NFT provides two tiers of governance NFTs, funded and unfunded.
+Unfunded Roundtable NFTs are reserved for the core team members.
+This allows core team members to create Quests without an accompanying bounty for internal project management through Quests.
+Funded Roundtable NFTs are for anyone that deposits any of the approved assets.
+This allows anyone that has funded the Roundtable to deploy new Quests with a deposit of the consolidated rebasing index tokens.
+The Quest factory confirms if the initiator holds a Roundtable NFT, and requires deposits based on NFT governance tier.
+
+== Quest Collateralized Bounty Pools
+
+Roundtable NFT holders may launch Quests to fund software development.
+Alice defined the minimum market value in the approved assets required per sprint to launch a Quest.s
+A Roundtable NFT holder uploads their development request through the Roundtable NFT Quest Factory.
+The Quest launcher designates how they would like to fund the Quest of the approved assets.

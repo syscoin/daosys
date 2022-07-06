@@ -1,0 +1,22 @@
+= ASE Delegate Service Test Stubs
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-02-19
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+This section documents delegate service test stubs.
+These delegate services exist to provide reference implementations of DAOSYS delegate services unencumbered by domain logic.
+
+include::./daosys-architecture-delegate_service-stubs-01-messenger_delegate_service.adoc[leveloffset=+1]

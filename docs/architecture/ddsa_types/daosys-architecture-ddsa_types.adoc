@@ -12,7 +12,7 @@ ifndef::compositing[]
 :sectnums:
 :data-uri:
 :stem: asciimath
-:pathtoroot: ../../../
+:pathtoroot: ../../../../
 :imagesdir: {pathtoroot}
 :includeprefix: {pathtoroot}
 :compositing:
@@ -20,4 +20,4 @@ endif::[]
 
 // include::./collections/daosys-architecture-ddsa_types-collections.adoc[leveloffset=+1]
 
-include::./primitives/daosys-architecture-ddsa_types-primitives-00.adoc[leveloffset=+1]
+include::primitives/daosys-architecture-ddsa_types-primitives-00.adoc[leveloffset=+1]

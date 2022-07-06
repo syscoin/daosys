@@ -6,12 +6,15 @@ pragma solidity ^0.8.0;
  */
 abstract contract Proxy {
 
+  /**
+   * @dev Intentionally empty implementation of the default receive function.
+   */
   receive() payable virtual external {}
 
   /**
    * @notice delegate all calls to implementation contract
    * @dev reverts if implementation address contains no code, for compatibility with metamorphic contracts
-   * @dev memory location in use by assembly may be unsafe in other contexts
+   *  memory location in use by assembly may be unsafe in other contexts
    */
   fallback() payable virtual external {
     address implementation = _getImplementation();

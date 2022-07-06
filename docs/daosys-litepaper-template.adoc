@@ -1,0 +1,27 @@
+= DAOSYS Lite Paper
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-03-25
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectanchors:
+:sectlinks:
+:sectnums:
+:data-uri:
+:stem:
+:pathtoroot: ../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+include::litepaper/daosys-litepaper-01-abstract.adoc[leveloffset=+1]
+
+include::litepaper/daosys-litepaper-02-problem_statement.adoc[leveloffset=+1]
+
+include::litepaper/daosys-litepaper-03-introduction.adoc[leveloffset=+1]
+
+include::litepaper/daosys-litepaper-00.adoc[leveloffset=+1]

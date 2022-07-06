@@ -1,0 +1,25 @@
+= ASE Interface Hooks
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-02-19
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+include::./daosys-architecture-interface_hooks-01-delegate_service.adoc[leveloffset=+1]
+
+include::./daosys-architecture-interface_hooks-02-delegate_service_registry_aware.adoc[leveloffset=+1]
+
+include::./daosys-architecture-interface_hooks-03-create2metadata.adoc[leveloffset=+1]
+
+include::./daosys-architecture-interface_hooks-04-erc165.adoc[leveloffset=+1]

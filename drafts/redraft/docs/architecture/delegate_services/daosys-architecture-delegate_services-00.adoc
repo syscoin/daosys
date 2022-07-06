@@ -1,0 +1,21 @@
+= ASE Delegate Services
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-02-19
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+include::./tokens/daosys-architecture-delegate_services-tokens-00.adoc[leveloffset=+1]
+
+include::./stubs/daosys-architecture-delegate_service-stubs-00.adoc[leveloffset=+1]

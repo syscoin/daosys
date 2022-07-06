@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import {
   CreateUtils
-} from "contracts/evm/create/libraries/CreateUtils.sol";
+} from "contracts/evm/create/utils/CreateUtils.sol";
 
 contract CreateUtilsMock {
 

@@ -16,12 +16,12 @@ ifndef::compositing[]
 :compositing:
 endif::[]
 
-include::./daosys-design_patterns-01-factory.adoc[leveloffset=+1]
+// include::./daosys-design_patterns-01-factory.adoc[leveloffset=+1]
 
-include::./daosys-design_patterns-02-proxy.adoc[leveloffset=+1]
+include::daosys-design_patterns-proxy.adoc[leveloffset=+1]
 
-include::./daosys-design_patterns-03-diamond.adoc[leveloffset=+1]
+// include::./daosys-design_patterns-03-diamond.adoc[leveloffset=+1]
 
-include::./daosys-design_patterns-04-transaction_router.adoc[leveloffset=+1]
+// include::./daosys-design_patterns-04-transaction_router.adoc[leveloffset=+1]
 
-include::./daosys-design_patterns-05-ddsa.adoc[leveloffset=+1]
+// include::./daosys-design_patterns-05-ddsa.adoc[leveloffset=+1]

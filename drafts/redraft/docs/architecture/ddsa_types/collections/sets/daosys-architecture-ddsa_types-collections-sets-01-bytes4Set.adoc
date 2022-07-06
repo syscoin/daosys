@@ -1,0 +1,22 @@
+= ASE DDSA Bytes4 Set
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-02-19
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+[source, solidity]
+----
+include::../../../../../contracts/types/collections/sets/Bytes4Set.sol[lines="7..-1"]
+----
