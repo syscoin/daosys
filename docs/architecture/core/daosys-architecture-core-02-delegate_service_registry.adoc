@@ -1,4 +1,4 @@
-= Delegate Service Registry
+= ASE Delegate Service Registry Delegate Service
 ifndef::compositing[]
 :author: cyotee doge
 :email: cyotee@syscoin.org
@@ -15,6 +15,7 @@ ifndef::compositing[]
 :includeprefix: {pathtoroot}
 :compositing:
 endif::[]
+
 
 Delegate Services are published through the ASE's Delegate Service Registry.
 When a new Delegate Service is deployed through the Service Proxy Factory, the Delegate Service Registry is updated with information about the new Delegate Service.
@@ -49,3 +50,5 @@ The Service Registry also exposes the mapping of Services that serve a distinct 
 This results in a rather large array of addresses that is not feasible to read on-chain.
 This is provided for off-chain resources to provide a simple reference of all available Services for an interface ID.
 Further, an enumeration of the functions declared in an interface is presented to facilitate off-chain resources searching the Service Registry.
+
+// TODO include NatSpec generated docs.

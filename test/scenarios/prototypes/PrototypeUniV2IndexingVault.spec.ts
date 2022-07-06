@@ -32,7 +32,7 @@ describe("PrototypeUniV2IndexingVault Test Suite", function () {
   let spender: SignerWithAddress;
   let uniV2FeeToSetter: SignerWithAddress;
 
-  // ERC20Basic test variables
+  // test variables
   let testToken1: StatefulERC20;
   const testToken1Name = "TestToken1";
   const testToken1Symbol = "TT1";

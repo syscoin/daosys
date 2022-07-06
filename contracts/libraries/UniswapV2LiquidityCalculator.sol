@@ -2,6 +2,7 @@
 
 pragma solidity ^0.8.0;
 
+import "../test/protocols/dexes/uniswap/v2/uniswap-v2-core/libraries/Math.sol";
 import "../test/protocols/dexes/uniswap/v2/uniswap-v2-core/interfaces/IUniswapV2ERC20.sol";
 import "../test/protocols/dexes/uniswap/v2/uniswap-v2-core/interfaces/IUniswapV2Pair.sol";
 import "../test/protocols/dexes/uniswap/v2/uniswap-v2-periphery/libraries/UniswapV2Library.sol";
@@ -78,7 +79,7 @@ library UniswapLiquidityCalculator {
         reserveOutputAdjusted = reserve.sub(withdrawAmount.mul(slippageAdjust) / 1000);
     }
 
-    function calcLpSettlement(
+    function calcLpSettlementOld(
         uint reserveI,
         uint reserveO,
         uint256 targetSettlementAmount
@@ -97,6 +98,28 @@ library UniswapLiquidityCalculator {
         console.log("%s", targetSettlementAmount.mul(1000).mul(ratio).mul(reserveInput) / (reserveOutput.sub(targetSettlementAmount)).mul(1000) / 997);
         amountToSwap = targetSettlementAmount.mul(1000).mul(ratio).mul(reserveInput) / (reserveOutput.sub(targetSettlementAmount)).mul(1000) / 997;
     }
+
+     function calcLpSettlement(
+        uint reserveI,
+        uint reserveO,
+        uint256 targetSettlementAmount,
+        uint256 supply
+    ) internal view returns (
+        uint256 LpSettlement
+    ) { 
+        uint256 gamma = 997;
+        uint256 r0 = reserveO;
+        uint256 r1 = reserveI;
+        uint256 s = supply;
+        uint256 q = targetSettlementAmount;
+
+        uint256 a1 = (r0*r1);
+        uint256 a2 = (s*s);
+        uint256 b = (1000*q*r0 - q*gamma*r0 + 1000*r0*r1 + r0*r1*gamma)/(1000*s);
+        uint256 c = q*r0;
+
+        LpSettlement = (b*a2 - a2*Math.sqrt(b*b - 4*a1*c/a2)) / (2*a1);
+    }    
 
     function calcQuote(
         IUniswapV2Pair pair,
@@ -165,6 +188,7 @@ library UniswapLiquidityCalculator {
         settlementAmount = calcQuote(pair, lpAmountToWithdraw, settlementToken);
     }
 
+
     function reduceExposureToTargetQuote(
     address uniV2LP,
     address holder,
@@ -175,6 +199,7 @@ library UniswapLiquidityCalculator {
     ) {
         IUniswapV2Pair pair = IUniswapV2Pair(uniV2LP);
         uint256 lpAmount = 0;
+        uint256 lpAmount2 = 0;
         uint reserveA = 0;
         uint reserveB = 0;
         address tokenA;
@@ -183,18 +208,17 @@ library UniswapLiquidityCalculator {
             (uint reserve0, uint reserve1,) = pair.getReserves();
             address token0 = pair.token0();
             address token1 = pair.token1();
+            
             (tokenA,) = UniswapV2Library.sortTokens(token0, token1);
             (reserveA, reserveB) = tokenA == token0 ? (reserve0, reserve1) : (reserve1, reserve0);
-            console.log("%s", reserveA);
-            console.log("%s", reserveB);
         }
         {
             // stack too deep
             (uint reserveI, uint reserveO) = settlementToken == tokenA ? (reserveA, reserveB) : (reserveB, reserveA);
-            console.log("%s", reserveI);
-            console.log("%s", reserveO);
-            uint256 tokenAmountToSwap = calcLpSettlement(reserveI, reserveO, targetSettlementAmount);
-            lpAmount = tokenAmountToSwap.mul(pair.totalSupply()) / reserveI;
+            uint256 supply = pair.totalSupply();
+
+            lpAmount = calcLpSettlement(reserveI, reserveO, targetSettlementAmount, supply);
+    
         }  
         lpAmountToWithdraw = lpAmount > pair.balanceOf(holder) ? 0 : lpAmount;
     }

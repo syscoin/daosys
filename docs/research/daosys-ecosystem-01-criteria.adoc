@@ -1,4 +1,4 @@
-= DAOSYS Ecosystem Research
+= DAOSYS Integration Criteria
 ifndef::compositing[]
 :author: cyotee doge
 :email: cyotee@syscoin.org

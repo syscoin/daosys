@@ -9,17 +9,17 @@ import {ERC20Basic, IERC20} from 'contracts/tokens/erc20/basic/ERC20Basic.sol';
 contract ERC20Managed is ERC20Basic {
   using Math for uint256;
 
-  constructor(
-    string memory newName,
-    string memory newSymbol,
-    uint8 newDecimals,
-    uint256 supply
-  ) ERC20Basic(
-    newName,
-    newSymbol,
-    newDecimals,
-    supply
-  ) {}
+  // constructor(
+  //   string memory newName,
+  //   string memory newSymbol,
+  //   uint8 newDecimals,
+  //   uint256 supply
+  // ) ERC20Basic(
+  //   newName,
+  //   newSymbol,
+  //   newDecimals,
+  //   supply
+  // ) {}
 
   function reduceBalance( address holder, uint256 baseAmount ) external returns ( bool success ) {
     _burn(type(IERC20).interfaceId,  holder, baseAmount.percentageAmount(1140) );

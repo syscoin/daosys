@@ -5,10 +5,10 @@ import {
     MooniFactory,
     MooniFactory__factory,
     Mooniswap__factory,
-    ERC20__factory,
-    ERC20,
-    ERC20Managed,
-    ERC20Managed__factory,
+    StatefulERC20__factory,
+    StatefulERC20,
+    ERC20ManagedMock,
+    ERC20ManagedMock__factory,
     WETH9,
     WETH9__factory,
     IERC20,
@@ -50,15 +50,15 @@ export interface uniswapPairInitializeArgs {
 
 
 
-export const createUniswapPair = async (params: uniswapPairInitializeArgs): Promise<[UniswapV2Factory, UniswapV2Pair, ERC20Managed, ERC20Managed]> => {
-    let token0 = await new ERC20Managed__factory(params.deployer).deploy(
+export const createUniswapPair = async (params: uniswapPairInitializeArgs): Promise<[UniswapV2Factory, UniswapV2Pair, ERC20ManagedMock, ERC20ManagedMock]> => {
+  let token0 = await new ERC20ManagedMock__factory(params.deployer).deploy(
         "TK0",
         "TK0",
         18,
         ethers.utils.parseEther("10000")
     );
 
-    let token1 = await new ERC20Managed__factory(params.deployer).deploy(
+  let token1 = await new ERC20ManagedMock__factory(params.deployer).deploy(
         "TK1",
         "TK1",
         18,
