@@ -34,72 +34,30 @@ library UniswapLiquidityCalculator {
         tokenAmount = lpBalance * pairBalance / pair.totalSupply();
     }
 
-    function calcPoolRatio(
-        uint reserveInput,
-        uint reserveOutput
-    ) internal pure returns (
-        uint reserveRatio
-    ) {
-        reserveRatio = reserveInput.mul(1000) / (reserveInput.add(reserveOutput));
-    }
-
-    function calcReserveInput(
-        uint256 amountOutput,
-        uint reserveRatio,
-        uint reserveInput,
-        uint reserveOutput
-    ) internal view returns (
-        uint reserveInputAdjusted
-    ) {
-        console.log("calcReserveInput");
-        uint reserve = reserveInput.add(reserveOutput);
-        console.log("%s", reserve);
-        uint slippageAdjust = (amountOutput.mul(1000) / reserve.sub(amountOutput)).add(1000);
-        console.log("%s", slippageAdjust);
-        uint withdrawAmount = (amountOutput.mul(1000) / reserveRatio);
-        console.log("%s", withdrawAmount);
-        reserveInputAdjusted = reserve.sub(withdrawAmount.mul(slippageAdjust) / 1000);
-    }
-
-    function calcReserveOutput(
-        uint256 amountInput,
-        uint reserveRatio,
-        uint reserveInput,
-        uint reserveOutput
-    ) internal view returns (
-        uint reserveOutputAdjusted
-    ) {
-        console.log("calcReserveOutput");
-        uint reserve = reserveInput.add(reserveOutput);
-        console.log("%s", reserve);
-        uint slippageAdjust = (amountInput.mul(1000) / reserve.sub(amountInput)).add(1000);
-        console.log("%s", slippageAdjust);
-        uint withdrawAmount = amountInput.mul(1000) / (1000 - reserveRatio);
-        console.log("%s", withdrawAmount);
-        reserveOutputAdjusted = reserve.sub(withdrawAmount.mul(slippageAdjust) / 1000);
-    }
-
-    function calcLpSettlementOld(
+    function partB(
         uint reserveI,
         uint reserveO,
-        uint256 targetSettlementAmount
+        uint256 targetSettlementAmount,
+        uint256 supply
     ) internal view returns (
-        uint256 amountToSwap
+        uint b
     ) { 
-        uint ratio = calcPoolRatio(reserveI, reserveO);
-        uint reserveInput = calcReserveInput(targetSettlementAmount, ratio, reserveI, reserveO);
-        uint reserveOutput = calcReserveOutput(targetSettlementAmount, ratio, reserveI, reserveO);
-        console.log("calcLpSettlement");
-        console.log("%s", ratio);
-        console.log("%s", reserveInput);
-        console.log("%s", reserveOutput);
-        console.log("%s", targetSettlementAmount.mul(1000).mul(ratio).mul(reserveInput));
-        console.log("%s", (reserveOutput.sub(targetSettlementAmount)).mul(1000) / 997);
-        console.log("%s", targetSettlementAmount.mul(1000).mul(ratio).mul(reserveInput) / (reserveOutput.sub(targetSettlementAmount)).mul(1000) / 997);
-        amountToSwap = targetSettlementAmount.mul(1000).mul(ratio).mul(reserveInput) / (reserveOutput.sub(targetSettlementAmount)).mul(1000) / 997;
-    }
+        uint gamma = 997;
+        uint r0 = reserveO;
+        uint r1 = reserveI;
+        uint s = supply;
+        uint q = targetSettlementAmount;
 
-     function calcLpSettlement(
+        uint b1 = q.mul(r0).mul(1000);
+        uint b2 = (q.mul(gamma).mul(r0));
+        uint b3 = (r0.mul(r1).mul(1000));
+        uint b4 = r0.mul(r1).mul(gamma);
+        uint b5 = s.mul(1000);
+
+        b = (b1 - b2 + b3 + b4) / b5;
+    }   
+
+    function calcLpSettlement(
         uint reserveI,
         uint reserveO,
         uint256 targetSettlementAmount,
@@ -107,20 +65,24 @@ library UniswapLiquidityCalculator {
     ) internal view returns (
         uint256 LpSettlement
     ) { 
-        uint256 gamma = 997;
-        uint256 r0 = reserveO;
-        uint256 r1 = reserveI;
-        uint256 s = supply;
-        uint256 q = targetSettlementAmount;
+        uint gamma = 997;
+        uint r0 = reserveO;
+        uint r1 = reserveI;
+        uint s = supply;
+        uint q = targetSettlementAmount;
+        
+        uint a1 = r0.mul(r1) / s;
+        uint a2 = s;
+        uint b = partB(reserveI, reserveO, targetSettlementAmount, supply);
+        uint c = q.mul(r0);        
 
-        uint256 a1 = (r0*r1);
-        uint256 a2 = (s*s);
-        uint256 b = (1000*q*r0 - q*gamma*r0 + 1000*r0*r1 + r0*r1*gamma)/(1000*s);
-        uint256 c = q*r0;
+        uint Lp1 = b.mul(a2);
+        uint Lp2 = a2.mul(Math.sqrt((b.mul(b)).sub(a1.mul(c.mul(4)/a2))));
+        uint Lp3 = a1.mul(2);
 
-        LpSettlement = (b*a2 - a2*Math.sqrt(b*b - 4*a1*c/a2)) / (2*a1);
-    }    
-
+        LpSettlement = (Lp1.sub(Lp2)) / (Lp3);
+    }  
+     
     function calcQuote(
         IUniswapV2Pair pair,
         uint256 lpAmountToWithdraw,
@@ -186,8 +148,8 @@ library UniswapLiquidityCalculator {
         IUniswapV2Pair pair = IUniswapV2Pair(uniV2LP);
         require(pair.balanceOf(holder) >= lpAmountToWithdraw, "UniLPCalc: lp bal insufficient");
         settlementAmount = calcQuote(pair, lpAmountToWithdraw, settlementToken);
-    }
 
+    }
 
     function reduceExposureToTargetQuote(
     address uniV2LP,
@@ -217,8 +179,11 @@ library UniswapLiquidityCalculator {
             (uint reserveI, uint reserveO) = settlementToken == tokenA ? (reserveA, reserveB) : (reserveB, reserveA);
             uint256 supply = pair.totalSupply();
 
-            lpAmount = calcLpSettlement(reserveI, reserveO, targetSettlementAmount, supply);
-    
+            if (reserveI > targetSettlementAmount) {
+                lpAmount = calcLpSettlement(reserveI, reserveO, targetSettlementAmount, supply);       
+            } else  {
+                lpAmount = 0;
+            } 
         }  
         lpAmountToWithdraw = lpAmount > pair.balanceOf(holder) ? 0 : lpAmount;
     }

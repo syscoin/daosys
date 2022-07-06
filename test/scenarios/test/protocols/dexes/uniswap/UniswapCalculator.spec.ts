@@ -183,7 +183,7 @@ describe("UniswapCalculator", () => {
             // reduce expose by 20%
             const lpBal = await tokenPair.balanceOf(lpHolder.address);
             const exitQuote = await uniswapCalc.reduceExposureQuote(tokenPair.address, lpBal.div(5), lpHolder.address, token1.address)
-
+ 
             // burn lp tokens
             await tokenPair.connect(lpHolder).transfer(tokenPair.address, lpBal.div(5));
             await tokenPair.burn(lpHolder.address);
@@ -212,61 +212,17 @@ describe("UniswapCalculator", () => {
     // For detailed solution see: daosys/notebooks/contracts/uniswap_v2.ipynb
     describe("reduceExposureToTargetQuote()", async () => {
         it("Check reduce exposure quote trivially", async () => {
-            // increase base liquidity  
-
-            console.log("1- token0 %s", await token0.balanceOf(deployer.address));   
-            console.log("1- token1 %s", await token1.balanceOf(deployer.address)); 
-            console.log("1- tokenPair Dep %s", await tokenPair.balanceOf(deployer.address));                          
-            console.log("1- totalSupply %s", await tokenPair.totalSupply());    
-            console.log("1- reserves %s", await tokenPair.getReserves());    
-             
-                      
+            // increase base liquidity                        
             await token0.connect(deployer).transfer(tokenPair.address, expandToNDecimals(10, 18));
             await token1.connect(deployer).transfer(tokenPair.address, expandToNDecimals(10, 18));
             await tokenPair.mint(deployer.address);
-
-            console.log("") 
-            console.log("2- token0 %s", await token0.balanceOf(deployer.address));   
-            console.log("2- token1 %s", await token1.balanceOf(deployer.address));  
-            console.log("2- token0 LP %s", await token0.balanceOf(lpHolder.address));   
-            console.log("2- token1 LP %s", await token1.balanceOf(lpHolder.address));  
-            console.log("2- tokenPair %s", await tokenPair.balanceOf(tokenPair.address));             
-            console.log("2- tokenPair Dep %s", await tokenPair.balanceOf(deployer.address));            
-            console.log("2- tokenPair LP %s", await tokenPair.balanceOf(lpHolder.address));                         
-            console.log("2- totalSupply %s", await tokenPair.totalSupply());    
-            console.log("2- reserves %s", await tokenPair.getReserves());    
-             
             
             // insert liquidity from another address
             await token0.connect(deployer).transfer(lpHolder.address, expandToNDecimals(2, 18));
-            await token1.connect(deployer).transfer(lpHolder.address, expandToNDecimals(2, 18));
-
-            console.log("") 
-            console.log("3- token0 %s", await token0.balanceOf(deployer.address));   
-            console.log("3- token1 %s", await token1.balanceOf(deployer.address));  
-            console.log("3- token0 LP %s", await token0.balanceOf(lpHolder.address));   
-            console.log("3- token1 LP %s", await token1.balanceOf(lpHolder.address));    
-            console.log("3- tokenPair %s", await tokenPair.balanceOf(tokenPair.address));             
-            console.log("3- tokenPair Dep %s", await tokenPair.balanceOf(deployer.address));            
-            console.log("3- tokenPair LP %s", await tokenPair.balanceOf(lpHolder.address));                      
-            console.log("3- totalSupply %s", await tokenPair.totalSupply());    
-            console.log("3- reserves %s", await tokenPair.getReserves());    
-             
-  
+            await token1.connect(deployer).transfer(lpHolder.address, expandToNDecimals(2, 18));  
             await token0.connect(lpHolder).transfer(tokenPair.address, expandToNDecimals(2, 18));
             await token1.connect(lpHolder).transfer(tokenPair.address, expandToNDecimals(2, 18));
             await tokenPair.mint(lpHolder.address);
-
-            console.log("") 
-            console.log("4- token0 %s", await token0.balanceOf(deployer.address));   
-            console.log("4- token1 %s", await token1.balanceOf(deployer.address));  
-            console.log("4- token0 LP %s", await token0.balanceOf(lpHolder.address));   
-            console.log("4- token1 LP %s", await token1.balanceOf(lpHolder.address));  
-            console.log("4- tokenPair %s", await tokenPair.balanceOf(tokenPair.address));             
-            console.log("4- tokenPair Dep %s", await tokenPair.balanceOf(deployer.address));            
-            console.log("4- tokenPair LP %s", await tokenPair.balanceOf(lpHolder.address));                 
-            console.log("4- totalSupply %s", await tokenPair.totalSupply());    
-            console.log("4- reserves %s", await tokenPair.getReserves());    
             
             const lpBal = await tokenPair.balanceOf(lpHolder.address);
             const exitQuote = await uniswapCalc.reduceExposureToTargetQuote(
@@ -278,34 +234,7 @@ describe("UniswapCalculator", () => {
             
             // burn lp tokens
             await tokenPair.connect(lpHolder).transfer(tokenPair.address, exitQuote);
-
-            console.log("") 
-            console.log("5- exitQuote %s", exitQuote) 
-            console.log("5- token0 %s", await token0.balanceOf(deployer.address));   
-            console.log("5- token1 %s", await token1.balanceOf(deployer.address));  
-            console.log("5- token0 LP %s", await token0.balanceOf(lpHolder.address));   
-            console.log("5- token1 LP %s", await token1.balanceOf(lpHolder.address)); 
-            console.log("5- tokenPair %s", await tokenPair.balanceOf(tokenPair.address));             
-            console.log("5- tokenPair Dep %s", await tokenPair.balanceOf(deployer.address));            
-            console.log("5- tokenPair LP %s", await tokenPair.balanceOf(lpHolder.address));                     
-            console.log("5- totalSupply %s", await tokenPair.totalSupply());    
-            console.log("5- reserves %s", await tokenPair.getReserves());   
-            
-
             await tokenPair.burn(lpHolder.address);
-
-            console.log("") 
-            console.log("6- exitQuote %s", exitQuote) 
-            console.log("6- token0 %s", await token0.balanceOf(deployer.address));   
-            console.log("6- token1 %s", await token1.balanceOf(deployer.address));  
-            console.log("6- token0 LP %s", await token0.balanceOf(lpHolder.address));   
-            console.log("6- token1 LP %s", await token1.balanceOf(lpHolder.address)); 
-            console.log("6- tokenPair %s", await tokenPair.balanceOf(tokenPair.address));             
-            console.log("6- tokenPair Dep %s", await tokenPair.balanceOf(deployer.address));            
-            console.log("6- tokenPair LP %s", await tokenPair.balanceOf(lpHolder.address));                   
-            console.log("6- totalSupply %s", await tokenPair.totalSupply());    
-            console.log("6- reserves %s", await tokenPair.getReserves()); 
-
 
             // calc output amount from token0 to token1
             const token0Bal = await token0.balanceOf(lpHolder.address);
@@ -317,30 +246,7 @@ describe("UniswapCalculator", () => {
 
             // execute swap
             await token0.connect(lpHolder).transfer(tokenPair.address, token0Bal);
-
-            console.log("") 
-            console.log("7- token0 %s", await token0.balanceOf(deployer.address));   
-            console.log("7- token1 %s", await token1.balanceOf(deployer.address));  
-            console.log("7- token0 LP %s", await token0.balanceOf(lpHolder.address));   
-            console.log("7- token1 LP %s", await token1.balanceOf(lpHolder.address)); 
-            console.log("7- tokenPair %s", await tokenPair.balanceOf(tokenPair.address));             
-            console.log("7- tokenPair Dep %s", await tokenPair.balanceOf(deployer.address));            
-            console.log("7- tokenPair LP %s", await tokenPair.balanceOf(lpHolder.address));                 
-            console.log("7- totalSupply %s", await tokenPair.totalSupply());    
-            console.log("7- reserves %s", await tokenPair.getReserves());             
-
             await tokenPair.swap(0, amountOut, lpHolder.address, '0x');
-
-            console.log("") 
-            console.log("8- token0 %s", await token0.balanceOf(deployer.address));   
-            console.log("8- token1 %s", await token1.balanceOf(deployer.address));  
-            console.log("8- token0 LP %s", await token0.balanceOf(lpHolder.address));   
-            console.log("8- token1 LP %s", await token1.balanceOf(lpHolder.address)); 
-            console.log("8- tokenPair %s", await tokenPair.balanceOf(tokenPair.address));             
-            console.log("8- tokenPair Dep %s", await tokenPair.balanceOf(deployer.address));            
-            console.log("8- tokenPair LP %s", await tokenPair.balanceOf(lpHolder.address));                     
-            console.log("8- totalSupply %s", await tokenPair.totalSupply());    
-            console.log("8- reserves %s", await tokenPair.getReserves()); 
 
             expect(await token1.balanceOf(lpHolder.address))
                 .to.equal(ethers.utils.parseUnits("0.999999999999999998", "ether"));
@@ -349,4 +255,34 @@ describe("UniswapCalculator", () => {
                 .to.equal(lpBal.sub(exitQuote))
         });
     });
+
+    describe("notEnoughLP()", async () => {
+        it("Check reduce exposure quote trivially", async () => {
+            // increase base liquidity                        
+            await token0.connect(deployer).transfer(tokenPair.address, expandToNDecimals(10, 18));
+            await token1.connect(deployer).transfer(tokenPair.address, expandToNDecimals(10, 18));
+            await tokenPair.mint(deployer.address);
+            
+            // insert liquidity from another address
+            await token0.connect(deployer).transfer(lpHolder.address, expandToNDecimals(2, 18));
+            await token1.connect(deployer).transfer(lpHolder.address, expandToNDecimals(2, 18));  
+            await token0.connect(lpHolder).transfer(tokenPair.address, expandToNDecimals(2, 18));
+            await token1.connect(lpHolder).transfer(tokenPair.address, expandToNDecimals(2, 18));
+            await tokenPair.mint(lpHolder.address);
+            
+            const lpBal = await tokenPair.balanceOf(lpHolder.address);
+            const exitQuote = await uniswapCalc.reduceExposureToTargetQuote(
+                tokenPair.address, 
+                lpHolder.address, 
+                token1.address, 
+                expandToNDecimals(10, 18)
+            )      
+            
+            expect(exitQuote).to.equal(ethers.utils.parseUnits("0", "ether"));
+
+            expect(await tokenPair.balanceOf(lpHolder.address))
+                .to.equal(lpBal.sub(exitQuote))
+        });
+    });    
+
 });
