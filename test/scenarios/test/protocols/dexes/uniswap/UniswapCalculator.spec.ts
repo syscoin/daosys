@@ -283,6 +283,36 @@ describe("UniswapCalculator", () => {
             expect(await tokenPair.balanceOf(lpHolder.address))
                 .to.equal(lpBal.sub(exitQuote))
         });
+    });   
+    
+    
+    describe("notEnoughReserve()", async () => {
+        it("Check reduce exposure quote trivially", async () => {
+            // increase base liquidity                        
+            await token0.connect(deployer).transfer(tokenPair.address, expandToNDecimals(10, 18));
+            await token1.connect(deployer).transfer(tokenPair.address, expandToNDecimals(10, 18));
+            await tokenPair.mint(deployer.address);
+            
+            // insert liquidity from another address
+            await token0.connect(deployer).transfer(lpHolder.address, expandToNDecimals(2, 18));
+            await token1.connect(deployer).transfer(lpHolder.address, expandToNDecimals(2, 18));  
+            await token0.connect(lpHolder).transfer(tokenPair.address, expandToNDecimals(2, 18));
+            await token1.connect(lpHolder).transfer(tokenPair.address, expandToNDecimals(2, 18));
+            await tokenPair.mint(lpHolder.address);
+            
+            const lpBal = await tokenPair.balanceOf(lpHolder.address);
+            const exitQuote = await uniswapCalc.reduceExposureToTargetQuote(
+                tokenPair.address, 
+                lpHolder.address, 
+                token1.address, 
+                expandToNDecimals(17, 18)
+            )      
+            
+            expect(exitQuote).to.equal(ethers.utils.parseUnits("0", "ether"));
+
+            expect(await tokenPair.balanceOf(lpHolder.address))
+                .to.equal(lpBal.sub(exitQuote))
+        });
     });    
 
 });
