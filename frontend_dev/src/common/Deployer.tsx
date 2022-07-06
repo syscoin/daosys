@@ -5,12 +5,18 @@ enum ButtonLabelType {
     Deploy = "Deploy",
     Deploying = "Deploying",
     Deployed = "Deployed",
-    NotDeployed = "NotDeployed"
+    NotDeployed = "Not Deployed"
+}
+
+export interface DeployerProps {
+    path: string
 }
 
 
-export const Deployer: FC<{}> = () => {
+export const Deployer: FC<DeployerProps> = ({path: string = ''}) => {
     const [buttonLabel, setButtonLabel] = useState<ButtonLabelType>(ButtonLabelType.Deploy)
+
+
 
 
     return (

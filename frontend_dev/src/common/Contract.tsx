@@ -2,10 +2,11 @@ import { Interface } from "@ethersproject/abi";
 import { connectContractToSigner, useEthers } from "@usedapp/core/dist/esm/src/hooks";
 import { Contract as eContract, ethers } from "ethers";
 import React, { FC, useEffect, useState } from "react"
-import { Card, Row } from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
 import { ContractMethod } from "./ContractMethod";
 import { Falsy } from "@usedapp/core/dist/esm/src/model/types";
 import { Error } from "./UI/Error";
+import { Deployer } from "./Deployer";
 
 export interface ContractProps {
     path: string
@@ -98,6 +99,12 @@ export const Contract: FC<ContractProps> = ({ path }) => {
                             {abiRaw?.contractName}
                         </Card.Header>
                         <Card.Footer>
+                            <Row>
+                                <Col sm={3}>
+                                    <Deployer/>    
+                                </Col>
+                            </Row>
+                            <hr/>
                             {String(errors).length > 0 && <Error message={errors} hideAfter={3} onHide = {async () => setErrors('') }/>}
                             <input onChange={(e) => setDeployedAddress(e.target.value)} value={deployedAddress} type="text" id="contractAddress" className="form-control" placeholder="Enter deployed contract address." />
                         </Card.Footer>
