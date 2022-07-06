@@ -4,6 +4,7 @@ import {
 } from 'hardhat';
 import { expect } from "chai";
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
+import BigNumber from 'ethers';
 import {
     StatefulERC20,
     StatefulERC20__factory,
@@ -16,11 +17,12 @@ import {
     WETH9__factory,
     ExampleOracleSimple,
     ExampleOracleSimple__factory,
-    UniV2LPCompatIndexingUFragmentsERC20,
-    UniV2LPCompatIndexingUFragmentsERC20__factory
+    UniV2LPCompatIndexingVariableGonUFragmentsERC20__factory,
+    UniV2LPCompatIndexingVariableGonUFragmentsERC20,
+    ERC20VariableGonUFragments
 } from '../../../../../../../../typechain';
 
-describe("UniV2LPCompatIndexingUFragmentsERC20", function () {
+describe("UniV2LPCompatIndexingVariableGonUFragmentsERC20", function () {
 
     // Control values for tests
     const invalidInterfaceId = "0xffffffff";
@@ -51,7 +53,7 @@ describe("UniV2LPCompatIndexingUFragmentsERC20", function () {
     let uniRouter: UniswapV2Router02;
     let oracle: ExampleOracleSimple;
 
-    let indexToken: UniV2LPCompatIndexingUFragmentsERC20;
+    let indexToken: UniV2LPCompatIndexingVariableGonUFragmentsERC20;
 
     /* -------------------------------------------------------------------------- */
     /*                        SECTION Before All Test Hook                        */
@@ -143,18 +145,18 @@ describe("UniV2LPCompatIndexingUFragmentsERC20", function () {
         expect(await oracle.consult(weth.address, ethers.utils.parseEther("1.0"))).to.equal(ethers.utils.parseEther("1.0"))
         expect(await oracle.consult(testToken1.address, ethers.utils.parseEther("1.0"))).to.equal(ethers.utils.parseEther("1.0"));
 
-        indexToken = await new UniV2LPCompatIndexingUFragmentsERC20__factory(deployer)
+        indexToken = await new UniV2LPCompatIndexingVariableGonUFragmentsERC20__factory(deployer)
             .deploy(
                 pair.address,
                 weth.address
             );
         tracer.nameTags[testToken2.address] = "Indexing Token";
 
-        await pair.connect(deployer).transfer(indexToken.address, await pair.balanceOf(deployer.address));
+        await pair.connect(deployer).transfer(indexToken.address, ethers.utils.parseEther("1.0"));
         expect(
             await indexToken.totalSupply()
         ).to.equal(
-            ethers.utils.parseEther("9.999999999999999000")
+            ethers.utils.parseEther("1.0")
         );
 
     });
@@ -229,6 +231,7 @@ describe("UniV2LPCompatIndexingUFragmentsERC20", function () {
                 });
             });
         });
+
         describe("#transfer()", function () {
             describe("(address,uint256)", function () {
                 it("Account can transfer testToken1s", async function () {
@@ -251,6 +254,7 @@ describe("UniV2LPCompatIndexingUFragmentsERC20", function () {
                 });
             });
         });
+
         describe("#transferFrom()", function () {
             describe("(address,address,uint256)", function () {
                 it("Spender can transfer testToken1s for another account", async function () {
@@ -294,6 +298,205 @@ describe("UniV2LPCompatIndexingUFragmentsERC20", function () {
             });
         });
     });
+
+    describe("::ERC20VariableGonUFragments", function () {
+        describe("#getPrevBaseAmountPerFragment()", function () {
+            it("()", async function () {
+                expect(await indexToken.getPrevBaseAmountPerFragment())
+                    .to.equal(ethers.BigNumber.from(0));
+                // make the initial gon supply larger than the LP position by a large margin to deal with smaller deposits
+                await indexToken.initializeERC20UFragments("MemeCoin", "MEME", ethers.utils.parseEther("1.0").mul(ethers.BigNumber.from(10).pow(19)));
+                expect(await indexToken.getPrevBaseAmountPerFragment())
+                    .to.equal(ethers.BigNumber.from(0));
+            })
+        })
+
+        describe("#mintGons()", function () {
+            describe("(address)", function () {
+                it("simple test between two accounts moving normal amounts of LP", async function () {
+
+                    // check to see if changes in the LP amount still works for existing balances
+                    // make the initial gon supply larger than the LP position by a large margin to deal with smaller deposits
+                    await indexToken.initializeERC20UFragments("MemeCoin", "MEME", ethers.utils.parseEther("1.0").mul(ethers.BigNumber.from(10).pow(19)));
+                    expect(await indexToken.balanceOf(deployer.address)).to.equal(ethers.utils.parseEther("1.0"))
+                    await pair.connect(deployer).transfer(indexToken.address, ethers.utils.parseEther("0.1"));
+                    expect(
+                        await indexToken.totalSupply()
+                    ).to.equal(
+                        ethers.utils.parseEther("1.1")
+                    );
+                    expect(await indexToken.balanceOf(deployer.address)).to.equal(ethers.utils.parseEther("1.1"))
+                    await indexToken.mintGons(deployer.address);
+                    expect(await indexToken.balanceOf(deployer.address)).to.equal(ethers.utils.parseEther("1.1"))
+
+                    // introduce some new LP and give it to another wallet
+                    await testToken1.connect(deployer).transfer(pair.address, ethers.utils.parseEther("0.2"));
+                    await weth.connect(deployer).transfer(pair.address, ethers.utils.parseEther("0.2"));
+                    await pair.mint(spender.address);
+                    expect(await pair.balanceOf(spender.address)).to.equal(ethers.utils.parseEther("0.2"));
+                    
+                    // make sure our indexing token supply has not changed after making some new uniswap LP
+                    expect(
+                        await indexToken.totalSupply()
+                    ).to.equal(
+                        ethers.utils.parseEther("1.1")
+                    );
+                    
+                    // Give the new LP to the indexing token
+                    await pair.connect(spender).transfer(indexToken.address, ethers.utils.parseEther("0.2"));
+
+                    // check to see the supply increase occured
+                    expect(
+                        await indexToken.totalSupply()
+                    ).to.equal(
+                        ethers.utils.parseEther("1.3")
+                    );
+
+                    // mint new gons to ensure balances for other LP holders is unaffected by new LP being introduced
+                    await indexToken.mintGons(spender.address);
+                    expect(await indexToken.balanceOf(deployer.address)).to.equal(ethers.utils.parseEther("1.1"))
+                    expect(await indexToken.balanceOf(spender.address)).to.equal(ethers.utils.parseEther("0.2"))
+                });
+
+                it("mint gons in smallest fraction", async function () {
+
+                    // check to see if changes in the LP amount still works for existing balances
+                    // make the initial gon supply larger than the LP position by a large margin to deal with smaller deposits
+                    await indexToken.initializeERC20UFragments("MemeCoin", "MEME", ethers.utils.parseEther("1.0").mul(ethers.BigNumber.from(10).pow(19)));
+
+                    // introduce some new LP and give it to another wallet
+                    await testToken1.connect(deployer).transfer(pair.address, ethers.utils.parseEther("0.1"));
+                    await weth.connect(deployer).transfer(pair.address, ethers.utils.parseEther("0.1"));
+                    await pair.mint(spender.address);
+                    expect(await pair.balanceOf(spender.address)).to.equal(ethers.utils.parseEther("0.1"));
+
+                    // Give the new LP to the indexing token
+                    await pair.connect(spender).transfer(indexToken.address, ethers.BigNumber.from(1));
+
+                    // check to see the supply increase occured
+                    expect(
+                        await indexToken.totalSupply()
+                    ).to.equal(
+                        ethers.utils.parseEther("1.0").add(ethers.BigNumber.from(1))
+                    );
+
+                    // mint new gons to ensure balances for other LP holders is unaffected by new LP being introduced
+                    await indexToken.mintGons(spender.address);
+                    expect(await indexToken.balanceOf(deployer.address)).to.equal(ethers.utils.parseEther("1.0"));
+                    expect(await indexToken.balanceOf(spender.address)).to.equal(ethers.BigNumber.from(1));
+                });
+
+                it("mint a huge amount of gons compared to initial deposit", async function () {
+
+                    let largeLPDeposit = ethers.utils.parseEther("100");
+                    // check to see if changes in the LP amount still works for existing balances
+                    // make the initial gon supply larger than the LP position by a large margin to deal with smaller deposits
+                    await indexToken.initializeERC20UFragments("MemeCoin", "MEME", ethers.utils.parseEther("1.0").mul(ethers.BigNumber.from(10).pow(19)));
+
+                    // introduce some new LP and give it to another wallet
+                    await testToken1.connect(deployer).transfer(pair.address, largeLPDeposit);
+                    await weth.connect(deployer).transfer(pair.address, largeLPDeposit);
+                    await pair.mint(spender.address);
+                    expect(await pair.balanceOf(spender.address)).to.equal(largeLPDeposit);
+
+                    // Give the new LP to the indexing token
+                    await pair.connect(spender).transfer(indexToken.address, largeLPDeposit);
+
+                    // check to see the supply increase occured
+                    expect(
+                        await indexToken.totalSupply()
+                    ).to.equal(
+                        ethers.utils.parseEther("1.0").add(largeLPDeposit)
+                    );
+
+                    // mint new gons to ensure balances for other LP holders is unaffected by new LP being introduced
+                    await indexToken.mintGons(spender.address);
+                    expect(await indexToken.balanceOf(deployer.address)).to.equal(ethers.utils.parseEther("1.0"));
+                    expect(await indexToken.balanceOf(spender.address)).to.equal(largeLPDeposit);
+                });
+            })
+        })
+
+        describe("#burnGons()", function () {
+            describe("(address)", function () {
+                it("try to burn some gons while being alone", async function() {
+                    // initialize, grab some initial balances
+                    let initialLpBalance = await pair.balanceOf(deployer.address);
+                    await indexToken.initializeERC20UFragments("MemeCoin", "MEME", ethers.utils.parseEther("1.0").mul(ethers.BigNumber.from(10).pow(19)));
+                    expect(await indexToken.balanceOf(deployer.address)).to.equal(ethers.utils.parseEther("1.0"));
+
+                    
+                    await indexToken.connect(deployer).approve(indexToken.address, ethers.utils.parseEther("0.1"));
+                    await indexToken.connect(deployer).approve(deployer.address, ethers.utils.parseEther("0.1"));
+
+                    // check we're as we expect
+                    expect(
+                        await indexToken.totalSupply()
+                    ).to.equal(
+                        ethers.utils.parseEther("1.0")
+                    );
+
+                    // burn the approved amount
+                    await indexToken.burnGons(deployer.address);
+
+                    // see the total supply shifted
+                    expect(
+                        await indexToken.totalSupply()
+                    ).to.equal(
+                        ethers.utils.parseEther("0.9")
+                    );
+
+                    // check to see we got our lp back
+                    expect(await pair.balanceOf(deployer.address)).to.equal(initialLpBalance.add(ethers.utils.parseEther("0.1")));
+                    // check to see our balance shifted on the index token
+                    expect(await indexToken.balanceOf(deployer.address)).to.equal(ethers.utils.parseEther("0.9"));
+                })
+
+                it("burn some gons back to lp with other people", async function() {
+                    // initialize, grab some initial balances
+                    let initialLpBalance = await pair.balanceOf(deployer.address);
+                    await indexToken.initializeERC20UFragments("MemeCoin", "MEME", ethers.utils.parseEther("1.0").mul(ethers.BigNumber.from(10).pow(19)));
+                    expect(await indexToken.balanceOf(deployer.address)).to.equal(ethers.utils.parseEther("1.0"));
+                    
+                    // give some balance to another address
+                    await testToken1.connect(deployer).transfer(pair.address, ethers.utils.parseEther("0.1"));
+                    await weth.connect(deployer).transfer(pair.address, ethers.utils.parseEther("0.1"));
+                    await pair.mint(spender.address);
+                    expect(await pair.balanceOf(spender.address)).to.equal(ethers.utils.parseEther("0.1"));
+                    await pair.connect(spender).transfer(indexToken.address, ethers.utils.parseEther("0.1"));
+                    await indexToken.mintGons(spender.address);
+
+                    
+                    // approve to remove some amount of our LP
+                    await indexToken.connect(deployer).approve(indexToken.address, ethers.utils.parseEther("0.7"));
+                    await indexToken.connect(deployer).approve(deployer.address, ethers.utils.parseEther("0.7"));
+
+                    // check we're as we expect
+                    expect(
+                        await indexToken.totalSupply()
+                    ).to.equal(
+                        ethers.utils.parseEther("1.1")
+                    );
+
+                    // burn the approved amount
+                    await indexToken.burnGons(deployer.address);
+
+                    // see the total supply shifted
+                    expect(
+                        await indexToken.totalSupply()
+                    ).to.equal(
+                        ethers.utils.parseEther("0.4")
+                    );
+
+                    // check to see we got our lp back
+                    expect(await pair.balanceOf(deployer.address)).to.equal(initialLpBalance.add(ethers.utils.parseEther("0.7")));
+                    // check to see our balance shifted on the index token
+                    expect(await indexToken.balanceOf(deployer.address)).to.equal(ethers.utils.parseEther("0.3"));
+                    expect(await indexToken.balanceOf(spender.address)).to.equal(ethers.utils.parseEther("0.1"));
+                })
+            })
+        })
+    })
 
     describe("::UniswapV2Router02", function () {
 
@@ -356,7 +559,7 @@ describe("UniV2LPCompatIndexingUFragmentsERC20", function () {
                 expect(
                     await indexToken.totalSupply()
                 ).to.equal(
-                    ethers.utils.parseEther("10.999999999999998900")
+                    ethers.utils.parseEther("1.1")
                 );
 
                 await oracle.connect(deployer).update();
@@ -396,7 +599,7 @@ describe("UniV2LPCompatIndexingUFragmentsERC20", function () {
                 expect(
                     await indexToken.totalSupply()
                 ).to.equal(
-                    ethers.utils.parseEther("10.005449331540477091")
+                    ethers.utils.parseEther("1.000544933154047809")
                 );
 
                 expect(await oracle.getAmountOut(weth.address, ethers.utils.parseEther("1.0"))).to.equal(ethers.utils.parseEther("0.906161864469506945"));
@@ -404,5 +607,4 @@ describe("UniV2LPCompatIndexingUFragmentsERC20", function () {
             });
         });
     });
-
 });

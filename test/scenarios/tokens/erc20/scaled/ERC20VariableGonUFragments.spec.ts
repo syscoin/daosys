@@ -30,7 +30,7 @@ describe("ERC20VariableGonUFragments", function () {
     /* -------------------------------------------------------------------------- */
     /*                        SECTION Before Each Test Hook                       */
     /* -------------------------------------------------------------------------- */
-    beforeEach(async function () {
+/*     beforeEach(async function () {
         [deployer] = await ethers.getSigners();
         expect(deployer.address).to.be.properAddress;
         tracer.nameTags[deployer.address] = "Deployer";
@@ -164,5 +164,5 @@ describe("ERC20VariableGonUFragments", function () {
                 );
             });
         });
-    });
+    }); */
 });
