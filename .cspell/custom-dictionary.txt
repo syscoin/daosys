@@ -6,6 +6,7 @@ antifragile
 asciimath
 Boba
 bootstrapper
+collateralized
 copyleft
 copyrightable
 daosys
@@ -27,6 +28,8 @@ Roadmap
 rollux
 Roundtable
 Roundtables
+sectanchors
+sectlinks
 stochasm
 struct
 syscoin
