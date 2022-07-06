@@ -20,24 +20,13 @@ describe("String Test Suite", function () {
   // Test variables
   let stringMock: StringMock;
   const testString = "Hello World!";
-  const structSlot = "0xd28bbfe1a419a7f503df11b79126af06bd2b143fe3e650597e0c3911c5b7203e";
-
-  /* -------------------------------------------------------------------------- */
-  /*                        SECTION Before All Test Hook                        */
-  /* -------------------------------------------------------------------------- */
+  const structSlot = "0xb03f649aec7684dfcee02f0d485246d704b19cb7806c4db08f47acf9c00557ca";
 
   before(async function () {
     // Tagging address(0) as "System" in logs.
     tracer.nameTags[ethers.constants.AddressZero] = "System";
   })
 
-  /* -------------------------------------------------------------------------- */
-  /*                       !SECTION Before All Test Hook                        */
-  /* -------------------------------------------------------------------------- */
-
-  /* -------------------------------------------------------------------------- */
-  /*                        SECTION Before Each Test Hook                       */
-  /* -------------------------------------------------------------------------- */
   beforeEach(async function () {
 
     [
@@ -46,19 +35,10 @@ describe("String Test Suite", function () {
     tracer.nameTags[deployer.address] = "Deployer";
 
     stringMock = await new StringMock__factory(deployer).deploy() as StringMock;
-    tracer.nameTags[stringMock.address] = "StringMock";
+    tracer.nameTags[stringMock.address] = "String";
 
   });
 
-  /* -------------------------------------------------------------------------- */
-  /*                       !SECTION Before Each Test Hook                       */
-  /* -------------------------------------------------------------------------- */
-
-  /* -------------------------------------------------------------------------- */
-  /*                          SECTION Testing Messenger                         */
-  /* -------------------------------------------------------------------------- */
-
-    // TODO Test rest of StringUtils on String.
   describe("String", function () {
 
     describe("Validate structSlot consistency", function () {
@@ -68,11 +48,11 @@ describe("String Test Suite", function () {
       });
     });
 
-    describe("#getUint256()", function () {
+    describe("#getValue()", function () {
       describe("()", function () {
-        describe("#setUint256()", function () {
-          describe("(uint256)", function () {
-            it("Can set and get uint256", async function () {
+        describe("#setValue()", function () {
+          describe("(string memory)", function () {
+            it("Can set and get string.", async function () {
               await stringMock.setString(testString);
               expect(await stringMock.getString()).to.equal(testString);
             });
@@ -80,11 +60,6 @@ describe("String Test Suite", function () {
         });
       });
     });
-
   });
-
-  /* -------------------------------------------------------------------------- */
-  /*                         !SECTION Testing Messenger                         */
-  /* -------------------------------------------------------------------------- */
 
 });
