@@ -175,7 +175,7 @@ const config: HardhatUserConfig = {
           },
         }
       }
-    ]
+    ],
   },
   networks: {
     ropsten: {
