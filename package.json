@@ -16,7 +16,9 @@
     "build": "yarn run hardhat clean && yarn run hardhat compile && yarn run hardhat typechain && yarn run hardhat test --logs && lerna run tsc",
     "clean-build": "yarn run hardhat clean && yarn run hardhat compile && yarn run hardhat test --logs",
     "full-build": "yarn run hardhat clean && yarn run hardhat compile && yarn run hardhat typechain && yarn run hardhat test --logs && yarn docs",
-    "docs": "asciidoctor-reducer --preserve-conditionals -o README.adoc readme-template.adoc && asciidoctor-reducer --preserve-conditionals -o docs/projects/dws/dws-whitepaper-template.adoc docs/projects/dws/dws-whitepaper.adoc"
+    "docs": "asciidoctor-reducer --preserve-conditionals -o docs/daosys-documentation.adoc docs/daosys-documentation-template.adoc",
+    "litepaper": "asciidoctor-reducer --preserve-conditionals -o docs/daosys-litepaper.adoc docs/daosys-litepaper-template.adoc",
+    "full-docs": "asciidoctor-reducer --preserve-conditionals -o README.adoc readme-template.adoc && asciidoctor-reducer --preserve-conditionals -o docs/projects/dws/dws-whitepaper-template.adoc docs/projects/dws/dws-whitepaper.adoc"
   },
   "devDependencies": {
     "@asciidoctor/core": "^2.2.6",
