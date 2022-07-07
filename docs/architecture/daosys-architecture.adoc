@@ -27,7 +27,7 @@ include::design_patterns/daosys-design_patterns-00.adoc[leveloffset=+1]
 
 // include::./core/daosys-architecture-core-00.adoc[leveloffset=+1]
 
-// include::./interface_hooks/daosys-architecture-interface_hooks-00.adoc[leveloffset=+1]
+include::./interface_hooks/daosys-architecture-interface_hooks-00.adoc[leveloffset=+1]
 
 // include::./modifiers/daosys-architecture-modifiers-00.adoc[leveloffset=+1]
 

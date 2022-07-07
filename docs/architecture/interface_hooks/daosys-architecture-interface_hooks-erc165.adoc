@@ -26,7 +26,22 @@ This is a DDSA compliant implementation of https://eips.ethereum.org/EIPS/eip-16
 
 // TODO Write docs for implementation.
 
-// [source, solidity]
-// ----
-// include::../../../contracts/introspection/erc165/storage/ERC165Storage.sol[lines="1..-1"]
-// ----
+[source, solidity]
+----
+include::../../../contracts/introspection/erc165/interfaces/IERC165.sol[lines="1..-1"]
+----
+
+[source, solidity]
+----
+include::../../../contracts/introspection/erc165/ERC165.sol[lines="1..-1"]
+----
+
+[source, solidity]
+----
+include::../../../contracts/introspection/erc165/logic/ERC165Logic.sol[lines="1..-1"]
+----
+
+[source, solidity]
+----
+include::../../../contracts/introspection/erc165/storage/ERC165Storage.sol[lines="1..-1"]
+----

@@ -1,8 +1,8 @@
-= ASE DDSA Primitive Data Types
+= ASE Security Contract Modifiers
 ifndef::compositing[]
 :author: cyotee doge
 :email: cyotee@syscoin.org
-:revdate: 2022-02-19
+:revdate: 2022-07-01
 :revnumber: 0.1
 :revremark: Initial draft.
 :toc:
@@ -16,4 +16,4 @@ ifndef::compositing[]
 :compositing:
 endif::[]
 
-include::./daosys-architecture-ddsa_types-collections-sets-01-bytes4Set.adoc[leveloffset=+1]
+include::access/daosys-architecture-modifiers-security-access.adoc[leveloffset=+1]
