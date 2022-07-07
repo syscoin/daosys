@@ -45,6 +45,20 @@ library Create2DeploymentMetadataStorageUtils {
     assembly{ layout.slot := saltedSlot }
   }
 
+  function _setFactory(
+    Create2DeploymentMetadataStorage.Layout storage layout,
+    address factoryAddress
+  ) internal {
+    layout.factoryAddress._setValue(factoryAddress);
+  }
+
+  function _setDeploymentSalt(
+    Create2DeploymentMetadataStorage.Layout storage layout,
+    bytes32 deploymentSalt
+  ) internal {
+    layout.deploymentSalt._setValue(deploymentSalt);
+  }
+
   function _setCreate2DeploymentMetaData(
     Create2DeploymentMetadataStorage.Layout storage layout,
     address factoryAddress,
@@ -52,6 +66,22 @@ library Create2DeploymentMetadataStorageUtils {
   ) internal {
     layout.deploymentSalt._setValue(deploymentSalt);
     layout.factoryAddress._setValue(factoryAddress);
+  }
+
+  function _getCreate2Factory(
+    Create2DeploymentMetadataStorage.Layout storage layout
+  ) view internal returns (
+    address factoryAddress
+  ) {
+    factoryAddress = layout.factoryAddress._getValue();
+  }
+
+  function _getDeploymentSalt(
+    Create2DeploymentMetadataStorage.Layout storage layout
+  ) view internal returns (
+    bytes32 deploymentSalt
+  ) {
+    deploymentSalt = layout.deploymentSalt._getValue();
   }
 
   function _getCreate2DeploymentMetadata(
@@ -62,14 +92,6 @@ library Create2DeploymentMetadataStorageUtils {
   ) {
     factoryAddress = layout.factoryAddress._getValue();
     deploymentSalt = layout.deploymentSalt._getValue();
-  }
-
-  function _getCreate2Factory(
-    Create2DeploymentMetadataStorage.Layout storage layout
-  ) view internal returns (
-    address factoryAddress
-  ) {
-    factoryAddress = layout.factoryAddress._getValue();
   }
 
 }

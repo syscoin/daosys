@@ -20,6 +20,6 @@ endif::[]
 
 // include::./daosys-architecture-interface_hooks-02-delegate_service_registry_aware.adoc[leveloffset=+1]
 
-// include::./daosys-architecture-interface_hooks-03-create2metadata.adoc[leveloffset=+1]
+include::./daosys-architecture-interface_hooks-create2metadata.adoc[leveloffset=+1]
 
 include::./daosys-architecture-interface_hooks-erc165.adoc[leveloffset=+1]

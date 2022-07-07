@@ -18,10 +18,10 @@ ifndef::compositing[]
 :compositing:
 endif::[]
 
-// include::daosys-architecture-ddsa_types-primitives-address.adoc[leveloffset=+1]
+include::daosys-architecture-ddsa_types-primitives-address.adoc[leveloffset=+1]
 
 include::daosys-architecture-ddsa_types-primitives-bool.adoc[leveloffset=+1]
 
-// include::daosys-architecture-ddsa_types-primitives-bytes32.adoc[leveloffset=+1]
+include::daosys-architecture-ddsa_types-primitives-bytes32.adoc[leveloffset=+1]
 
 include::daosys-architecture-ddsa_types-primitives-string.adoc[leveloffset=+1]

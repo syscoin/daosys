@@ -2,7 +2,13 @@
 pragma solidity ^0.8.0;
 
 import {
-  ImmutableModifiers
-} from "contracts/security/access/immutable/modifiers/ImmutableModifiers.sol";
+  ImmutableLogic
+} from "contracts/security/access/immutable/logic/ImmutableLogic.sol";
 
-abstract contract Immutable is ImmutableModifiers {}
+abstract contract Immutable is ImmutableLogic {
+  modifier isNotImmutable( bytes32 storageSlot ) {
+    require( !_isImmutable(storageSlot), "Immutable:: This function is immutable." );
+    _;
+    _makeImmutable(storageSlot);
+  }
+}
