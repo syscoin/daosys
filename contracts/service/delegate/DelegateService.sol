@@ -16,11 +16,16 @@ import {
   ICreate2DeploymentMetadata,
   Immutable
 } from "contracts/evm/create2/metadata/Create2DeploymentMetadata.sol";
+import {
+  DelegateServiceRegistryAware,
+  IDelegateServiceRegistryAware
+} from "contracts/registries/service/delegate/aware/DelegateServiceRegistryAware.sol";
 
 abstract contract DelegateService
   is
     IDelegateService,
     DelegateServiceLogic,
+    DelegateServiceRegistryAware,
     Create2DeploymentMetadata
 {
 
@@ -29,7 +34,7 @@ abstract contract DelegateService
   // constructor() {
     
   // }
-
+  
   function _initServiceDef(
     bytes4 interfaceId,
     bytes4[] memory functionSelectors
@@ -45,6 +50,8 @@ abstract contract DelegateService
     );
   }
 
+  // TODO Implement init as accepting DelegateServiceRegistry address, storing under IDelegateServiceRegistryAware, and then registering itself with that registry.
+  // TODO Refactor to be part of deployment with addition of constructor argument support in Create2Utils.
   // function registerDelegateService(
   //   bytes32 deploymentSalt
   // ) external returns (bool success) {

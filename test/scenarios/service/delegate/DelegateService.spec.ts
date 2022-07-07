@@ -91,6 +91,15 @@ describe("Delegate Service", function () {
       });
     });
 
+    describe("#getDelegateServiceRegistry()", function () {
+      describe("()", function () {
+        it("Accurately reports Delegate Service Registry", async function () {
+          await delegateServiceMock.setDelegateServiceRegistry(delegateServiceMock.address);
+          expect(await delegateServiceMock.getDelegateServiceRegistry()).to.equal(delegateServiceMock.address);
+        });
+      });
+    });
+
   });
 
   /* -------------------------------------------------------------------------- */

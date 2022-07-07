@@ -16,14 +16,7 @@ library Address {
   
 }
 
-/* -------------------------------------------------------------------------- */
-/*                             !SECTION Address                               */
-/* -------------------------------------------------------------------------- */
-
-/* -------------------------------------------------------------------------- */
-/*                            SECTION AddressUtils                            */
-/* -------------------------------------------------------------------------- */
-
+// TODO Write unit tests for remaining functions. Check test/scenarios/types/primitives/Address.spec.ts for missing tests.
 library AddressUtils {
 
   using AddressUtils for address;
@@ -115,6 +108,7 @@ library AddressUtils {
     return __functionCallWithValue(target, data, value, error);
   }
 
+  // TODO Add DELEGATECALL version of this functionality. Obviously remove VALUE support as DELEGATECALL can not forward gas.
   function __functionCallWithValue(address target, bytes memory data, uint value, string memory error) private returns (bytes memory) {
     require(_isContract(target), 'AddressUtils: function call to non-contract');
 
@@ -151,6 +145,7 @@ library AddressUtils {
       
     }
 
+  // TODO Refactor Create2Utils to reuse this function.
   function _calculateDeploymentAddressFromAddress(
       address deployer,
       bytes32 initCodeHash,

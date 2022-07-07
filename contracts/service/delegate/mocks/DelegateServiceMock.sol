@@ -11,10 +11,19 @@ contract DelegateServiceMock is DelegateService {
   constructor() {
     bytes4[] memory functionSelectors = new bytes4[](1);
     functionSelectors[0] = IDelegateService.getServiceDef.selector;
-    DelegateService._initServiceDef(
+    _initServiceDef(
       type(IDelegateService).interfaceId,
       functionSelectors
     );
+  }
+
+  function setDelegateServiceRegistry(
+    address delegateServiceRegistry
+  ) external returns (bool success) {
+    _setDelegateServiceRegistry(
+      delegateServiceRegistry
+    );
+    success = true;
   }
 
   function IDelegateServiceInterfaceId() pure external returns (bytes4 interfaceId) {

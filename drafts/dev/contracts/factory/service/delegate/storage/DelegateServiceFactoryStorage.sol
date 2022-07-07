@@ -20,7 +20,6 @@ library DelegateServiceFactoryStorageUtils {
 
   using AddressUtils for Address.Layout;
 
-
   bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(DelegateServiceFactoryStorage).creationCode);
 
   function _structSlot() pure internal returns (bytes32 structSlot) {

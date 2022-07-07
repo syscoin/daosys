@@ -33,3 +33,5 @@ The standard Service initialization functions must still be implemented, but may
 All Services are required to implement https://eips.ethereum.org/EIPS/eip-165[ERC-165] including the Service extension that enumerates the functions.
 The Service extension to https://eips.ethereum.org/EIPS/eip-165[ERC-165] includes a per interface enumeration of the function selectors that define the interface ID.
 Additionally, there is an enumeration of all the function selectors across all interface IDs, and a ServiceDef struct that includes the information for initializing a Service Proxy to consume the Service.
+
+// TODO update with explanation of inclusion of IDelegateServiceRegistryAware.
