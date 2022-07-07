@@ -41,12 +41,12 @@ library MinimalProxyFactoryLib {
     return FactoryUtils._calculateDeploymentAddress(keccak256(_generateMinimalProxyInitCode(target)), salt);
   }
 
-  /**
-   * @notice concatenate elements to form EIP1167 minimal proxy initialization code
-   * @param target implementation contract to proxy
-   * @return bytes memory initialization code
-   */
-  function _generateMinimalProxyInitCode(address target) internal pure returns (bytes memory) {
-    return abi.encodePacked(MINIMAL_PROXY_INIT_CODE_PREFIX, target, MINIMAL_PROXY_INIT_CODE_SUFFIX);
-  }
+  // /**
+  //  * @notice concatenate elements to form EIP1167 minimal proxy initialization code
+  //  * @param target implementation contract to proxy
+  //  * @return bytes memory initialization code
+  //  */
+  // function _generateMinimalProxyInitCode(address target) internal pure returns (bytes memory) {
+  //   return abi.encodePacked(MINIMAL_PROXY_INIT_CODE_PREFIX, target, MINIMAL_PROXY_INIT_CODE_SUFFIX);
+  // }
 }

@@ -18,7 +18,11 @@ abstract contract FactoryLogic {
    * @param creationCode contract initialization code
    * @return deploymentAddress address of deployed contract
    */
-  function _deploy(bytes memory creationCode) internal returns (address deploymentAddress) {
+  function _deploy(
+    bytes memory creationCode
+  ) internal returns (
+    address deploymentAddress
+  ) {
     deploymentAddress = CreateUtils._deploy(creationCode);
   }
 
@@ -29,7 +33,12 @@ abstract contract FactoryLogic {
    * @param salt input for deterministic address calculation
    * @return deploymentAddress address of deployed contract
    */
-  function _deployWithSalt(bytes memory creationCode, bytes32 salt) internal returns (address deploymentAddress) {
+  function _deployWithSalt(
+    bytes memory creationCode,
+    bytes32 salt
+  ) internal returns (
+    address deploymentAddress
+  ) {
     deploymentAddress = Create2Utils._deployWithSalt(creationCode, salt);
     require(deploymentAddress == _calculateDeploymentAddress(
         keccak256(creationCode),
@@ -51,7 +60,12 @@ abstract contract FactoryLogic {
    * @param salt input for deterministic address calculation
    * @return deploymentAddress Calculated deployment address
    */
-  function _calculateDeploymentAddress(bytes32 creationCodeHash, bytes32 salt) view internal returns (address deploymentAddress) {
+  function _calculateDeploymentAddress(
+    bytes32 creationCodeHash,
+    bytes32 salt
+  ) view internal returns (
+    address deploymentAddress
+  ) {
     deploymentAddress = _calculateDeploymentAddressFromAddress(
       address(this),
       creationCodeHash,
@@ -63,7 +77,9 @@ abstract contract FactoryLogic {
       address deployer,
       bytes32 creationCodeHash,
       bytes32 salt
-    ) pure internal returns (address deploymenAddress) {
+    ) pure internal returns (
+      address deploymenAddress
+    ) {
     deploymenAddress = Create2Utils._calculateDeploymentAddress(
       deployer,
       creationCodeHash,

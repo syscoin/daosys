@@ -22,12 +22,10 @@ describe('MinimalProxyFactory', function () {
         it('deploys minimal proxy and returns deployment address', async function () {
           const target = instance.address;
 
-          const address = await instance.callStatic[
-            '__deployMinimalProxy(address)'
-          ](target);
+          const address = await instance.callStatic.deployMinimalProxy(target);
           expect(address).to.be.properAddress;
 
-          await instance['__deployMinimalProxy(address)'](target);
+          await instance.deployMinimalProxy(target);
 
           expect(await ethers.provider.getCode(address)).to.equal(
             '0x' +
@@ -49,12 +47,10 @@ describe('MinimalProxyFactory', function () {
           const target = instance.address;
           const salt = ethers.utils.randomBytes(32);
 
-          const address = await instance.callStatic[
-            '__deployMinimalProxyWithSalt(address,bytes32)'
-          ](target, salt);
+          const address = await instance.callStatic.deployMinimalProxyWithSalt(target, salt);
           expect(address).to.be.properAddress;
 
-          await instance['__deployMinimalProxyWithSalt(address,bytes32)'](target, salt);
+          await instance.deployMinimalProxyWithSalt(target, salt);
 
           expect(await ethers.provider.getCode(address)).to.equal(
             '0x' +
@@ -73,10 +69,10 @@ describe('MinimalProxyFactory', function () {
             const target = instance.address;
             const salt = ethers.utils.randomBytes(32);
 
-            await instance['__deployMinimalProxyWithSalt(address,bytes32)'](target, salt);
+            await instance.deployMinimalProxyWithSalt(target, salt);
 
             await expect(
-              instance['__deployMinimalProxyWithSalt(address,bytes32)'](target, salt),
+              instance.deployMinimalProxyWithSalt(target, salt),
             ).to.be.revertedWith('Create2Utils: failed deployment');
           });
         });
@@ -86,12 +82,12 @@ describe('MinimalProxyFactory', function () {
     describe('#_calculateMinimalProxyDeploymentAddress', function () {
       it('returns address of not-yet-deployed contract', async function () {
         const target = instance.address;
-        const initCode = await instance.callStatic.__generateMinimalProxyInitCode(target);
+        const initCode = await instance.callStatic.generateMinimalProxyInitCode(target);
         const initCodeHash = ethers.utils.keccak256(initCode);
         const salt = ethers.utils.randomBytes(32);
 
         expect(
-          await instance.callStatic.__calculateMinimalProxyDeploymentAddress(target, salt),
+          await instance.callStatic.calculateMinimalProxyDeploymentAddress(target, salt),
         ).to.equal(ethers.utils.getCreate2Address(target, salt, initCodeHash));
       });
     });
@@ -99,7 +95,7 @@ describe('MinimalProxyFactory', function () {
     describe('#_generateMinimalProxyInitCode', function () {
       it('returns packed encoding of initialization code prefix, target address, and initialization code suffix', async function () {
         const target = instance.address;
-        const initCode = await instance.callStatic.__generateMinimalProxyInitCode(target);
+        const initCode = await instance.callStatic.generateMinimalProxyInitCode(target);
 
         expect(initCode).to.equal(
           '0x' +
