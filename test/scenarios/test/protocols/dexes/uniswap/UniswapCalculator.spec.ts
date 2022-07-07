@@ -16,7 +16,6 @@ import { constants } from 'ethers';
 import { createUniswapPair, expandToNDecimals, sqrt } from '../../../../../fixtures/uniswap.fixture';
 
 
-
 describe("UniswapCalculator", () => {
 
     let deployer: SignerWithAddress;
@@ -31,8 +30,6 @@ describe("UniswapCalculator", () => {
     let uniswap: UniswapV2Factory;
     let uniswapCalc: UniswapLiquidityCalculator;
     const minimumLiquidity = BigNumber.from(10).pow(3)
-
-
 
     beforeEach("get signer, deploy calculator contract", async () => {
         [deployer, lpHolder] = await ethers.getSigners();

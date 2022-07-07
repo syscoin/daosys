@@ -13,13 +13,44 @@ import "hardhat/console.sol";
 library UniswapLiquidityDeposit {
     using SafeMath for uint;
 
-    function testFunc(
-        uint x
-    ) internal pure returns (
-        uint y
+    function tokenAmountProRata(
+        IUniswapV2Pair pair,
+        address token,
+        uint256 lpBalance
+    ) public view returns (
+        uint256 tokenAmount
     ) {
-        y = 10000000000000000000;
+        uint pairBalance = IERC20(token).balanceOf(address(pair));
+        tokenAmount = lpBalance * pairBalance / pair.totalSupply();
+    }
+
+    function inspectUniV2LP(
+        address uniV2LP,
+        address holder
+    ) external view returns (
+        uint256 totalSupply,
+        uint256 lpBalance,
+        address token0,
+        uint256 token0Amount,
+        address token1,
+        uint256 token1Amount
+    ) {
+        IUniswapV2Pair pair = IUniswapV2Pair(uniV2LP);
+        totalSupply = pair.totalSupply();
+        lpBalance = pair.balanceOf(holder);
+        token0 = pair.token0();
+        token0Amount = tokenAmountProRata(pair, token0, lpBalance);
+        token1 = pair.token1();
+        token1Amount = tokenAmountProRata(pair, token1, lpBalance);
     }
 
 
-}    
+    function testFunc(
+        uint256 x
+    ) external view returns (
+        uint256 y
+    ) { 
+        y = x;
+    }
+
+}
