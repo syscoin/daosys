@@ -3,8 +3,8 @@ pragma solidity ^0.8.0;
 
 import {
   FactoryLogic
-} from "contracts/factories/logic/FactoryLogic.sol";
-import {IFactory} from "contracts/factories/interfaces/IFactory.sol";
+} from "contracts/factory/logic/FactoryLogic.sol";
+import {IFactory} from "contracts/factory/interfaces/IFactory.sol";
 
 /**
  * @title Factory for arbitrary code deployment using the "CREATE" and "CREATE2" opcodes

@@ -37,5 +37,5 @@ Proxies can allow interaction with tokens and pools that have not been deployed 
 
 [source,solidity]
 ----
-include::../../../contracts/factories/Factory.sol[]
+include::../../../contracts/factory/Factory.sol[]
 ----

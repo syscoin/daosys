@@ -5,7 +5,7 @@ pragma solidity ^0.8.0;
 import {
   IFactory,
   Factory
-} from 'contracts/factories/Factory.sol';
+} from 'contracts/factory/Factory.sol';
 
 contract FactoryMock is Factory {
   function IFactoryInterfaceId() pure external returns (bytes4 interfaceId) {

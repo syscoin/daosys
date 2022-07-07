@@ -3,16 +3,16 @@ pragma solidity ^0.8.0;
 
 import {
   CreateUtils
-} from "contracts/evm/create/libraries/CreateUtils.sol";
+} from "contracts/evm/create/utils/CreateUtils.sol";
 import {
   Create2Utils
-} from "contracts/evm/create2/libraries/Create2Utils.sol";
+} from "contracts/evm/create2/utils/Create2Utils.sol";
 
 /**
  * @title Factory for arbitrary code deployment using the "CREATE" and "CREATE2" opcodes
  */
-library FactoryUtils {
-
+abstract contract FactoryLogic {
+  
   /**
    * @notice deploy contract code using "CREATE" opcode
    * @param creationCode contract initialization code
@@ -31,8 +31,7 @@ library FactoryUtils {
    */
   function _deployWithSalt(bytes memory creationCode, bytes32 salt) internal returns (address deploymentAddress) {
     deploymentAddress = Create2Utils._deployWithSalt(creationCode, salt);
-    require(deploymentAddress == FactoryUtils
-      ._calculateDeploymentAddress(
+    require(deploymentAddress == _calculateDeploymentAddress(
         keccak256(creationCode),
         salt
       ),
@@ -53,7 +52,7 @@ library FactoryUtils {
    * @return deploymentAddress Calculated deployment address
    */
   function _calculateDeploymentAddress(bytes32 creationCodeHash, bytes32 salt) view internal returns (address deploymentAddress) {
-    deploymentAddress = FactoryUtils._calculateDeploymentAddressFromAddress(
+    deploymentAddress = _calculateDeploymentAddressFromAddress(
       address(this),
       creationCodeHash,
       salt
@@ -71,4 +70,5 @@ library FactoryUtils {
       salt
     );
   }
+
 }

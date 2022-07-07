@@ -24,4 +24,4 @@ include::daosys-design_patterns-proxy.adoc[leveloffset=+1]
 
 // include::./daosys-design_patterns-04-transaction_router.adoc[leveloffset=+1]
 
-// include::./daosys-design_patterns-05-ddsa.adoc[leveloffset=+1]
+include::daosys-design_patterns-ddsa.adoc[leveloffset=+1]
