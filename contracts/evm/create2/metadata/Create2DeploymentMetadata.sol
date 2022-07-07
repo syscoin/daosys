@@ -26,6 +26,10 @@ abstract contract Create2DeploymentMetadata
 
   constructor() {
     _configERC165(type(ICreate2DeploymentMetadata).interfaceId);
+    _setFactory(
+      STORAGE_SLOT_SALT,
+      msg.sender
+    );
   }
 
   modifier _onlyRelative(
@@ -48,14 +52,28 @@ abstract contract Create2DeploymentMetadata
     _;
   }
 
+  /**
+   * @notice Called by the Create2MetadataAwareFactoryLogic, rendering function immutable after deployment.
+   */
   function initCreate2DeploymentMetadata(
     bytes32 deploymentSalt
-  ) external isNotImmutable(STORAGE_SLOT_SALT) returns (bool success) {
-    _setCreate2DeploymentMetaData(
-      msg.sender,
+  ) external
+    isNotImmutable(STORAGE_SLOT_SALT)
+    returns (bool success)
+  {
+    _setDeploymentSalt(
       deploymentSalt
     );
     success = true;
+  }
+
+  function _setDeploymentSalt(
+    bytes32 deploymentSalt
+  ) internal {
+    _setDeploymentSalt(
+      STORAGE_SLOT_SALT,
+      deploymentSalt
+    );
   }
 
   function _setCreate2DeploymentMetaData(

@@ -26,6 +26,7 @@ describe('Create2MetadataAwareFactory Test Suite', function () {
   
   let create2MetadataAwareFactory: Create2MetadataAwareFactoryMock;
   let newCreate2MetadataAwareFactory: Create2MetadataAwareFactoryMock;
+  let newFactoryAsICreate2DeploymentMetadata: ICreate2DeploymentMetadata;
   let newCreate2MetadataAwareFactoryERC165: IERC165;
 
   before(async function () {
@@ -71,7 +72,7 @@ describe('Create2MetadataAwareFactory Test Suite', function () {
           const initCode = await create2MetadataAwareFactory.deployTransaction.data;
           const initCodeHash = ethers.utils.keccak256(initCode);
 
-          const address = await create2MetadataAwareFactory.callStatic['deployWithCreate2Metadata(bytes,bytes32)'](
+          const address = await create2MetadataAwareFactory.callStatic.deployWithCreate2Metadata(
             initCode,
             initCodeHash,
           );
