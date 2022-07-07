@@ -1,0 +1,63 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="306px" height="301px" viewBox="-0.5 -0.5 306 301" content="&lt;mxfile&gt;&lt;diagram id=&quot;kgpKYQtTHZ0yAKxKKP6v&quot; name=&quot;Page-1&quot;&gt;7VjLcpswFP0alukYMMZe2k7iLtJJpulMmqUMN6BalhghYtyvr4QEGHBip37U7XTjkc4VV9I594Gx3Okyn3GUxF9YCMRyemFuudeW44z8ofxVwFoD/sDXQMRxqCG7Bh7xTzBgz6AZDiFtLBSMEYGTJhgwSiEQDQxxzlbNZS+MNHdNUAQd4DFApIs+4VDEGh16vRr/DDiKy53tnrHMUbCIOMuo2Y8yCtqyRKUbszSNUchWG5B7Y7lTzpjQo2U+BaJYLRnTz92+Ya2OzIGKfR5waTa5zfkoWN/1Enr/9M1Bsyvj5RWRzFBhueP7+Q9Fsj61WJckyQskapgtyR1+AYLlVd1JAhwvQQCXFmLghxqbSMkEkpiy28WcEJSkeF647UmEQ5DxFL/CV0h1ZBSoIhVCM6vIKyaCs0UllHLa5aK8GHAB+QZkuJkBkwfka7mktJY6mRAemumqjodK9XgjFtwSRCYGo8p1LYYcGD0+oI3T1aYtScIwFcW+3sTyrltyMC5iFjGKyKYgBxL7bhjtzXbfa5DtbyO7y7U9OhXXbofrEKcJEkHc4VxdEsvSMSY4ohKaMyHYsmAPcTFW1UhxL11JDGhYInPCgkW5zJTA4bEVkL4jeG+diSEIGwWxqxMHgoTMyWap3UK7efRBRWKt75W9XeDSQ8oyHoB5qKVddYrfl7P/D6eO16xTVd3akTvDU6WO97+F5K1WcDEtZPD35IH3UbZbLWQr2VtayOBUXPsdrjmIjNP9G8hGs2AJSNMkRGlc8Gxr80bbgByL74Z0NX5W408j74BI10V5dzhdSpNx/GYIOO6g6UIf9GRdZniEl4YtLwhSFr6upFWT5wNL2E5hnT2FHfwZYTtJe+LXh1FHWCkdUf/1jiOsfTZh983Y/pmE7Tc7pNPufCcWtuwI5y7S9hmLdP/CcrktuecfqUjLaf31RC+vP065N78A&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <rect x="25" y="0" width="100" height="40" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <path d="M 75 40 L 75 300" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="all"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" text-anchor="middle" font-size="12px">
+            <text x="74.5" y="24.5">
+                :Object
+            </text>
+        </g>
+        <rect x="70" y="70" width="10" height="190" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <path d="M 14 70 L 61.88 70" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <ellipse cx="10" cy="70" rx="4" ry="4" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <path d="M 68.88 70 L 61.88 73.5 L 61.88 66.5 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" text-anchor="middle" font-size="11px">
+            <rect fill="rgb(255, 255, 255)" stroke="none" x="19" y="55" width="43" height="14" stroke-width="0"/>
+            <text x="39.5" y="64.5">
+                dispatch
+            </text>
+        </g>
+        <rect x="75" y="120" width="10" height="80" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <rect x="205" y="0" width="100" height="40" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <path d="M 255 40 L 255 300" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="all"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" text-anchor="middle" font-size="12px">
+            <text x="254.5" y="24.5">
+                :Object
+            </text>
+        </g>
+        <rect x="250" y="80" width="10" height="160" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <path d="M 250 232 L 82.24 232" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 90.12 227.5 L 81.12 232 L 90.12 236.5" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" text-anchor="middle" font-size="11px">
+            <rect fill="rgb(255, 255, 255)" stroke="none" x="150" y="216" width="31" height="14" stroke-width="0"/>
+            <text x="164.5" y="226.5">
+                return
+            </text>
+        </g>
+        <path d="M 80 80 L 241.88 80" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 248.88 80 L 241.88 83.5 L 241.88 76.5 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" text-anchor="middle" font-size="11px">
+            <rect fill="rgb(255, 255, 255)" stroke="none" x="144" y="65" width="43" height="14" stroke-width="0"/>
+            <text x="164.5" y="74.5">
+                dispatch
+            </text>
+        </g>
+        <path d="M 250 120 L 93.12 120" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 86.12 120 L 93.12 116.5 L 93.12 123.5 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" text-anchor="middle" font-size="11px">
+            <rect fill="rgb(255, 255, 255)" stroke="none" x="147" y="105" width="42" height="14" stroke-width="0"/>
+            <text x="166.5" y="114.5">
+                callback
+            </text>
+        </g>
+        <path d="M 85 196 L 247.76 196" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 239.88 200.5 L 248.88 196 L 239.88 191.5" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" text-anchor="middle" font-size="11px">
+            <rect fill="rgb(255, 255, 255)" stroke="none" x="153" y="181" width="31" height="14" stroke-width="0"/>
+            <text x="167.5" y="190.5">
+                return
+            </text>
+        </g>
+    </g>
+</svg>

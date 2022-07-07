@@ -1,0 +1,178 @@
+= DAOSYS Ecosystem Research
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-05-06
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem:
+:pathtoroot: ../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+== Defi Ecosystem Requirements
+
+The DAOSYS Automated Service Engine has minimal requirements for the underlying defi ecosystem.
+These requirements can be classified in three categories.
+
+* Essential - Protocol functionality must exist. DAOSYS will not function without available functionality.
+* Desired - Protocol functionality should exist. DAOSYS will be greatly enhanced if the functionality is available.
+* Acceptable - Protocol functionality can exist. DAOSYS can leverage the functionality is available.
+
+The DAOSYS launch MVP is planned to meet Essential protocol functionality.
+The Desired and Acceptable protocol functionality is planned for future releases.
+
+=== Essential Protocol Functionality
+
+The only essential protocol functionality is a decentralized exchange that can handle continuously rebasing ERC20 tokens.
+Currently only Mooniswap and Balancer support continuously rebasing ERC20 tokens.
+
+Mooniswap was deployed by 1Inch Exchange.
+The Mooniswap code is open-source and may be redeployed.
+
+Balancer was deployed by Balancer labs.
+The Balance code is open-source and may be redeployed.
+
+We plan to simply redeploy a fork of the Mooniswap code as part of launch.
+
+=== Desired Protocol Functionality
+
+Desired protocol functionality can be classified into three categories
+
+* Lending
+* Bridges
+* Management Services
+
+In these categories the desired categories can be divided classifications
+
+* Highly Desired - A primary candidate can be identified that if that protocol would not deploy on any Syscoin chain *AND* no Merely Desired protocol wishes to launch on any Syscoin chain then we would redeploy the primary candidate if licensing allows.
+* Merely Desired - One or more candidates can be identified that provide functionality that would provide enough benefit to DAOSYS it would be better to devote resources to integration rather then redeploying the primary candidate.
+
+==== Lending
+
+The decision for primary integration with a lending protocol is driven by ease of integration and utility of the provided lending market.
+Market utility is measured with two factors, interest rate arbitrage and the number of assets accepted as collateral.
+
+The primary value of integrating with a lending market can be quantified in two factors.
+The available liquidity, and the service that lending protocol development team and community can provide in defining criteria for the inclusion of an asset with the protocol.
+This would be improved if the lending protocol can provide analysis and design services to help and asset meet that criteria.
+
+===== Highly Desired
+
+NOTE: Maker DAO is considered as a lending protocol.
+Due to the inability for the Maker DAO Vault architecture to allow for minting DAI without bridging to Ethereum that are not considered viable. The whole of the DAOSYS ASE architecture serves as a replacement for Maker DAO Vaults.
+
+*Aave*
+
+The continuously rebasing tokens introduced with Aave V2 is the basis for the two DAOSYS vault tokens.
+This makes integration with DAOSYS vaults trivial.
+
+The Aave market design provides ready access to interest rate arbitrage.
+The primary limiter is the Aave governance model that sets the utilization curve and interest rate for assets, including approving assets as collateral.
+These present such an untenable loss of control to potentially malicious actors that the DAOSYS ASE has integrated this lending protocol functionality into the vault design.
+
+It would be highly desirable to have a Aave V2 lending market available, but the governance control of interest rates means it will have to be treated as an external protocol.
+Thus DAOSYS is designed to improve on this functionality to point it's not needed.
+
+===== Merely Desired
+
+Because the value of integrating with a lending market primarily comes from the available liquidity, selecting a lending protocol comes down to the support that protocol can offer in supporting ecosystem expansion.
+
+We feel it's not worth pursuing existing lending protocols as they will effectively have nothing to offer unless they can bring liquidity on deployment.
+
+*Geist*
+
+Geist is a fork of Aave V2 that might be open to providing ecosystem support with research.
+Geist has already launched on Fantom.
+
+*BenQi*
+
+BenQi is a fork of Aave V2 that might be open to providing ecosystem support with research.
+BenQi has already launched on Avalanche.
+
+==== Bridges
+
+Currently the only viable bridge service in our opinion is Multiswap.
+Multiswap is already working with Syscoin, so there's no need to pursue a bridge service.
+
+==== Management Services
+
+Off-chain resource management services are Desired for both the DAOSYS Quest pools and future integration with DWS.
+
+* Radicle
+* Dework
+* Wonderverse
+* DaoTown
+
+===== Radicle
+
+Radicle is a decentralized git solution based on BitTorrent.
+Radicle would be ideal for managing work under DAOSYS Quests.
+
+Radicle is currently deployed on Ethereum and integrates with Gnosis Wallet.
+There is no need for liquidity to deploy Radicle on any Syscoin chain or to integrate with DAOSYS.
+
+Radicle code is open-source and may be redeployed freely.
+The Radicle team appears to offer a standard response to request for integrations.
+That the code is open-source and you are free to reuse it as you wish.
+We can likely secure interest if we approach them 
+
+===== Dework / Wonderverse
+
+Both Dework and Wonderverse are project management solutions similar to Trello.
+The distinguishing feature for both is the inclusion of bounties with project tasks.
+This functionality directly overlaps with DAOSYS Quests.
+Integrating with Dework and/or Wonderverse would allow us provide more robust project management solutions sooner then if we developed them internally.
+
+Dework seems to be most mature of the two solutions.
+While both are desirable to offer DAOSYS users more options, Dework should be prioritized for any Syscoin resource allocation.
+
+The ideal integration would be to treat DAOSYS vaults as both platform treat Gnosis Wallet.
+Which is as a funding source.
+In both cases we can offer the value proposition of being an interest earning escrow option for bounties.
+
+Both Dework and Wonderverse are eager to integrate with DAOSYS.
+
+===== DaoTown
+
+DaoTown is a DAO smart contract factory platform.
+This functionality directly overlaps with DAOSYS Roundtables.
+DaoTown is oriented on providing users with well designed UI/UX solutions.
+
+Integrating with DaoTown would allow DAOSYS to offload some of the UI development cost to DaoTown.
+The value-add DAOSYS can offer DaoTown is more DAO templates and richer financial management solutions.
+
+The ideal integration would be to incorporate DaoTown smart contracts into the DAOSYS Factory in addition to the planned DAOSYS Roundtable.
+Then to integrate DaoTown as the primary UI for the DAOSYS Factory.
+
+DaoTown is eager to integrate with DAOSYS.
+
+=== Acceptable Protocol Functionality
+
+Any protocol or service not listed can be classified as Acceptable provided is meets the following criteria.
+
+* Secure Code
+* Viable Tokenomics
+* Continuity Assurance
+
+This would include Mute.io and Pegasys as examples.
+The protocols can be consumed by DAOSYS Vaults.
+And the option would be beneficial to users.
+But are not essential or more desirable over any other defi protocol.
+
+Validating code security will require internal review and assessment of all smart contracts, and UIs.
+The security factor often neglected when considering integration is who controls the hosting and DNS for the UI.
+When DAOSYS integrates with any defi protocols, a version of the protocol's UI will have to be deployed to either an immutable datastore like IPFS, or hosting controlled by DAOSYS.
+This includes censorship resistant DNS such a Handshake.
+
+I have already secured the `daosys/` Handshake TLD for this purpose.
+
+These concerns are similar to confirming continuity of services for defi protocols that are dependent upon off-chain resources.
+An example would be a NFT marketplace.
+If DAOSYS is going to offer Foundation sanctioned integrations for a defi asset that is dependent upon the off-chain resources, DAOSYS should ensure that users have a means to secure their own assurance of continuity of service.

@@ -1,0 +1,23 @@
+= Delegate Services
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-02-19
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+include::daosys-component-delegate_service.adoc[leveloffset=+1]
+
+include::daosys-component-delegate_service_registry.adoc[leveloffset=+1]
+
+include::daosys-component-service_proxy.adoc[leveloffset=+1]

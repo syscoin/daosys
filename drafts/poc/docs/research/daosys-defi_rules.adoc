@@ -1,0 +1,64 @@
+= Laws of DeFi
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-03-25
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem:
+
+ifndef::compositing[]
+:imagesdir: ../
+endif::[]
+
+ifndef::compositing[]
+:compositing:
+endif::[]
+
+== Rule 0 - I need no sanction for my being
+
+Governance is cancer.
+Democracy is tyranny.
+Multi-sig is theft.
+
+== Rule 1 - The chain is the only source of truth
+
+On-chain data is the only acceptable source of truth during a transaction.
+If a price oracle is needed, that price oracle must be on-chain, and must calculate the price using on-chain data.
+
+== Rule 2 - Thou shalt have no price before the TWAP
+
+Always use the time weighted average price to protect against market manipulation during a transaction.
+
+== Rules 3 - Only trust known addresses
+
+Only accept deposits and process tokens of known addresses.
+Use either an explicit ACL of allowed tokens, or verify the token address pedigree.
+
+== Rule 4 - Only index cash in hand
+
+When processing deposits take the money first, and only count the amount received.
+
+== Rule 5 - One in the hand is worth two in the bush; unless that bush is deterministic
+
+Being deterministically owed money is worth more then having money now.
+
+== Rule 6 - AMM all the things
+
+If you can't figure out how to make your protocol permissionless and autonomous, you don't have a defi protocol.
+Go back to the drawing board.
+
+== Rule 7 - Treasury money is not yours
+
+Always respect the root ownership.
+Users must have full control of their assets.
+Buy their assets instead of accept deposits.
+
+== Rule 8 - Leave only interest, take only profit
+
+Interact with markets in a manner that maintains long term health.
+Do not extract the most amount of capital.
+Compound into liquidity.

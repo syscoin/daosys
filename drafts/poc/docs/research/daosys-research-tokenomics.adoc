@@ -1,0 +1,196 @@
+= Tokenomics Research Notes
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-03-30
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem: asciimath
+
+ifndef::compositing[]
+:imagesdir: ../../
+endif::[]
+
+ifndef::compositing[]
+:compositing:
+endif::[]
+
+== Rebasing
+
+The TCT and TDT both rebase in a similar manner to the Aave V2 "A" tokens.
+Understanding rebasing is most easily done by referencing the original rebasing token, Ampleforth.
+
+Rebasing refers to changing the total supply of a token in a manner that results in proportional change in the balance of all holders.
+This is by implementing an internal Constant Product market using an internal invariant.
+This internal invariant is called GONS.
+The GONS value is stored in the contract as a constant calculated when the smart-contract is compiled.
+This is typically done with the code sample below.
+
+[source,solidity]
+----
+uint256 private constant DECIMALS = 9;
+uint256 private constant MAX_UINT256 = type(uint256).max;
+uint256 private constant INITIAL_FRAGMENTS_SUPPLY = 50 * 10**6 * 10**DECIMALS;
+
+// TOTAL_GONS is a multiple of INITIAL_FRAGMENTS_SUPPLY so that _gonsPerFragment is an integer.
+// Use the highest value that fits in a uint256 for max granularity.
+uint256 private constant TOTAL_GONS = MAX_UINT256 - (MAX_UINT256 % INITIAL_FRAGMENTS_SUPPLY);
+----
+
+In this example, supply of Ampleforth is called Fragments.
+The initial supply is calculated as stem:[50 * 10^6 * 10^9]
+The default decimal places for ERC-20 tokens is 18.
+The rebasing implementation requires using half of the default value, meaning the decimals must be 9.
+The total GONS is calculated as a multiple of the initial supply for maximum granularity.
+The ASE implementation is shown below.
+
+[source,solidity]
+----
+uint256 private constant DECIMALS = 9;
+uint256 private constant MAX_UINT256 = type(uint256).max;
+uint256 private constant INITIAL_FRAGMENTS_SUPPLY = MAX_UINT256;
+
+// TOTAL_GONS is a multiple of INITIAL_FRAGMENTS_SUPPLY so that _gonsPerFragment is an integer.
+// Use the highest value that fits in a uint256 for max granularity.
+uint256 private constant TOTAL_GONS = MAX_UINT256 - (MAX_UINT256 % INITIAL_FRAGMENTS_SUPPLY);
+----
+
+We set the initial supply to the maximum possible value, and then rebase down to the initial desired amount.
+This is done to ensure accurate calculations across the entire range of possible values.
+
+The rebasing logic is implemented in the `rebase(uint256,int256)` function.
+This accepts the Unix timestamp, and signed integer as the supply delta.
+The code sample from Ampleforth is included below.
+
+[source,solidity]
+----
+function rebase(uint256 epoch, int256 supplyDelta) external onlyMonetaryPolicy returns (uint256)
+{
+  if (supplyDelta == 0) {
+    emit LogRebase(epoch, _totalSupply);
+    return _totalSupply;
+  }
+
+  if (supplyDelta < 0) {
+    _totalSupply = _totalSupply.sub(uint256(supplyDelta.abs()));
+  } else {
+    _totalSupply = _totalSupply.add(uint256(supplyDelta));
+  }
+
+  if (_totalSupply > MAX_SUPPLY) {
+    _totalSupply = MAX_SUPPLY;
+  }
+
+  _gonsPerFragment = TOTAL_GONS.div(_totalSupply);
+
+  // From this point forward, _gonsPerFragment is taken as the source of truth.
+  // We recalculate a new _totalSupply to be in agreement with the _gonsPerFragment
+  // conversion rate.
+  // This means our applied supplyDelta can deviate from the requested supplyDelta,
+  // but this deviation is guaranteed to be < (_totalSupply^2)/(TOTAL_GONS - _totalSupply).
+  //
+  // In the case of _totalSupply <= MAX_UINT128 (our current supply cap), this
+  // deviation is guaranteed to be < 1, so we can omit this step. If the supply cap is
+  // ever increased, it must be re-included.
+  // _totalSupply = TOTAL_GONS.div(_gonsPerFragment)
+
+  emit LogRebase(epoch, _totalSupply);
+  return _totalSupply;
+}
+----
+
+To understand the explanation of the `rebase(uint256,int256)` function, please note the initialization function below.
+
+[source,solidity]
+----
+function initialize(address owner_) public override initializer {
+  ERC20Detailed.initialize("Ampleforth", "AMPL", uint8(DECIMALS));
+  Ownable.initialize(owner_);
+
+  rebasePausedDeprecated = false;
+  tokenPausedDeprecated = false;
+
+  _totalSupply = INITIAL_FRAGMENTS_SUPPLY;
+  _gonBalances[owner_] = TOTAL_GONS;
+  _gonsPerFragment = TOTAL_GONS.div(_totalSupply);
+
+  emit Transfer(address(0x0), owner_, _totalSupply);
+}
+----
+
+As you can see, the `_totalSupply` is set to equal the `INITIAL_FRAGMENTS_SUPPLY`.
+After initialization, `_totalSupply` replaces usage of `INITIAL_FRAGMENTS_SUPPLY`.
+
+In the `rebase(uint256,int256)` function, the epoch and emit operations are not relevant to the rebasing operation.
+They are simply used to log when a rebase occurs.
+
+The provided supply delta argument is applied to change `_totalSupply`.
+After the `_totalSupply` is updated, it's confirmed this did not exceed the maximum supply mathematically possible to support rebasing.
+After setting the `_totalSupply`, the "price" os fragments to GONS is calculated and set in `_gonsPerFragment`.
+This internal GONS price is used to calculate user's apparent balances and the exchange rate when processing a transfer.
+This can be seen in the `transfer(address,uint245)` and `balanceOf(address)` functions.
+
+[source,solidity]
+----
+function balanceOf(address who) external view override returns (uint256) {
+  return _gonBalances[who].div(_gonsPerFragment);
+}
+
+function transfer(address to, uint256 value) external override validRecipient(to) returns (bool) {
+  uint256 gonValue = value.mul(_gonsPerFragment);
+
+  _gonBalances[msg.sender] = _gonBalances[msg.sender].sub(gonValue);
+  _gonBalances[to] = _gonBalances[to].add(gonValue);
+
+  emit Transfer(msg.sender, to, value);
+  return true;
+}
+----
+
+In this sample, the emit operation is not relevant to processing the transfer.
+For both functions, the `_gonsPerFragment` is used as the price for calculating the exchange rate to GONS.
+In the case of the `transfer(address,uint245)` function, this exchange rate is used to change the GONS balance for the two parties of the transfer.
+
+== Rebasing Capable Constant Produce Trading
+
+Constant Product Trading is the foundation of decentralized finance.
+The majority of decentralized exchanges either use Constant Product Trading, or a modification of the same formula.
+Constant Product Trading is a simple formula, stem:[x*y=K].
+stem:[K] must remain invariant during a trade.
+So the exchange rate is calculated as the amount of stem:[y] that must be exchanged for a user provided value of stem:[x] to keep stem:[K] invariant.
+Most implementations rely on storing the values for stem:[x] and stem:[y] to calculate stem:[K] for use as the invariant in later transactions.
+The typical workflow is as an optimistic operation.
+The DEX liquidity pool typically expects to receive the amount of stem:[x] the users wishes to pay _before_ the transaction executing the trade is received.
+To ensure the trade is completed within a price range the user accepts, the liquidity pool expects to receive an argument defining the minimum the amount the user expects to receive.
+This is why Uniswap and similar implementations use a Router to facilitate user transactions.
+In addition to the Router being able to process trades across several pairs to allow users to trade between assets, it also ensures that the payment is send, and the trade is executed in the same transaction.
+
+This makes defining the formula the represents the exact trad process a little more complicated then the abstract form.
+We will define this in the scope of a single event of trading through the router.
+We will define the variables as follows.
+
+The value of stem:[x] prior to trading event will be stem:[x_(t-1)].
+
+The value of stem:[y] prior to the trading event will be stem:[y_(t-1)].
+
+This value of stem:[K] prior to the trading event will be stem:[K_(t-1)].
+
+The amount of stem:[x] the user is paying as the trading event in exchange for stem:[y] will be stem:[x_t].
+
+The amount of stem:[y] due to the user to complete the trade will be stem:[y_t].
+
+Beginning with the abstract Constant Product Trading formula denoting the relative event timing we get the formula transformation below.
+
+[stem]
+++++
+x_(t-1) * y_(t-1) = K_(t-1)
+
+(x_(t-1) + x_(t)) * (y_(t-1) + y_(t) = K_(t-1)
+
+y_(t-1) + y_(t) = frac{K_(t-1)}{(x_(t-1) + x_(t))}
+
+y_(t) = frac{K_(t-1)}{(x_(t-1) + x_(t))} - y_(t-1)
+++++

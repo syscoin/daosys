@@ -1,0 +1,21 @@
+= DWS Whitepaper
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-04-21
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+include::{includeprefix}docs/projects/dws/architecture/dws-architecture-core.adoc[leveloffset=+1]
+
+include::{includeprefix}docs/projects/dws/dws-roadmap.adoc[leveloffset=+1]

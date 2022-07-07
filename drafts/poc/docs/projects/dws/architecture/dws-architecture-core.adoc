@@ -1,0 +1,48 @@
+= DWS Architecture
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-02-19
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+The core of the Decentralized Web Services (DWS) architecture is the infrastructure-as-code deployment pipeline.
+The DWS deployment pipeline utilizes a combination of decentralized technologies and on-premise solutions.
+This replicates the functionality of existing industry best practices found in traditional centralized IT solutions.
+The purpose is to integrate deployments with on-chain DAO platforms.
+This allows DAOs to manage their off-chain resources with their on-chain governance and treasury solutions.
+
+image::images/projects/dws/architecture/dws-architecture-core.drawio.svg[align=center]
+
+Infrastructure-as-code is based on managing infrastructure administration scripts using the same solutions and practices as application code.
+When an administrator wishes to makes changes to any part of the deployed architecture, an administration script is written to effect those changes.
+This administration script typically uses tools such as Ansible and Terraform to execute the changes.
+DWS prefers to use Ansible to execute deployments.
+The administrator will commit these scripts to a SCM solution to make them available for execution.
+Typically a git based SCM is used.
+DWS prefers to uses Radicle as a git based SCM solution.
+
+When an administrator commits a new script, that commit is observed by the builds server.
+In this case the preferred build server is Jenkins.
+The Jenkins build server will deploy an ephemeral build agent 
+
+== Components
+
+DWS favors decentralized architectures to compliment utilizing decentralized technologies.
+Applying micro-service architectural principles provides the base design standard for effectively utilizing DWS.
+Each component of DWS Core provides a limited scope of functionality.
+This is in line with the micro-service architecture principle of a bounded context.
+Each component and the scope of it's functionality is defined below.
+
+=== Radicle Seed Server / Wallet
+

@@ -1,0 +1,49 @@
+= Diamond Design Pattern
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-02-19
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+The Diamond design pattern defines how a proxy can delegate to several smart-contracts.
+This is done with an implementation that maps a function selector to an address that implements that function.
+The target address for this mapping is typically called a Facet.
+This allows for a single address to expose far more functionality then can typically be implemented in a single smart-contract.
+This also allows for partial modifications to the proxies functionality by changing the configuration to direct to a new facet.
+Unfortunately, post-deployment updates can not be secured against potential malicious action.
+Additionally, the manner by which the EVM manages the data stored for a smart-contract complicates composing several facets into a diamond proxy.
+
+There is no way to secure an updatable diamond proxy against a potentially malicious update of one of its facets.
+The ASE only uses the Diamond design pattern to deploy new proxies.
+Once deployed, these proxies may not be updated.
+
+A common problem with using proxies, especially diamond proxies, is how the EVM stores a smart-contract's data, or state.
+The EVM stores data in a single column table consisting of 32 byte words.
+The rows in this column are called slots.
+Slots are 0 indexed and iterate consecutively to 2^256
+If data to be stored is too large or too complex to store in 32 bytes, the data stored is the the index of another slot.
+The the data is stored by starting with the indexed slot, and using each consecutive slot until the full data is stored.
+The Solidity and Vyper compilers both assign the storage slot to be used automatically.
+The storage slot indexes are termed, storage pointers.
+
+While it is possible to use Assembly to directly access specific slots, this is a fragile process.
+When dealing with dynamically sized datatypes, like strings and arrays, direct storage access using Assembly must know the size of the data.
+Fortunately, Assembly does simplify this process by exposing an implicit variable for all storage datatypes that defines the storage pointer for that variable.
+
+The ASE solves this complexity with a new storage standard.
+By making minimal use of in-line Assembly with Solidity a consistently calculated storage slot index may be set to the storage slot implicit variable of a storage variable.
+This is most easily done with custom datatypes defined as Structs.
+This process of setting the storage slot for a storage variable of a custom Struct is termed, binding.
+As in, "The struct that stores the user's balances is bound to slot index 0".
+The ASE defines a design standard for implementing all datatypes as structs so that they may be dynamically bound to storage slots.
