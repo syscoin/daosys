@@ -20,7 +20,7 @@ describe("Address Test Suite", function () {
   // Test variables
   let addressMock: AddressMock;
   const testAddress = ethers.constants.AddressZero;
-  const structSlot = "0xaaffe3d685f9e67089b627e7c231b4ba89b8b04ea9e170e29b5d15562825ce97";
+  const structSlot = "0x42e63a20bd48c5e1b6130a35b7becb2d95144be37377d85e8a9e221d435219ae";
 
   /* -------------------------------------------------------------------------- */
   /*                        SECTION Before All Test Hook                        */

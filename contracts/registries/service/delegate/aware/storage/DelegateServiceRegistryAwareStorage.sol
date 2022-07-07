@@ -8,7 +8,7 @@ import {
   AddressUtils
 } from "contracts/types/primitives/Address.sol";
 
-library DelegateServiceFactoryStorage {
+library DelegateServiceRegistryAwareStorage {
 
   struct Layout {
     Address.Layout delegateServiceRegistry;
@@ -16,12 +16,12 @@ library DelegateServiceFactoryStorage {
 
 }
 
-library DelegateServiceFactoryStorageUtils {
+library DelegateServiceRegistryAwareStorageUtils {
 
   using AddressUtils for Address.Layout;
 
 
-  bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(DelegateServiceFactoryStorage).creationCode);
+  bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(DelegateServiceRegistryAwareStorage).creationCode);
 
   function _structSlot() pure internal returns (bytes32 structSlot) {
     structSlot = STRUCT_STORAGE_SLOT
@@ -41,20 +41,24 @@ library DelegateServiceFactoryStorageUtils {
    *  Storage slot is computed during runtime to facilitate development during
    *  standardization.
    */
-  function _layout( bytes32 salt ) pure internal returns ( DelegateServiceFactoryStorage.Layout storage layout ) {
-    bytes32 saltedSlot = _saltStorageSlot(salt);
+  function _layout(
+    bytes32 storageSlotSalt
+  ) pure internal returns (
+    DelegateServiceRegistryAwareStorage.Layout storage layout
+  ) {
+    bytes32 saltedSlot = _saltStorageSlot(storageSlotSalt);
     assembly{ layout.slot := saltedSlot }
   }
 
   function _setDelegateServiceRegistry(
-    DelegateServiceFactoryStorage.Layout storage layout,
+    DelegateServiceRegistryAwareStorage.Layout storage layout,
     address delegateServiceRegistry
   ) internal {
     layout.delegateServiceRegistry._setValue(delegateServiceRegistry);
   }
 
   function _getDelegateServiceRegistry(
-    DelegateServiceFactoryStorage.Layout storage layout
+    DelegateServiceRegistryAwareStorage.Layout storage layout
   ) view internal returns (address delegateServiceRegistry) {
     delegateServiceRegistry = layout.delegateServiceRegistry._getValue();
   }

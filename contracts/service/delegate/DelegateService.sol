@@ -24,8 +24,6 @@ abstract contract DelegateService
     Create2DeploymentMetadata
 {
 
-  using DelegateServiceStorageUtils for DelegateServiceStorage.Layout;
-
   bytes4 constant private STORAGE_SLOT_SALT = type(IDelegateService).interfaceId;
 
   // constructor() {

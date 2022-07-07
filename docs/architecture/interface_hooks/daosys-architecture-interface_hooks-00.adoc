@@ -16,10 +16,10 @@ ifndef::compositing[]
 :compositing:
 endif::[]
 
-// include::./daosys-architecture-interface_hooks-01-delegate_service.adoc[leveloffset=+1]
+include::daosys-architecture-interface_hooks-delegate_service.adoc[leveloffset=+1]
 
-// include::./daosys-architecture-interface_hooks-02-delegate_service_registry_aware.adoc[leveloffset=+1]
+include::./daosys-architecture-interface_hooks-delegate_service_registry_aware.adoc[leveloffset=+1]
 
-include::./daosys-architecture-interface_hooks-create2metadata.adoc[leveloffset=+1]
+include::daosys-architecture-interface_hooks-create2metadata.adoc[leveloffset=+1]
 
-include::./daosys-architecture-interface_hooks-erc165.adoc[leveloffset=+1]
+include::daosys-architecture-interface_hooks-erc165.adoc[leveloffset=+1]

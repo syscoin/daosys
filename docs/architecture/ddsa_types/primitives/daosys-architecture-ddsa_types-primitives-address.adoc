@@ -20,7 +20,7 @@ endif::[]
 
 // TODO Write docs for implementation.
 
-// [source, solidity]
-// ----
-// include::../../../../contracts/types/primitives/Address.sol[lines="6..-1"]
-// ----
+[source, solidity]
+----
+include::../../../../contracts/types/primitives/Address.sol[lines="6..-1"]
+----
