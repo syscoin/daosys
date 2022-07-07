@@ -1,4 +1,4 @@
-= ASE EVM Libraries
+= ASE EVM Create2 Library
 ifndef::compositing[]
 :author: cyotee doge
 :email: cyotee@syscoin.org
@@ -18,6 +18,11 @@ ifndef::compositing[]
 :compositing:
 endif::[]
 
-include::create/daosys-libraries-evm-create.adoc[leveloffset=+1]
+*Documentation Pending final implementation.*
 
-include::create2/daosys-libraries-evm-create2.adoc[leveloffset=+1]
+// TODO Write docs for implementation.
+
+[source, solidity]
+----
+include::../../../../../contracts/evm/create2/utils/Create2Utils.sol[lines="1..-1"]
+----
