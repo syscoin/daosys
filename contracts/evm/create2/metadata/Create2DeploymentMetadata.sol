@@ -11,7 +11,8 @@ import {
   Immutable
 } from "contracts/security/access/immutable/Immutable.sol";
 import {
-  ERC165
+  ERC165,
+  IERC165
 } from "contracts/introspection/erc165/ERC165.sol";
 
 abstract contract Create2DeploymentMetadata

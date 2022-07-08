@@ -14,7 +14,8 @@ import {IDelegateService} from "contracts/service/delegate/interfaces/IDelegateS
 import {
   Create2DeploymentMetadata,
   ICreate2DeploymentMetadata,
-  Immutable
+  Immutable,
+  IERC165
 } from "contracts/evm/create2/metadata/Create2DeploymentMetadata.sol";
 import {
   DelegateServiceRegistryAware,
@@ -31,9 +32,10 @@ abstract contract DelegateService
 
   bytes4 constant private STORAGE_SLOT_SALT = type(IDelegateService).interfaceId;
 
-  // constructor() {
-    
-  // }
+  constructor() {
+    _configERC165(type(IDelegateService).interfaceId);
+    _configERC165(type(IDelegateServiceRegistryAware).interfaceId);
+  }
 
   function _initServiceDef(
     bytes4 interfaceId,

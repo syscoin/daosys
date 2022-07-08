@@ -21,7 +21,6 @@ describe("Delegate Service Registry Aware", function () {
   // TestService test variables
   let delegateServiceRegistryAwareMock: DelegateServiceRegistryAwareMock;
 
-  // const erc165InterfaceID = "0x01ffc9a7";
   const IDelegateServiceRegistryAwareInterfaceId = '0x1720080a';
   const getDelegateServiceRegistryFunctionSelector = '0x1720080a';
 

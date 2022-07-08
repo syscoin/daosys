@@ -4,7 +4,9 @@ pragma solidity ^0.8.0;
 import {
   ERC165Logic
 } from 'contracts/introspection/erc165/logic/ERC165Logic.sol';
-import {IERC165} from "contracts/introspection/erc165/interfaces/IERC165.sol";
+import {
+  IERC165
+} from "contracts/introspection/erc165/interfaces/IERC165.sol";
 
 /**
  * @title ERC165 implementation

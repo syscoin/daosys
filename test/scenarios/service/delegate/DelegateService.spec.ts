@@ -27,6 +27,15 @@ describe("Delegate Service", function () {
   // Control values for tests
   const invalidInterfaceId = "0xffffffff";
   const Bytes4Zero = "0x00000000";
+  const ICreate2DeploymentMetadataInterfaceId = '0x2f6fb0fb';
+  const initCreate2DeploymentMetadataFunctionSelector = '0x016772e7';
+  const getCreate2DeploymentMetadataFunctionSelector = '0x2e08c21c';
+  const IERC165InterfaceId = "0x01ffc9a7";
+  const supportsInterfaceFunctionSelector = "0x01ffc9a7";
+  const IDelegateServiceInterfaceId = '0xd56eb69e';
+  const getServiceDefFunctionSelector = '0xd56eb69e';
+  const IDelegateServiceRegistryAwareInterfaceId = '0x1720080a';
+  const getDelegateServiceRegistryFunctionSelector = '0x1720080a';
 
   // Test Wallets
   let deployer: SignerWithAddress;
@@ -34,26 +43,10 @@ describe("Delegate Service", function () {
   // TestService test variables
   let delegateServiceMock: DelegateServiceMock;
 
-  // const erc165InterfaceID = "0x01ffc9a7";
-  const IDelegateServiceInterfaceId = '0xd56eb69e';
-  const getServiceDefFunctionSelector = '0xd56eb69e';
-
-  /* -------------------------------------------------------------------------- */
-  /*                        SECTION Before All Test Hook                        */
-  /* -------------------------------------------------------------------------- */
-
   before(async function () {
     // Tagging address(0) as "System" in logs.
     tracer.nameTags[ethers.constants.AddressZero] = "System";
   })
-
-  /* -------------------------------------------------------------------------- */
-  /*                       !SECTION Before All Test Hook                        */
-  /* -------------------------------------------------------------------------- */
-
-  /* -------------------------------------------------------------------------- */
-  /*                        SECTION Before Each Test Hook                       */
-  /* -------------------------------------------------------------------------- */
   beforeEach(async function () {
 
     [
@@ -66,14 +59,6 @@ describe("Delegate Service", function () {
 
   });
 
-  /* -------------------------------------------------------------------------- */
-  /*                       !SECTION Before Each Test Hook                       */
-  /* -------------------------------------------------------------------------- */
-
-  /* -------------------------------------------------------------------------- */
-  /*                          SECTION Testing Messenger                         */
-  /* -------------------------------------------------------------------------- */
-
   describe("DelegateService", function () {
 
     describe("Validate interface and function selector computation", function () {
@@ -85,7 +70,59 @@ describe("Delegate Service", function () {
         expect(await delegateServiceMock.getServiceDefFunctionSelector())
           .to.equal(getServiceDefFunctionSelector);
       });
+      it("ICreate2DeploymentMetadataInterfaceId.", async function () {
+        expect(await delegateServiceMock.ICreate2DeploymentMetadataInterfaceId())
+          .to.equal(ICreate2DeploymentMetadataInterfaceId);
+      });
+      it("initCreate2DeploymentMetadataFunctionSelector.", async function () {
+        expect(await delegateServiceMock.initCreate2DeploymentMetadataFunctionSelector())
+          .to.equal(initCreate2DeploymentMetadataFunctionSelector);
+      });
+      it("getCreate2DeploymentMetadataFunctionSelector.", async function () {
+        expect(await delegateServiceMock.getCreate2DeploymentMetadataFunctionSelector())
+          .to.equal(getCreate2DeploymentMetadataFunctionSelector);
+      });
+      it("IDelegateServiceInterfaceId.", async function () {
+        expect(await delegateServiceMock.IERC165InterfaceId())
+          .to.equal(IERC165InterfaceId);
+      });
+      it("getServiceDefFunctionSelector.", async function () {
+        expect(await delegateServiceMock.supportsInterfaceFunctionSelector())
+          .to.equal(supportsInterfaceFunctionSelector);
+      });
+      it("IDelegateServiceRegistryAwareInterfaceId.", async function () {
+        expect(await delegateServiceMock.IDelegateServiceRegistryAwareInterfaceId())
+          .to.equal(IDelegateServiceRegistryAwareInterfaceId);
+      });
+      it("getDelegateServiceRegistryFunctionSelector.", async function () {
+        expect(await delegateServiceMock.getDelegateServiceRegistryFunctionSelector())
+          .to.equal(getDelegateServiceRegistryFunctionSelector);
+      });
+    });
 
+    describe("#supportsInterface()", function () {
+      describe("#(bytes4)", function () {
+        it("Accurately reports lack of interface support.", async function () {
+          expect(await delegateServiceMock.supportsInterface(invalidInterfaceId))
+            .to.equal(false);
+        });
+        it("Accurately reports ERC165 interface support.", async function () {
+          expect(await delegateServiceMock.supportsInterface(IERC165InterfaceId))
+            .to.equal(true);
+        });
+        it("Accurately reports ICreate2DeploymentMetadata interface support.", async function () {
+          expect(await delegateServiceMock.supportsInterface(ICreate2DeploymentMetadataInterfaceId))
+            .to.equal(true);
+        });
+        it("Accurately reports IDelegateService interface support.", async function () {
+          expect(await delegateServiceMock.supportsInterface(IDelegateServiceInterfaceId))
+            .to.equal(true);
+        });
+        it("Accurately reports IDelegateServiceRegistryAware interface support.", async function () {
+          expect(await delegateServiceMock.supportsInterface(IDelegateServiceRegistryAwareInterfaceId))
+            .to.equal(true);
+        });
+      });
     });
 
     describe("#getServiceDef()", function () {
@@ -98,8 +135,6 @@ describe("Delegate Service", function () {
               getServiceDefFunctionSelector
             ]
           );
-          // expect(serviceDef.bootstrapper).to.equal(ethers.constants.AddressZero);
-          // expect(serviceDef.bootstrapperInitFunction).to.equal(Bytes4Zero);
         });
       });
     });
@@ -114,9 +149,5 @@ describe("Delegate Service", function () {
     });
 
   });
-
-  /* -------------------------------------------------------------------------- */
-  /*                         !SECTION Testing Messenger                         */
-  /* -------------------------------------------------------------------------- */
 
 });
