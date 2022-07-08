@@ -34,19 +34,15 @@ abstract contract DelegateService
   // constructor() {
     
   // }
-  
+
   function _initServiceDef(
     bytes4 interfaceId,
     bytes4[] memory functionSelectors
-    // address bootstrapper,
-    // bytes4 bootstrapperInitFunction
   ) internal {
     _setServiceDef(
       STORAGE_SLOT_SALT,
       interfaceId,
       functionSelectors
-      // bootstrapper,
-      // bootstrapperInitFunction
     );
   }
 

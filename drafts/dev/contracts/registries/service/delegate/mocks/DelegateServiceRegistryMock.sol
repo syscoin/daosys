@@ -11,6 +11,17 @@ contract DelegateServiceRegistryMock
     DelegateServiceRegistry
 {
 
+  function mockRegisterDelegateService(
+    bytes4 delegateServiceInterfaceId,
+    address delegateServiceAddress
+  ) external returns (bool success) {
+    _registerDelegateService(
+      delegateServiceInterfaceId,
+      delegateServiceAddress
+    );
+    success = true;
+  }
+
   function IDelegateServiceRegistryInterfaceId() pure external returns (bytes4 interfaceId){
     interfaceId = type(IDelegateServiceRegistry).interfaceId;
   }

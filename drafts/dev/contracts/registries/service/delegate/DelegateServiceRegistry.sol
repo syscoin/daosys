@@ -29,6 +29,10 @@ contract DelegateServiceRegistry
 
   constructor() {
 
+    _setDelegateServiceRegistry(
+      address(this)
+    );
+
     _registerDelegateService(
       type(IDelegateServiceRegistry).interfaceId,
       address(this)
@@ -56,7 +60,9 @@ contract DelegateServiceRegistry
       );
   }
 
-  // TODO Restrict to only DelegateServiceFactory
+  // TODO Add Address Based Implicit ACL to restrict to only contracts deployed by the same factory.
+  // TODO Integrate with DelegateService and use msg.sender in this implementation.
+  // TODO Add basic check for whether address is already registered.
   function registerDelegateService(
     bytes4 delegateServiceInterfaceId,
     address delegateServiceAddress
@@ -68,27 +74,19 @@ contract DelegateServiceRegistry
     success = true;
   }
 
-  // TODO Add Address Based Implicit ACL
-  // TODO Rename to introspectiveRegisterDelegateService
-  function introspectiveRegisterDelegateService(
-    address delegateServiceAddress
-  ) external returns (bool success) {
-
-    IDelegateService.ServiceDef memory serviceDef = IDelegateService(delegateServiceAddress)
-      .getServiceDef();
-
-    _registerDelegateService(
-      serviceDef.interfaceId,
-      delegateServiceAddress
+  function _queryDelegateService(
+    bytes4 delegateServiceInterfaceId
+  ) view internal returns (address delegateServiceAddress) {
+    delegateServiceAddress = _queryDelegateService(
+      type(IDelegateServiceRegistry).interfaceId,
+      delegateServiceInterfaceId
     );
-    success = true;
   }
 
   function queryDelegateServiceAddress(
     bytes4 delegateServiceInterfaceId
   ) view external returns (address delegateServiceAddress) {
     delegateServiceAddress = _queryDelegateService(
-      type(IDelegateServiceRegistry).interfaceId,
       delegateServiceInterfaceId
     );
   }
@@ -96,10 +94,20 @@ contract DelegateServiceRegistry
   function bulkQueryDelegateServiceAddress(
     bytes4[] calldata delegateServiceInterfaceIds
   ) view external returns (address[] memory delegateServiceAddresses) {
-    delegateServiceAddresses = _bulkQueryDelegateService(
-      type(IDelegateServiceRegistry).interfaceId,
-      delegateServiceInterfaceIds
-    );
+
+    // TODO Delete once testing validates refactor.
+    // delegateServiceAddresses = _bulkQueryDelegateService(
+    //   type(IDelegateServiceRegistry).interfaceId,
+    //   delegateServiceInterfaceIds
+    // );
+
+    delegateServiceAddresses = new address[](delegateServiceInterfaceIds.length);
+
+    for(uint16 iteration = 0; delegateServiceInterfaceIds.length > iteration; iteration++){
+      delegateServiceAddresses[iteration] = _queryDelegateService(
+          delegateServiceInterfaceIds[iteration]
+        );
+    }
   }
 
 }
