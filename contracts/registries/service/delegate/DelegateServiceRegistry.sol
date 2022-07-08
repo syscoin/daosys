@@ -12,7 +12,9 @@ import {
 import {
   DelegateService,
   IDelegateService,
-  ICreate2DeploymentMetadata
+  ICreate2DeploymentMetadata,
+  IERC165,
+  IDelegateServiceRegistryAware
 } from "contracts/service/delegate/DelegateService.sol";
 // import {
 //   IDelegateService
@@ -29,6 +31,9 @@ contract DelegateServiceRegistry
 
   constructor() {
 
+    // Initialzing IDelegateServiceRegistryAware.
+    // DelegateServiceRegistry Delegate Service reports itself as the delegate service for DelegateServiceRegistry.
+    // This will also be done iin the platform core service proxy.
     _setDelegateServiceRegistry(
       address(this)
     );

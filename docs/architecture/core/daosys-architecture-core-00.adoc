@@ -37,12 +37,12 @@ Finally, for particularly sensitive Services, a circuit breaker can be included 
 For this reason, Services will implemented to be as minimal as possible.
 With emergency withdrawal or liquidation services to gracefully degrade if a service is disabled.
 
-image::images/architecture/daosys-architecture-01-core.drawio.svg[align=center]
+image::images/architecture/core/daosys-architecture-core.drawio.svg[align=center]
 
-include::./daosys-architecture-core-01-service_proxy.adoc[leveloffset=+1]
+// include::./daosys-architecture-core-01-service_proxy.adoc[leveloffset=+1]
 
-include::./daosys-architecture-core-02-delegate_service_registry.adoc[leveloffset=+1]
+include::daosys-architecture-core-delegate_service_registry.adoc[leveloffset=+1]
 
-include::./daosys-architecture-core-03-service_proxy_factory.adoc[leveloffset=+1]
+// include::./daosys-architecture-core-03-service_proxy_factory.adoc[leveloffset=+1]
 
-include::./daosys-architecture-core-04-delegate_service_factory.adoc[leveloffset=+1]
+// include::./daosys-architecture-core-04-delegate_service_factory.adoc[leveloffset=+1]
