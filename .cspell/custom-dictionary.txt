@@ -19,6 +19,7 @@ GONS
 Holochain
 includeprefix
 litepaper
+nomicfoundation
 pathtoroot
 permissionless
 Presearch
