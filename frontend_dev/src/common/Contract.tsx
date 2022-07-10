@@ -62,7 +62,7 @@ export const Contract: FC<ContractProps> = ({ path }) => {
                 setAbiRaw(response)
                 setDeployedAddress('')
                 setContract(null)
-                setCInterface(null)
+                setCInterface(new Interface(response.abi))
             }).catch(e => console.debug(e));
         }
     }, [path]);
@@ -101,7 +101,7 @@ export const Contract: FC<ContractProps> = ({ path }) => {
                         <Card.Footer>
                             <Row>
                                 <Col sm={3}>
-                                    <Deployer/>    
+                                    {cInterface && <Deployer bytecode={abiRaw?.bytecode} contractInterface={cInterface}/>}  
                                 </Col>
                             </Row>
                             <hr/>
