@@ -28,7 +28,7 @@ export const LeftBar: FC<LeftBarProps> = (props) => {
         }
 
         for (const item of contracts) {
-            if (item.basename.toLowerCase().includes(searchCriteria)) {
+            if (item.basename.toLowerCase().includes(searchCriteria.toLowerCase())) {
                 filteredPrep.push(item);
             }
         }
