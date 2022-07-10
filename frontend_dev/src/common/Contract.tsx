@@ -101,7 +101,9 @@ export const Contract: FC<ContractProps> = ({ path }) => {
                         <Card.Footer>
                             <Row>
                                 <Col sm={3}>
-                                    {cInterface && <Deployer bytecode={abiRaw?.bytecode} contractInterface={cInterface}/>}  
+                                    {cInterface && <Deployer onDeployed={(address: string) => {
+                                        setDeployedAddress(address);
+                                    }} bytecode={abiRaw?.bytecode} contractInterface={cInterface}/>}  
                                 </Col>
                             </Row>
                             <hr/>

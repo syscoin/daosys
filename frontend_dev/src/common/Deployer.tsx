@@ -13,7 +13,8 @@ enum ButtonLabelType {
 
 export interface DeployerProps {
     contractInterface: Interface,
-    bytecode: string
+    bytecode: string,
+    onDeployed: (address: string) => void
 }
 
 interface InputFragmentProps {
@@ -32,7 +33,7 @@ const InputFragment = ({ inputParam, onChange }: InputFragmentProps) => {
     )
 }
 
-export const Deployer: FC<DeployerProps> = ({ contractInterface, bytecode }) => {
+export const Deployer: FC<DeployerProps> = ({ contractInterface, bytecode, onDeployed }) => {
     const [buttonLabel, setButtonLabel] = useState<ButtonLabelType>(ButtonLabelType.Deploy)
     const [showModal, setShowModal] = useState<boolean>(false);
     const [constructorFragment, setContstructorFragment] = useState<ConstructorFragment | null>(null);
@@ -82,6 +83,11 @@ export const Deployer: FC<DeployerProps> = ({ contractInterface, bytecode }) => 
 
             if (deployedContract) {
                 setDeployedAddress(deployedContract.address)
+
+                onDeployed(deployedContract.address);
+
+                hideModalAction();
+
             }
         }
     }
@@ -97,6 +103,7 @@ export const Deployer: FC<DeployerProps> = ({ contractInterface, bytecode }) => 
                 </Modal.Header>
 
                 <Modal.Body>
+
                     {
                         constructorFragment && <>
                             {constructorFragment.inputs.length > 0 &&
