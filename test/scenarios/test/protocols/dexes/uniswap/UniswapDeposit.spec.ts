@@ -7,8 +7,6 @@ import {
     ERC20Managed__factory,
     UniswapLiquidityDeposit,
     UniswapLiquidityDeposit__factory,
-    //UniswapLiquidityCalculator,
-    //UniswapLiquidityCalculator__factory,
     UniswapV2Factory,
     UniswapV2Pair,
     UniswapV2Pair__factory
@@ -16,6 +14,13 @@ import {
 import { BigNumber, Contract } from 'ethers';
 import { constants } from 'ethers';
 import { createUniswapPair, expandToNDecimals, sqrt } from '../../../../../fixtures/uniswap.fixture';
+
+// https://docs.uniswap.org/protocol/V2/reference/smart-contracts/router-02#addliquidity
+// https://github.com/t4sk/defi-by-example/blob/main/contracts/TestUniswapLiquidity.sol
+// https://gist.github.com/QuantSoldier/8e0e148c0024df47bccc006560b3f615
+// https://vomtom.at/how-to-use-uniswap-v2-as-a-developer/
+// https://coinsbench.com/solidity-101-introduction-to-libraries-in-solidity-b4555f2e0066
+
 
 describe("UniswapDeposit", () => {
     let deployer: SignerWithAddress;
@@ -28,7 +33,6 @@ describe("UniswapDeposit", () => {
     let tokenPair: UniswapV2Pair;
 
     let uniswap: UniswapV2Factory;
-    //let uniswapCalc: UniswapLiquidityCalculator;
     let uniswapDep: UniswapLiquidityDeposit;
     const minimumLiquidity = BigNumber.from(10).pow(3);
 
@@ -45,95 +49,98 @@ describe("UniswapDeposit", () => {
 
     beforeEach("setup price differential, 1:4", async () => {
         token0Amt = expandToNDecimals(1, 18);
-        token1Amt = expandToNDecimals(4, 18);
-        await token0.transfer(tokenPair.address, token0Amt);
-        await token1.transfer(tokenPair.address, token1Amt);
-        await tokenPair.mint(deployer.address)
+        token1Amt = expandToNDecimals(1, 18);
+        //await token0.transfer(tokenPair.address, token0Amt);
+        //await token1.transfer(tokenPair.address, token1Amt);
+        //await tokenPair.mint(deployer.address)
     });
 
-    describe("::ContractLogic", async () => {
-        describe("inspectUniV2LP()", async () => {
-            it("check balance on initial deposit", async () => {
-                const token0PairBal = await token0.balanceOf(tokenPair.address);
-                const token1PairBal = await token1.balanceOf(tokenPair.address);
-                
-                // UniswapV2Pair line 149
-                const expectedTotalSupply = sqrt(token0Amt.mul(token1Amt))
-                const expectedLpBalance = expectedTotalSupply.sub(minimumLiquidity)
-                // UniswapV2Pair line 173
-                const expectedToken0Amt = expectedLpBalance.mul(token0PairBal).div(expectedTotalSupply)
-                const expectedToken1Amt = expectedLpBalance.mul(token1PairBal).div(expectedTotalSupply)
-
-                console.log("expectedToken0Amt %s", expectedToken0Amt);    
-                console.log("expectedToken1Amt %s", expectedToken1Amt);  
-
-                const res = await uniswapDep.inspectUniV2LP(tokenPair.address, deployer.address)
-                expect(res)
-                    .to.have.property('totalSupply')
-                    .with.equal(expectedTotalSupply)
-                expect(res)
-                    .to.have.property('lpBalance')
-                    .with.equal(expectedLpBalance)
-                expect(res)
-                    .to.have.property('token0')
-                    .with.equal(token0.address)
-                expect(res)
-                    .to.have.property('token0Amount')
-                    .with.equal(expectedToken0Amt)
-                expect(res)
-                    .to.have.property('token1')
-                    .with.equal(token1.address)
-                expect(res)
-                    .to.have.property('token1Amount')
-                    .with.equal(expectedToken1Amt)
-            });
-
-            it("check balance after additional deposit", async () => {
-                await token0.transfer(tokenPair.address, expandToNDecimals(1, 18));
-                await token1.transfer(tokenPair.address, expandToNDecimals(1, 18));
-                await tokenPair.mint(deployer.address)
-                
-                token0Amt = token0Amt.add(expandToNDecimals(1, 18));
-                token1Amt = token1Amt.add(expandToNDecimals(1, 18));
-
-                const token0PairBal = await token0.balanceOf(tokenPair.address);
-                const token1PairBal = await token1.balanceOf(tokenPair.address);
-                
-                const expectedTotalSupply = await tokenPair.totalSupply()
-                const expectedLpBalance = expectedTotalSupply.sub(minimumLiquidity)
-
-                // UniswapV2Pair line 173
-                const expectedToken0Amt = expectedLpBalance.mul(token0PairBal).div(expectedTotalSupply)
-                const expectedToken1Amt = expectedLpBalance.mul(token1PairBal).div(expectedTotalSupply)
-
-                const res = await uniswapDep.inspectUniV2LP(tokenPair.address, deployer.address)
-                expect(res)
-                    .to.have.property('totalSupply')
-                    .with.equal(expectedTotalSupply)
-                expect(res)
-                    .to.have.property('lpBalance')
-                    .with.equal(expectedLpBalance)
-                expect(res)
-                    .to.have.property('token0')
-                    .with.equal(token0.address)
-                expect(res)
-                    .to.have.property('token0Amount')
-                    .with.equal(expectedToken0Amt)
-                expect(res)
-                    .to.have.property('token1')
-                    .with.equal(token1.address)
-                expect(res)
-                    .to.have.property('token1Amount')
-                    .with.equal(expectedToken1Amt)
-            });
-            
-        });
-    });    
+ 
 
     describe("testFunc()", async () => {
-        it("Test function", async () => {
+        it("test function", async () => {
             const res = await uniswapDep.testFunc(token0Amt)
             console.log("test %s", res);
+
+            console.log("1- token0 %s", await token0.balanceOf(deployer.address));   
+            console.log("1- token1 %s", await token1.balanceOf(deployer.address)); 
+            console.log("1- tokenPair Dep %s", await tokenPair.balanceOf(deployer.address));                          
+            console.log("1- totalSupply %s", await tokenPair.totalSupply());    
+            console.log("1- reserves %s", await tokenPair.getReserves());    
+             
+                      
+            //await token0.connect(deployer).transfer(tokenPair.address, expandToNDecimals(10, 18));
+            //await token1.connect(deployer).transfer(tokenPair.address, expandToNDecimals(10, 18));
+            //await tokenPair.mint(deployer.address);
+
+            //console.log("") 
+            //console.log("2- token0 %s", await token0.balanceOf(deployer.address));   
+            //console.log("2- token1 %s", await token1.balanceOf(deployer.address));  
+            //console.log("2- token0 LP %s", await token0.balanceOf(lpHolder.address));   
+            //console.log("2- token1 LP %s", await token1.balanceOf(lpHolder.address));  
+            //console.log("2- tokenPair %s", await tokenPair.balanceOf(tokenPair.address));             
+            //console.log("2- tokenPair Dep %s", await tokenPair.balanceOf(deployer.address));            
+            //console.log("2- tokenPair LP %s", await tokenPair.balanceOf(lpHolder.address));                         
+            //console.log("2- totalSupply %s", await tokenPair.totalSupply());    
+            //console.log("2- reserves %s", await tokenPair.getReserves());    
+            
+            // insert liquidity from another address
+            await token0.connect(deployer).transfer(tokenPair.address, expandToNDecimals(10, 18));
+            await token1.connect(deployer).transfer(tokenPair.address, expandToNDecimals(10, 18));
+            await tokenPair.mint(deployer.address);
+
+            //console.log("") 
+            //console.log("3- token0 %s", await token0.balanceOf(deployer.address));   
+            //console.log("3- token1 %s", await token1.balanceOf(deployer.address));  
+            //console.log("3- token0 LP %s", await token0.balanceOf(lpHolder.address));   
+            //console.log("3- token1 LP %s", await token1.balanceOf(lpHolder.address));    
+            //console.log("3- tokenPair %s", await tokenPair.balanceOf(tokenPair.address));             
+            //console.log("3- tokenPair Dep %s", await tokenPair.balanceOf(deployer.address));            
+            //console.log("3- tokenPair LP %s", await tokenPair.balanceOf(lpHolder.address));                      
+            //console.log("3- totalSupply %s", await tokenPair.totalSupply());    
+            //console.log("3- reserves %s", await tokenPair.getReserves());    
+             
+  
+            //await token0.connect(deployer).transfer(tokenPair.address, expandToNDecimals(10, 18));
+            //await token1.connect(deployer).transfer(tokenPair.address, expandToNDecimals(10, 18));
+            //await tokenPair.mint(deployer.address);
+
+            console.log("") 
+            console.log("4- token0 %s", await token0.balanceOf(deployer.address));   
+            console.log("4- token1 %s", await token1.balanceOf(deployer.address));  
+            console.log("4- token0 LP %s", await token0.balanceOf(lpHolder.address));   
+            console.log("4- token1 LP %s", await token1.balanceOf(lpHolder.address));  
+            console.log("4- tokenPair %s", await tokenPair.balanceOf(tokenPair.address));             
+            console.log("4- tokenPair Dep %s", await tokenPair.balanceOf(deployer.address));            
+            console.log("4- tokenPair LP %s", await tokenPair.balanceOf(lpHolder.address));                 
+            console.log("4- totalSupply %s", await tokenPair.totalSupply());    
+            console.log("4- reserves %s", await tokenPair.getReserves());            
+
+        });
+
+        describe("addLiquidityNew()", async () => {
+            it("add liquidity", async () => {
+
+                const reserves = await tokenPair.getReserves();
+                const resA = reserves._reserve0;    
+                const resB = reserves._reserve1; 
+                const amtA = token0Amt;
+                const amtB = token1Amt;
+                const router = deployer.address
+
+                const tokA = token0.address;
+                const tokB = token1.address;
+                const toAddr = tokenPair.address;
+    
+                //const liq = await uniswapDep.addLiquidity(tokA, tokB, router, amtA, amtB); 
+                uniswapDep.addLiquidityNew(tokA, tokB, router, amtA, amtB); 
+                // uniswapDep.addLiquidity(token0.address, token1.address, tokenPair.address, token0Amt, token1Amt); 
+
+                //console.log("liquidity %s", liq.liquidity); 
+                //console.log("amountA %s", liq.amountA); 
+                //console.log("amountB %s", liq.amountB); 
+                
+            });
         });
 
     });    
