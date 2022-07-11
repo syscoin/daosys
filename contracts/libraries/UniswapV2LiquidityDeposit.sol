@@ -92,8 +92,8 @@ library UniswapLiquidityDeposit {
 //_router.addLiquidity(address(_tokenA), address(_tokenB), 0, exactTokenBAmount, 0, exactTokenBAmount, address(this), block.timestamp);
 
 
-    function withdraw() public {
-        console.log("amountA");
+    function _transfer(address _token,uint256 _amount) internal {
+        IERC20(_token).transferFrom(msg.sender, address(this), _amount);
     }
 
     function retrieve() public view returns (uint256) {
@@ -109,7 +109,9 @@ library UniswapLiquidityDeposit {
     ) external view returns (uint256 amountA, uint256 amountB, uint256 liquidity) {
     //) external {
 
-        // IERC20(tokenA).transferFrom(msg.sender, address(this), _amountB);
+        _transfer(_tokenA, _amountB);
+            
+        //IERC20(_tokenA).transferFrom(msg.sender, address(this), _amountB);
         //IERC20(tokenB).transferFrom(msg.sender, address(this), _amountB);
 
         //IERC20(tokenA).approve(router, _amountA);
