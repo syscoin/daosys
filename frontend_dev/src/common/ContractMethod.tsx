@@ -35,6 +35,8 @@ export const ContractMethod: FC<ContractMethodProps> = (props: ContractMethodPro
             funcName = props.methodName
         }
 
+        setResults({ error : false, results: []});
+
         console.log(funcName)
         try {
             const response = await contract.functions[funcName](...params)
