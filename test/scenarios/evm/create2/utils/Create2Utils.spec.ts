@@ -6,7 +6,7 @@ import {
   Create2UtilsMock__factory
 } from '../../../../../typechain';
 
-describe('Factory', function () {
+describe('Create2Utils', function () {
   
   let create2Utils: Create2UtilsMock;
 
@@ -14,8 +14,6 @@ describe('Factory', function () {
     const [deployer] = await ethers.getSigners();
     create2Utils = await new Create2UtilsMock__factory(deployer).deploy();
   });
-
-  // describeBehaviorOfFactory({ deploy: async () => create2Utils });
 
   describe('__internal', function () {
     describe('#_deployWithSalt', function () {
@@ -99,6 +97,52 @@ describe('Factory', function () {
             salt
           ),
         ).to.equal(
+          ethers.utils.getCreate2Address(create2Utils.address, salt, initCodeHash)
+        );
+
+        const address = await create2Utils.callStatic.deployWithSalt(initCode, salt);
+
+        await create2Utils.deployWithSalt(initCode, salt);
+
+        expect(address).to.equal(
+          await create2Utils.callStatic.calculateDeploymentAddress(
+            create2Utils.address,
+            initCodeHash,
+            salt,
+          ),
+        );
+
+      });
+    });
+
+    describe('#_calculateInitCodeHash', function () {
+      it('properly calculates the creation code hash for a given creation code', async function () {
+        const initCode = create2Utils.deployTransaction.data;
+        const initCodeHash = ethers.utils.keccak256(initCode);
+        const salt = ethers.utils.randomBytes(32);
+
+        expect(
+          await create2Utils.calculateInitCodeHash(
+            initCode
+          ),
+        ).to.equal(
+          initCodeHash
+        );
+
+      });
+
+      it('calculated address of not-yet-deployed contract matches deployed contract', async function () {
+        const initCode = create2Utils.deployTransaction.data;
+        const initCodeHash = ethers.utils.keccak256(initCode);
+        const salt = ethers.utils.randomBytes(32);
+
+        expect(
+          await create2Utils.callStatic.calculateDeploymentAddress(
+            create2Utils.address,
+            initCodeHash,
+            salt
+          ),
+        ).to.equal(
           ethers.utils.getCreate2Address(create2Utils.address, salt, initCodeHash),
         );
 
@@ -116,5 +160,6 @@ describe('Factory', function () {
 
       });
     });
+
   });
 });

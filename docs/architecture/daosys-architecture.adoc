@@ -23,11 +23,11 @@ The architecture merges the Diamond Proxy and Factory design patterns.
 Users may have the factory deploy a proxy configured with the functionality they wish.
 This allows users to compose a variety of functionality in a single proxy.
 
-include::design_patterns/daosys-design_patterns-00.adoc[leveloffset=+1]
+// include::design_patterns/daosys-design_patterns-00.adoc[leveloffset=+1]
 
-include::core/daosys-architecture-core-00.adoc[leveloffset=+1]
+// include::core/daosys-architecture-core-00.adoc[leveloffset=+1]
 
-include::interface_hooks/daosys-architecture-interface_hooks-00.adoc[leveloffset=+1]
+// include::interface_hooks/daosys-architecture-interface_hooks-00.adoc[leveloffset=+1]
 
 // include::./modifiers/daosys-architecture-modifiers-00.adoc[leveloffset=+1]
 
@@ -35,8 +35,8 @@ include::interface_hooks/daosys-architecture-interface_hooks-00.adoc[leveloffset
 
 // include::./rollux/daosys-rollux.adoc[leveloffset=+1]
 
-include::libraries/daosys-libraries.adoc[leveloffset=+1]
+include::{includeprefix}docs/architecture/libraries/daosys-architecture-libraries-00.adoc[leveloffset=+1]
 
-include::ddsa_types/daosys-architecture-ddsa_types.adoc[leveloffset=+1]
+// include::ddsa_types/daosys-architecture-ddsa_types.adoc[leveloffset=+1]
 
-include::tests/daosys-test.adoc[leveloffset=+1]
+// include::tests/daosys-test.adoc[leveloffset=+1]

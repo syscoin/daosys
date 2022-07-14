@@ -25,6 +25,12 @@ contract Create2UtilsMock {
     );
   }
 
+  function calculateInitCodeHash(
+    bytes memory creationCode
+  ) pure external returns (bytes32 creationCodeHash) {
+    creationCodeHash = Create2Utils._calculateInitCodeHash(creationCode);
+  }
+
   /**
    * @notice deploy contract code using "CREATE2" opcode
    * @dev reverts if deployment is not successful (likely because salt has already been used)

@@ -1,13 +1,17 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 pragma solidity ^0.8.0;
 
+/**
+ * @title Library that standardizes usage of create2 and related operations.
+ */
 library Create2Utils {
 
   /**
-   * @notice calculate the _deployMetamorphicContract deployment address for a given salt
-   * @param creationCodeHash hash of contract creation code
-   * @param deploymentSalt input for deterministic address calculation
-   * @return deploymentAddress Calculated deployment address
+   * @notice calculate the deployment address from a given address for a given codehash with a given salt.
+   * @param deployerAddress The address from which create2 would be used to deploy the bytecode used to calculate the creationCodeHash.
+   * @param creationCodeHash hash of contract creation code that would be deployed from deployerAddress.
+   * @param deploymentSalt input for deterministic address calculation wjen using create2.
+   * @return deploymentAddress Calculated deployment address of contract with the provided creation code hash and deployment salt from a given address.
    */
   function _calculateDeploymentAddress(
     address deployerAddress,
@@ -31,22 +35,16 @@ library Create2Utils {
   }
 
   /**
-   * @notice calculate the _deployMetamorphicContract deployment address for a given salt
-   * @param creationCodeHash hash of contract creation code
-   * @param salt input for deterministic address calculation
-   * @return deploymentAddress Calculated deployment address
+   * @notice calculates the creation code hash for calculating determinstic contract addresses.
+   * @dev Use this to ensure standardized execution.
+   * @param creationCode The creation code that will be deployed to a deterministic address.
+   * @return creationCodeHash The calculated hash for a given creation code.
    */
-  // function calculateDeploymentAddress(
-  //   address deployerAddress,
-  //   bytes32 creationCodeHash,
-  //   bytes32 salt
-  // ) pure external returns (address deploymentAddress) {
-  //   deploymentAddress = _calculateDeploymentAddress(
-  //     deployerAddress,
-  //     creationCodeHash,
-  //     salt
-  //   );
-  // }
+  function _calculateInitCodeHash(
+    bytes memory creationCode
+  ) pure internal returns (bytes32 creationCodeHash) {
+    creationCodeHash = keccak256(creationCode);
+  }
 
   /**
    * @notice deploy contract code using "CREATE2" opcode
@@ -61,7 +59,6 @@ library Create2Utils {
       let encoded_size := mload(creationCode)
       deployment := create2(0, encoded_data, encoded_size, salt)
     }
-
     require(deployment != address(0), 'Create2Utils: failed deployment');
   }
 

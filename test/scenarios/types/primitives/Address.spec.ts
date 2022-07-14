@@ -9,6 +9,7 @@ import {
   AddressMock__factory
 } from '../../../../typechain';
 
+// TODO Implement complete unit testing.
 describe("Address Test Suite", function () {
 
   // Control values for tests
@@ -22,22 +23,11 @@ describe("Address Test Suite", function () {
   const testAddress = ethers.constants.AddressZero;
   const structSlot = "0x12728a83cdaa91b1cf66a50aeca7be63bdaf64bee20eca53a463e59bcc72ce70";
 
-  /* -------------------------------------------------------------------------- */
-  /*                        SECTION Before All Test Hook                        */
-  /* -------------------------------------------------------------------------- */
-
   before(async function () {
     // Tagging address(0) as "System" in logs.
     tracer.nameTags[ethers.constants.AddressZero] = "System";
   })
 
-  /* -------------------------------------------------------------------------- */
-  /*                       !SECTION Before All Test Hook                        */
-  /* -------------------------------------------------------------------------- */
-
-  /* -------------------------------------------------------------------------- */
-  /*                        SECTION Before Each Test Hook                       */
-  /* -------------------------------------------------------------------------- */
   beforeEach(async function () {
 
     [
@@ -49,14 +39,6 @@ describe("Address Test Suite", function () {
     tracer.nameTags[addressMock.address] = "AddressMock";
 
   });
-
-  /* -------------------------------------------------------------------------- */
-  /*                       !SECTION Before Each Test Hook                       */
-  /* -------------------------------------------------------------------------- */
-
-  /* -------------------------------------------------------------------------- */
-  /*                          SECTION Testing Messenger                         */
-  /* -------------------------------------------------------------------------- */
 
     // TODO Test rest of StringUtils on String.
   describe("Address", function () {
@@ -82,9 +64,5 @@ describe("Address Test Suite", function () {
     });
 
   });
-
-  /* -------------------------------------------------------------------------- */
-  /*                         !SECTION Testing Messenger                         */
-  /* -------------------------------------------------------------------------- */
 
 });
