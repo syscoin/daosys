@@ -14,11 +14,6 @@ import "hardhat/console.sol";
 library UniswapLiquidityDeposit {
     using SafeMath for uint;
 
-//   uint exactTokenBAmount = _tokenB.balanceOf(address(this));
-//_tokenA.approve(address(_router), 2 ** 256 - 1);
-//_tokenB.approve(address(_router), exactTokenBAmount);
-//_router.addLiquidity(address(_tokenA), address(_tokenB), 0, exactTokenBAmount, 0, exactTokenBAmount, address(this), block.timestamp);
- 
     function _addLiquidity(
         address tokenA,
         address tokenB,
@@ -66,8 +61,8 @@ library UniswapLiquidityDeposit {
         TransferHelper.safeTransferFrom(tokenB, msg.sender, pair, amountB);
         uint256 liquidity = IUniswapV2Pair(pair).mint(router);
 
-        console.log("amountADesired: %s", amountADesired);
-        console.log("amountBDesired: %s", amountBDesired);
+        console.log("amountA: %s", amountA);
+        console.log("amountB: %s", amountB);
 
         //uint256 amountA = 1000000000000000;
         //uint256 amountB = 1500000000000000;
