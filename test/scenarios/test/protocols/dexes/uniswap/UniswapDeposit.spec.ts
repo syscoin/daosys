@@ -18,6 +18,7 @@ import { BigNumber, Contract } from 'ethers';
 import { constants } from 'ethers';
 import { createUniswapPair, expandToNDecimals, sqrt } from '../../../../../fixtures/uniswap.fixture';
 
+// https://github.com/Uniswap/v2-periphery/blob/master/contracts/UniswapV2Router01.sol
 // https://docs.uniswap.org/protocol/V2/reference/smart-contracts/router-02#addliquidity
 // https://github.com/t4sk/defi-by-example/blob/main/contracts/TestUniswapLiquidity.sol
 // https://gist.github.com/QuantSoldier/8e0e148c0024df47bccc006560b3f615
@@ -145,8 +146,8 @@ describe("UniswapV2NaiveDeposit", function () {
 
     });    
 
-    describe("addLiquidity()", async () => {
-        it("add liquidity", async () => {
+    describe("addLiquidityTest()", async () => {
+        it("add liquidity test", async () => {
 
             let initTT1Bal = await testToken1.balanceOf(deployer.address);
             let initTT2Bal = await testToken2.balanceOf(deployer.address);
@@ -154,17 +155,49 @@ describe("UniswapV2NaiveDeposit", function () {
             testToken2.approve(naiveDeposit.address, ethers.utils.parseEther("2.0"));
 
 
-            const result =  await naiveDeposit.addLiquidity(
-                                ethers.utils.parseEther("1.0"),
+            let receipt = await (await naiveDeposit.addLiquidityTest(
                                 ethers.utils.parseEther("2.0"),
+                                ethers.utils.parseEther("1.0"),
                                 [testToken2.address, testToken1.address],
                                 uniRouter.address
-                            )
+                              )).wait();  
+                              
+            let amountLiquidity = receipt.events?.pop()?.args?.amountLiquidity;                  
 
-            console.log("test result: %s", result);                 
+            console.log("test result: %s", amountLiquidity);   
+            
+            expect(await testToken1.balanceOf(deployer.address)).to.eql(initTT1Bal);
+            expect(await testToken2.balanceOf(deployer.address)).to.eql(initTT2Bal);            
 
         });
     });
+
+    describe("addLiquidity()", async () => {
+        it("add liquidity", async () => {
+
+            let initTT1Bal = await testToken1.balanceOf(deployer.address);
+            let initTT2Bal = await testToken2.balanceOf(deployer.address);
+            
+            testToken1.approve(naiveDeposit.address, ethers.utils.parseEther("13.0"));
+            testToken2.approve(naiveDeposit.address, ethers.utils.parseEther("8.1"));
+
+
+            let receipt = await (await naiveDeposit.addLiquidity(
+                                testToken1.address,
+                                testToken2.address,
+                                ethers.utils.parseEther("13.0"),
+                                ethers.utils.parseEther("8.1"),
+                                ethers.utils.parseEther("0.0"),
+                                ethers.utils.parseEther("0.0"),
+                                uniRouter.address
+                              )).wait();  
+                              
+            let amountLiquidity = receipt.events?.pop()?.args?.amountLiquidity;                  
+
+            console.log("test result: %s", amountLiquidity);   
+                     
+        });
+    });    
 
 
 
