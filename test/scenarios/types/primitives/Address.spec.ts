@@ -6,7 +6,9 @@ import { expect } from "chai";
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import {
   AddressMock,
-  AddressMock__factory
+  AddressMock__factory,
+  MessengerMock,
+  MessengerMock__factory
 } from '../../../../typechain';
 
 // TODO Implement complete unit testing.
@@ -21,7 +23,13 @@ describe("Address Test Suite", function () {
   // Test variables
   let addressMock: AddressMock;
   const testAddress = ethers.constants.AddressZero;
-  const structSlot = "0x12728a83cdaa91b1cf66a50aeca7be63bdaf64bee20eca53a463e59bcc72ce70";
+  const structSlot = "0xc5339047200dd57448bfd4d23dd79ebaa8c8a6cdaa7c99bfc98e7a85b4bfcf46";
+
+  // TestService test variables
+  let messenger: MessengerMock;
+  const IMessengerInterfaceId = "0xf8e6c6ac";
+  const setMessageFunctionSelector = '0x368b8772';
+  const getMessageFunctionSelector = '0xce6d41de';
 
   before(async function () {
     // Tagging address(0) as "System" in logs.
@@ -38,30 +46,58 @@ describe("Address Test Suite", function () {
     addressMock = await new AddressMock__factory(deployer).deploy() as AddressMock;
     tracer.nameTags[addressMock.address] = "AddressMock";
 
+    messenger = await new MessengerMock__factory(deployer).deploy();
+    tracer.nameTags[messenger.address] = "Messenger";
+
   });
 
     // TODO Test rest of StringUtils on String.
   describe("Address", function () {
 
-    describe("Validate structSlot consistency", function () {
-      it("getStructSlot().", async function () {
-        expect(await addressMock.getStructSlot())
-          .to.equal(structSlot);
-      });
+    it("Validate structSlot consistency.", async function () {
+      expect(await addressMock.getStructSlot())
+        .to.equal(structSlot);
     });
 
-    describe("#getUint256()", function () {
-      describe("()", function () {
-        describe("#setUint256()", function () {
-          describe("(uint256)", function () {
-            it("Can set and get uint256", async function () {
-              await addressMock.setAddress(testAddress);
-              expect(await addressMock.getAddress()).to.equal(testAddress);
-            });
-          });
-        });
-      });
+    it("Can set and get a given address", async function () {
+      await addressMock.setValue(testAddress);
+      expect(await addressMock.getValue()).to.equal(testAddress);
     });
+
+    it("Can wipe a set address", async function () {
+      await addressMock.setValue(testAddress);
+      expect(await addressMock.getValue()).to.equal(testAddress);
+      await addressMock.wipeValue();
+      expect(await addressMock.getValue()).to.equal("0x0000000000000000000000000000000000000000");
+    });
+
+    // TODO properly test string conversion.
+    // it("Can convert a set address to a string", async function () {
+    //   await addressMock.setValue(testAddress);
+    //   expect(await addressMock.toString()).to.equal(testAddress);
+    // });
+
+    // TODO properly test that it can determine if an address is or is not a contract.
+    // it("Can determine if an address is a contract.", async function () {
+    //   await addressMock.setValue(testAddress);
+    //   expect(await addressMock.getValue()).to.equal(testAddress);
+    // });
+
+    // it("Can delegatecall a given address", async function () {
+    //   await addressMock.setValue(messenger.address);
+
+    //   const returnData = await addressMock.functionDelegateCall(
+    //     ethers.utils.keccak256(
+    //       ethers.utils.toUtf8Bytes("Hello World!")
+    //     )
+    //   );
+
+    //   expect(returnData).to.equal(
+    //     ethers.utils.keccak256(
+    //       ethers.utils.toUtf8Bytes("Hello World!")
+    //     )
+    //   );
+    // });
 
   });
 

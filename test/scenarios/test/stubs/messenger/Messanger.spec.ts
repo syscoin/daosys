@@ -19,28 +19,15 @@ describe("Messenger", function () {
 
   // TestService test variables
   let messenger: MessengerMock;
-
-  // const erc165InterfaceID = "0x01ffc9a7";
   const IMessengerInterfaceId = "0xf8e6c6ac";
   const setMessageFunctionSelector = '0x368b8772';
   const getMessageFunctionSelector = '0xce6d41de';
-
-  /* -------------------------------------------------------------------------- */
-  /*                        SECTION Before All Test Hook                        */
-  /* -------------------------------------------------------------------------- */
 
   before(async function () {
     // Tagging address(0) as "System" in logs.
     tracer.nameTags[ethers.constants.AddressZero] = "System";
   })
 
-  /* -------------------------------------------------------------------------- */
-  /*                       !SECTION Before All Test Hook                        */
-  /* -------------------------------------------------------------------------- */
-
-  /* -------------------------------------------------------------------------- */
-  /*                        SECTION Before Each Test Hook                       */
-  /* -------------------------------------------------------------------------- */
   beforeEach(async function () {
 
     [
@@ -52,14 +39,6 @@ describe("Messenger", function () {
     tracer.nameTags[messenger.address] = "Messenger";
 
   });
-
-  /* -------------------------------------------------------------------------- */
-  /*                       !SECTION Before Each Test Hook                       */
-  /* -------------------------------------------------------------------------- */
-
-  /* -------------------------------------------------------------------------- */
-  /*                          SECTION Testing Messenger                         */
-  /* -------------------------------------------------------------------------- */
 
   describe("Messenger", function () {
 
@@ -89,9 +68,5 @@ describe("Messenger", function () {
     });
 
   });
-
-  /* -------------------------------------------------------------------------- */
-  /*                         !SECTION Testing Messenger                         */
-  /* -------------------------------------------------------------------------- */
 
 });

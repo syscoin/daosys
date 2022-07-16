@@ -48,11 +48,11 @@ abstract contract FactoryLogic {
     );
   }
 
-  // function _calculateInitCodeHash(
-  //   bytes memory creationCode
-  // ) pure internal returns (bytes32 creationCodeHash) {
-  //   creationCodeHash = keccak256(creationCode);
-  // }
+  function _calculateInitCodeHash(
+    bytes memory creationCode
+  ) pure internal returns (bytes32 creationCodeHash) {
+    creationCodeHash = keccak256(creationCode);
+  }
 
   /**
    * @notice calculate the _deployMetamorphicContract deployment address for a given salt
@@ -60,18 +60,18 @@ abstract contract FactoryLogic {
    * @param salt input for deterministic address calculation
    * @return deploymentAddress Calculated deployment address
    */
-  // function _calculateDeploymentAddress(
-  //   bytes32 creationCodeHash,
-  //   bytes32 salt
-  // ) view internal returns (
-  //   address deploymentAddress
-  // ) {
-  //   deploymentAddress = _calculateDeploymentAddressFromAddress(
-  //     address(this),
-  //     creationCodeHash,
-  //     salt
-  //   );
-  // }
+  function _calculateDeploymentAddress(
+    bytes32 creationCodeHash,
+    bytes32 salt
+  ) view internal returns (
+    address deploymentAddress
+  ) {
+    deploymentAddress = _calculateDeploymentAddressFromAddress(
+      address(this),
+      creationCodeHash,
+      salt
+    );
+  }
 
   function _calculateDeploymentAddressFromAddress(
       address deployer,

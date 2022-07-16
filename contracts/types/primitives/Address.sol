@@ -126,6 +126,23 @@ library AddressUtils {
     }
   }
 
+  function _functionDelegateCall(address target, bytes memory data) internal returns (bytes memory) {
+    require(_isContract(target), 'AddressUtils: function call to non-contract');
+
+    (bool success, bytes memory returnData) = target.delegatecall(data);
+
+    if (success) {
+      return returnData;
+    } else if (returnData.length > 0) {
+      assembly {
+        let returnData_size := mload(returnData)
+        revert(add(32, returnData), returnData_size)
+      }
+    } else {
+      revert("DelegateCall failed.");
+    }
+  }
+
   /**
      * @dev Imitates a Solidity high-level call (i.e. a regular function call to a contract), relaxing the requirement
      * on the return value: the return value is optional (but if data is returned, it must not be false).

@@ -11,15 +11,25 @@ contract MonadMock {
   using MonadUtils for Monad.Op;
   using MonadUtils for Monad.Result;
 
-  function delegateMonad(
+  function delegateCallWithData(
     Monad.Op memory monad,
     bytes memory data
   ) external returns (
     Monad.Result memory result
   ) {
-    result = MonadUtils._delegateMonad(
+    result = MonadUtils._delegateCallWithData(
       monad,
       data
+    );
+  }
+
+  function delegateCallNoData(
+    Monad.Op memory monad
+  ) external returns (
+    Monad.Result memory result
+  ) {
+    result = MonadUtils._delegateCallNoData(
+      monad
     );
   }
 

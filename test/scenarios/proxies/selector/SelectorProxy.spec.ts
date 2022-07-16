@@ -11,7 +11,7 @@ import {
   SelectorProxyMock__factory
 } from '../../../../typechain';
 
-describe("Service Proxy", function () {
+describe("Selector Proxy", function () {
 
   // Control values for tests
   const invalidInterfaceId = "0xffffffff";
@@ -55,7 +55,7 @@ describe("Service Proxy", function () {
   });
 
 
-  describe("ServiceProxy", function () {
+  describe("SelectorProxy", function () {
 
     describe("Validate interface and function selector computation", function () {
       it("ISelectorProxyInterfaceId.", async function () {
