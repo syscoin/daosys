@@ -8,34 +8,6 @@ import "hardhat/console.sol";
 contract UniswapV2NaiveDepositMock {
     event NaiveDepositEvent(uint256 amountLiquidity);
 
-
-    function testFunc(
-        uint256 x
-    ) external view returns (
-        uint256 y
-    ) { 
-        y = x;
-    }
-
-
-    function addLiquidityTest(
-        uint256 amountOut,
-        uint256 amountInMax,
-        address[] calldata path,
-        address router
-    ) external {
-        //uint256 amountLiquidity = UniswapLiquidityDeposit.swapTokensForExactTokens(
-        //    amountOut,
-        //    amountInMax,
-        //    path,
-        //    router
-        //);
-
-        uint256 amountLiquidity = 1000000000000000;
-
-        emit NaiveDepositEvent(amountLiquidity);
-    }
-
     function addLiquidity(
         address tokenA,
         address tokenB,
@@ -45,7 +17,7 @@ contract UniswapV2NaiveDepositMock {
         uint256 amountBMin,
         address to
     ) external {
-        //(uint256 amountA, uint256 amountB, uint256 amountLiquidity) = 
+
         uint256 amountLiquidity = UniswapLiquidityDeposit.addLiquidity(
             tokenA,
             tokenB,
@@ -55,8 +27,6 @@ contract UniswapV2NaiveDepositMock {
             amountBMin,
             to
         );
-
-        // uint256 amountLiquidity = 2500000000000000;
 
         emit NaiveDepositEvent(amountLiquidity);
     }

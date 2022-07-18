@@ -114,7 +114,7 @@ describe("UniswapV2NaiveDeposit", function () {
         uniRouter = await new UniswapV2Router02__factory(deployer).deploy(uniFactory.address, weth.address);
         expect(uniRouter.address).to.be.properAddress;
         tracer.nameTags[uniRouter.address] = "Uniswap V2 Router 02";
-    })
+    });
 
     beforeEach("Make TT1:TT2 pair", async function () {
         pairAddress = await uniFactory.callStatic["createPair(address,address)"](testToken1.address, testToken2.address);
@@ -124,27 +124,25 @@ describe("UniswapV2NaiveDeposit", function () {
         expect(pair.address).to.be.properAddress;
         tracer.nameTags[pair.address] = "Uniswap TT1:TT2 Pair";
 
-        await testToken1.connect(deployer).transfer(pair.address, ethers.utils.parseEther("10.0"));
-        await testToken2.connect(deployer).transfer(pair.address, ethers.utils.parseEther("10.0"));
+        await testToken1.connect(deployer).transfer(pair.address, ethers.utils.parseEther("100.0"));
+        await testToken2.connect(deployer).transfer(pair.address, ethers.utils.parseEther("100.0"));
 
         await pair.mint(deployer.address);
 
-        expect(await pair.balanceOf(deployer.address)).to.equal("9999999999999999000");
+        expect(await pair.balanceOf(deployer.address)).to.equal("99999999999999999000");
     });
+
 
     beforeEach("Setup Naive Deposit library", async function () {
         naiveDeposit = await new UniswapV2NaiveDepositMock__factory(deployer).deploy();
-    })
+    });
+
+    beforeEach("Approve deposits", async function () {
+        testToken1.approve(naiveDeposit.address, ethers.utils.parseEther("100"));
+        testToken2.approve(naiveDeposit.address, ethers.utils.parseEther("100"));
+    });    
 
  
-
-    describe("testFunc()", async () => {
-        it("test function", async () => {
-            const res = await naiveDeposit.testFunc(token0Amt)
-            console.log("test %s", res);  
-        });
-
-    });    
 
     describe("addLiquidity()", async () => {
         it("add liquidity", async () => {
@@ -152,26 +150,96 @@ describe("UniswapV2NaiveDeposit", function () {
             let initTT1Bal = await testToken1.balanceOf(deployer.address);
             let initTT2Bal = await testToken2.balanceOf(deployer.address);
             
-            testToken1.approve(naiveDeposit.address, ethers.utils.parseEther("13.0"));
-            testToken2.approve(naiveDeposit.address, ethers.utils.parseEther("8.1"));
-
-
-            let receipt = await (await naiveDeposit.addLiquidity(
+            let receipt0 = await (await naiveDeposit.addLiquidity(
                                 testToken1.address,
                                 testToken2.address,
-                                ethers.utils.parseEther("13.0"),
-                                ethers.utils.parseEther("8.1"),
+                                ethers.utils.parseEther("8.0"),
+                                ethers.utils.parseEther("8.0"),
                                 ethers.utils.parseEther("0.0"),
                                 ethers.utils.parseEther("0.0"),
                                 uniRouter.address
                               )).wait();  
                               
-            let amountLiquidity = receipt.events?.pop()?.args?.amountLiquidity;                  
+            let amountLiquidity0 = receipt0.events?.pop()?.args?.amountLiquidity;
+            let pairBal0 = await pair.balanceOf(uniRouter.address);     
+            expect(amountLiquidity0).to.equal("8000000000000000000"); 
+            expect(pairBal0).to.equal("8000000000000000000"); 
 
-            console.log("test result: %s", amountLiquidity);   
+            
+
+            let receipt1 = await (await naiveDeposit.addLiquidity(
+                testToken1.address,
+                testToken2.address,
+                ethers.utils.parseEther("4.0"),
+                ethers.utils.parseEther("4.0"),
+                ethers.utils.parseEther("0.0"),
+                ethers.utils.parseEther("0.0"),
+                uniRouter.address
+              )).wait();  
+              
+            let amountLiquidity1 = receipt1.events?.pop()?.args?.amountLiquidity;
+            let pairBal1 = await pair.balanceOf(uniRouter.address);   
+            expect(amountLiquidity1).to.equal("4000000000000000000"); 
+            expect(pairBal1).to.equal("12000000000000000000");             
+            
+            
+            let receipt2 = await (await naiveDeposit.addLiquidity(
+                testToken1.address,
+                testToken2.address,
+                ethers.utils.parseEther("2.0"),
+                ethers.utils.parseEther("2.0"),
+                ethers.utils.parseEther("0.0"),
+                ethers.utils.parseEther("0.0"),
+                uniRouter.address
+              )).wait();  
+              
+            let amountLiquidity2 = receipt2.events?.pop()?.args?.amountLiquidity;
+            let pairBal2 = await pair.balanceOf(uniRouter.address);     
+            expect(amountLiquidity2).to.equal("2000000000000000000"); 
+            expect(pairBal2).to.equal("14000000000000000000");                     
+
                      
         });
-    });    
+    });  
+    
+    describe("addLiquidity()", async () => {
+        it("add unequal liquidity", async () => {  
+            
+            let initTT1Bal = await testToken1.balanceOf(deployer.address);
+            let initTT2Bal = await testToken2.balanceOf(deployer.address);
+            
+            let receipt0 = await (await naiveDeposit.addLiquidity(
+                                testToken1.address,
+                                testToken2.address,
+                                ethers.utils.parseEther("14.0"),
+                                ethers.utils.parseEther("14.0"),
+                                ethers.utils.parseEther("0.0"),
+                                ethers.utils.parseEther("0.0"),
+                                uniRouter.address
+                              )).wait();  
+                              
+            let amountLiquidity0 = receipt0.events?.pop()?.args?.amountLiquidity;
+            let pairBal0 = await pair.balanceOf(uniRouter.address);  
+            expect(amountLiquidity0).to.equal("14000000000000000000"); 
+            expect(pairBal0).to.equal("14000000000000000000");          
+            
+            let receipt1 = await (await naiveDeposit.addLiquidity(
+                testToken1.address,
+                testToken2.address,
+                ethers.utils.parseEther("1.0"),
+                ethers.utils.parseEther("4.0"),
+                ethers.utils.parseEther("0.0"),
+                ethers.utils.parseEther("0.0"),
+                uniRouter.address
+              )).wait();  
+              
+            let amountLiquidity1 = receipt1.events?.pop()?.args?.amountLiquidity;
+            let pairBal1 = await pair.balanceOf(uniRouter.address);     
+            expect(amountLiquidity1).to.equal("1000000000000000000"); 
+            expect(pairBal1).to.equal("15000000000000000000");              
+
+        });
+    });             
 
 
 

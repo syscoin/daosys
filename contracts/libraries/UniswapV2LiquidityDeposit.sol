@@ -1,7 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-// https://github.com/t4sk/defi-by-example/blob/main/contracts/TestUniswapLiquidity.sol
-
 pragma solidity ^0.8.0;
 
 import "../test/protocols/dexes/uniswap/v2/uniswap-v2-periphery/libraries/UniswapV2Library.sol";
@@ -33,12 +31,12 @@ library UniswapLiquidityDeposit {
         } else {
             uint amountBOptimal = UniswapV2Library.quote(amountADesired, reserveA, reserveB);
             if (amountBOptimal <= amountBDesired) {
-                require(amountBOptimal >= amountBMin, 'UniswapV2Router: INSUFFICIENT_B_AMOUNT');
+                require(amountBOptimal >= amountBMin, 'UniswapLiquidityDeposit: INSUFFICIENT_B_AMOUNT');
                 (amountA, amountB) = (amountADesired, amountBOptimal);
             } else {
                 uint amountAOptimal = UniswapV2Library.quote(amountBDesired, reserveB, reserveA);
                 assert(amountAOptimal <= amountADesired);
-                require(amountAOptimal >= amountAMin, 'UniswapV2Router: INSUFFICIENT_A_AMOUNT');
+                require(amountAOptimal >= amountAMin, 'UniswapLiquidityDeposit: INSUFFICIENT_A_AMOUNT');
                 (amountA, amountB) = (amountAOptimal, amountBDesired);
             }
         }
@@ -60,13 +58,6 @@ library UniswapLiquidityDeposit {
         TransferHelper.safeTransferFrom(tokenA, msg.sender, pair, amountA);
         TransferHelper.safeTransferFrom(tokenB, msg.sender, pair, amountB);
         uint256 liquidity = IUniswapV2Pair(pair).mint(router);
-
-        console.log("amountA: %s", amountA);
-        console.log("amountB: %s", amountB);
-
-        //uint256 amountA = 1000000000000000;
-        //uint256 amountB = 1500000000000000;
-        //uint256 liquidity = amountA; 
 
         return liquidity;
     } 
