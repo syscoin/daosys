@@ -6,7 +6,6 @@ import "../test/protocols/dexes/uniswap/v2/uniswap-v2-periphery/libraries/Uniswa
 import "../test/protocols/dexes/uniswap/v2/uniswap-v2-periphery/interfaces/IUniswapV2Router02.sol";
 import {TransferHelper} from "../test/protocols/dexes/uniswap/v2/uniswap-lib/libraries/TransferHelper.sol";
 
-
 import "hardhat/console.sol";
 
 library UniswapLiquidityDeposit {
@@ -21,6 +20,7 @@ library UniswapLiquidityDeposit {
         uint256 amountBMin,
         address factory
     ) private returns (uint amountA, uint amountB) {
+        
         // create the pair if it doesn't exist yet
         if (IUniswapV2Factory(factory).getPair(tokenA, tokenB) == address(0)) {
             IUniswapV2Factory(factory).createPair(tokenA, tokenB);
@@ -51,6 +51,7 @@ library UniswapLiquidityDeposit {
         uint256 amountBMin,
         address router
        ) internal returns (uint256) { 
+
         address factory = IUniswapV2Router02(router).factory();
         (uint256 amountA, uint256 amountB) = _addLiquidity(tokenA, tokenB, amountADesired, amountBDesired, amountAMin, amountBMin, factory);
         address pair = UniswapV2Library.pairFor(factory, tokenA, tokenB);
@@ -60,6 +61,5 @@ library UniswapLiquidityDeposit {
 
         return liquidity;
     } 
-
 
 }

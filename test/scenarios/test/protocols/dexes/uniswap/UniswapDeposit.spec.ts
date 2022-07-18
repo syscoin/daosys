@@ -154,8 +154,8 @@ describe("UniswapV2NaiveDeposit", function () {
                                 testToken2.address,
                                 ethers.utils.parseEther("8.0"),
                                 ethers.utils.parseEther("8.0"),
-                                ethers.utils.parseEther("0.0"),
-                                ethers.utils.parseEther("0.0"),
+                                ethers.utils.parseEther("0.000001"),
+                                ethers.utils.parseEther("0.000001"),
                                 uniRouter.address
                               )).wait();  
                               
@@ -169,8 +169,8 @@ describe("UniswapV2NaiveDeposit", function () {
                     testToken2.address,
                     ethers.utils.parseEther("4.0"),
                     ethers.utils.parseEther("4.0"),
-                    ethers.utils.parseEther("0.0"),
-                    ethers.utils.parseEther("0.0"),
+                    ethers.utils.parseEther("0.000001"),
+                    ethers.utils.parseEther("0.000001"),
                     uniRouter.address
                  )).wait();  
               
@@ -185,8 +185,8 @@ describe("UniswapV2NaiveDeposit", function () {
                     testToken2.address,
                     ethers.utils.parseEther("2.0"),
                     ethers.utils.parseEther("2.0"),
-                    ethers.utils.parseEther("0.0"),
-                    ethers.utils.parseEther("0.0"),
+                    ethers.utils.parseEther("0.000001"),
+                    ethers.utils.parseEther("0.000001"),
                     uniRouter.address
                 )).wait();  
               
@@ -207,8 +207,8 @@ describe("UniswapV2NaiveDeposit", function () {
                                     testToken2.address,
                                     ethers.utils.parseEther("14.0"),
                                     ethers.utils.parseEther("14.0"),
-                                    ethers.utils.parseEther("0.0"),
-                                    ethers.utils.parseEther("0.0"),
+                                    ethers.utils.parseEther("0.000001"),
+                                    ethers.utils.parseEther("0.000001"),
                                     uniRouter.address
                                   )).wait();  
                                   
@@ -222,8 +222,8 @@ describe("UniswapV2NaiveDeposit", function () {
                     testToken2.address,
                     ethers.utils.parseEther("1.0"),
                     ethers.utils.parseEther("4.0"),
-                    ethers.utils.parseEther("0.0"),
-                    ethers.utils.parseEther("0.0"),
+                    ethers.utils.parseEther("0.000001"),
+                    ethers.utils.parseEther("0.000001"),
                     uniRouter.address
                   )).wait();  
                   
@@ -232,7 +232,21 @@ describe("UniswapV2NaiveDeposit", function () {
                 expect(amountLiquidity1).to.equal("1000000000000000000"); 
                 expect(pairBal1).to.equal("15000000000000000000");              
     
-            });            
+            }); 
+            
+            it("add insufficient amount", async function () {
+
+                await expect(naiveDeposit.addLiquidity(
+                    testToken1.address,
+                    testToken2.address,
+                    ethers.utils.parseEther("0.0"),
+                    ethers.utils.parseEther("4.0"),
+                    ethers.utils.parseEther("0.000001"),
+                    ethers.utils.parseEther("0.000001"),
+                    uniRouter.address
+                  )).to.be.revertedWith("UniswapV2Library: INSUFFICIENT_AMOUNT")
+
+            });     
 
         });
     });  
