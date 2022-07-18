@@ -22,8 +22,8 @@ describe("Delegate Service", function () {
   let delegateServiceMock: DelegateServiceMock;
 
   // const erc165InterfaceID = "0x01ffc9a7";
-  const IDelegateServiceInterfaceId = '0xb38d1215';
-  const getServiceDefFunctionSelector = '0xd56eb69e';
+  const IDelegateServiceInterfaceId = '0x30822d6e';
+  const getServiceDefFunctionSelector = '0x30822d6e';
 
   /* -------------------------------------------------------------------------- */
   /*                        SECTION Before All Test Hook                        */

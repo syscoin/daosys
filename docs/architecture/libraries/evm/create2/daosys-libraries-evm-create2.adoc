@@ -1,0 +1,30 @@
+= ASE EVM Create2 Library
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-07-01
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectanchors:
+:sectlinks:
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+*Documentation Pending final implementation.*
+
+// TODO Write docs for implementation.
+
+Standardizes usage of the CREATE2 operation.
+
+[source, solidity]
+----
+include::../../../../../contracts/evm/create2/utils/Create2Utils.sol[lines="1..-1"]
+----

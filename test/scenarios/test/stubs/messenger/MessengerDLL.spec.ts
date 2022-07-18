@@ -9,11 +9,11 @@ import {
   MessengerDLL__factory,
   MessengerLogicExternal,
   MessengerLogicExternal__factory,
-  SelectorProxyMock,
-  SelectorProxyMock__factory
+  DLLProxyMock,
+  DLLProxyMock__factory
 } from '../../../../../typechain';
 
-describe.only("MessengerDLL", function () {
+describe("MessengerDLL", function () {
 
   // Control values for tests
   const invalidInterfaceId = "0xffffffff";
@@ -29,7 +29,7 @@ describe.only("MessengerDLL", function () {
   const setMessageFunctionSelector = '0x368b8772';
   const getMessageFunctionSelector = '0xce6d41de';
 
-  let proxy: SelectorProxyMock;
+  let proxy: DLLProxyMock;
   const ISelectorProxyInterfaceId = '0xe21d303a';
   const queryImplementationFunctionSelector = '0xe21d303a';
 
@@ -50,7 +50,7 @@ describe.only("MessengerDLL", function () {
     messenger = await new MessengerDLL__factory(deployer).deploy() as MessengerDLL;
     tracer.nameTags[messenger.address] = "MessengerDLL";
 
-    proxy = await new SelectorProxyMock__factory(deployer).deploy() as SelectorProxyMock;
+    proxy = await new DLLProxyMock__factory(deployer).deploy() as DLLProxyMock;
     tracer.nameTags[proxy.address] = "Proxy";
 
     proxyAsMessenger = await ethers.getContractAt("MessengerDLL", proxy.address) as MessengerDLL;

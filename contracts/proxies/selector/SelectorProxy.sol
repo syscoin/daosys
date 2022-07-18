@@ -36,7 +36,7 @@ contract SelectorProxy
     bytes4 functionSelector   
   ) view internal returns (address delegateService) {
     delegateService = _queryImplementation(
-      ISELECTOR_PROXY_STORAGE_SLOT_SALT,
+      ISELECTOR_PROXY_STORAGE_SLOT_SALT, 
       functionSelector
     );
   }

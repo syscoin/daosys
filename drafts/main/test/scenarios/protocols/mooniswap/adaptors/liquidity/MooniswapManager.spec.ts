@@ -55,7 +55,7 @@
 //     let weth: WETH9;
 
 //     let mooniswapManagerDelegateService: MooniswapManagerDelegateService;
-//     const IDelegateServiceInterfaceId = '0xd56eb69e';
+//     const IDelegateServiceInterfaceId = '0x30822d6e';
 //     const iMooniswapManagerInterfaceId = '0x2b710c59';
 //     const getPoolAddressFunctionSelector = '0xf586c6d9';
 //     const swapFunctionSelector = '0xf3e6ea8a';

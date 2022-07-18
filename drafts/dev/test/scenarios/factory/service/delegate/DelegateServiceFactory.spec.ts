@@ -33,8 +33,8 @@ describe('Delegate Service Factory', function () {
   const bulkQueryDelegateServiceAddressFunctionSelector = '0xb3690619';
 
   let messengerDelegateService: MessengerDelegateService;
-  const IDelegateServiceInterfaceId = '0xd56eb69e';
-  const getServiceDefFunctionSelector = '0xd56eb69e';
+  const IDelegateServiceInterfaceId = '0x30822d6e';
+  const getServiceDefFunctionSelector = '0x30822d6e';
   const IMessengerInterfaceId = "0xf8e6c6ac";
   const setMessageFunctionSelector = '0x368b8772';
   const getMessageFunctionSelector = '0xce6d41de';

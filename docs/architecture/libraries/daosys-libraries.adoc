@@ -1,0 +1,23 @@
+= ASE Libraries
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-07-01
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectanchors:
+:sectlinks:
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+Documentation of internal libraries used in externalzing contracts.
+
+include::evm/daosys-libraries-evm.adoc[leveloffset=+1]
