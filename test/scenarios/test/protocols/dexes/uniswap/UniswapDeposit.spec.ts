@@ -18,15 +18,6 @@ import { BigNumber, Contract } from 'ethers';
 import { constants } from 'ethers';
 import { createUniswapPair, expandToNDecimals, sqrt } from '../../../../../fixtures/uniswap.fixture';
 
-// https://github.com/Uniswap/v2-periphery/blob/master/contracts/UniswapV2Router01.sol
-// https://docs.uniswap.org/protocol/V2/reference/smart-contracts/router-02#addliquidity
-// https://github.com/t4sk/defi-by-example/blob/main/contracts/TestUniswapLiquidity.sol
-// https://gist.github.com/QuantSoldier/8e0e148c0024df47bccc006560b3f615
-// https://vomtom.at/how-to-use-uniswap-v2-as-a-developer/
-// https://coinsbench.com/solidity-101-introduction-to-libraries-in-solidity-b4555f2e0066
-// https://github.com/syscoin/daosys/commit/f98774d45115296a9aa262329794dae3fb805b14
-
-
 describe("UniswapV2NaiveDeposit", function () {
     // Test Wallets
     let deployer: SignerWithAddress;
