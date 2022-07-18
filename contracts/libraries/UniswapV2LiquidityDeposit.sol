@@ -50,7 +50,6 @@ library UniswapLiquidityDeposit {
         uint256 amountAMin,
         uint256 amountBMin,
         address router
-    // ) internal returns (uint256 amountA, uint256 amountB, uint256 liquidity) {
        ) internal returns (uint256) { 
         address factory = IUniswapV2Router02(router).factory();
         (uint256 amountA, uint256 amountB) = _addLiquidity(tokenA, tokenB, amountADesired, amountBDesired, amountAMin, amountBMin, factory);
