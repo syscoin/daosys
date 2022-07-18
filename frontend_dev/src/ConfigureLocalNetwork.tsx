@@ -17,17 +17,22 @@ const _localNetwork = {
 
 export const ConfigureLocalNetwork: FC<{}> = () => {
 
-    const { library }  = useEthers();
+    const { library } = useEthers();
 
     const addNetwork = async () => {
-        const result = await library?.send(
-            "wallet_addEthereumChain",
-            [
-                _localNetwork
-            ]
-        );
+        if (library) {
+            const result = await library?.send(
+                "wallet_addEthereumChain",
+                [
+                    _localNetwork
+                ]
+            );
+            console.log(result);
+        } else {
+            console.warn("No library")
+        }
 
-        console.log(result);
+        
     };
 
     return (

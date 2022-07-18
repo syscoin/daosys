@@ -3,15 +3,17 @@ import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { App } from './App';
 import reportWebVitals from './reportWebVitals';
-import { Config, DAppProvider, Localhost, Hardhat } from '@usedapp/core'
+import { Config, DAppProvider, Localhost, Hardhat, Mainnet } from '@usedapp/core'
 
 const config: Config = {
-  readOnlyChainId: Hardhat.chainId,
+  readOnlyChainId: Mainnet.chainId,
   readOnlyUrls: {
-    [Hardhat.chainId]: "http://127.0.0.1:8545"
+    // [Hardhat.chainId]: "http://127.0.0.1:8545",
+    [Mainnet.chainId]: "https://mainnet.infura.io/v3/0b2c497ed2cc49d4b2f327e712176cbb"
   },
   multicallAddresses: [
-    Hardhat.multicallAddress
+    // "0xdac17f958d2ee523a2206206994597c13d831ec7",
+    Mainnet.multicallAddress
   ]
 }
 

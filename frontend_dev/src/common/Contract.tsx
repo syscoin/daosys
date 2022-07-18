@@ -1,8 +1,12 @@
 import { Interface } from "@ethersproject/abi";
+import { connectContractToSigner, useEthers } from "@usedapp/core/dist/esm/src/hooks";
 import { Contract as eContract, ethers } from "ethers";
 import React, { FC, useEffect, useState } from "react"
-import { Card, Row } from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
 import { ContractMethod } from "./ContractMethod";
+import { Falsy } from "@usedapp/core/dist/esm/src/model/types";
+import { Error } from "./UI/Error";
+import { Deployer } from "./Deployer";
 
 export interface ContractProps {
     path: string
@@ -24,15 +28,24 @@ export const Contract: FC<ContractProps> = ({ path }) => {
     const [contract, setContract] = useState<eContract | null>(null);
     const [cInterface, setCInterface] = useState<Interface | null>(null);
     const [deployedAddress, setDeployedAddress] = useState<string>('');
+    const [errors, setErrors] = useState<string | Falsy>(null);
+
+    const {library} = useEthers();
+
 
     useEffect(() => {
-        if (abiRaw !== null && '' !== deployedAddress) {
+        if (abiRaw !== null && '' !== deployedAddress && library) {
             const _interface = new ethers.utils.Interface(abiRaw.abi);
 
-            const _tmpContract = new eContract(deployedAddress, _interface);
-
-            setContract(_tmpContract);
-            setCInterface(_interface)
+            try {
+                const _tmpContract = new eContract(deployedAddress, _interface);
+                const connectedContract = connectContractToSigner(_tmpContract, undefined, library.getSigner())
+                
+                setContract(connectedContract);
+                setCInterface(_interface)
+            } catch (e) {
+                setErrors(String(e))
+            }
         }
     }, [abiRaw, deployedAddress]);
 
@@ -47,6 +60,9 @@ export const Contract: FC<ContractProps> = ({ path }) => {
         if ('' !== path) {
             fetchAbi().then((response) => {
                 setAbiRaw(response)
+                setDeployedAddress('')
+                setContract(null)
+                setCInterface(new Interface(response.abi))
             }).catch(e => console.debug(e));
         }
     }, [path]);
@@ -83,7 +99,16 @@ export const Contract: FC<ContractProps> = ({ path }) => {
                             {abiRaw?.contractName}
                         </Card.Header>
                         <Card.Footer>
-                            <input onChange={(e) => setDeployedAddress(e.target.value)} type="text" id="contractAddress" className="form-control" placeholder="Enter deployed contract address." />
+                            <Row>
+                                <Col sm={3}>
+                                    {cInterface && <Deployer onDeployed={(address: string) => {
+                                        setDeployedAddress(address);
+                                    }} bytecode={abiRaw?.bytecode} contractInterface={cInterface}/>}  
+                                </Col>
+                            </Row>
+                            <hr/>
+                            {String(errors).length > 0 && <Error message={errors} hideAfter={3} onHide = {async () => setErrors('') }/>}
+                            <input onChange={(e) => setDeployedAddress(e.target.value)} value={deployedAddress} type="text" id="contractAddress" className="form-control" placeholder="Enter deployed contract address." />
                         </Card.Footer>
                     </Card>
 
@@ -95,7 +120,7 @@ export const Contract: FC<ContractProps> = ({ path }) => {
                             </Card.Header>
                             <Card.Body>
                                 {Object.keys(contract.functions).map((item, index) => {
-                                    return <ContractMethod methodName={item} key={`contractMethod-${index}`} contractInterface={cInterface}/>
+                                    return <ContractMethod contractInstance={contract} methodName={item} key={`contractMethod-${index}`} contractInterface={cInterface}/>
                                 })}
                             </Card.Body>
                         </Card>
