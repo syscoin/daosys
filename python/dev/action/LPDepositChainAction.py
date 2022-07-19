@@ -7,8 +7,9 @@ import copy
 
 class LPDepositChainAction(Action):
     
-    def __init__(self, action, target, user, mint_id = None):
-        self.__action = action
+    def __init__(self, action1, action2, target, user, mint_id = None):
+        self.__action1 = action1
+        self.__action2 = action2
         self.__target = target
         self.__user = user
         self.__mint_id = mint_id        
@@ -25,8 +26,8 @@ class LPDepositChainAction(Action):
     def get_mint_id(self):
         return self.__mint_id  
 
-    def get_event(self):
-        return self.__action.get_event()
+    def get_event(self, action):
+        return action.get_event()
 
     def get_user(self):
         return self.__user
@@ -43,19 +44,26 @@ class LPDepositChainAction(Action):
         token = self.get_target().get_token()        
         address = self.get_target().get_address(mint_id) 
         token_index = self.get_target().get_token_index(address)
-        apy = self.get_event().get_apy()  
+        
+        apy = self.get_event(self.__action1).get_apy()  
         t_delta = self.get_event().get_time_delta()
-        delta = abs(self.get_event().get_delta())    
         
-        event = Deposit(apy, delta, t_delta, address)
-        self.__update_lp(event)
-        lp_delta = self.__calc_delta(token_index)
+        
+        delta1 = abs(self.get_event(self.__action1).get_delta())   
+        delta2 = abs(self.get_event(self.__action2).get_delta()) 
+        
+        # event1 = Deposit(apy, delta, t_delta, address)
+        
+        
+        
+        #self.__update_lp(event)
+        #lp_delta = self.__calc_delta(token_index)
 
-        event = Deposit(apy, lp_delta, t_delta, address)
-        token.add_event(event)                
+        #event = Deposit(apy, lp_delta, t_delta, address)
+        #token.add_event(event)                
         
-        self.get_target().set_token(token) 
-        self.get_target().update_token_index(address)
+        #self.get_target().set_token(token) 
+        #self.get_target().update_token_index(address)
         
         return True
     
