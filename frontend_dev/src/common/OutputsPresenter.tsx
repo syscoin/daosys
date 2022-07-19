@@ -24,16 +24,20 @@ export const OutputsPresenter: FC<OutputsPresenterProps> = (props) => {
         {(typeof props.results !== 'undefined' && props.results.length > 0) && <>
             <div className="alert alert-primary">
                 <ul>
-                    {Object.keys(props.results).map((item, index) => {
+                    {props.results.map((item: any, index: number) => {
 
-                        let value = props.results[item];
+                        let value = props.results[index];
 
                         if (typeof value === 'object' && '_isBigNumber' in value) {
                             value = ethers.utils.formatUnits(value).toString()
                         }
 
+                        if (typeof value === 'boolean') {
+                            value = value === true ? 'true' : 'false';
+                        }
+
                         return <li key={index}>
-                            {value}
+                            #{index} - {value}
                         </li>
                     })}
                 </ul>
