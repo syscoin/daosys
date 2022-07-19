@@ -62,4 +62,4 @@ include::{includeprefix}docs/architecture/libraries/daosys-libraries.adoc[levelo
 
 // include::ddsa_types/daosys-architecture-ddsa_types.adoc[leveloffset=+1]
 
-// include::tests/daosys-test.adoc[leveloffset=+1]
+include::{includeprefix}docs/architecture/tests/daosys-test.adoc[leveloffset=+1]

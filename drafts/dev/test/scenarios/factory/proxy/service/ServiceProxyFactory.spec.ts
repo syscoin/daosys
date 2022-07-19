@@ -38,7 +38,7 @@ describe("ServiceProxyFactory", function () {
 
   // Service Proxy test variables
   let proxy: ServiceProxyMock;
-  const IServiceProxyInterfaceId = '0x805cef69';
+  const IServiceProxyInterfaceId = '0xfd1ff1dc';
   const getImplementationFunctionSelector = '0xdc9cc645';
   const initializeServiceProxyFunctionSelector = '0x5cc0292c';
 

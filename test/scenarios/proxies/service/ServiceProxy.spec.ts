@@ -27,8 +27,8 @@ describe("Service Proxy", function () {
 
   let proxy: ServiceProxyMock;
   const IServiceProxyInterfaceId = '0xfd1ff1dc';
-  const getImplementationFunctionSelector = '0xdc9cc645';
-  const initializeServiceProxyFunctionSelector = '0x5cc0292c';
+  const queryImplementationFunctionSelector = '0xe21d303a';
+  const initServiceProxyFunctionSelector = '0xfd1ff1dc';
 
   const ICreate2DeploymentMetadataInterfaceId = '0x2f6fb0fb';
   const getCreate2DeploymentMetadataFunctionSelector = '0x2e08c21c';
@@ -87,12 +87,12 @@ describe("Service Proxy", function () {
           .to.equal(IServiceProxyInterfaceId);
       });
       it("getImplementationFunctionSelector.", async function () {
-        expect(await proxy.getImplementationFunctionSelector())
-          .to.equal(getImplementationFunctionSelector);
+        expect(await proxy.queryImplementationFunctionSelector())
+          .to.equal(queryImplementationFunctionSelector);
       });
       it("initializeServiceProxyFunctionSelector.", async function () {
-        expect(await proxy.initializeServiceProxyFunctionSelector())
-          .to.equal(initializeServiceProxyFunctionSelector);
+        expect(await proxy.initServiceProxyFunctionSelector())
+          .to.equal(initServiceProxyFunctionSelector);
       });
       it("ICreate2DeploymentMetadataInterfaceId.", async function () {
         expect(await proxy.ICreate2DeploymentMetadataInterfaceId())
@@ -119,18 +119,18 @@ describe("Service Proxy", function () {
 
     describe("queryForDelegateService()", function () {
       it("Can set and get delegate service", async function () {
-        await proxy.registerDelegateService(
+        await proxy.mapDelegateService(
           [
             messenger.address
           ]
         );
         expect(
-          await proxy.getImplementation(
+          await proxy.queryImplementation(
             setMessageFunctionSelector
           )
         ).to.equal(messenger.address);
         expect(
-          await proxy.getImplementation(
+          await proxy.queryImplementation(
             getMessageFunctionSelector
           )
         ).to.equal(messenger.address);
@@ -142,7 +142,7 @@ describe("Service Proxy", function () {
       describe("#getMessage()", function () {
         describe("()", function () {
           it("Can set and get message", async function () {
-            await proxy.registerDelegateService(
+            await proxy.mapDelegateService(
               [
                 messenger.address
               ]

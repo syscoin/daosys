@@ -12,12 +12,14 @@ ifndef::compositing[]
 :sectnums:
 :data-uri:
 :stem: asciimath
-:pathtoroot: ../../
+:pathtoroot: ../../../../
 :imagesdir: {pathtoroot}
 :includeprefix: {pathtoroot}
 :compositing:
 endif::[]
 
-include::create/daosys-libraries-evm-create.adoc[leveloffset=+1]
+include::{includeprefix}docs/architecture/libraries/evm/create/daosys-libraries-evm-create.adoc[leveloffset=+1]
 
-include::create2/daosys-libraries-evm-create2.adoc[leveloffset=+1]
+include::{includeprefix}docs/architecture/libraries/evm/create2/daosys-libraries-evm-create2.adoc[leveloffset=+1]
+
+include::{includeprefix}docs/architecture/libraries/evm/monad/daosys-libraries-evm-monad.adoc[leveloffset=+1[]

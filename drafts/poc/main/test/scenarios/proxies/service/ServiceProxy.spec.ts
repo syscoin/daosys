@@ -26,7 +26,7 @@ describe("Service Proxy", function () {
   const getMessageFunctionSelector = '0xce6d41de';
 
   let proxy: ServiceProxyMock;
-  const IServiceProxyInterfaceId = '0x805cef69';
+  const IServiceProxyInterfaceId = '0xfd1ff1dc';
   const getImplementationFunctionSelector = '0xdc9cc645';
   const initializeServiceProxyFunctionSelector = '0x5cc0292c';
 

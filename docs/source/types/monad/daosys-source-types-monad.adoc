@@ -1,8 +1,8 @@
-= ASE EVM Create Library
+= ASE Monad Datatype
 ifndef::compositing[]
 :author: cyotee doge
 :email: cyotee@syscoin.org
-:revdate: 2022-07-01
+:revdate: 2022-02-19
 :revnumber: 0.1
 :revremark: Initial draft.
 :toc:
@@ -12,7 +12,7 @@ ifndef::compositing[]
 :sectnums:
 :data-uri:
 :stem: asciimath
-:pathtoroot: ../../../../../
+:pathtoroot: ../../../../
 :imagesdir: {pathtoroot}
 :includeprefix: {pathtoroot}
 :compositing:
@@ -22,9 +22,12 @@ endif::[]
 
 // TODO Write docs for implementation.
 
-Standardizes use of the CREATE2 operation.
+[source, solidity]
+----
+include::../../../../contracts/types/monad/Monad.sol[lines="1..-1"]
+----
 
 [source, solidity]
 ----
-include::{includeprefix}contracts/evm/create/utils/CreateUtils.sol[lines="1..-1"]
+include::../../../../test/scenarios/types/monad/Monad.spec.ts[line="1..-1"]
 ----
