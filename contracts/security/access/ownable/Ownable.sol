@@ -6,14 +6,14 @@ import {
   OwnableModifiers,
   OwnableStorageUtils
 } from "contracts/security/access/ownable/modifiers/OwnableModifiers.sol";
-import {ImmutableModifiers} from "../immutable/modifiers/ImmutableModifiers.sol";
+import {Immutable} from "contracts/security/access/immutable/Immutable.sol";
 // import {ERC165, IERC165} from "../../introspection/erc165/ERC165.sol";
 
 abstract contract Ownable
   is
     IERC173,
     OwnableModifiers,
-    ImmutableModifiers
+    Immutable
 {
 
   function _initOwnable(address newOwner) virtual internal isNotImmutable(OwnableStorageUtils._saltStorageSlot(type(IERC173).interfaceId)) {

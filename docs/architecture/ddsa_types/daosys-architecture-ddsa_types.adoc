@@ -1,0 +1,23 @@
+= ASE DDSA Data Types
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-02-19
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectanchors:
+:sectlinks:
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+// include::./collections/daosys-architecture-ddsa_types-collections.adoc[leveloffset=+1]
+
+include::{includeprefix}docs/source/types/primitives/daosys-source-types-primitives-00.adoc[leveloffset=+1]

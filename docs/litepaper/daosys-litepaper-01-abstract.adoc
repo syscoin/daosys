@@ -1,0 +1,30 @@
+= Abstract
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-03-25
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectanchors:
+:sectlinks:
+:sectnums:
+:data-uri:
+:stem:
+:pathtoroot: ../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+DAOSYS applies the new Autonomous Service Engine (ASE) technology to deploy a reference platform for self-sovereign capital coordination.
+The Autonomous Service Engine provides an opinionated framework for deploying smart-contract platforms supporting DAOs.
+Users may deposit their assets in the DAOSYS ecosystem of staking pools.
+Users receive a Treasury Token that directly reflects their deposit and the interest due for providing liquidity.
+Holders of the Treasury Token may stake their tokens to allocate their share of the treasury through the integrations to defi protocols and the custom features available from DAOSYS.
+
+Users may also deploy their own staking pools to allocate capital to fund a venture through the ASE.
+This gives users unprecedented control over their share of the DAO treasury.
+The AMM model of the Autonomous Service Engine allows anyone to deploy their own pool with the defi integrations and governance model to manage their capital allocation for executing on a particular proposal.
+With no overall governance token, we can eliminate the economic contagion that DAOs typically experience.

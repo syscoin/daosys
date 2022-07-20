@@ -15,3 +15,7 @@ ifndef::compositing[]
 :includeprefix: {pathtoroot}
 :compositing:
 endif::[]
+
+include::./dev_dao/daosys-use_cases-dev_dao.adoc[leveloffset=+1]
+
+include::./game_dao/daosys-use_cases-game_dao.adoc[leveloffset=+1]

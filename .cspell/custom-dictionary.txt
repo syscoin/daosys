@@ -6,6 +6,7 @@ antifragile
 asciimath
 Boba
 bootstrapper
+collateralized
 copyleft
 copyrightable
 daosys
@@ -18,6 +19,7 @@ GONS
 Holochain
 includeprefix
 litepaper
+nomicfoundation
 pathtoroot
 permissionless
 Presearch
@@ -27,6 +29,8 @@ Roadmap
 rollux
 Roundtable
 Roundtables
+sectanchors
+sectlinks
 stochasm
 struct
 syscoin

@@ -1,5 +1,8 @@
-// SPDX-License-Identifier: AGPL-V3-or-later
-pragma solidity ^0.8.0;
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// DO NOT CHANGE COMPILER VERSION FROM DEPLOYED VERSION
+// Optimizer Runs = 200
+pragma solidity 0.8.13;
+// TODO Write NatSpec comments. See contracts/types/primitives/String.sol
 
 import {
   Bool,
@@ -32,12 +35,6 @@ library ImmutableStorageUtils {
       ^ _structSlot();
   }
 
-  /**
-   * @notice Could be optimized by having the exposing interface caclulate and store
-   *  the storage slot as a constant.
-   *  Storage slot is computed during runtime to facilitate development during
-   *  standardization.
-   */
   function _layout( bytes32 salt ) pure internal returns ( ImmutableStorage.Layout storage layout ) {
     bytes32 saltedSlot = _saltStorageSlot(salt);
     assembly{ layout.slot := saltedSlot }
@@ -48,7 +45,7 @@ library ImmutableStorageUtils {
    *  This is donee by passing the idenitifier for what is to immutable.
    *  If a functrion is intended to be Immutable, the identifier is the function selector.
    *  If a facet function is to be immutable, the identifier is the XOR (^) of the facet address and the function selector.
-   *  If an entire storage slot is to be immutable, the identifier is the sttorage slot being made immutable.
+   *  If an entire storage slot is to be immutable, the identifier is the storage slot being made immutable.
    * @param identifier The identifier of the property being made immutable.
    */
   function _encodeImmutableStorage( bytes32 storageSlot ) internal pure returns ( bytes32 immutableSlot ) {

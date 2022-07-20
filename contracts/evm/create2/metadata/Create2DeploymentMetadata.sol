@@ -8,13 +8,11 @@ import {
   ICreate2DeploymentMetadata
 } from "contracts/evm/create2/metadata/interfaces/ICreate2DeploymentMetadata.sol";
 import {
-  Create2MetadataAdaptor
-} from "contracts/evm/create2/metadata/adaptors/Create2MetadataAdaptor.sol";
-import {
   Immutable
 } from "contracts/security/access/immutable/Immutable.sol";
 import {
-  ERC165
+  ERC165,
+  IERC165
 } from "contracts/introspection/erc165/ERC165.sol";
 
 abstract contract Create2DeploymentMetadata
@@ -29,13 +27,17 @@ abstract contract Create2DeploymentMetadata
 
   constructor() {
     _configERC165(type(ICreate2DeploymentMetadata).interfaceId);
+    _setFactory(
+      STORAGE_SLOT_SALT,
+      msg.sender
+    );
   }
 
   modifier _onlyRelative(
     address relationAssertion
   ) {
     require(
-      _validateCreate2AddressPedigree(relationAssertion),
+      _validateSibling(relationAssertion),
       "Create2DeploymentMetadata:_onlyRelative:: Not related."
     );
     _;
@@ -45,20 +47,34 @@ abstract contract Create2DeploymentMetadata
     address factoryAssertion
   ) {
     require(
-      _validateFactory(factoryAssertion),
+      _validateParent(factoryAssertion),
       "Create2DeploymentMetadata:_onlyRelative:: Not factory."
     );
     _;
   }
 
+  /**
+   * @notice Called by the Create2MetadataAwareFactoryLogic, rendering function immutable after deployment.
+   */
   function initCreate2DeploymentMetadata(
     bytes32 deploymentSalt
-  ) external isNotImmutable(STORAGE_SLOT_SALT) returns (bool success) {
-    _setCreate2DeploymentMetaData(
-      msg.sender,
+  ) external
+    isNotImmutable(STORAGE_SLOT_SALT)
+    returns (bool success)
+  {
+    _setDeploymentSalt(
       deploymentSalt
     );
     success = true;
+  }
+
+  function _setDeploymentSalt(
+    bytes32 deploymentSalt
+  ) internal {
+    _setDeploymentSalt(
+      STORAGE_SLOT_SALT,
+      deploymentSalt
+    );
   }
 
   function _setCreate2DeploymentMetaData(
@@ -72,19 +88,19 @@ abstract contract Create2DeploymentMetadata
     );
   }
 
-  function _validateCreate2AddressPedigree(
-    address create2MetadataAddress
+  function _validateSibling(
+    address siblingAddress
   ) internal view returns (bool isValid) {
-    isValid = Create2DeploymentMetadataLogic._validateCreate2AddressPedigree(
+    isValid = Create2DeploymentMetadataLogic._validateSibling(
       STORAGE_SLOT_SALT,
-      create2MetadataAddress
+      siblingAddress
     );
   }
 
-  function _validateFactory(
+  function _validateParent(
     address factoryAddress
   ) internal view returns (bool isValid) {
-    isValid = Create2DeploymentMetadataLogic._validateFactory(
+    isValid = Create2DeploymentMetadataLogic._validateParent(
       STORAGE_SLOT_SALT,
       factoryAddress
     );

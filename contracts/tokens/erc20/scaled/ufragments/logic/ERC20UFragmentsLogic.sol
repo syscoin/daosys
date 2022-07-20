@@ -2,24 +2,24 @@
 pragma solidity ^0.8.0;
 
 import {
-  ERC20VariableGonUFragmentsUtils,
-  ERC20VariableGonUFragmentsStorage
-} from "contracts/tokens/erc20/scaled/ufragments/storage/ERC20VariableGonUFragmentsStorage.sol";
+  ERC20UFragmentsUtils,
+  ERC20UFragmentsStorage
+} from "contracts/tokens/erc20/scaled/ufragments/storage/ERC20UFragmentsStorage.sol";
 
 abstract contract ERC20UFragmentsLogic {
 
-  using ERC20VariableGonUFragmentsUtils for ERC20VariableGonUFragmentsStorage.Layout;
+  using ERC20UFragmentsUtils for ERC20UFragmentsStorage.Layout;
 
-  bytes32 constant private STORAGE_SLOT = keccak256(type(ERC20VariableGonUFragmentsStorage).creationCode);
+  bytes32 constant private STORAGE_SLOT = keccak256(type(ERC20UFragmentsStorage).creationCode);
 
   function _getScaledDecimals() pure internal returns (uint8 scaledDecimals) {
-    scaledDecimals = ERC20VariableGonUFragmentsUtils._getScaledDecimals();
+    scaledDecimals = ERC20UFragmentsUtils._getScaledDecimals();
   }
 
   function _getBaseAmountPerFragment(
     bytes32 storageSlotSalt
   ) virtual view internal returns (uint256 baseAmountPerFragment) {
-    baseAmountPerFragment = ERC20VariableGonUFragmentsUtils._layout(storageSlotSalt)
+    baseAmountPerFragment = ERC20UFragmentsUtils._layout(storageSlotSalt)
       ._getBaseAmountPerFragment();
   }
 
@@ -27,7 +27,7 @@ abstract contract ERC20UFragmentsLogic {
     bytes32 storageSlotSalt,
     uint256 newBaseAmountPerFragment
   ) internal {
-    ERC20VariableGonUFragmentsUtils._layout(storageSlotSalt)
+    ERC20UFragmentsUtils._layout(storageSlotSalt)
       ._setBaseAmountPerFragment(newBaseAmountPerFragment);
   }
 

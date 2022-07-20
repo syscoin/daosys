@@ -1,9 +1,8 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-pragma solidity ^0.8.0;
-
-/* -------------------------------------------------------------------------- */
-/*                             SECTION Bytes4Set                              */
-/* -------------------------------------------------------------------------- */
+// DO NOT CHANGE COMPILER VERSION FROM DEPLOYED VERSION
+// Optimizer Runs = 200
+pragma solidity 0.8.13;
+// TODO Write NatSpec comments. See contracts/types/primitives/String.sol
 
 library Bytes4Set {
   
@@ -18,14 +17,6 @@ library Bytes4Set {
   }
 
 }
-
-/* -------------------------------------------------------------------------- */
-/*                             !SECTION Bytes4Set                             */
-/* -------------------------------------------------------------------------- */
-
-/* -------------------------------------------------------------------------- */
-/*                            SECTION Bytes4SetOps                            */
-/* -------------------------------------------------------------------------- */
 
 library Bytes4SetUtils {
 
@@ -44,12 +35,6 @@ library Bytes4SetUtils {
       ^ _structSlot();
   }
 
-  /**
-   * @notice Could be optimized by having the exposing interface caclulate and store
-   *  the storage slot as a constant.
-   *  Storage slot is computed during runtime to facilitate development during
-   *  standardization.
-   */
   function _layout( bytes32 salt ) pure internal returns ( Bytes4Set.Layout storage layout ) {
     bytes32 saltedSlot = _saltStorageSlot(salt);
     assembly{ layout.slot := saltedSlot }
@@ -133,7 +118,3 @@ library Bytes4SetUtils {
   }
 
 }
-
-/* -------------------------------------------------------------------------- */
-/*                            !SECTION Bytes4SetOps                           */
-/* -------------------------------------------------------------------------- */

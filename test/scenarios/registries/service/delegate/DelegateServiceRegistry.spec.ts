@@ -22,16 +22,24 @@ describe("Delegate Service Registry", function () {
 
   // TestService test variables
   let messengerDelegateService: MessengerDelegateService;
-  const IDelegateServiceInterfaceId = '0xb38d1215';
-  const getServiceDefFunctionSelector = '0xd56eb69e';
   const IMessengerInterfaceId = "0xf8e6c6ac";
   const setMessageFunctionSelector = '0x368b8772';
   const getMessageFunctionSelector = '0xce6d41de';
 
   let delegateServiceRegistry: DelegateServiceRegistryMock;
-  const IDelegateServiceRegistryInterfaceId = '0x1fd72ff4';
+  const IDelegateServiceRegistryInterfaceId = '0xb4a6c85e';
+  const registerDelegateServiceFunctionSelector = '0x04be861e';
   const queryDelegateServiceAddressFunctionSelector = '0x03714859';
   const bulkQueryDelegateServiceAddressFunctionSelector = '0xb3690619';
+  const ICreate2DeploymentMetadataInterfaceId = '0x2f6fb0fb';
+  const initCreate2DeploymentMetadataFunctionSelector = '0x016772e7';
+  const getCreate2DeploymentMetadataFunctionSelector = '0x2e08c21c';
+  const IERC165InterfaceId = "0x01ffc9a7";
+  const supportsInterfaceFunctionSelector = "0x01ffc9a7";
+  const IDelegateServiceInterfaceId = '0x30822d6e';
+  const getServiceDefFunctionSelector = '0xd56eb69e';
+  const IDelegateServiceRegistryAwareInterfaceId = '0x1720080a';
+  const getDelegateServiceRegistryFunctionSelector = '0x1720080a';
 
   /* -------------------------------------------------------------------------- */
   /*                        SECTION Before All Test Hook                        */
@@ -109,14 +117,75 @@ describe("Delegate Service Registry", function () {
 
         describe("Validate interface and function selector computation", function () {
           it("IDelegateServiceInterfaceId.", async function () {
-            expect(await messengerDelegateService.IDelegateServiceInterfaceId())
+            expect(await delegateServiceRegistry.IDelegateServiceInterfaceId())
               .to.equal(IDelegateServiceInterfaceId);
           });
           it("getServiceDefFunctionSelector.", async function () {
-            expect(await messengerDelegateService.getServiceDefFunctionSelector())
+            expect(await delegateServiceRegistry.getServiceDefFunctionSelector())
               .to.equal(getServiceDefFunctionSelector);
           });
+          it("ICreate2DeploymentMetadataInterfaceId.", async function () {
+            expect(await delegateServiceRegistry.ICreate2DeploymentMetadataInterfaceId())
+              .to.equal(ICreate2DeploymentMetadataInterfaceId);
+          });
+          it("initCreate2DeploymentMetadataFunctionSelector.", async function () {
+            expect(await delegateServiceRegistry.initCreate2DeploymentMetadataFunctionSelector())
+              .to.equal(initCreate2DeploymentMetadataFunctionSelector);
+          });
+          it("getCreate2DeploymentMetadataFunctionSelector.", async function () {
+            expect(await delegateServiceRegistry.getCreate2DeploymentMetadataFunctionSelector())
+              .to.equal(getCreate2DeploymentMetadataFunctionSelector);
+          });
+          it("IDelegateServiceInterfaceId.", async function () {
+            expect(await delegateServiceRegistry.IERC165InterfaceId())
+              .to.equal(IERC165InterfaceId);
+          });
+          it("getServiceDefFunctionSelector.", async function () {
+            expect(await delegateServiceRegistry.supportsInterfaceFunctionSelector())
+              .to.equal(supportsInterfaceFunctionSelector);
+          });
+          it("IDelegateServiceRegistryAwareInterfaceId.", async function () {
+            expect(await delegateServiceRegistry.IDelegateServiceRegistryAwareInterfaceId())
+              .to.equal(IDelegateServiceRegistryAwareInterfaceId);
+          });
+          it("getDelegateServiceRegistryFunctionSelector.", async function () {
+            expect(await delegateServiceRegistry.getDelegateServiceRegistryFunctionSelector())
+              .to.equal(getDelegateServiceRegistryFunctionSelector);
+          });
+        });
 
+        describe("#supportsInterface()", function () {
+          describe("#(bytes4)", function () {
+            it("Accurately reports lack of interface support.", async function () {
+              expect(await delegateServiceRegistry.supportsInterface(invalidInterfaceId))
+                .to.equal(false);
+            });
+            it("Accurately reports ERC165 interface support.", async function () {
+              expect(await delegateServiceRegistry.supportsInterface(IERC165InterfaceId))
+                .to.equal(true);
+            });
+            it("Accurately reports ICreate2DeploymentMetadata interface support.", async function () {
+              expect(await delegateServiceRegistry.supportsInterface(ICreate2DeploymentMetadataInterfaceId))
+                .to.equal(true);
+            });
+            it("Accurately reports IDelegateService interface support.", async function () {
+              expect(await delegateServiceRegistry.supportsInterface(IDelegateServiceInterfaceId))
+                .to.equal(true);
+            });
+            it("Accurately reports IDelegateServiceRegistryAware interface support.", async function () {
+              expect(await delegateServiceRegistry.supportsInterface(IDelegateServiceRegistryAwareInterfaceId))
+                .to.equal(true);
+            });
+          });
+        });
+
+        describe("#getDelegateServiceRegistry()", function () {
+          describe("()", function () {
+            it("Accurately reports Delegate Service Registry", async function () {
+              // await messengerDelegateService.setDelegateServiceRegistry(delegateServiceRegistry.address);
+              expect(await delegateServiceRegistry.getDelegateServiceRegistry()).to.equal(delegateServiceRegistry.address);
+            });
+          });
         });
 
         describe("#getServiceDef()", function () {
@@ -130,8 +199,8 @@ describe("Delegate Service Registry", function () {
                   getMessageFunctionSelector
                 ]
               );
-              expect(serviceDef.bootstrapper).to.equal(ethers.constants.AddressZero);
-              expect(serviceDef.bootstrapperInitFunction).to.equal(Bytes4Zero);
+              // expect(serviceDef.bootstrapper).to.equal(ethers.constants.AddressZero);
+              // expect(serviceDef.bootstrapperInitFunction).to.equal(Bytes4Zero);
             });
           });
         });
@@ -144,6 +213,10 @@ describe("Delegate Service Registry", function () {
           it("IDelegateServiceRegistryInterfaceId.", async function () {
             expect(await delegateServiceRegistry.IDelegateServiceRegistryInterfaceId())
               .to.equal(IDelegateServiceRegistryInterfaceId);
+          });
+          it("registerDelegateServiceFunctionSelector.", async function () {
+            expect(await delegateServiceRegistry.registerDelegateServiceFunctionSelector())
+              .to.equal(registerDelegateServiceFunctionSelector);
           });
           it("queryDelegateServiceAddressFunctionSelector.", async function () {
             expect(await delegateServiceRegistry.queryDelegateServiceAddressFunctionSelector())

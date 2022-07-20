@@ -33,7 +33,7 @@ If a price oracle is needed, that price oracle must be on-chain, and must calcul
 
 Always use the time weighted average price to protect against market manipulation during a transaction.
 
-== Rule 3 - Only trust known addresses
+== Rules 3 - Only trust known addresses
 
 Only accept deposits and process tokens of known addresses.
 Use either an explicit ACL of allowed tokens, or verify the token address pedigree.

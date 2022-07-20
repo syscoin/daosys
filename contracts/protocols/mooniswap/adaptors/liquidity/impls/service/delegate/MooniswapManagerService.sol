@@ -16,7 +16,7 @@ contract MooniswapManagerDelegateService
   DelegateService
 {
 
-  constructor(address initializationContract, bytes4 selector) {
+  constructor() {
     bytes4[] memory functionSelectors = new bytes4[](7);
     functionSelectors[0] = IMooniswapManager.getPoolAddress.selector;
     functionSelectors[1] = IMooniswapManager.getFactoryAddress.selector;
@@ -25,11 +25,9 @@ contract MooniswapManagerDelegateService
     functionSelectors[4] = IMooniswapManager.swap.selector;
     functionSelectors[5] = IMooniswapManager.deposit.selector;
     functionSelectors[6] = IMooniswapManager.withdraw.selector;
-    DelegateService._setServiceDef(
+    DelegateService._initServiceDef(
       type(IMooniswapManager).interfaceId,
-      functionSelectors,
-      initializationContract,
-      selector
+      functionSelectors
     );
   }
 

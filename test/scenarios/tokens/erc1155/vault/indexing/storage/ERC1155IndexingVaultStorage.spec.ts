@@ -21,7 +21,7 @@ describe("ERC1155IndexingVaultStorage Test Suite", function () {
   // Test variables
   let testMock: ERC1155IndexingVaultStorageMock;
   const testUint256 = 1;
-  const structSlot = "0xb751ae2859b84df1a5e98491df1b09d6e33a4dcb2c6fc1b387366a4738d7ec2e";
+  const structSlot = "0xd7f1cec37b90954297166dd98ffdfab783db4c5f6631190b600574ba88d6e128";
 
   /* -------------------------------------------------------------------------- */
   /*                        SECTION Before All Test Hook                        */

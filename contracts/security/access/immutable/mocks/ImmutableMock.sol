@@ -2,10 +2,11 @@
 pragma solidity ^0.8.0;
 
 import {
-  Immutable,
-  ImmutableStorage,
-  ImmutableStorageUtils
+  Immutable
 } from "contracts/security/access/immutable/Immutable.sol";
+import {
+  ImmutableStorageUtils
+} from "contracts/security/access/immutable/storage/ImmutableStorage.sol";
 
 contract ImmutableMock
   is

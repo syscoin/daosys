@@ -1,0 +1,44 @@
+= Introduction
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-03-25
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectanchors:
+:sectlinks:
+:sectnums:
+:data-uri:
+:stem:
+:pathtoroot: ../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+DAOSYS aims to resolve the DAO mission statement to governance gap with a revolutionary model for coordinating cryptocurrency as capital investments.
+Our vision is that DAOs should operate more like pure AMMs.
+An autonomous and permissionless protocol anyone can use to consume the services of the DAO.
+Effectively acting as autonomous economic agents.
+This means that DAOs have to mature from the current phase of maximizing capital extraction.
+The economics must be tailored to facilitate the DAOs mission statement.
+And must be implemented in a manner that does not require external controls.
+
+Previously, this was nearly impossible to achieve with the state of smart-contract and defi design.
+But, by iterating on the AMM model to generalize the process it's possible to deploy DAOs as easily as we can deploy a liquidity pool.
+By applying antifragile tokenomics and integrations with defi protocols a treasury management platform can be realized without the need for a governance token.
+This way, DAOs can leverage existing markets as the foundation for coordinating capital to execute their mission statement.
+This technology is provided in the technology behind DAOSYS, the Autonomous Service Engine.
+
+DAOSYS will consist of a reference architecture using the Autonomous Service Engine.
+This will make Syscoin a hotbed of innovation through the self-sovereign asset management.
+The antifragile market design results in a risk-mitigating funding mechanism.
+This shifts the primary funding risk toward simple opportunity cost.
+Leading to some incredible efficiencies for the Syscoin Foundation's treasury and for others who participate.
+DAOSYS will be advantageously positioned to foster the roots of digital value.
+This position will drive the advancement of Syscoin's ecosystem.
+A full-stack Layer 1 blockchain with a modular design that supports a scalable Layer 2.
+
+This initiative and its DAOSYS implementation will fulfill goals of the nonprofit Syscoin Foundation to provide the advancements necessary for DAO technology to disrupt for-profit corporate and NGO finance by becoming a go-to driver of innovation.

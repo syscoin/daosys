@@ -1,3 +1,5 @@
+// TODO Refactor unit tests
+
 // import { expect } from 'chai';
 // import { ethers, tracer } from 'hardhat';
 
@@ -25,8 +27,10 @@
 //     DelegateServiceRegistryMock__factory,
 //     ServiceProxyFactoryMock__factory,
 //     ProxyMock__factory,
-//     ProxyMock
-// } from '../../../../typechain';
+//     ProxyMock,
+//     MooniswapManager,
+//     MooniswapManager__factory
+// } from '../../../../../../typechain';
 // import { debug, trace } from 'console';
 // import exp from 'constants';
 
@@ -36,11 +40,9 @@
 //     createMooniswapPair,
 //     getMooniPoolIERC20s,
 //     getMooniPoolDecimals
-// } from '../../../fixtures/mooniswap.fixture'
+// } from '../../../../../fixtures/mooniswap.fixture'
 // import { BigNumber, BigNumberish, BytesLike } from 'ethers';
 // import { Address } from 'ethereumjs-util';
-// import { MooniswapManager__factory } from '../../../../typechain/factories/MooniswapManager__factory';
-// import { MooniswapManager } from '../../../../typechain/MooniswapManager';
 // import { Logger } from 'ethers/lib/utils';
 
 // describe("MooniswapManager", () => {
@@ -55,7 +57,7 @@
 //     let weth: WETH9;
 
 //     let mooniswapManagerDelegateService: MooniswapManagerDelegateService;
-//     const IDelegateServiceInterfaceId = '0xd56eb69e';
+//     const IDelegateServiceInterfaceId = '0x30822d6e';
 //     const iMooniswapManagerInterfaceId = '0x2b710c59';
 //     const getPoolAddressFunctionSelector = '0xf586c6d9';
 //     const swapFunctionSelector = '0xf3e6ea8a';

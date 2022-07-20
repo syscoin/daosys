@@ -1,0 +1,41 @@
+= ASE IDelegateServiceRegistryAware Interface Hook
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-07-01
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+*Documentation Pending final implementation.*
+
+// TODO Write docs for implementation.
+
+[source, solidity]
+----
+include::../../../contracts/registries/service/delegate/aware/DelegateServiceRegistryAware.sol[lines="1..-1"]
+----
+
+[source, solidity]
+----
+include::../../../contracts/registries/service/delegate/aware/interfaces/IDelegateServiceRegistryAware.sol[lines="1..-1"]
+----
+
+[source, solidity]
+----
+include::../../../contracts/registries/service/delegate/aware/logic/DelegateServiceRegistryAwareLogic.sol[lines="1..-1"]
+----
+
+[source, solidity]
+----
+include::../../../contracts/registries/service/delegate/aware/storage/DelegateServiceRegistryAwareStorage.sol[lines="1..-1"]
+----

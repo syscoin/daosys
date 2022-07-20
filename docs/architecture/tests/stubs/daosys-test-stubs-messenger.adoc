@@ -1,0 +1,41 @@
+= ASE Messenger Test Stub
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-02-19
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+*Documentation Pending final implementation.*
+
+// TODO Write docs for implementation.
+
+[source, solidity]
+----
+include::../../../../contracts/test/stubs/messenger/Messenger.sol[lines="1..-1"]
+----
+
+[source, solidity]
+----
+include::../../../../contracts/test/stubs/messenger/interfaces/IMessenger.sol[lines="1..-1"]
+----
+
+[source, solidity]
+----
+include::../../../../contracts/test/stubs/messenger/logic/MessengerLogic.sol[lines="1..-1"]
+----
+
+[source, solidity]
+----
+include::../../../../contracts/test/stubs/messenger/storage/MessengerStorage.sol[lines="1..-1"]
+----

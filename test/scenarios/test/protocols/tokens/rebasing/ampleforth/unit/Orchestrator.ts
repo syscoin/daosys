@@ -1,8 +1,9 @@
-import { ethers, waffle } from 'hardhat'
+import { ethers } from 'hardhat'
 import { Contract, Signer } from 'ethers'
 import { increaseTime } from '../utils/utils'
 import { expect } from 'chai'
 import { TransactionResponse } from '@ethersproject/providers'
+import { time, loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 
 let orchestrator: Contract, mockPolicy: Contract, mockDownstream: Contract
 let r: Promise<TransactionResponse>
@@ -38,7 +39,7 @@ async function mockedOrchestrator() {
 describe('Orchestrator', function () {
   before('setup Orchestrator contract', async () => {
     ;({ deployer, user, orchestrator, mockPolicy, mockDownstream } =
-      await waffle.loadFixture(mockedOrchestrator))
+      await loadFixture(mockedOrchestrator))
   })
 
   describe('when sent ether', async function () {

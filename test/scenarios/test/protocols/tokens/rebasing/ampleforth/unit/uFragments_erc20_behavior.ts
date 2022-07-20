@@ -22,10 +22,11 @@
   https://github.com/OpenZeppelin/openzeppelin-solidity/blob/master/test/token/ERC20/ERC20.test.js
 */
 
-import { ethers, upgrades, waffle } from 'hardhat'
+import { ethers, upgrades } from 'hardhat'
 import { Contract, Signer, BigNumber } from 'ethers'
 import { TransactionResponse } from '@ethersproject/providers'
 import { expect } from 'chai'
+import { time, loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 
 const toUFrgDenomination = (ample: string): BigNumber =>
   ethers.utils.parseUnits(ample, DECIMALS)
@@ -57,7 +58,7 @@ async function upgradeableToken() {
 
 describe('UFragments:ERC20', () => {
   before('setup UFragments contract', async function () {
-    ;({ token, owner, recipient, anotherAccount } = await waffle.loadFixture(
+    ;({ token, owner, recipient, anotherAccount } = await loadFixture(
       upgradeableToken,
     ))
   })
@@ -89,7 +90,7 @@ describe('UFragments:ERC20', () => {
 
 describe('UFragments:ERC20:transfer', () => {
   before('setup UFragments contract', async function () {
-    ;({ token, owner, recipient, anotherAccount } = await waffle.loadFixture(
+    ;({ token, owner, recipient, anotherAccount } = await loadFixture(
       upgradeableToken,
     ))
   })
@@ -143,7 +144,7 @@ describe('UFragments:ERC20:transfer', () => {
 
 describe('UFragments:ERC20:transferFrom', () => {
   before('setup UFragments contract', async function () {
-    ;({ token, owner, recipient, anotherAccount } = await waffle.loadFixture(
+    ;({ token, owner, recipient, anotherAccount } = await loadFixture(
       upgradeableToken,
     ))
   })
@@ -252,7 +253,7 @@ describe('UFragments:ERC20:transferFrom', () => {
 
 describe('UFragments:ERC20:approve', () => {
   before('setup UFragments contract', async function () {
-    ;({ token, owner, recipient, anotherAccount } = await waffle.loadFixture(
+    ;({ token, owner, recipient, anotherAccount } = await loadFixture(
       upgradeableToken,
     ))
   })
@@ -394,7 +395,7 @@ describe('UFragments:ERC20:approve', () => {
 
 describe('UFragments:ERC20:increaseAllowance', () => {
   before('setup UFragments contract', async function () {
-    ;({ token, owner, recipient, anotherAccount } = await waffle.loadFixture(
+    ;({ token, owner, recipient, anotherAccount } = await loadFixture(
       upgradeableToken,
     ))
   })
@@ -547,7 +548,7 @@ describe('UFragments:ERC20:increaseAllowance', () => {
 
 describe('UFragments:ERC20:decreaseAllowance', () => {
   before('setup UFragments contract', async function () {
-    ;({ token, owner, recipient, anotherAccount } = await waffle.loadFixture(
+    ;({ token, owner, recipient, anotherAccount } = await loadFixture(
       upgradeableToken,
     ))
   })

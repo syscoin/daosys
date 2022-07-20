@@ -3,7 +3,8 @@ pragma solidity ^0.8.0;
 
 import {
   Create2DeploymentMetadata,
-  ICreate2DeploymentMetadata
+  ICreate2DeploymentMetadata,
+  IERC165
 } from "contracts/evm/create2/metadata/Create2DeploymentMetadata.sol";
 
 contract Create2DeploymentMetadataMock
@@ -32,6 +33,14 @@ contract Create2DeploymentMetadataMock
 
   function getCreate2DeploymentMetadataFunctionSelector() pure external returns (bytes4 functionSelector) {
     functionSelector = ICreate2DeploymentMetadata.getCreate2DeploymentMetadata.selector;
+  }
+
+  function IERC165InterfaceId() external pure returns ( bytes4 interfaceId ) {
+    interfaceId = type(IERC165).interfaceId;
+  }
+
+  function supportsInterfaceFunctionSelector() external pure returns ( bytes4 functionSelector ) {
+    functionSelector = IERC165.supportsInterface.selector;
   }
 
 }

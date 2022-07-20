@@ -9,28 +9,28 @@ import {
 /**
  * @title ERC165 implementation
  */
-abstract contract ERC165Logic {
+library ERC165Logic {
 
   using ERC165Utils for ERC165Storage.Layout;
 
   function _isSupportedInterface(
     bytes32 storageSlotSalt,
     bytes4 interfaceId
-  ) virtual internal view returns (bool isSupportInterface) {
+  ) internal view returns (bool isSupportInterface) {
     isSupportInterface = ERC165Utils._layout( storageSlotSalt )._isSupportedInterface(interfaceId);
   }
 
   function _setSupportedInterface(
     bytes32 storageSlotSalt,
     bytes4 interfaceId
-  ) virtual internal {
+  ) internal {
     ERC165Utils._layout( storageSlotSalt )._setSupportedInterface(interfaceId);
   }
 
   function _removeSupportedInterface(
     bytes32 storageSlotSalt,
     bytes4 interfaceId
-  ) virtual internal {
+  ) internal {
     ERC165Utils._layout( storageSlotSalt )._removeSupportedInterface(interfaceId);
   }
   

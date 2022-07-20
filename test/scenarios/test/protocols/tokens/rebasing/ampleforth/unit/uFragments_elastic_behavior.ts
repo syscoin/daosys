@@ -1,7 +1,8 @@
-import { ethers, upgrades, waffle } from 'hardhat'
+import { ethers, upgrades } from 'hardhat'
 import { Contract, Signer, BigNumber } from 'ethers'
 import { TransactionResponse } from '@ethersproject/providers'
 import { expect } from 'chai'
+import { time, loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 
 const DECIMALS = 9
 const INITIAL_SUPPLY = ethers.utils.parseUnits('50', 6 + DECIMALS)
@@ -31,7 +32,7 @@ async function upgradeableToken() {
 
 describe('UFragments:Elastic', () => {
   beforeEach('setup UFragments contract', async function () {
-    ;({ token, owner, recipient, anotherAccount } = await waffle.loadFixture(
+    ;({ token, owner, recipient, anotherAccount } = await loadFixture(
       upgradeableToken,
     ))
   })
@@ -63,7 +64,7 @@ describe('UFragments:Elastic', () => {
 
 describe('UFragments:Elastic:transferAll', () => {
   beforeEach('setup UFragments contract', async function () {
-    ;({ token, owner, recipient, anotherAccount } = await waffle.loadFixture(
+    ;({ token, owner, recipient, anotherAccount } = await loadFixture(
       upgradeableToken,
     ))
   })
@@ -122,7 +123,7 @@ describe('UFragments:Elastic:transferAll', () => {
 
 describe('UFragments:Elastic:transferAllFrom', () => {
   beforeEach('setup UFragments contract', async function () {
-    ;({ token, owner, recipient, anotherAccount } = await waffle.loadFixture(
+    ;({ token, owner, recipient, anotherAccount } = await loadFixture(
       upgradeableToken,
     ))
   })

@@ -11,7 +11,7 @@ contract ERC165Mock
     ERC165
 {
 
-  function ERC165InterfaceId() external pure returns ( bytes4 interfaceId ) {
+  function IERC165InterfaceId() external pure returns ( bytes4 interfaceId ) {
     interfaceId = type(IERC165).interfaceId;
   }
 

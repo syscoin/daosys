@@ -10,14 +10,21 @@ import {
 } from '../../../../../typechain';
 
 describe('Create2DeploymentMetadata', function () {
-  
-  // Test Wallets
-  let deployer: SignerWithAddress;
-  
-  let create2Metadata: Create2DeploymentMetadataMock;
+
+  // Control values for tests
+  const invalidInterfaceId = "0xffffffff";
+  const Bytes4Zero = "0x00000000";
   const ICreate2DeploymentMetadataInterfaceId = '0x2f6fb0fb';
   const initCreate2DeploymentMetadataFunctionSelector = '0x016772e7';
   const getCreate2DeploymentMetadataFunctionSelector = '0x2e08c21c';
+  const IERC165InterfaceId = "0x01ffc9a7";
+  const supportsInterfaceFunctionSelector = "0x01ffc9a7";
+  
+  // Test Wallets
+  let deployer: SignerWithAddress;
+
+  // Test instances
+  let create2Metadata: Create2DeploymentMetadataMock;
 
   before(async function () {
     // Tagging address(0) as "System" in logs.
@@ -45,6 +52,31 @@ describe('Create2DeploymentMetadata', function () {
       it("getCreate2DeploymentMetadataFunctionSelector.", async function () {
         expect(await create2Metadata.getCreate2DeploymentMetadataFunctionSelector())
           .to.equal(getCreate2DeploymentMetadataFunctionSelector);
+      });
+      it("IDelegateServiceInterfaceId.", async function () {
+        expect(await create2Metadata.IERC165InterfaceId())
+          .to.equal(IERC165InterfaceId);
+      });
+      it("getServiceDefFunctionSelector.", async function () {
+        expect(await create2Metadata.supportsInterfaceFunctionSelector())
+          .to.equal(supportsInterfaceFunctionSelector);
+      });
+    });
+
+    describe("#supportsInterface()", function () {
+      describe("#(bytes4)", function () {
+        it("Accurately reports lack of interface support.", async function () {
+          expect(await create2Metadata.supportsInterface(invalidInterfaceId))
+            .to.equal(false);
+        });
+        it("Accurately reports ERC165 interface support.", async function () {
+          expect(await create2Metadata.supportsInterface(IERC165InterfaceId))
+            .to.equal(true);
+        });
+        it("Accurately reports ICreate2DeploymentMetadata interface support.", async function () {
+          expect(await create2Metadata.supportsInterface(ICreate2DeploymentMetadataInterfaceId))
+            .to.equal(true);
+        });
       });
     });
 

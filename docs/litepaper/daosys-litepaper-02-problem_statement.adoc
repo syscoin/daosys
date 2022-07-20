@@ -1,0 +1,32 @@
+= Problem Statement
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-03-25
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectanchors:
+:sectlinks:
+:sectnums:
+:data-uri:
+:stem:
+:pathtoroot: ../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+DAOs fail to reflect the ethos of cryptocurrency.
+The fundamental value proposition of cryptocurrency is self-sovereign capital.
+
+[quote, Anon Probably]
+----
+“Not my keys, not my coins.”
+----
+
+Currently, DAOs take ownership of users' capital to be managed in a treasury controlled by a few individuals.
+Tantamount to not controlling the keys to your own wallet.
+And current governance solutions are not suited to respecting stakeholder value.
+This is further compounded with the typical disconnect between DAOs governance token and the protocol's actual value proposition.

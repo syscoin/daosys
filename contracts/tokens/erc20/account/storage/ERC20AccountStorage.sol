@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import {
   UInt256,
   UInt256Utils
-} from "contracts/types/primitives/uint/UInt256.sol";
+} from "contracts/types/primitives/UInt256.sol";
 import {
   AddressToUInt256,
   AddressToUInt256Utils

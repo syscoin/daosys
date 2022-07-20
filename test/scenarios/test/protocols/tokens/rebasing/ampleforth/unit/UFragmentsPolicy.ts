@@ -1,9 +1,10 @@
-import { ethers, upgrades, waffle } from 'hardhat'
+import { ethers, upgrades } from 'hardhat'
 import { Contract, Signer, BigNumber, BigNumberish, Event } from 'ethers'
 import { TransactionResponse } from '@ethersproject/providers'
 import { expect } from 'chai'
 import { Result } from 'ethers/lib/utils'
 import { imul, increaseTime } from '../utils/utils'
+import { time, loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 
 let uFragmentsPolicy: Contract,
   mockUFragments: Contract,
@@ -124,7 +125,7 @@ describe('UFragmentsPolicy', function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicy))
+    } = await loadFixture(mockedUpgradablePolicy))
   })
 
   it('should reject any ether sent to it', async function () {
@@ -145,7 +146,7 @@ describe('UFragmentsPolicy:initialize', async function () {
         mockMarketOracle,
         mockCpiOracle,
         uFragmentsPolicy,
-      } = await waffle.loadFixture(mockedUpgradablePolicy))
+      } = await loadFixture(mockedUpgradablePolicy))
     })
 
     it('deviationThreshold', async function () {
@@ -194,7 +195,7 @@ describe('UFragmentsPolicy:setMarketOracle', async function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicy))
+    } = await loadFixture(mockedUpgradablePolicy))
   })
 
   it('should set marketOracle', async function () {
@@ -217,7 +218,7 @@ describe('UFragments:setMarketOracle:accessControl', function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicy))
+    } = await loadFixture(mockedUpgradablePolicy))
   })
 
   it('should be callable by owner', async function () {
@@ -247,7 +248,7 @@ describe('UFragmentsPolicy:setCpiOracle', async function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicy))
+    } = await loadFixture(mockedUpgradablePolicy))
   })
 
   it('should set cpiOracle', async function () {
@@ -270,7 +271,7 @@ describe('UFragments:setCpiOracle:accessControl', function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicy))
+    } = await loadFixture(mockedUpgradablePolicy))
   })
 
   it('should be callable by owner', async function () {
@@ -298,7 +299,7 @@ describe('UFragmentsPolicy:setOrchestrator', async function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicy))
+    } = await loadFixture(mockedUpgradablePolicy))
   })
 
   it('should set orchestrator', async function () {
@@ -319,7 +320,7 @@ describe('UFragments:setOrchestrator:accessControl', function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicy))
+    } = await loadFixture(mockedUpgradablePolicy))
   })
 
   it('should be callable by owner', async function () {
@@ -350,7 +351,7 @@ describe('UFragmentsPolicy:setDeviationThreshold', async function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicy))
+    } = await loadFixture(mockedUpgradablePolicy))
     prevThreshold = await uFragmentsPolicy.deviationThreshold()
     threshold = prevThreshold.add(ethers.utils.parseUnits('1', 16))
     await uFragmentsPolicy.connect(deployer).setDeviationThreshold(threshold)
@@ -371,7 +372,7 @@ describe('UFragments:setDeviationThreshold:accessControl', function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicy))
+    } = await loadFixture(mockedUpgradablePolicy))
   })
 
   it('should be callable by owner', async function () {
@@ -396,7 +397,7 @@ describe('UFragmentsPolicy:setRebaseLag', async function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicy))
+    } = await loadFixture(mockedUpgradablePolicy))
     prevLag = await uFragmentsPolicy.rebaseLag()
   })
 
@@ -426,7 +427,7 @@ describe('UFragments:setRebaseLag:accessControl', function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicy))
+    } = await loadFixture(mockedUpgradablePolicy))
   })
 
   it('should be callable by owner', async function () {
@@ -449,7 +450,7 @@ describe('UFragmentsPolicy:setRebaseTimingParameters', async function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicy))
+    } = await loadFixture(mockedUpgradablePolicy))
   })
 
   describe('when interval=0', function () {
@@ -492,7 +493,7 @@ describe('UFragments:setRebaseTimingParameters:accessControl', function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicy))
+    } = await loadFixture(mockedUpgradablePolicy))
   })
 
   it('should be callable by owner', async function () {
@@ -520,7 +521,7 @@ describe('UFragmentsPolicy:Rebase:accessControl', async function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
+    } = await loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
     // await setupContractsWithOpenRebaseWindow()
     await mockExternalData(INITIAL_RATE_30P_MORE, INITIAL_CPI, 1000, true)
     await increaseTime(60)
@@ -550,7 +551,7 @@ describe('UFragmentsPolicy:Rebase', async function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
+    } = await loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
   })
 
   describe('when minRebaseTimeIntervalSec has NOT passed since the previous rebase', function () {
@@ -578,7 +579,7 @@ describe('UFragmentsPolicy:Rebase', async function () {
 
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
+    } = await loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
   })
 
   describe('when rate is within deviationThreshold', function () {
@@ -631,7 +632,7 @@ describe('UFragmentsPolicy:Rebase', async function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
+    } = await loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
   })
 
   describe('when rate is more than MAX_RATE', function () {
@@ -677,7 +678,7 @@ describe('UFragmentsPolicy:Rebase', async function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
+    } = await loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
   })
 
   describe('when uFragments grows beyond MAX_SUPPLY', function () {
@@ -707,7 +708,7 @@ describe('UFragmentsPolicy:Rebase', async function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
+    } = await loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
   })
 
   describe('when uFragments supply equals MAX_SUPPLY and rebase attempts to grow', function () {
@@ -735,7 +736,7 @@ describe('UFragmentsPolicy:Rebase', async function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
+    } = await loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
   })
 
   describe('when the market oracle returns invalid data', function () {
@@ -767,7 +768,7 @@ describe('UFragmentsPolicy:Rebase', async function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
+    } = await loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
   })
 
   describe('when the cpi oracle returns invalid data', function () {
@@ -811,7 +812,7 @@ describe('UFragmentsPolicy:Rebase', async function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
+    } = await loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
   })
 
   describe('positive rate and no change CPI', function () {
@@ -895,7 +896,7 @@ describe('UFragmentsPolicy:Rebase', async function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
+    } = await loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
   })
 
   describe('negative rate', function () {
@@ -923,7 +924,7 @@ describe('UFragmentsPolicy:Rebase', async function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
+    } = await loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
   })
 
   describe('when cpi increases', function () {
@@ -952,7 +953,7 @@ describe('UFragmentsPolicy:Rebase', async function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
+    } = await loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
   })
 
   describe('when cpi decreases', function () {
@@ -981,7 +982,7 @@ describe('UFragmentsPolicy:Rebase', async function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
+    } = await loadFixture(mockedUpgradablePolicyWithOpenRebaseWindow))
   })
 
   describe('rate=TARGET_RATE', function () {
@@ -1018,7 +1019,7 @@ describe('UFragmentsPolicy:Rebase', async function () {
       mockMarketOracle,
       mockCpiOracle,
       uFragmentsPolicy,
-    } = await waffle.loadFixture(mockedUpgradablePolicy))
+    } = await loadFixture(mockedUpgradablePolicy))
     await uFragmentsPolicy
       .connect(deployer)
       .setRebaseTimingParameters(86400, 72000, 900)

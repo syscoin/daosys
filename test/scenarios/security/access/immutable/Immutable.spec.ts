@@ -6,7 +6,7 @@ import { expect } from "chai";
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import {
   ImmutableMock,
-  ImmutableMock__factory  
+  ImmutableMock__factory
 } from '../../../../../typechain';
 
 describe("Immutable", function () {
@@ -51,7 +51,7 @@ describe("Immutable", function () {
   /* -------------------------------------------------------------------------- */
   /*                       !SECTION Before Each Test Hook                       */
   /* -------------------------------------------------------------------------- */
-  
+
   /* -------------------------------------------------------------------------- */
   /*                          SECTION Testing Immutable                         */
   /* -------------------------------------------------------------------------- */

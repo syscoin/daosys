@@ -20,8 +20,8 @@ library DelegateServiceStorage {
   struct Layout {
     Bytes4.Layout interfaceId;
     Bytes4Set.Layout functionSelectors;
-    Address.Layout bootstrapper;
-    Bytes4.Layout bootStrapperInitFunction;
+    // Address.Layout bootstrapper;
+    // Bytes4.Layout bootStrapperInitFunction;
   }
 
 }
@@ -56,13 +56,13 @@ library DelegateServiceStorageUtils {
   function _setServiceDef(
     DelegateServiceStorage.Layout storage layout,
     bytes4 interfaceId,
-    bytes4[] memory functionSelectors,
-    address bootstrapper,
-    bytes4 bootStrapperInitFunction
+    bytes4[] memory functionSelectors
+    // address bootstrapper,
+    // bytes4 bootStrapperInitFunction
   ) internal {
     layout.interfaceId._setValue(interfaceId);
-    layout.bootstrapper._setValue(bootstrapper);
-    layout.bootStrapperInitFunction._setValue(bootStrapperInitFunction);
+    // layout.bootstrapper._setValue(bootstrapper);
+    // layout.bootStrapperInitFunction._setValue(bootStrapperInitFunction);
     for(uint16 iteration = 0; functionSelectors.length > iteration; iteration++) {
       layout.functionSelectors.set._add(functionSelectors[iteration]);
     }
@@ -72,14 +72,14 @@ library DelegateServiceStorageUtils {
     DelegateServiceStorage.Layout storage layout
   ) view internal returns (
     bytes4 interfaceId,
-    bytes4[] memory functionSelectors,
-    address bootstrapper,
-    bytes4 bootStrapperInitFunction
+    bytes4[] memory functionSelectors
+    // address bootstrapper,
+    // bytes4 bootStrapperInitFunction
   ) {
     interfaceId = layout.interfaceId._getValue();
     functionSelectors = layout.functionSelectors.set._getSetAsArray();
-    bootstrapper = layout.bootstrapper._getValue();
-    bootStrapperInitFunction = layout.bootStrapperInitFunction._getValue();
+    // bootstrapper = layout.bootstrapper._getValue();
+    // bootStrapperInitFunction = layout.bootStrapperInitFunction._getValue();
   }
 
   function _getDelegateServiceInterfaceId(

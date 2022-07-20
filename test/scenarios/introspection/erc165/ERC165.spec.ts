@@ -17,9 +17,9 @@ describe('ERC165', function () {
   // Test Wallets
   let deployer: SignerWithAddress;
   
-  // ERC165 test variables
+  // Test instances
   let erc165Mock: ERC165Mock;
-  const erc165InterfaceID = "0x01ffc9a7";
+  const IERC165InterfaceId = "0x01ffc9a7";
   const supportsInterfaceFunctionSelector = "0x01ffc9a7";
 
   /* -------------------------------------------------------------------------- */
@@ -58,10 +58,16 @@ describe('ERC165', function () {
 
   describe("ERC165", function () {
 
-    describe("#constructor()", function () {
-      it("provides ERC165 interface ID and function selectors", async function () {
-        expect(await erc165Mock.ERC165InterfaceId()).to.equal(erc165InterfaceID);
+    describe("Validate interface and function selector computation", function () {
+      it("IDelegateServiceInterfaceId.", async function () {
+        expect(await erc165Mock.IERC165InterfaceId())
+          .to.equal(IERC165InterfaceId);
       });
+      it("getServiceDefFunctionSelector.", async function () {
+        expect(await erc165Mock.supportsInterfaceFunctionSelector())
+          .to.equal(supportsInterfaceFunctionSelector);
+      });
+
     });
 
     describe("#supportsInterface()", function () {
@@ -71,7 +77,7 @@ describe('ERC165', function () {
             .to.equal(false);
         });
         it("Accurately reports ERC165 interface support.", async function () {
-          expect(await erc165Mock.supportsInterface(erc165InterfaceID))
+          expect(await erc165Mock.supportsInterface(IERC165InterfaceId))
             .to.equal(true);
         });
       });

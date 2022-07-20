@@ -1,4 +1,4 @@
-= Autonomous Service Engine Delegate Services
+= ASE Delegate Services
 ifndef::compositing[]
 :author: cyotee doge
 :email: cyotee@syscoin.org
@@ -15,3 +15,7 @@ ifndef::compositing[]
 :includeprefix: {pathtoroot}
 :compositing:
 endif::[]
+
+include::./tokens/daosys-architecture-delegate_services-tokens-00.adoc[leveloffset=+1]
+
+include::./stubs/daosys-architecture-delegate_service-stubs-00.adoc[leveloffset=+1]

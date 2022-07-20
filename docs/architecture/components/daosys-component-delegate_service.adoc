@@ -1,0 +1,35 @@
+= Delegate Services
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-02-19
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+Delegate Services replace the Facets defined in https://eips.ethereum.org/EIPS/eip-2535[ERC-2535].
+Delegate Services define a strict storage allocation and access standard beyond the theory presented in https://eips.ethereum.org/EIPS/eip-2535[ERC-2535].
+A Service is a smart-contract or library implemented following the Deterministically Dynamic Storage Allocation standard.
+A Service also reports the factory that deployed that contract and the salt used during deployment.
+This way the recalculation of the address from the factory init code hash and salt can be used to verify new Services as an implicit ACL.
+
+This means that the deployment process for new Services deviates from industry standard.
+New Services are deployed as compiled bytecode passed to the Service Proxy Factory as the argument for the deployment function.
+The Service Proxy Factory then instantiates that bytecode as a new contract.
+ASE compliant Services must include the ASEServiceBootstrapper library to retrieve the address salt to initialize the Service.
+This should be done by delegating to the canonical external library deployment.
+ASE compliant external libraries may precalculate their address salt and store it as a constant.
+The standard Service initialization functions must still be implemented, but may hard code the values and return values since they can not store state.
+
+All Services are required to implement https://eips.ethereum.org/EIPS/eip-165[ERC-165] including the Service extension that enumerates the functions.
+The Service extension to https://eips.ethereum.org/EIPS/eip-165[ERC-165] includes a per interface enumeration of the function selectors that define the interface ID.
+Additionally, there is an enumeration of all the function selectors across all interface IDs, and a ServiceDef struct that includes the information for initializing a Service Proxy to consume the Service.

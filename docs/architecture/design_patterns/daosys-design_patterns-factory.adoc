@@ -1,0 +1,41 @@
+= Factory Design Pattern
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-02-19
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+The Factory design pattern utilizes the CREATE and CREATE2 OPCODES of the EVM to deploy new smart contracts.
+A typical factory will deploy initialize a single type of smart-contract.
+An example of this can be seen in any AMM, such as Balancer and Uniswap.
+The CREATE2 OPCODE allows for salting the smart-contract address calculation to make it computable.
+Factories will typically use this functionality to deploy contracts to addresses that can be precomputed.
+This allows for smart-contract address discovery without having to read from storage.
+
+A unutilized second order feature is available by using CREATE2 to deploy contracts from a factory.
+Because addresses can be precomputed, they can also be verified through recomputation.
+When deploying a smart-contract from another smart-contract, a hash of the factory's bytecode is used to calculate the address of the new smart-contract.
+This bytecode is available on-chain from the smart-contract address, and is therefore immutable.
+This means that when a smart-contract is deployed, it can self-report it's factory and salt used when it was deployed.
+A smart-contract can verify the pedigree of a contract by recalculating the contract address.
+This means that an implicit trust can be bootstrapped from an address.
+
+This pedigree verification capability is used by the ASE to allow for an implicit access control list (ACL).
+The implicit ACL can be used by modules available from the ASE to allow integration with new proxies deployed by the factory.
+Proxies can allow interaction with tokens and pools that have not been deployed yet.
+
+[source,solidity]
+----
+include::../../../contracts/factory/Factory.sol[]
+----

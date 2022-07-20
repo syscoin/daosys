@@ -1,5 +1,8 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-pragma solidity ^0.8.0;
+// DO NOT CHANGE COMPILER VERSION FROM DEPLOYED VERSION
+// Optimizer Runs = 200
+pragma solidity 0.8.13;
+// TODO Write NatSpec comments. See contracts/types/primitives/String.sol
 
 /* -------------------------------------------------------------------------- */
 /*                             SECTION Address                                */
@@ -13,14 +16,7 @@ library Address {
   
 }
 
-/* -------------------------------------------------------------------------- */
-/*                             !SECTION Address                               */
-/* -------------------------------------------------------------------------- */
-
-/* -------------------------------------------------------------------------- */
-/*                            SECTION AddressUtils                            */
-/* -------------------------------------------------------------------------- */
-
+// TODO Write unit tests for remaining functions. Check test/scenarios/types/primitives/Address.spec.ts for missing tests.
 library AddressUtils {
 
   using AddressUtils for address;
@@ -112,6 +108,7 @@ library AddressUtils {
     return __functionCallWithValue(target, data, value, error);
   }
 
+  // TODO Add DELEGATECALL version of this functionality. Obviously remove VALUE support as DELEGATECALL can not forward gas.
   function __functionCallWithValue(address target, bytes memory data, uint value, string memory error) private returns (bytes memory) {
     require(_isContract(target), 'AddressUtils: function call to non-contract');
 
@@ -126,6 +123,23 @@ library AddressUtils {
       }
     } else {
       revert(error);
+    }
+  }
+
+  function _functionDelegateCall(address target, bytes memory data) internal returns (bytes memory) {
+    require(_isContract(target), 'AddressUtils: function call to non-contract');
+
+    (bool success, bytes memory returnData) = target.delegatecall(data);
+
+    if (success) {
+      return returnData;
+    } else if (returnData.length > 0) {
+      assembly {
+        let returnData_size := mload(returnData)
+        revert(add(32, returnData), returnData_size)
+      }
+    } else {
+      revert("DelegateCall failed.");
     }
   }
 
@@ -148,6 +162,7 @@ library AddressUtils {
       
     }
 
+  // TODO Refactor Create2Utils to reuse this function.
   function _calculateDeploymentAddressFromAddress(
       address deployer,
       bytes32 initCodeHash,

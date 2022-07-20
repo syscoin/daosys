@@ -9,20 +9,19 @@ import {
 
 contract BoolMock {
 
-    using BoolUtils for Bool.Layout;
+  using BoolUtils for Bool.Layout;
 
-    function setBool(bool newValue) external returns (bool result) {
-        BoolUtils._layout(BoolUtils._structSlot())._setValue(newValue);
-        result = true;
-    }
+  function setBool(bool newValue) external returns (bool result) {
+    BoolUtils._layout(BoolUtils._structSlot())._setValue(newValue);
+    result = true;
+  }
 
-    function getBool() view external returns (bool value) {
-        value = BoolUtils._layout(BoolUtils._structSlot())._getValue();
-    }
+  function getBool() view external returns (bool value) {
+    value = BoolUtils._layout(BoolUtils._structSlot())._getValue();
+  }
 
-    function getStructSlot() pure external returns (bytes32 structSlot) {
-        structSlot = BoolUtils._structSlot();
-    }
+  function getStructSlot() pure external returns (bytes32 structSlot) {
+    structSlot = BoolUtils._structSlot();
+  }
+  
 }
-
-

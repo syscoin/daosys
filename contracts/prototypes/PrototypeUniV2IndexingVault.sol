@@ -6,7 +6,7 @@ import {
 } from "contracts/test/protocols/dexes/uniswap/v2/uniswap-v2-core/interfaces/IUniswapV2Pair.sol";
 import {
   Factory
-} from "contracts/factories/Factory.sol";
+} from "contracts/factory/Factory.sol";
 import {IPrototypeUniV2IndexingVault} from "contracts/prototypes/IPrototypeUniV2IndexingVault.sol";
 import {
   PrototypeUniV2IndexingERC20Facade,

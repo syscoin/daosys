@@ -16,7 +16,7 @@ ifndef::compositing[]
 :compositing:
 endif::[]
 
-The ASE Service Proxy is the base proxy implementation.
+The ASE Service Proxy (SP) Delegate Service is the base proxy implementation used by all Minimal Proxies deployed by the <<ASE Service Proxy Factory (SPF) Delegate Service>>.
 The Service Proxy Factory will deploy Minimal Proxies delegating to the Service Proxy Delegate Service.
 The Service Proxy provides the function selector based implementation mapping.
 A new Minimal Proxy instance is initialized by the Service Proxy Factory with the functional selector to address mappings for the configured Delegate Services.
@@ -30,14 +30,18 @@ This includes:
 * Store the deployed delegate services for use as a Delegate Service Registry.
 * Store the deployed Delegate Service Registry for use as a Service Proxy Factory and Delegate Service Registry.
 
-The Service Proxy implements a `fallback() payable` function.
-This `fallback() payable` function uses the implicit variable `msg.sig` to lookup which address to use as the target of a `DELEGATECALL`.
+The ASE SP implements a https://docs.soliditylang.org/en/v0.8.13/contracts.html#fallback-function[`fallback() payable`] function.
+This https://docs.soliditylang.org/en/v0.8.13/contracts.html#fallback-function[`fallback() payable`] function uses the implicit variable https://docs.soliditylang.org/en/v0.8.13/units-and-global-variables.html?highlight=msg.sig#block-and-transaction-properties[`msg.sig`] to lookup which address to use as the target of a https://docs.soliditylang.org/en/v0.8.13/introduction-to-smart-contracts.html?highlight=delegatecall#delegatecall-callcode-and-libraries[`DELEGATECALL`].
 This is the Delegate Service configured when the Service Proxy was deployed from the factory.
 The transaction data is forwarded to the target Delegate Service.
-The target Delegate Service then executes it's implemented logic using the storage of the Service Proxy that issued the `DELEGATECALL`.
+The target Delegate Service then executes it's implemented logic using the storage of the Service Proxy that issued the https://docs.soliditylang.org/en/v0.8.13/introduction-to-smart-contracts.html?highlight=delegatecall#delegatecall-callcode-and-libraries[`DELEGATECALL`].
 
 A Service Proxy may need more complex transaction processing that is domain specific.
-This is defined in the Transaction Router design pattern.
+This is defined in the <<Transaction Router Design Pattern>>.
+
+== Deployment Process
+
+The ASE SP deploys the ASE core platform as part of its construction then acts as the proxy for users to interact with the platform.
 
 == IServiceProxy
 

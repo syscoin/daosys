@@ -3,7 +3,12 @@ pragma solidity ^0.8.0;
 
 interface IDelegateServiceRegistry {
 
-  function selfRegisterDelegateService(
+  // function selfRegisterDelegateService(
+  //   address delegateServiceAddress
+  // ) external returns (bool success);
+
+  function registerDelegateService(
+    bytes4 delegateServiceInterfaceId,
     address delegateServiceAddress
   ) external returns (bool success);
   

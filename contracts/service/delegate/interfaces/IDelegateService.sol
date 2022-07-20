@@ -6,12 +6,12 @@ interface IDelegateService {
   struct ServiceDef{
     bytes4 interfaceId;
     bytes4[] functionSelectors;
-    address bootstrapper;
-    bytes4 bootstrapperInitFunction;
+    // address bootstrapper;
+    // bytes4 bootstrapperInitFunction;
   }
 
-  function registerDelegateService(
-    bytes32 deploymentSalt
+  function initDelegateService(
+    address delegateServiceRegistry
   ) external returns (bool success);
 
   function getServiceDef() view external returns (ServiceDef memory serviceDef);

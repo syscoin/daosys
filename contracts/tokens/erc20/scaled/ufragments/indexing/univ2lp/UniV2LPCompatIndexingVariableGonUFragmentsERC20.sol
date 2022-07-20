@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 pragma solidity ^0.8.0;
 
-import {ERC20VariableGonUFragments, IERC20VariableGonUFragments, IERC20} from "contracts/tokens/erc20/scaled/ufragments/ERC20VariableGonUFragments.sol";
+import {ERC20VariableGonUFragments, IERC20VariableGonUFragments, IERC20} from "contracts/tokens/erc20/scaled/ufragments/variable/ERC20VariableGonUFragments.sol";
 import {IUniswapV2Pair} from "contracts/test/protocols/dexes/uniswap/v2/uniswap-v2-core/interfaces/IUniswapV2Pair.sol";
 
 import { MathEx, Uint512 } from "contracts/math/MathEx.sol";

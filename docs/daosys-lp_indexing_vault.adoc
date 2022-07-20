@@ -1,0 +1,35 @@
+= DAOSYS LP Indexing Vault
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-07-01
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+Users deposit LP tokens to receive rebasing indexing tokens that represent their share of the vault.
+The rebasing indexing tokens directly reflect the balance of the underlying assets held by the vault.
+
+The vault can be configured with one of several options for how it manages the LP tokens in the vault.
+
+The vault may only accept LP tokens or the underlying assets at the current price ratio for deposit.
+Users must provide both indexing tokens at the current price ratio to be burned for withdrawing the LP tokens.
+
+The vault may accept LP tokens, or either of the underlying assets for deposit.
+When a LP token is deposited the user simply receives the appropriate amount of both indexing tokens.
+When only either of the underlying assets are deposited a portion of the deposited amount is sold to obtain the other underlying asset.
+After the trade, both assets are deposited in liquidity, and users receive the amount of the indexing tokens that represent the actual amount deposited into liquidity.
+User may withdraw by providing both or either of the indexing tokens.
+If a user provides both indexing tokens, the vault will withdraw liquidity to provide the user the requested amount.
+If the user does not provide the indexing tokens at the current price ratio, the vault will withdraw liquidity to honor the withdrawal, and trade any remaining to redeposit into liquidity.
+The user will receive indexing tokens to represent this remainder that was redeposited into liquidity.
+This process also applies if a user only supplies one of the indexing tokens to withdraw the underlying.

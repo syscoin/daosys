@@ -5,7 +5,7 @@ pragma solidity ^0.8.0;
 import {
   String,
   StringUtils
-} from "../String.sol";
+} from "contracts/types/primitives/String.sol";
 
 contract StringMock {
 

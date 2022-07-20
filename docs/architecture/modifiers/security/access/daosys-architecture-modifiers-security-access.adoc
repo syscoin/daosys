@@ -1,0 +1,21 @@
+= ASE Access Control Security Contract Modifiers
+ifndef::compositing[]
+:author: cyotee doge
+:email: cyotee@syscoin.org
+:revdate: 2022-07-01
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 6
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../../../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+include::./immutable/daosys-architecture-modifiers-security-access-immutable.adoc[leveloffset=+1]
+
+// include::./pedigree/daosys-architecture-modifiers-security-pedigree-00.adoc[leveloffset=+1]

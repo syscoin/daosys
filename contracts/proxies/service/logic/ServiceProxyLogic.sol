@@ -2,62 +2,45 @@
 pragma solidity ^0.8.0;
 
 import {
-  ServiceProxyStorageUtils,
-  ServiceProxyStorage
-} from "contracts/proxies/service/storage/ServiceProxyStorage.sol";
+  SelectorProxy,
+  ISelectorProxy
+} from "contracts/proxies/selector/SelectorProxy.sol";
+import {
+  DelegateService,
+  IDelegateService,
+  ICreate2DeploymentMetadata,
+  Immutable
+} from "contracts/service/delegate/DelegateService.sol";
 
-abstract contract ServiceProxyLogic {
+abstract contract ServiceProxyLogic is DelegateService, SelectorProxy {
 
-  using ServiceProxyStorageUtils for ServiceProxyStorage.Layout;
-
-  function _registerDelegateService(
-    bytes32 storageSlotSalt,
-    address newDelegateService,
-    bytes4[] memory newDelegateServiceFunctionSelectors
+  // TODO refactor to return a struct including the list of initialization functions for configured delegate services once such a DS is integrated.
+  // NOTE ICreate2DeploymentMetadata should have been initialized by the ServiceProxyFactory.
+  // NOTE IDelegateService is deliberatly NOT initialized because a ServiceProxy Minimal Proxy is NOT a delegate service. It is a Service.
+  function _initServiceProxy(
+    address[] memory delegateServices
   ) internal {
-    for(uint16 iteration = 0; newDelegateServiceFunctionSelectors.length > iteration; iteration++) {
-      ServiceProxyStorageUtils._layout( storageSlotSalt )
-      ._mapImplementation(newDelegateServiceFunctionSelectors[iteration], newDelegateService);
+    
+    // TODO Loop through delegate servie addresses.
+    for(uint16 iteration0 = 0; iteration0 < delegateServices.length; iteration0++) {
+      
+      // TODO Get ServiceDef from Delegate Service.
+      IDelegateService.ServiceDef memory delegateServiceDef = IDelegateService(delegateServices[iteration0]).getServiceDef();
+
+      // TODO Init ERC165 for delegate service interface ID.
+      _configERC165(delegateServiceDef.interfaceId);
+
+      // Iterate through 
+      for(uint16 iteration1 = 0; iteration1 < delegateServiceDef.functionSelectors.length; iteration1++) {
+        // TODO Map delegate service function selectors as proxy implementations.
+        _mapImplementation(
+          delegateServiceDef.functionSelectors[iteration1],
+          delegateServices[iteration0]
+        );
+      }
+
     }
+
   }
-
-  function _getDelegateService(
-    bytes32 storageSlotSalt,
-    bytes4 functionSelector   
-  ) view internal returns (address delegateService) {
-    delegateService = ServiceProxyStorageUtils._layout( storageSlotSalt )
-      ._queryImplementation(functionSelector);
-  }
-
-  function _deregisterDelegateService(
-    bytes32 storageSlotSalt,
-    bytes4 functionSelector
-  ) internal {
-    ServiceProxyStorageUtils._layout( storageSlotSalt )
-      ._unmapImplementation(functionSelector);
-  }
-
-  // function _setDeploymentMetadata(
-  //   bytes32 storageSlotSalt,
-  //   bytes32 deploymentSalt,
-  //   address proxyFactoryAddress
-  // ) internal {
-  //   ServiceProxyStorageUtils._layout(storageSlotSalt)
-  //     ._setDeploymentSalt(deploymentSalt);
-  //   ServiceProxyStorageUtils._layout(storageSlotSalt)
-  //     ._setProxyFactory(proxyFactoryAddress);
-  // }
-
-  // function _getDeploymentMetadata(
-  //   bytes32 storageSlotSalt
-  // ) view internal returns (
-  //   bytes32 deploymentSalt,
-  //   address proxyFactoryAddress
-  // ) {
-  //   deploymentSalt = ServiceProxyStorageUtils._layout(storageSlotSalt)
-  //     ._getDeploymentSalt();
-  //   proxyFactoryAddress = ServiceProxyStorageUtils._layout(storageSlotSalt)
-  //     ._getProxyFactory();
-  // }
 
 }

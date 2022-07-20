@@ -2,21 +2,13 @@
 pragma solidity ^0.8.0;
 
 import {
-  ImmutableStorage,
-  ImmutableStorageUtils
-} from "contracts/security/access/immutable/storage/ImmutableStorage.sol";
+  ImmutableLogic
+} from "contracts/security/access/immutable/logic/ImmutableLogic.sol";
 
-abstract contract Immutable {
-  
-  using ImmutableStorageUtils for ImmutableStorage.Layout;
-
+abstract contract Immutable is ImmutableLogic {
   modifier isNotImmutable( bytes32 storageSlot ) {
-    require(
-      !ImmutableStorageUtils._layout( ImmutableStorageUtils._encodeImmutableStorage(storageSlot) )._isImmutable(),
-      "Immutable:: This function is immutable." 
-    );
+    require( !_isImmutable(storageSlot), "Immutable:: This function is immutable." );
     _;
-    ImmutableStorageUtils._layout( ImmutableStorageUtils._encodeImmutableStorage(storageSlot) )._makeImmutable();
+    _makeImmutable(storageSlot);
   }
-  
 }
