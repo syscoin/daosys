@@ -13,6 +13,8 @@ import 'hardhat-spdx-license-identifier';
 import '@openzeppelin/hardhat-upgrades';
 import "hardhat-storage-layout";
 import "@nomicfoundation/hardhat-toolbox";
+import "@nomicfoundation/hardhat-chai-matchers";
+import "@nomiclabs/hardhat-ethers";
 
 dotenv.config();
 

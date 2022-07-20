@@ -2,9 +2,9 @@
 pragma solidity ^0.8.0;
 
 import {
-  ERC20UFragmentsUtils,
-  ERC20UFragmentsStorage
-} from "contracts/tokens/erc20/scaled/ufragments/storage/ERC20UFragmentsStorage.sol";
+  ERC20VariableGonUFragmentsUtils,
+  ERC20VariableGonUFragmentsStorage
+} from "contracts/tokens/erc20/scaled/ufragments/variable/storage/ERC20VariableGonUFragmentsStorage.sol";
 
 abstract contract ERC20VariableGonUFragmentsLogic {
 

@@ -6,7 +6,7 @@ import {
   UInt256ToAddressUtils,
   Address,
   AddressUtils
-} from "contracts/types/collections/mappings/key/uint256/UInt256ToAddress.sol";
+} from "contracts/types/collections/mappings/UInt256ToAddress.sol";
 
 library ERC1155IndexingVaultDDSAStorage {
 

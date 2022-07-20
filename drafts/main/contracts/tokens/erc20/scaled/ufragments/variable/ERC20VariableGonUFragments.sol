@@ -7,11 +7,8 @@ import {ERC20Account} from "contracts/tokens/erc20/account/ERC20Account.sol";
 import {IERC20VariableGonUFragments} from "contracts/tokens/erc20/scaled/ufragments/interfaces/IERC20VariableGonUFragments.sol";
 import {IERC20} from "contracts/tokens/erc20/interfaces/IERC20.sol";
 import {FullMath} from "contracts/math/FullMath.sol";
-
 import { MathEx, Uint512 } from "contracts/math/MathEx.sol";
 import "hardhat/console.sol";
-
-
 
 contract ERC20VariableGonUFragments is
     IERC20VariableGonUFragments,
