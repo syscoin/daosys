@@ -52,5 +52,6 @@ class State():
         t_delta = self.__event.get_time_delta()
         apy = self.__event.get_apy()        
         self.__yield = Yield().apply(self.__balance, t_delta, apy)
+        print('t_delta {} apy {} yield {}'.format(t_delta, apy, self.__yield))
         
         

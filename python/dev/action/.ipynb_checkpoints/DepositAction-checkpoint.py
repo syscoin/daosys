@@ -11,6 +11,9 @@ class DepositAction(Action):
               
     def apply(self, agents):
         
+        tdel = self.__token_event.get_time_delta()
+        nm = self.__target.get_name()
+        
         token = self.__target.get_token()        
         address = self.__target.get_address(self.__mint_id)        
         self.__token_event.set_address(address)
