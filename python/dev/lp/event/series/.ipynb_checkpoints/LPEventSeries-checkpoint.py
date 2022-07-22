@@ -1,5 +1,7 @@
 import copy
+import numpy as np
 from datetime import datetime
+from python.dev.math.interest import Yield
 
 class LPEventSeries():
     
@@ -9,6 +11,7 @@ class LPEventSeries():
         self.__liquidity_values = []
         self.__prices = []
         self.__dates = []
+        self.__unix_time_stamps = []
   
     def get_name(self):
         return self.__name 
@@ -21,6 +24,9 @@ class LPEventSeries():
     
     def get_dates(self):            
         return self.__dates     
+    
+    def get_unix_time_stamps(self):            
+        return self.__unix_time_stamps      
   
     def get_events(self):
         return self.__events 
@@ -35,7 +41,20 @@ class LPEventSeries():
         return self.__events[index]  
     
     def get_last_event(self):
-        return self.__events[-1]     
+        return self.__events[-1]
+    
+    def gen_yields(self, apy):
+        t_deltas = np.diff(self.__unix_time_stamps)
+        balances = self.__liquidity_values[1:]        
+        return list(Yield().apply(balances, t_deltas, apy))        
+    
+    def gen_yield_balances(self, apy):
+        t_deltas = np.diff(self.__unix_time_stamps)
+        balances = self.__liquidity_values[1:]        
+        yields = Yield().apply(balances, t_deltas, apy)  
+        balances = list(balances + np.cumsum(yields))
+        balances.insert(0, self.__liquidity_values[0]) 
+        return balances
     
     def add_event(self, event): 
         self.__events.append(copy.copy(event)) 
@@ -52,12 +71,12 @@ class LPEventSeries():
         price = self.get_last_event().get_liquidity().get_swap_price()
         self.__prices.append(price)    
         
-    def update_dates(self):
-        
+    def update_dates(self):       
         token_address = self.__retrieve_address()
         unix_time_stamp = self.__retrieve_time_stamp(token_address)
         time_stamp = datetime.fromtimestamp(unix_time_stamp) 
         self.__dates.append(time_stamp) 
+        self.__unix_time_stamps.append(unix_time_stamp)
 
     def __retrieve_time_stamp(self, address):
         index = self.get_last_event().get_action().get_target().get_token_index(address)
