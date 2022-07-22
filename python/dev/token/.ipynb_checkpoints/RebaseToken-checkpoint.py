@@ -52,15 +52,14 @@ class RebaseToken(Token):
         address = event.get_address()
         delta = event.get_delta()
         time_delta = event.get_time_delta()
-        
-             
+                
         state = copy.copy(self.__state_map.get_states(address).get_last_state())    
         state.update_event(event)
         delta = delta+state.get_yield() 
         
-        addresses.delta_balance(delta, address)
-        
+        addresses.delta_balance(delta, address)     
         clock_update_delta = state.get_timestamp() - self.__clock.get_time()
+        
         self.__state_map.add_state(state, address) 
     
         self.__clock.update(clock_update_delta)                

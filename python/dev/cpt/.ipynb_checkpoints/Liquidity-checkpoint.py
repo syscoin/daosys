@@ -60,7 +60,6 @@ class Liquidity():
     def delta_x(self, x_new):
         self.__x_real = self.__x_real + x_new  
         
-      
     def delta_y(self, y_new):
         self.__y_real = self.__y_real + y_new       
         
@@ -71,8 +70,6 @@ class Liquidity():
         return (self.__x_real*delta_y)/(self.__y_real+delta_y)
 
     def calc(self): 
-        
-        
         
         self.__prev_liquidity_val = copy.copy(self.__liquidity_val)
         if(self.__x_real != 0):

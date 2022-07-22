@@ -60,7 +60,6 @@ class Liquidity():
     def delta_x(self, x_new):
         self.__x_real = self.__x_real + x_new  
         
-      
     def delta_y(self, y_new):
         self.__y_real = self.__y_real + y_new       
         

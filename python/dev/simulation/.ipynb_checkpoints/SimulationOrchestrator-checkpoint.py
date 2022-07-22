@@ -27,6 +27,7 @@ class SimulationOrchestrator():
     def __print_out(self, action):
         user = action.get_user().get_name()
         name = action.get_target().get_name()
+        t_delta = abs(action.get_event().get_time_delta())
         delta = abs(action.get_event().get_delta())
         mint_id = action.get_mint_id()    
         action_type = action.get_type()

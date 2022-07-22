@@ -18,8 +18,8 @@ class State():
         return self.__balance
     
     def get_principle(self):
-        return self.__principle   
-    
+        return self.__principle 
+        
     def get_delta(self):
         return self.__event.get_delta()      
     
