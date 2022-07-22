@@ -29,6 +29,10 @@ contract ServiceFactory {
     _delegateServices.push(type(IServiceProxy).interfaceId);
   }
 
+  function allDelegateServices() external view returns (bytes4[] memory delegateServices) {
+    delegateServices = _delegateServices;
+  }
+
   /**
    * @notice deploy contract code using "CREATE2" opcode
    * @dev reverts if deployment is not successful (likely because salt has already been used)

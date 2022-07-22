@@ -10,6 +10,10 @@ interface IServiceProxy {
   function initServiceProxy(
     address[] calldata delegateServices
   ) external returns (bool success);
+
+  function queryImplementation(
+    bytes4 functionSelector
+  ) external view returns (address implementation);
   
 }
 

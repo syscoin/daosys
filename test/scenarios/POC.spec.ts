@@ -4,18 +4,19 @@ import {
 } from 'hardhat';
 import { expect } from "chai";
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
-// import {
-//   // MessengerDelegateService,
-//   // MessengerDelegateService__factory,
-//   // ServiceProxyMock,
-//   // ServiceProxyMock__factory,
-//   // ServiceProxyFactoryMock,
-//   // ServiceProxyFactoryMock__factory,
-//   DelegateServiceFactoryMock,
-//   DelegateServiceFactoryMock__factory,
-//   DelegateServiceRegistryMock,
-//   DelegateServiceRegistryMock__factory
-// } from '../../typechain';
+import {
+  IServiceProxy,
+  MessengerDelegateService,
+  MessengerDelegateService__factory,
+  ServiceFactory,
+  ServiceFactory__factory
+  // ServiceProxyMock,
+  // ServiceProxyMock__factory,
+  // DelegateServiceFactoryMock,
+  // DelegateServiceFactoryMock__factory,
+  // DelegateServiceRegistryMock,
+  // DelegateServiceRegistryMock__factory
+} from '../../typechain';
 
 /* -------------------------------------------------------------------------- */
 /*                   SECTION ServiceProxyFactory Unit Tests                   */
@@ -31,9 +32,6 @@ describe("Proof of Concept", function () {
   // let messengerDelegateService: MessengerDelegateService;
   // const IDelegateServiceInterfaceId = '0x30822d6e';
   // const getServiceDefFunctionSelector = '0x30822d6e';
-  // const IMessengerInterfaceId = '0xf8e6c6ac';
-  // const setMessageFunctionSelector = '0x368b8772';
-  // const getMessageFunctionSelector = '0xce6d41de';
 
   // // Service Proxy test variables
   // let proxy: ServiceProxyMock;
@@ -61,12 +59,25 @@ describe("Proof of Concept", function () {
   // let newServiceProxyAsMessenger: MessengerDelegateService;
   // let newServiceProxy: ServiceProxyMock;
 
-  // Test Wallets
-  let deployer: SignerWithAddress;
-
   // let delegateServiceFactory: DelegateServiceFactoryMock;
 
   // let delegateServiceRegistry: DelegateServiceRegistryMock;
+
+  let deployer: SignerWithAddress;
+
+  let factory: ServiceFactory;
+  const IServiceProxyInterfaceId = '0x1f02c1e6';
+  const queryImplementationFunctionSelector = '0xe21d303a';
+  const initServiceProxyFunctionSelector = '0xfd1ff1dc';
+
+  let controlMessenger: MessengerDelegateService;
+  const IMessengerInterfaceId = '0xf8e6c6ac';
+  const setMessageFunctionSelector = '0x368b8772';
+  const getMessageFunctionSelector = '0xce6d41de';
+
+  let messengerDS: MessengerDelegateService;
+
+  let messengerService: MessengerDelegateService;
 
   /* -------------------------------------------------------------------------- */
   /*                        SECTION Before All Test Hook                        */
@@ -87,9 +98,6 @@ describe("Proof of Concept", function () {
 
   beforeEach(async function () {
 
-  //   messengerDelegateService = await new MessengerDelegateService__factory(deployer).deploy();
-  //   tracer.nameTags[messengerDelegateService.address] = "Messenger Delegate Service";
-
   //   proxy = await new ServiceProxyMock__factory(deployer).deploy();
   //   tracer.nameTags[proxy.address] = "ServiceProxy";
 
@@ -99,17 +107,23 @@ describe("Proof of Concept", function () {
   //   serviceProxyFactory = await new ServiceProxyFactoryMock__factory(deployer).deploy();
     //   tracer.nameTags[serviceProxyFactory.address] = "Service Proxy Factory";
 
-    [
-      deployer
-    ] = await ethers.getSigners();
-    tracer.nameTags[deployer.address] = "Deployer";
-
     // delegateServiceRegistry = await new DelegateServiceRegistryMock__factory(deployer).deploy();
     // tracer.nameTags[delegateServiceRegistry.address] = "Delegate Service Registry";
 
     // delegateServiceFactory = await new DelegateServiceFactoryMock__factory(deployer).deploy();
     // tracer.nameTags[delegateServiceFactory.address] = "Delegate Service Factory";
     // await delegateServiceFactory.setDelegateServiceRegistry(delegateServiceRegistry.address)
+
+    [
+      deployer
+    ] = await ethers.getSigners();
+    tracer.nameTags[deployer.address] = "Deployer";
+
+    factory = await new ServiceFactory__factory(deployer).deploy() as ServiceFactory;
+    tracer.nameTags[factory.address] = "Service Factory";
+
+    controlMessenger = await new MessengerDelegateService__factory(deployer).deploy();
+    tracer.nameTags[controlMessenger.address] = "Control Messenger Delegate Service";
 
   });
 
@@ -124,8 +138,69 @@ describe("Proof of Concept", function () {
   describe("POC", function () {
 
     it("POC", async function () {
-      // await messengerDelegateService.setMessage("Hello World!");
-      // expect(await messengerDelegateService.getMessage()).to.equal("Hello World!");
+
+      expect(await factory.allDelegateServices())
+        .to.have.members(
+          [
+            IServiceProxyInterfaceId
+          ]
+        );
+
+      await controlMessenger.setMessage("Hello World!");
+      expect(await controlMessenger.getMessage()).to.equal("Hello World!");
+
+      const DSCreationCode = controlMessenger.deployTransaction.data;
+
+      const newMessengerDSAddress = await factory
+        .callStatic.deployDelegateService(DSCreationCode, IMessengerInterfaceId);
+      expect(newMessengerDSAddress).to.be.properAddress;
+
+      await factory.deployDelegateService(DSCreationCode, IMessengerInterfaceId);
+
+      expect(await factory.allDelegateServices())
+        .to.have.members(
+          [
+            IServiceProxyInterfaceId,
+            IMessengerInterfaceId
+          ]
+        );
+
+      messengerDS = await ethers.getContractAt("MessengerDelegateService", newMessengerDSAddress) as MessengerDelegateService;
+      tracer.nameTags[messengerDS.address] = "Messenger Delegate Service";
+
+      expect(await factory.queryDelegateService(IMessengerInterfaceId))
+        .to.equal(
+          messengerDS.address
+        );
+
+      expect(await ethers.provider.getCode(messengerDS.address)).to.equal(
+        await ethers.provider.getCode(controlMessenger.address)
+      );
+
+      await messengerDS.setMessage("Hello World!");
+      expect(await messengerDS.getMessage()).to.equal("Hello World!");
+
+      const messengerDSServiceDef = await messengerDS.getServiceDef();
+      expect(messengerDSServiceDef.interfaceId).to.equal(IMessengerInterfaceId);
+      expect(messengerDSServiceDef.functionSelectors).to.have.members(
+        [
+          setMessageFunctionSelector,
+          getMessageFunctionSelector
+        ]
+      );
+
+      const newMessengerServiceAddress = await factory
+        .callStatic.deployService(IMessengerInterfaceId);
+      expect(newMessengerServiceAddress).to.be.properAddress;
+
+      await factory.deployService(IMessengerInterfaceId);
+
+      messengerService = await ethers.getContractAt("MessengerDelegateService", newMessengerServiceAddress) as MessengerDelegateService;
+      tracer.nameTags[messengerService.address] = "Messenger Service";
+
+      await messengerService.setMessage("Hello World!");
+      expect(await messengerService.getMessage()).to.equal("Hello World!");
+
     });
 
     // describe("#getMessage()", function () {
