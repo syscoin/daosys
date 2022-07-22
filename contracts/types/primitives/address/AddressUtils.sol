@@ -2,24 +2,14 @@
 // DO NOT CHANGE COMPILER VERSION FROM DEPLOYED VERSION
 // Optimizer Runs = 200
 pragma solidity 0.8.13;
-// TODO Write NatSpec comments. See contracts/types/primitives/String.sol
 
-/* -------------------------------------------------------------------------- */
-/*                             SECTION Address                                */
-/* -------------------------------------------------------------------------- */
-
-library Address {
-
-  struct Layout {
-    address value;
-  }
-  
-}
+import {Address} from "contracts/types/primitives/address/Address.sol";
 
 // TODO Write unit tests for remaining functions. Check test/scenarios/types/primitives/Address.spec.ts for missing tests.
 library AddressUtils {
 
   using AddressUtils for address;
+  using AddressUtils for Address.Layout;
 
   bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(Address).creationCode);
 

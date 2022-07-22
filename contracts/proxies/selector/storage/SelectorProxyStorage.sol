@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import {
   Bytes4ToAddress,
   Bytes4ToAddressUtils
-} from "contracts/types/collections/mappings/Bytes4ToAddress.sol";
+} from "contracts/types/collections/mappings/Bytes4ToAddressUtils.sol";
 
 library SelectorProxyStorage {
 

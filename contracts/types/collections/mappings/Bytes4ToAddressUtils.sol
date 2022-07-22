@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import {
   Address,
   AddressUtils
-} from "contracts/types/primitives/Address.sol";
+} from "contracts/types/primitives/address/AddressUtils.sol";
 
 library Bytes4ToAddress {
 

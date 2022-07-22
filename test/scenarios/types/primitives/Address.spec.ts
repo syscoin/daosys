@@ -21,7 +21,7 @@ describe("Address Test Suite", function () {
   // Test variables
   let addressMock: AddressMock;
   const testAddress = ethers.constants.AddressZero;
-  const structSlot = "0xc5339047200dd57448bfd4d23dd79ebaa8c8a6cdaa7c99bfc98e7a85b4bfcf46";
+  const structSlot = "0x41306effb7a01f698ecbfd8a8699cbc466357a1eac9d137e88989723b9ef152f";
 
   before(async function () {
     // Tagging address(0) as "System" in logs.
