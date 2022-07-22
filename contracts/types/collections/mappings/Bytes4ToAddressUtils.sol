@@ -5,14 +5,9 @@ import {
   Address,
   AddressUtils
 } from "contracts/types/primitives/address/AddressUtils.sol";
-
-library Bytes4ToAddress {
-
-  struct Layout {
-    mapping(bytes4 => Address.Layout) value;
-  }
-
-}
+import {
+  Bytes4ToAddress
+} from "contracts/types/collections/mappings/Bytes4ToAddress.sol";
 
 library Bytes4ToAddressUtils {
 
