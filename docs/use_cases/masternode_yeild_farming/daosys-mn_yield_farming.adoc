@@ -1,0 +1,32 @@
+= Masternode Yield Farming as a DAOSYS Usecase
+ifndef::compositing[]
+:author: Ian Moore
+:email: imoore@syscoin.org
+:revdate: 2022-07-01
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 5
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
+== DAOSYS Introduction
+
+== Masternode Yield Farming
+
+== DAOSYS Simulator
+
+== Masternode Reward Simulations
+
+== Cost Benefits
+
+== Appendix
+
+
+
