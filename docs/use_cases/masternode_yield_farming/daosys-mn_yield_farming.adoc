@@ -18,13 +18,20 @@ endif::[]
 
 == DAOSYS Introduction
 
+The objective of a decentralized autonomous organization (DAO) is to solve the principal-agent dilemma. This dilemma is a result of misaligned incentives where agents acting in a system are incentivized towards their own benefit over the benefit of a principle or other agents acting within the system. Typically, these are found in centralized systems where the central acting authority is the main compromised agent. The DAO solves this by decentralizing the governance process by utilizing smart contracts running on open source blockchains.
+
+The first inception of the DAO concept happened in May 2016 out of the Ethereum community, which was known as Genesis DAO, and was built as a smart contract on the Ethereum blockchain. However, this resulted in the well known DAO Hack which resulted in the draining of $60M USD worth of funds from its treasury. Today, there are many DAOs in operation with Uniswap, Aave and Maker DAO being amongst the most popular. However, these DAOs still fundamentally violate the core value proposition of self sovereignty that crypto currency promises, where DAOs currently take ownership of capital managed in a treasury controlled by a few individuals. This is the problem that DAOSYS intends to address.
+
+DAOSYS vision is to operate like a pure automated market maker (AMM) and be implemented in a manner that does not require external controls. It addresses this core issue via its new Autonomous Service Engine (ASE) technology hence allowing DAOs to be more autonomous and fully decentralized. One of the interesting by-products of this technology will allow users to test, implement and realize countless decentralized finance (DeFi) usecase designs.
+
+
 == Masternode Yield Farming
 
 == DAOSYS Simulator
 
 == Masternode Reward Simulations
 
-== Cost Benefits
+== Summary
 
 == Appendix
 
