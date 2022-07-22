@@ -6,9 +6,7 @@ import { expect } from "chai";
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import {
   AddressMock,
-  AddressMock__factory,
-  MessengerMock,
-  MessengerMock__factory
+  AddressMock__factory
 } from '../../../../typechain';
 
 // TODO Implement complete unit testing.
@@ -25,12 +23,6 @@ describe("Address Test Suite", function () {
   const testAddress = ethers.constants.AddressZero;
   const structSlot = "0xc5339047200dd57448bfd4d23dd79ebaa8c8a6cdaa7c99bfc98e7a85b4bfcf46";
 
-  // TestService test variables
-  let messenger: MessengerMock;
-  const IMessengerInterfaceId = "0xf8e6c6ac";
-  const setMessageFunctionSelector = '0x368b8772';
-  const getMessageFunctionSelector = '0xce6d41de';
-
   before(async function () {
     // Tagging address(0) as "System" in logs.
     tracer.nameTags[ethers.constants.AddressZero] = "System";
@@ -45,9 +37,6 @@ describe("Address Test Suite", function () {
 
     addressMock = await new AddressMock__factory(deployer).deploy() as AddressMock;
     tracer.nameTags[addressMock.address] = "AddressMock";
-
-    messenger = await new MessengerMock__factory(deployer).deploy();
-    tracer.nameTags[messenger.address] = "Messenger";
 
   });
 

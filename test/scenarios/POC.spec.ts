@@ -9,7 +9,9 @@ import {
   MessengerDelegateService,
   MessengerDelegateService__factory,
   ServiceFactory,
-  ServiceFactory__factory
+  ServiceFactory__factory,
+  ServiceProxyMock,
+  ServiceProxyMock__factory
   // ServiceProxyMock,
   // ServiceProxyMock__factory,
   // DelegateServiceFactoryMock,
@@ -64,6 +66,7 @@ describe("Proof of Concept", function () {
   // let delegateServiceRegistry: DelegateServiceRegistryMock;
 
   let deployer: SignerWithAddress;
+  let serviceProxyMock: ServiceProxyMock;
 
   let factory: ServiceFactory;
   const IServiceProxyInterfaceId = '0x1f02c1e6';
@@ -119,6 +122,9 @@ describe("Proof of Concept", function () {
     ] = await ethers.getSigners();
     tracer.nameTags[deployer.address] = "Deployer";
 
+    serviceProxyMock = await new ServiceProxyMock__factory(deployer).deploy() as ServiceProxyMock;
+    tracer.nameTags[serviceProxyMock.address] = "Service Proxy Mock";
+
     factory = await new ServiceFactory__factory(deployer).deploy() as ServiceFactory;
     tracer.nameTags[factory.address] = "Service Factory";
 
@@ -136,6 +142,21 @@ describe("Proof of Concept", function () {
   /* -------------------------------------------------------------------------- */
 
   describe("POC", function () {
+
+    describe("Validate interface and function selector computation", function () {
+      it("IServiceProxyInterfaceId.", async function () {
+        expect(await serviceProxyMock.IServiceProxyInterfaceId())
+          .to.equal(IServiceProxyInterfaceId);
+      });
+      it("queryImplementationFunctionSelector.", async function () {
+        expect(await serviceProxyMock.queryImplementationFunctionSelector())
+          .to.equal(queryImplementationFunctionSelector);
+      });
+      it("initServiceProxyFunctionSelector.", async function () {
+        expect(await serviceProxyMock.initServiceProxyFunctionSelector())
+          .to.equal(initServiceProxyFunctionSelector);
+      });
+    });
 
     it("POC", async function () {
 

@@ -15,7 +15,6 @@ import {
 contract SelectorProxy
   is
     ISelectorProxy,
-    SelectorProxyLogic,
     Proxy
 {
 
@@ -25,7 +24,7 @@ contract SelectorProxy
     bytes4 functionSelector,
     address implementation
   ) internal {
-    _mapImplementation(
+    SelectorProxyLogic._mapImplementation(
       ISELECTOR_PROXY_STORAGE_SLOT_SALT,
       functionSelector,
       implementation
@@ -47,7 +46,7 @@ contract SelectorProxy
   function _queryImplementation(
     bytes4 functionSelector   
   ) view internal returns (address delegateService) {
-    delegateService = _queryImplementation(
+    delegateService = SelectorProxyLogic._queryImplementation(
       ISELECTOR_PROXY_STORAGE_SLOT_SALT, 
       functionSelector
     );

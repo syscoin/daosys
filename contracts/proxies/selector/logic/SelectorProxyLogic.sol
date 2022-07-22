@@ -6,7 +6,7 @@ import {
   SelectorProxyStorageUtils
 } from "contracts/proxies/selector/storage/SelectorProxyStorage.sol";
 
-abstract contract SelectorProxyLogic {
+library SelectorProxyLogic {
 
   using SelectorProxyStorageUtils for SelectorProxyStorage.Layout;
 

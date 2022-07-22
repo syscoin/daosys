@@ -4,8 +4,13 @@ pragma solidity ^0.8.0;
 import {
   IDelegateService
 } from "contracts/IDelegateService.sol";
+import {
+  SelectorProxy,
+  ISelectorProxy,
+  Proxy
+} from "contracts/proxies/selector/SelectorProxy.sol";
 
-interface IServiceProxy {
+interface IServiceProxy is ISelectorProxy {
 
   function initServiceProxy(
     address[] calldata delegateServices
@@ -23,10 +28,10 @@ library ServiceProxyStorage {
     mapping(bytes4 => address) implementations;
   }
 
-  bytes4 constant internal ISELECTOR_PROXY_STORAGE_SLOT = type(IServiceProxy).interfaceId;
+  bytes4 constant internal ISEVICEPROXY_STORAGE_SLOT = type(IServiceProxy).interfaceId;
 
   function _layout() pure internal returns (Layout storage layout) {
-    bytes32 slot = ISELECTOR_PROXY_STORAGE_SLOT;
+    bytes32 slot = ISEVICEPROXY_STORAGE_SLOT;
     assembly{ layout.slot := slot }
   }
 
@@ -47,11 +52,15 @@ library ServiceProxyStorage {
 
 }
 
-contract ServiceProxy {
+contract ServiceProxy
+  is
+    IServiceProxy,
+    Proxy
+{
 
   using ServiceProxyStorage for ServiceProxyStorage.Layout;
 
-  // TODO make Immutable.
+  // TODO refactor to SelectorProxyInitializer and unmap from SelectorProxy instance on completion.
   function initServiceProxy(
     address[] memory delegateServices
   ) external returns (
@@ -108,28 +117,36 @@ contract ServiceProxy {
   }
 
   /**
-   * @dev Intentionally empty implementation of the default receive function.
+   * @notice get logic implementation address
+   * @return implementation address
    */
-  receive() payable virtual external {}
-
-  /**
-   * @notice delegate all calls to implementation contract
-   * @dev reverts if implementation address contains no code, for compatibility with metamorphic contracts
-   *  memory location in use by assembly may be unsafe in other contexts
-   */
-  fallback() payable virtual external {
-    address implementation = _queryImplementation(msg.sig);
-
-    assembly {
-      calldatacopy(0, 0, calldatasize())
-      let result := delegatecall(gas(), implementation, 0, calldatasize(), 0, 0)
-      returndatacopy(0, 0, returndatasize())
-
-      switch result
-      case 0 { revert(0, returndatasize()) }
-      default { return (0, returndatasize()) }
-    }
-
+  function _getImplementation() internal virtual override(Proxy) returns (address implementation){
+    implementation = _queryImplementation(msg.sig);
   }
+
+  // /**
+  //  * @dev Intentionally empty implementation of the default receive function.
+  //  */
+  // receive() payable virtual external {}
+
+  // /**
+  //  * @notice delegate all calls to implementation contract
+  //  * @dev reverts if implementation address contains no code, for compatibility with metamorphic contracts
+  //  *  memory location in use by assembly may be unsafe in other contexts
+  //  */
+  // fallback() payable virtual external {
+  //   address implementation = _getImplementation();
+
+  //   assembly {
+  //     calldatacopy(0, 0, calldatasize())
+  //     let result := delegatecall(gas(), implementation, 0, calldatasize(), 0, 0)
+  //     returndatacopy(0, 0, returndatasize())
+
+  //     switch result
+  //     case 0 { revert(0, returndatasize()) }
+  //     default { return (0, returndatasize()) }
+  //   }
+
+  // }
 
 }
