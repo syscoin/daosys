@@ -6,7 +6,7 @@ pragma solidity 0.8.13;
 import {
   Address,
   AddressUtils
-} from "contracts/types/primitives/Address.sol";
+} from "contracts/types/primitives/address/AddressUtils.sol";
 
 library DelegateServiceRegistryAwareStorage {
 

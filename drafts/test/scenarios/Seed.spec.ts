@@ -44,7 +44,7 @@ describe.only("Seed Test Suite", function () {
 
   // // IServiceProxy delegate service instance
   // let serviceProxyDelegateService: IServiceProxy;
-  // const IServiceProxyInterfaceId = '0xfd1ff1dc';
+  // const IServiceProxyInterfaceId = '0x1f02c1e6';
   // const getImplementationFunctionSelector = '0xdc9cc645';
   // const initializeServiceProxyFunctionSelector = '0x5cc0292c';
 
@@ -81,7 +81,7 @@ describe.only("Seed Test Suite", function () {
   /* ------------------------ Control values for tests ------------------------ */
   const invalidInterfaceId = "0xffffffff";
 
-  const IServiceProxyInterfaceId = '0xfd1ff1dc';
+  const IServiceProxyInterfaceId = '0x1f02c1e6';
   const initServiceProxyFunctionSelector = '0xfd1ff1dc';
 
   const ISelectorProxyInterfaceId = '0xe21d303a';

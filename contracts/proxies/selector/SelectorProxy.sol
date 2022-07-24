@@ -62,7 +62,7 @@ contract SelectorProxy
 
   function queryImplementation(
     bytes4 functionSelector   
-  ) view external returns (address implementation) {
+  ) external view virtual returns (address implementation) {
     implementation = _queryImplementation(functionSelector);
   }
 

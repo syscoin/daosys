@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import {
   SelectorProxyStorage,
   SelectorProxyStorageUtils
-} from "contracts/proxies/selector/storage/SelectorProxyStorage.sol";
+} from "contracts/proxies/selector/storage/SelectorProxyStorageUtils.sol";
 
 library SelectorProxyLogic {
 

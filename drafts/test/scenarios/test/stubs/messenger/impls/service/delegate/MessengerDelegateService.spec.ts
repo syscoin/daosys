@@ -7,7 +7,7 @@ import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import {
   MessengerDelegateService,
   MessengerDelegateService__factory
-} from '../../../../../../../../typechain';
+} from '../../../../../../../../../typechain';
 
 describe("Messenger Delegate Service", function () {
 
