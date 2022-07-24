@@ -20,4 +20,8 @@ interface IDelegateServiceRegistry {
     bytes4[] calldata delegateServiceInterfaceIds
   ) view external returns (address[] memory delegateServiceAddresses);
 
+  function getAllDelegateServiceIds() external view returns (bytes4[] memory allDelegateServiceIds);
+
+  function getAllDelegateServices() external view returns (address[] memory allDelegateServices);
+
 }

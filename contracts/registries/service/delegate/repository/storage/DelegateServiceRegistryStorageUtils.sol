@@ -2,21 +2,22 @@
 pragma solidity ^0.8.0;
 
 import {
+  DelegateServiceRegistryStorage,
+  AddressSet,
+  AddressSetUtils,
   Bytes4ToAddress,
-  Bytes4ToAddressUtils
-} from "contracts/types/collections/mappings/Bytes4ToAddressUtils.sol";
-
-library DelegateServiceRegistryStorage {
-
-  struct Layout {
-    Bytes4ToAddress.Layout delegateServiceForInterfaceId;
-  }
-
-}
+  Bytes4ToAddressUtils,
+  Bytes4Set,
+  Bytes4SetUtils
+} from "contracts/registries/service/delegate/repository/storage/type/DelegateServiceRegistryStorage.sol";
 
 library DelegateServiceRegistryStorageUtils {
 
   using Bytes4ToAddressUtils for Bytes4ToAddress.Layout;
+  using AddressSetUtils for AddressSet.Layout;
+  using AddressSetUtils for AddressSet.Enumerable;
+  using Bytes4SetUtils for Bytes4Set.Layout;
+  using Bytes4SetUtils for Bytes4Set.Enumerable;
 
   bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(DelegateServiceRegistryStorage).creationCode);
 
@@ -46,6 +47,8 @@ library DelegateServiceRegistryStorageUtils {
       delegateServiceInterfaceId,
       delegateServiceAddress
     );
+    layout.allDelegateServiceInterfaceIds.set._add(delegateServiceInterfaceId);
+    layout.allDelegateServices.set._add(delegateServiceAddress);
   }
 
   function _queryDelegateService(
@@ -59,7 +62,23 @@ library DelegateServiceRegistryStorageUtils {
     DelegateServiceRegistryStorage.Layout storage layout,
     bytes4 delegateServiceInterfaceId
   ) internal {
+    layout.allDelegateServices.set._remove(
+      layout.delegateServiceForInterfaceId._queryValue(delegateServiceInterfaceId)
+    );
     layout.delegateServiceForInterfaceId._unmapValue(delegateServiceInterfaceId);
+    layout.allDelegateServiceInterfaceIds.set._remove(delegateServiceInterfaceId);
+  }
+
+  function _getAllDelegateServiceIds(
+    DelegateServiceRegistryStorage.Layout storage layout
+  ) internal view returns (bytes4[] memory allDelegateServiceIds) {
+    allDelegateServiceIds = layout.allDelegateServiceInterfaceIds.set._setAsArray();
+  }
+
+  function _getAllDelegateServices(
+    DelegateServiceRegistryStorage.Layout storage layout
+  ) internal view returns (address[] memory allDelegateServices) {
+    allDelegateServices = layout.allDelegateServices.set._setAsArray();
   }
 
 }

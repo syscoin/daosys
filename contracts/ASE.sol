@@ -11,7 +11,7 @@ import {
   IDelegateService
 } from "contracts/proxies/service/ServiceProxy.sol";
 
-contract Seed 
+contract ASE 
   is
     ServiceProxyFactory
 {
@@ -24,15 +24,20 @@ contract Seed
       type(ServiceProxy).creationCode,
       type(IServiceProxy).interfaceId
     );
-    _delegateServices.push(type(IServiceProxy).interfaceId);
+    // _delegateServices.push(type(IServiceProxy).interfaceId);
 
-    _delegateServiceForInterfaceId[type(IServiceProxy).interfaceId] = serviceProxyDelegateService;
+    // _delegateServiceForInterfaceId[type(IServiceProxy).interfaceId] = serviceProxyDelegateService;
+    _registerDelegateService(
+      type(IServiceProxy).interfaceId,
+      serviceProxyDelegateService
+    );
+
     IDelegateService(serviceProxyDelegateService).setDeploymentSalt(
       type(IServiceProxy).interfaceId
     );
   }
 
-  function plant() external returns (bool success) {
+  function start() external returns (bool success) {
     _deploy();
     success = true;
   }

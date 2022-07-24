@@ -1,26 +1,9 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-
 pragma solidity ^0.8.0;
 
-/* -------------------------------------------------------------------------- */
-/*                             SECTION AddressSet                             */
-/* -------------------------------------------------------------------------- */
-library AddressSet {
-
-  struct Enumerable {
-    // 1-indexed to allow 0 to signify nonexistence
-    mapping( address => uint256 ) _indexes;
-    address[] _values;
-  }
-
-  struct Layout {
-    AddressSet.Enumerable addressSet;
-  }
-
-}
-/* -------------------------------------------------------------------------- */
-/*                             !SECTION AddressSet                            */
-/* -------------------------------------------------------------------------- */
+import {
+  AddressSet
+} from "contracts/types/collections/sets/address/AddressSet.sol";
 
 library AddressSetUtils {
 

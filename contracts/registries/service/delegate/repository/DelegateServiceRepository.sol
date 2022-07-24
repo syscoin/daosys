@@ -4,9 +4,9 @@ pragma solidity ^0.8.0;
 import {
   DelegateServiceRegistryStorage,
   DelegateServiceRegistryStorageUtils
-} from "contracts/registries/service/delegate/storage/DelegateServiceRegistryStorage.sol";
+} from "contracts/registries/service/delegate/repository/storage/DelegateServiceRegistryStorageUtils.sol";
 
-abstract contract DelegateServiceLogic {
+library DelegateServiceRepository {
 
   using DelegateServiceRegistryStorageUtils for DelegateServiceRegistryStorage.Layout;
 
@@ -45,6 +45,20 @@ abstract contract DelegateServiceLogic {
           delegateServiceInterfaceIds[iteration]
         );
     }
+  }
+
+  function _getAllDelegateServiceIds(
+    bytes32 storageSlotSalt
+  ) view internal returns (bytes4[] memory allDelegateServiceIds) {
+    allDelegateServiceIds = DelegateServiceRegistryStorageUtils._layout(storageSlotSalt)
+      ._getAllDelegateServiceIds();
+  }
+
+  function _getAllDelegateServices(
+    bytes32 storageSlotSalt
+  ) view internal returns (address[] memory allDelegateServices) {
+    allDelegateServices = DelegateServiceRegistryStorageUtils._layout(storageSlotSalt)
+      ._getAllDelegateServices();
   }
   
 }

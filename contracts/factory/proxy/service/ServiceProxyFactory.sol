@@ -14,22 +14,29 @@ import {
 import {
   MinimalProxyGeneratorLogic
 } from "contracts/proxies/minimal/generator/logic/MinimalProxyGeneratorLogic.sol";
+import {
+  DelegateServiceRegistry
+} from "contracts/registries/service/delegate/DelegateServiceRegistry.sol";
 
 /**
  * @title A proof of concept of a generalzied contract factory.
  */
-contract ServiceProxyFactory {
+contract ServiceProxyFactory
+  is
+    DelegateServiceRegistry
+{
 
-  bytes4[] internal _delegateServices;
-  mapping(bytes4 => address) internal _delegateServiceForInterfaceId;
+  // bytes4[] internal _delegateServices;
+  // mapping(bytes4 => address) internal _delegateServiceForInterfaceId;
+  // mapping(bytes4 => string) internal _delegateServiceNameForInterfaceId;
 
   constructor() {
     
   }
 
-  function allDelegateServices() external view returns (bytes4[] memory delegateServices) {
-    delegateServices = _delegateServices;
-  }
+  // function allDelegateServices() external view returns (bytes4[] memory delegateServices) {
+  //   delegateServices = _delegateServices;
+  // }
 
   /**
    * @param creationCode The creation code of the delegate service to be deployed.
@@ -53,17 +60,22 @@ contract ServiceProxyFactory {
       delegateServiceInterfaceId
     );
 
+    _registerDelegateService(
+      delegateServiceInterfaceId,
+      newDelegateService
+    );
+
     // Register deployed delegate service.
-    _delegateServiceForInterfaceId[delegateServiceInterfaceId] = newDelegateService;
-    _delegateServices.push(delegateServiceInterfaceId);
+    // _delegateServiceForInterfaceId[delegateServiceInterfaceId] = newDelegateService;
+    // _delegateServices.push(delegateServiceInterfaceId);
 
   }
 
-  function queryDelegateService(
-    bytes4 delegateServiceInterfaceId
-  ) external view returns(address delegateService) {
-    delegateService = _delegateServiceForInterfaceId[delegateServiceInterfaceId];
-  }
+  // function queryDelegateService(
+  //   bytes4 delegateServiceInterfaceId
+  // ) external view returns(address delegateService) {
+  //   delegateService = _delegateServiceForInterfaceId[delegateServiceInterfaceId];
+  // }
 
   // /**
   //  * @notice concatenate elements to form EIP1167 minimal proxy initialization code
@@ -81,12 +93,12 @@ contract ServiceProxyFactory {
   ) external returns (address newService) {
     newService = Create2Utils._deployWithSalt(
       MinimalProxyGeneratorLogic._generateMinimalProxyInitCode(
-        _delegateServiceForInterfaceId[type(IServiceProxy).interfaceId]
+        _queryDelegateService(type(IServiceProxy).interfaceId)
       ),
       keccak256(abi.encode(serviceInterfaceId, msg.sender))
     );
 
-    address delegateService = _delegateServiceForInterfaceId[serviceInterfaceId];
+    address delegateService = _queryDelegateService(serviceInterfaceId);
 
     address[] memory delegateServices = new address[](1);
     delegateServices[0] = delegateService;

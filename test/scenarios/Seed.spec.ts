@@ -6,8 +6,8 @@ import { expect } from "chai";
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import {
   IDelegateService,
-  Seed,
-  Seed__factory,
+  ASE,
+  ASE__factory,
   IServiceProxy,
   MessengerDelegateService,
   MessengerDelegateService__factory,
@@ -75,7 +75,7 @@ describe("Proof of Concept", function () {
 
   let serviceProxyMock: ServiceProxyMock;
 
-  let seed: Seed;
+  let ase: ASE;
   const IServiceProxyInterfaceId = '0x1f02c1e6';
   const queryImplementationFunctionSelector = '0xe21d303a';
   const initServiceProxyFunctionSelector = '0xfd1ff1dc';
@@ -136,8 +136,8 @@ describe("Proof of Concept", function () {
     serviceProxyMock = await new ServiceProxyMock__factory(deployer).deploy() as ServiceProxyMock;
     tracer.nameTags[serviceProxyMock.address] = "Service Proxy Mock";
 
-    seed = await new Seed__factory(deployer).deploy() as Seed;
-    tracer.nameTags[seed.address] = "Service Factory";
+    ase = await new ASE__factory(deployer).deploy() as ASE;
+    tracer.nameTags[ase.address] = "ASE";
 
     controlMessenger = await new MessengerDelegateService__factory(deployer).deploy();
     tracer.nameTags[controlMessenger.address] = "Control Messenger Delegate Service";
@@ -171,23 +171,23 @@ describe("Proof of Concept", function () {
 
     it("POC", async function () {
 
-      await seed.plant();
+      await ase.start();
 
       serviceProxyDelegateService = await ethers.getContractAt(
         "IDelegateService", 
-        await seed.queryDelegateService(
+        await ase.queryDelegateServiceAddress(
           IServiceProxyInterfaceId
         )
       ) as IDelegateService;
       tracer.nameTags[serviceProxyDelegateService.address] = "ServiceProxy Delegate Service";
 
-      expect(await serviceProxyDelegateService.getFactory()).to.equal(seed.address);
+      expect(await serviceProxyDelegateService.getFactory()).to.equal(ase.address);
       expect(await serviceProxyDelegateService.getDeploymentSalt()).to.equal(
         await typeCasting.bytes4ToBytes32(
           IServiceProxyInterfaceId
         )
       );
-      expect(await serviceProxyDelegateService.getDelegateServiceRegistry()).to.equal(seed.address);
+      expect(await serviceProxyDelegateService.getDelegateServiceRegistry()).to.equal(ase.address);
 
       const serviceProxyDSServiceDef = await serviceProxyDelegateService.getServiceDef();
       expect(serviceProxyDSServiceDef.interfaceId).to.equal(IServiceProxyInterfaceId);
@@ -199,14 +199,14 @@ describe("Proof of Concept", function () {
       );
 
       const serviceProxyrDSPedigree = await serviceProxyDelegateService.getCreate2Pedigree();
-      expect(serviceProxyrDSPedigree.factory).to.equal(seed.address);
+      expect(serviceProxyrDSPedigree.factory).to.equal(ase.address);
       expect(serviceProxyrDSPedigree.deploymentSalt).to.equal(
         await typeCasting.bytes4ToBytes32(
           IServiceProxyInterfaceId
         )
       );
 
-      expect(await seed.allDelegateServices())
+      expect(await ase.getAllDelegateServiceIds())
         .to.have.members(
           [
             IServiceProxyInterfaceId
@@ -218,13 +218,13 @@ describe("Proof of Concept", function () {
 
       const DSCreationCode = controlMessenger.deployTransaction.data;
 
-      const newMessengerDSAddress = await seed
+      const newMessengerDSAddress = await ase
         .callStatic.deployDelegateService(DSCreationCode, IMessengerInterfaceId);
       expect(newMessengerDSAddress).to.be.properAddress;
 
-      await seed.deployDelegateService(DSCreationCode, IMessengerInterfaceId);
+      await ase.deployDelegateService(DSCreationCode, IMessengerInterfaceId);
 
-      expect(await seed.allDelegateServices())
+      expect(await ase.getAllDelegateServiceIds())
         .to.have.members(
           [
             IServiceProxyInterfaceId,
@@ -239,7 +239,7 @@ describe("Proof of Concept", function () {
       await expect(messengerDS.connect(deployer).setDeploymentSalt(salt))
         .to.be.revertedWith("Immutable:: This function is immutable.");
 
-      expect(await seed.queryDelegateService(IMessengerInterfaceId))
+      expect(await ase.queryDelegateServiceAddress(IMessengerInterfaceId))
         .to.equal(
           messengerDS.address
         );
@@ -261,18 +261,18 @@ describe("Proof of Concept", function () {
       );
 
       const messengerDSPedigree = await messengerDS.getCreate2Pedigree();
-      expect(messengerDSPedigree.factory).to.equal(seed.address);
+      expect(messengerDSPedigree.factory).to.equal(ase.address);
       expect(messengerDSPedigree.deploymentSalt).to.equal(
         await typeCasting.bytes4ToBytes32(
           IMessengerInterfaceId
         )
       );
 
-      const newMessengerServiceAddress = await seed
+      const newMessengerServiceAddress = await ase
         .callStatic.deployService(IMessengerInterfaceId);
       expect(newMessengerServiceAddress).to.be.properAddress;
 
-      await seed.deployService(IMessengerInterfaceId);
+      await ase.deployService(IMessengerInterfaceId);
 
       messengerService = await ethers.getContractAt("MessengerDelegateService", newMessengerServiceAddress) as MessengerDelegateService;
       tracer.nameTags[messengerService.address] = "Messenger Service";

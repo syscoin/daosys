@@ -23,10 +23,7 @@ library DelegateServiceStorageUtils {
   bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(DelegateServiceStorage).creationCode);
 
   function _structSlot() pure internal returns (bytes32 structSlot) {
-    structSlot = STRUCT_STORAGE_SLOT
-      ^ Bytes4Utils._structSlot()
-      ^ Bytes4SetUtils._structSlot()
-      ^ AddressUtils._structSlot();
+    structSlot = STRUCT_STORAGE_SLOT;
   }
 
   function _saltStorageSlot(
@@ -113,7 +110,7 @@ library DelegateServiceStorageUtils {
   ) view internal returns (
     bytes4[] memory delegateServiceFunctionSelectors
   ) {
-    delegateServiceFunctionSelectors = layout.delegateServiceFunctionSelectors.set._getSetAsArray();
+    delegateServiceFunctionSelectors = layout.delegateServiceFunctionSelectors.set._setAsArray();
   }
 
 }
