@@ -57,10 +57,18 @@ contract DelegateService
   //   _serviceDef.functionSelectors = delegateServiceFunctionSelectors;
   // }
 
+  function _setDeploymentSalt(
+    bytes32 deploymentSalt
+  ) internal isNotImmutable(IDelegateService.setDeploymentSalt.selector) returns (bool success) {
+    _setDeploymentSalt(IDELEGATESERVICE_STORAGE_SLOT_SALT, deploymentSalt);
+
+    success = true;
+  }
+
   function setDeploymentSalt(
     bytes32 deploymentSalt
   ) external isNotImmutable(IDelegateService.setDeploymentSalt.selector) returns (bool success) {
-    _setDeploymentSalt(IDELEGATESERVICE_STORAGE_SLOT_SALT, deploymentSalt);
+    _setDeploymentSalt(deploymentSalt);
 
     success = true;
   }

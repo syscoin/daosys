@@ -2,9 +2,11 @@
 pragma solidity ^0.8.0;
 
 import {
-  MessengerStorageUtils,
-  MessengerStorage
-} from "contracts/test/stubs/messenger/storage/MessengerStorageUtils.sol";
+  MessengerRepository
+} from "contracts/test/stubs/messenger/repository/MessengerRepository.sol";
+import {
+  IMessenger
+} from "contracts/test/stubs/messenger/interfaces/IMessenger.sol";
 
 /**
  * @title Domain logic for Messenger test stub.
@@ -12,33 +14,27 @@ import {
  */
 library MessengerLogic {
 
-  using MessengerStorageUtils for MessengerStorage.Layout;
+  bytes32 internal constant IMESSENGER_STORAGE_SLOT_SALT = bytes32(
+    type(IMessenger).interfaceId
+  );
 
-  /**
-   * @param storageSlotSalt The storage slot salt to use when operating on the storage allocated to this domain logic.
-   * @param newMessage The string value to store as a message in service of this domain logic.
-   */
   function _setMessage(
-    bytes32 storageSlotSalt,
-    string memory newMessage
-  ) internal {
-    MessengerStorageUtils._layout(storageSlotSalt)
-      ._setMessage(newMessage);
+    string memory message
+  )
+    internal
+    returns (bool success)
+  {
+    MessengerRepository._setMessage(
+      IMESSENGER_STORAGE_SLOT_SALT,
+      message);
+    success = true;
   }
 
-  /**
-   * @param storageSlotSalt The storage slot salt to use when operating on the storage allocated to this domain logic.
-   * @return message The string value to stored as a message in service of this domain logic.
-   */
-  function _getMessage(
-    bytes32 storageSlotSalt
-  ) view internal
-    returns (
-      string memory message
-    )
+  function _getMessage()
+    internal view
+    returns (string memory message)
   {
-    message = MessengerStorageUtils._layout(storageSlotSalt)
-      ._getMessage();
+    message = MessengerRepository._getMessage(IMESSENGER_STORAGE_SLOT_SALT);
   }
   
 }

@@ -19,40 +19,40 @@ contract Messenger
     type(IMessenger).interfaceId
   );
 
-  function _setMessage(
-    string memory message
-  )
-    internal virtual
-    returns (bool success)
-  {
-    MessengerLogic._setMessage(
-      IMESSENGER_STORAGE_SLOT_SALT,
-      message);
-    success = true;
-  }
+  // function _setMessage(
+  //   string memory message
+  // )
+  //   internal virtual
+  //   returns (bool success)
+  // {
+  //   MessengerLogic._setMessage(
+  //     IMESSENGER_STORAGE_SLOT_SALT,
+  //     message);
+  //   success = true;
+  // }
 
   function setMessage(
     string memory message
   ) 
-    external virtual override(IMessenger)
+    external virtual
     returns (bool success)
   {
-    _setMessage(message);
+    MessengerLogic._setMessage(message);
     success = true;
   }
 
-  function _getMessage()
-    internal view virtual
-    returns (string memory message)
-  {
-    message = MessengerLogic._getMessage(IMESSENGER_STORAGE_SLOT_SALT);
-  }
+  // function _getMessage()
+  //   internal view virtual
+  //   returns (string memory message)
+  // {
+  //   message = MessengerLogic._getMessage(IMESSENGER_STORAGE_SLOT_SALT);
+  // }
 
   function getMessage()
-    external view virtual override(IMessenger)
+    external view virtual
     returns (string memory message)
   {
-    message = _getMessage();
+    message = MessengerLogic._getMessage();
   }
 
 }

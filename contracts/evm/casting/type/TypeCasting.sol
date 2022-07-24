@@ -20,4 +20,10 @@ contract TypeCasting
     castValue = _bytes4ToBytes32(value);
   }
 
+  function uint256ToBytes32(
+    uint256 value
+  ) pure external returns (bytes32 castValue) {
+    castValue = _uint256ToBytes32(value);
+  }
+
 }

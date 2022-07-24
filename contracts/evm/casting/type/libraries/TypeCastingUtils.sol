@@ -9,4 +9,10 @@ library TypeCastingUtils {
     castValue = bytes32(value);
   }
 
+  function _uint256ToBytes32(
+    uint256 value
+  ) pure internal returns (bytes32 castValue) {
+    castValue = bytes32(value);
+  }
+
 }

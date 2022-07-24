@@ -173,21 +173,34 @@ describe("Proof of Concept", function () {
 
       await ase.start();
 
+      await expect(ase.connect(deployer).initServiceProxy(
+        [
+          deployer.address
+        ]
+      ))
+        .to.be.revertedWith("Immutable:: This function is immutable.");
+      await expect(ase.connect(deployer).setDeploymentSalt(
+        await typeCasting.bytes4ToBytes32(
+          IServiceProxyInterfaceId
+        )
+      ))
+        .to.be.revertedWith("Immutable:: This function is immutable.");
+
       serviceProxyDelegateService = await ethers.getContractAt(
         "IDelegateService", 
         await ase.queryDelegateServiceAddress(
           IServiceProxyInterfaceId
         )
       ) as IDelegateService;
-      tracer.nameTags[serviceProxyDelegateService.address] = "ServiceProxy Delegate Service";
+      tracer.nameTags[ase.address] = "ServiceProxy Delegate Service";
 
-      expect(await serviceProxyDelegateService.getFactory()).to.equal(ase.address);
+      expect(await serviceProxyDelegateService.getFactory()).to.equal(deployer.address);
       expect(await serviceProxyDelegateService.getDeploymentSalt()).to.equal(
-        await typeCasting.bytes4ToBytes32(
-          IServiceProxyInterfaceId
+        await typeCasting.uint256ToBytes32(
+          "0"
         )
       );
-      expect(await serviceProxyDelegateService.getDelegateServiceRegistry()).to.equal(ase.address);
+      expect(await serviceProxyDelegateService.getDelegateServiceRegistry()).to.equal(deployer.address);
 
       const serviceProxyDSServiceDef = await serviceProxyDelegateService.getServiceDef();
       expect(serviceProxyDSServiceDef.interfaceId).to.equal(IServiceProxyInterfaceId);
@@ -199,10 +212,10 @@ describe("Proof of Concept", function () {
       );
 
       const serviceProxyrDSPedigree = await serviceProxyDelegateService.getCreate2Pedigree();
-      expect(serviceProxyrDSPedigree.factory).to.equal(ase.address);
+      expect(serviceProxyrDSPedigree.factory).to.equal(deployer.address);
       expect(serviceProxyrDSPedigree.deploymentSalt).to.equal(
-        await typeCasting.bytes4ToBytes32(
-          IServiceProxyInterfaceId
+        await typeCasting.uint256ToBytes32(
+          "0"
         )
       );
 

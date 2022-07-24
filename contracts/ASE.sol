@@ -13,6 +13,7 @@ import {
 
 contract ASE 
   is
+    ServiceProxy,
     ServiceProxyFactory
 {
   constructor() {
@@ -20,21 +21,28 @@ contract ASE
   }
 
   function _deploy() internal {
-    address serviceProxyDelegateService = Create2Utils._deployWithSalt(
-      type(ServiceProxy).creationCode,
-      type(IServiceProxy).interfaceId
-    );
+    // address serviceProxyDelegateService = Create2Utils._deployWithSalt(
+    //   type(ServiceProxy).creationCode,
+    //   type(IServiceProxy).interfaceId
+    // );
     // _delegateServices.push(type(IServiceProxy).interfaceId);
 
     // _delegateServiceForInterfaceId[type(IServiceProxy).interfaceId] = serviceProxyDelegateService;
+
+    // Handled in the ServiceProxy constructor
+    // _makeImmutable(IServiceProxy.initServiceProxy.selector);
+
     _registerDelegateService(
       type(IServiceProxy).interfaceId,
-      serviceProxyDelegateService
+      address(this)
     );
 
-    IDelegateService(serviceProxyDelegateService).setDeploymentSalt(
-      type(IServiceProxy).interfaceId
+    _setDeploymentSalt(
+      bytes32(0)
     );
+
+    _makeImmutable(IDelegateService.setDeploymentSalt.selector);
+
   }
 
   function start() external returns (bool success) {

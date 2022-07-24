@@ -13,4 +13,10 @@ abstract contract TypeCastingLogic {
     castValue = TypeCastingUtils._bytes4ToBytes32(value);
   }
 
+  function _uint256ToBytes32(
+    uint256 value
+  ) pure internal returns (bytes32 castValue) {
+    castValue = TypeCastingUtils._uint256ToBytes32(value);
+  }
+
 }
