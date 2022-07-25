@@ -1,7 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// DO NOT CHANGE COMPILER VERSION FROM DEPLOYED VERSION
-// Optimizer Runs = 200
-pragma solidity 0.8.13;
+pragma solidity ^0.8.0;
 
 import {
   String,
@@ -36,29 +34,28 @@ library MessengerStorageUtils {
     type(MessengerStorage).creationCode
   );
 
-  /**
-   * @return structSlot The base storage slot constant for operating on MessengerStorage.Layout instances.
-   */
-  function _structSlot(
-  ) pure internal returns (
-    bytes32 structSlot
-  ) {
-    structSlot = STRUCT_STORAGE_SLOT
-      ^ StringUtils._structSlot();
-  }
+  // /**
+  //  * @return structSlot The base storage slot constant for operating on MessengerStorage.Layout instances.
+  //  */
+  // function _structSlot(
+  // ) pure internal returns (
+  //   bytes32 structSlot
+  // ) {
+  //   structSlot = STRUCT_STORAGE_SLOT;
+  // }
 
-  /**
-   * @param storageSlotSalt The value to XOR into the base storage slot to calculate the storage slot on which to operate.
-   * @return saltedStorageSlot The result of XORing the base storage slot into the base storage slot.
-   */
-  function _saltStorageSlot(
-    bytes32 storageSlotSalt
-  ) pure internal returns (
-    bytes32 saltedStorageSlot
-  ) {
-    saltedStorageSlot = storageSlotSalt
-      ^ _structSlot();
-  }
+  // /**
+  //  * @param storageSlotSalt The value to XOR into the base storage slot to calculate the storage slot on which to operate.
+  //  * @return saltedStorageSlot The result of XORing the base storage slot into the base storage slot.
+  //  */
+  // function _saltStorageSlot(
+  //   bytes32 storageSlotSalt
+  // ) pure internal returns (
+  //   bytes32 saltedStorageSlot
+  // ) {
+  //   saltedStorageSlot = storageSlotSalt
+  //     ^ STRUCT_STORAGE_SLOT;
+  // }
 
   /**
    * @param storageSlotSalt The value to XOR into the base storage slot to bind to a MessengerStorage.Layout instance.
@@ -69,7 +66,8 @@ library MessengerStorageUtils {
   ) pure internal returns (
     MessengerStorage.Layout storage layout
   ) {
-    bytes32 saltedSlot = _saltStorageSlot(storageSlotSalt);
+    bytes32 saltedSlot = storageSlotSalt
+      ^ STRUCT_STORAGE_SLOT;
     assembly{ layout.slot := saltedSlot }
   }
 

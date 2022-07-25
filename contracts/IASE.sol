@@ -2,18 +2,22 @@
 pragma solidity ^0.8.0;
 
 import {
-  ServiceProxyFactory,
-  Create2Utils
-} from "contracts/factory/proxy/service/ServiceProxyFactory.sol";
-import {
-  ServiceProxy,
-  IServiceProxy,
   IDelegateService
-} from "contracts/proxies/service/ServiceProxy.sol";
+} from "contracts/service/delegate/interfaces/IDelegateService.sol";
+import {
+  IDelegateServiceRegistry
+} from "contracts/registries/service/delegate/interfaces/IDelegateServiceRegistry.sol";
+import {
+  IDelegateServiceFactory
+} from "contracts/factory/service/delegate/interfaces/IDelegateServiceFactory.sol";
+import {
+  IServiceProxy
+} from "contracts/proxies/service/interfaces/IServiceProxy.sol";
 
 interface IASE
   is
+    IDelegateService,
+    IDelegateServiceRegistry,
+    IDelegateServiceFactory,
     IServiceProxy
-{
-
-}
+{}

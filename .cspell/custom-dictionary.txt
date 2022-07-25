@@ -6,6 +6,7 @@ antifragile
 asciimath
 Boba
 bootstrapper
+Codehash
 collateralized
 copyleft
 copyrightable

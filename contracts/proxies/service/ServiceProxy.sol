@@ -2,10 +2,6 @@
 pragma solidity ^0.8.0;
 
 import {
-  DelegateService,
-  IDelegateService
-} from "contracts/service/delegate/DelegateService.sol";
-import {
   SelectorProxy,
   ISelectorProxy,
   Proxy
@@ -13,6 +9,10 @@ import {
 import {
   IServiceProxy
 } from "contracts/proxies/service/interfaces/IServiceProxy.sol";
+import {
+  DelegateService,
+  IDelegateService
+} from "contracts/service/delegate/DelegateService.sol";
 
 contract ServiceProxy
   is

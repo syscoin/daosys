@@ -11,7 +11,7 @@ import {
   DelegateServiceLogic
 } from "contracts/service/delegate/logic/DelegateServiceLogic.sol";
 
-contract DelegateService
+abstract contract DelegateService
   is
     IDelegateService,
     DelegateServiceLogic,

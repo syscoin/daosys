@@ -6,22 +6,22 @@ pragma solidity ^0.8.0;
  */
 interface IServiceProxyFactory {
 
-  function allDelegateServices() external view returns (bytes4[] memory delegateServices);
+  // function allDelegateServices() external view returns (bytes4[] memory delegateServices);
 
-  /**
-   * @param creationCode The creation code of the delegate service to be deployed.
-   * @param delegateServiceInterfaceId The ERC165 interface ID the delegate service exposes. This will be used as the create2 deployment salt.
-   * @return newDelegateService The address of the newly deployed delegate service.
-   */
-  // TDODo secure with RBAC NFT
-  function deployDelegateService(
-    bytes memory creationCode,
-    bytes4 delegateServiceInterfaceId
-  ) external returns (address newDelegateService);
+  // /**
+  //  * @param creationCode The creation code of the delegate service to be deployed.
+  //  * @param delegateServiceInterfaceId The ERC165 interface ID the delegate service exposes. This will be used as the create2 deployment salt.
+  //  * @return newDelegateService The address of the newly deployed delegate service.
+  //  */
+  // // TDODo secure with RBAC NFT
+  // function deployDelegateService(
+  //   bytes memory creationCode,
+  //   bytes4 delegateServiceInterfaceId
+  // ) external returns (address newDelegateService);
 
-  function queryDelegateService(
-    bytes4 delegateServiceInterfaceId
-  ) external view returns(address delegateService);
+  // function queryDelegateService(
+  //   bytes4 delegateServiceInterfaceId
+  // ) external view returns(address delegateService);
 
   // /**
   //  * @notice concatenate elements to form EIP1167 minimal proxy initialization code

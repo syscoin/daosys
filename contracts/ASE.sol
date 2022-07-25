@@ -2,39 +2,31 @@
 pragma solidity ^0.8.0;
 
 import {
-  ServiceProxyFactory,
-  Create2Utils
+  ServiceProxyFactory
 } from "contracts/factory/proxy/service/ServiceProxyFactory.sol";
 import {
   ServiceProxy,
-  IServiceProxy,
-  IDelegateService
+  IServiceProxy
 } from "contracts/proxies/service/ServiceProxy.sol";
+import {
+  IDelegateService
+} from "contracts/service/delegate/interfaces/IDelegateService.sol";
+// import {
+//   DelegateServiceFactoryLogic
+// } from "contracts/factory/service/delegate/logic/DelegateServiceFactoryLogic.sol";
 
 contract ASE 
   is
-    ServiceProxy,
     ServiceProxyFactory
 {
   constructor() {
-
+    _deploy();
   }
 
   function _deploy() internal {
-    // address serviceProxyDelegateService = Create2Utils._deployWithSalt(
-    //   type(ServiceProxy).creationCode,
-    //   type(IServiceProxy).interfaceId
-    // );
-    // _delegateServices.push(type(IServiceProxy).interfaceId);
-
-    // _delegateServiceForInterfaceId[type(IServiceProxy).interfaceId] = serviceProxyDelegateService;
-
-    // Handled in the ServiceProxy constructor
-    // _makeImmutable(IServiceProxy.initServiceProxy.selector);
-
-    _registerDelegateService(
-      type(IServiceProxy).interfaceId,
-      address(this)
+    address serviceProxyDelegateService = _deployDelegateService(
+      type(ServiceProxy).creationCode,
+      type(IServiceProxy).interfaceId
     );
 
     _setDeploymentSalt(
@@ -43,11 +35,6 @@ contract ASE
 
     _makeImmutable(IDelegateService.setDeploymentSalt.selector);
 
-  }
-
-  function start() external returns (bool success) {
-    _deploy();
-    success = true;
   }
 
 }

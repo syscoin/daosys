@@ -14,7 +14,6 @@ interface IDelegateService {
   }
 
   function setDeploymentSalt(
-    // address delegateServiceRegistry
     bytes32 deploymentSalt
   ) external returns (bool success);
 
