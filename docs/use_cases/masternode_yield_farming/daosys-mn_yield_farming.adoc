@@ -27,6 +27,19 @@ DAOSYS vision is to operate like a pure automated market maker (AMM) and be impl
 
 == Masternode Yield Farming
 
+=== Syscoin Masternodes
+Masternodes are special nodes in a blockchain infrastructure that perform special roles in governing the blockchain. They typically verify new blocks of transaction, and operate on a collateral-based system where operators need to own a certain amount of the cryptocurrency where the node owners are rewarded with guaranteed earnings at intermittent intervals. They were first implemented in 2014 on the Dash network, which is a fork of Bitcoin. Since then many other crypto projections began implementing them and were popularized shortly after the 2nd Bitcoin halvening during the bull run that preceded in 2016.
+
+Syscoin’s masternode network went live in June 2019 for their 3.0 release. The collateral requirement to operate a Syscoin masternode is 100,000 SYS. At the time of this writing (Aug 2022), there are approximately 2,500 masternodes in the Syscoin network representing 38.5% of locked supply. Operators currently receive ~14 SYS base rewards per day. As a seniority benefit, Masternode operators receive a 35% bonus to their base reward after one year, and a 100% bonus after two and a half years
+
+=== Yield Farming
+This is a technique that uses DeFi to maximize returns where investors submit liquidity to a decentralized application (ie, dApp) to earn yield on their principle using various methods. These methods are classified into four main types which include: staking, lending, borrowing, and utilizing liquidity providers, which is largely done on a decentralized exchange (DEX). This technology is facilitated via blockchain smart contracts (first popularized by the Ethereum protocol in 2015), which are pieces of code that automate financial agreements between two or more parties in a trustless manner. 
+
+=== Putting it together
+In Dec 2021, Syscoin released the first stage of its Network Enhanced Virtual Machine (NEVM) which utilizes the Ethereum Virtual Machine (EVM). In the coming months (from the time of this publication), this will include a Zero Knowledge Proof (ZKP) system to build layer 2 (L2) scalable applications, and one of the first of these applications will be DAOSYS. 
+
+Syscoin plans to incentivize masternode operators where they can put yields to work by investing them into a DeFi liquidity provider which will be automated in a trustless manner through DAOSYS. Hence, extending the Syscoin ecosystem, and increasing daily volumes. This system of trustlessly investing Masternode yields into a DeFi liquidity provider is what we call Masternode Yield Farming, which will serve as the first intended usecase for DAOSYS and be the first of its kind in the crypto space. 
+
 == DAOSYS Simulator
 
 == Masternode Reward Simulations
