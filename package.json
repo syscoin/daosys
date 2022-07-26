@@ -7,7 +7,7 @@
   "author": "cyotee doge <cyotee@syscoin.org>",
   "license": "AGPL-3.0-or-later",
   "scripts": {
-    "clean-build": "yarn run hardhat clean && yarn run hardhat compile && yarn test",
+    "clean-build": "yarn clean && yarn compile && yarn test && yarn coverage && yarn storage-layout",
     "coverage": "yarn run hardhat coverage",
     "storage-layout": "yarn run hardhat storage-layout",
     "clean-compile": "yarn clean && yarn compile",

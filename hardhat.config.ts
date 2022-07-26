@@ -29,6 +29,7 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 });
 
 task("storage-layout", async (taskArgs, hre) => {
+  // TODO write this a file for reporting.
   await hre.storageLayout.export();
 })
 
