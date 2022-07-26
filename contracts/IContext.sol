@@ -15,6 +15,6 @@ interface IContext {
 
   function name() external pure returns (string memory name_);
 
-  function mock() external pure returns (bytes memory mock_);
+  function instance() external pure returns (bytes memory instance_);
 
 }

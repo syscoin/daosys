@@ -40,15 +40,16 @@ contract Context {
     );
   }
 
-  function getMock(
+  function getInstance(
     bytes4 interfaceId
-  ) external returns (address mock_) {
-    mock_ = mockForInterfaceId[interfaceId];
-    if(mock_ == address(0)) {
+  ) external returns (address instance_) {
+    instance_ = mockForInterfaceId[interfaceId];
+    if(instance_ == address(0)) {
       mockForInterfaceId[interfaceId] =  Create2Utils._deployWithSalt(
-        IContext(contextForInterfaceId[interfaceId]).mock(),
+        IContext(contextForInterfaceId[interfaceId]).instance(),
         interfaceId
       );
+      instance_ = mockForInterfaceId[interfaceId];
     }
   }
 

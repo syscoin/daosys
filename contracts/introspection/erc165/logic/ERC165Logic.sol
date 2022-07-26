@@ -42,13 +42,13 @@ library ERC165Logic {
     );
   }
 
-  function _removeSupportedInterface(
-    bytes4 interfaceId
-  ) internal {
-    ERC165Repository._removeSupportedInterface(
-      IERC165_STORAGE_SLOT_SALT,
-      interfaceId
-    );
-  }
+  // function _removeSupportedInterface(
+  //   bytes4 interfaceId
+  // ) internal {
+  //   ERC165Repository._removeSupportedInterface(
+  //     IERC165_STORAGE_SLOT_SALT,
+  //     interfaceId
+  //   );
+  // }
   
 }

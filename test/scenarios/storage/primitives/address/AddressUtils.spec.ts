@@ -43,9 +43,11 @@ describe("Address Test Suite", function () {
     // TODO Test rest of StringUtils on String.
   describe("Address", function () {
 
-    it("Validate structSlot consistency.", async function () {
-      expect(await addressMock.getStructSlot())
-        .to.equal(structSlot);
+    describe.skip("Validate structSlot consistency", function () {
+      it("getStructSlot().", async function () {
+        expect(await addressMock.getStructSlot())
+          .to.equal(structSlot);
+      });
     });
 
     it("Can set and get a given address", async function () {

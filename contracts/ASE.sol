@@ -12,9 +12,6 @@ import {
 import {
   IDelegateService
 } from "contracts/service/delegate/interfaces/IDelegateService.sol";
-// import {
-//   DelegateServiceFactoryLogic
-// } from "contracts/factory/service/delegate/logic/DelegateServiceFactoryLogic.sol";
 
 contract ASE 
   is
@@ -38,9 +35,5 @@ contract ASE
     _makeImmutable(IDelegateService.setDeploymentSalt.selector);
 
   }
-
-  // function supportsInterface(bytes4 interfaceId) external view virtual override returns (bool isSupported) {
-  //   isSupported = DelegateServiceLogic._supportsInterface(interfaceId);
-  // }
 
 }

@@ -27,11 +27,11 @@ library ERC165Repository {
     ERC165Utils._layout( storageSlotSalt )._setSupportedInterface(interfaceId);
   }
 
-  function _removeSupportedInterface(
-    bytes32 storageSlotSalt,
-    bytes4 interfaceId
-  ) internal {
-    ERC165Utils._layout( storageSlotSalt )._removeSupportedInterface(interfaceId);
-  }
+  // function _removeSupportedInterface(
+  //   bytes32 storageSlotSalt,
+  //   bytes4 interfaceId
+  // ) internal {
+  //   ERC165Utils._layout( storageSlotSalt )._removeSupportedInterface(interfaceId);
+  // }
   
 }

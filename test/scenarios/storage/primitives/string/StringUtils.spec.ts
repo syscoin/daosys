@@ -41,7 +41,7 @@ describe("String Test Suite", function () {
 
   describe("String", function () {
 
-    describe("Validate structSlot consistency", function () {
+    describe.skip("Validate structSlot consistency", function () {
       it("getStructSlot().", async function () {
         expect(await stringUtilsMock.getStructSlot())
           .to.equal(structSlot);

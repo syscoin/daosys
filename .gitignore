@@ -2,7 +2,6 @@ node_modules
 
 node_modules
 .env
-coverage
 coverage.json
 typechain
 package-lock.json
@@ -30,3 +29,5 @@ yarn.lock
 .VSCodeCounter/
 
 yarn-error.log
+
+*.code-workspace

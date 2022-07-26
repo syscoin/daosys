@@ -6,6 +6,7 @@ antifragile
 asciimath
 Boba
 bootstrapper
+browserslist
 Codehash
 collateralized
 copyleft
@@ -37,5 +38,6 @@ struct
 syscoin
 tokenomic
 Tokenomics
+usedapp
 Vyper
 WSYS

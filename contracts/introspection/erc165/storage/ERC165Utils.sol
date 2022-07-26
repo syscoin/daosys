@@ -46,11 +46,11 @@ library ERC165Utils {
     layout.supportedInterfaces.set._add(interfaceId);
   }
 
-  function _removeSupportedInterface(
-    ERC165Storage.Layout storage layout,
-    bytes4 interfaceId
-  ) internal {
-    layout.supportedInterfaces.set._remove(interfaceId);
-  }
+  // function _removeSupportedInterface(
+  //   ERC165Storage.Layout storage layout,
+  //   bytes4 interfaceId
+  // ) internal {
+  //   layout.supportedInterfaces.set._remove(interfaceId);
+  // }
   
 }

@@ -61,7 +61,7 @@ describe("Bytes4 Test Suite", function () {
     // TODO Test rest of StringUtils on String.
   describe("Bool", function () {
 
-    describe("Validate structSlot consistency", function () {
+    describe.skip("Validate structSlot consistency", function () {
       it("getStructSlot().", async function () {
         expect(await boolUtilsMock.getStructSlot())
           .to.equal(structSlot);
