@@ -3,7 +3,8 @@ pragma solidity ^0.8.0;
 
 import {
   ServiceProxyFactory,
-  DelegateServiceLogic
+  DelegateServiceLogic,
+  ImmutableLogic
 } from "contracts/factory/proxy/service/ServiceProxyFactory.sol";
 import {
   ServiceProxy,
@@ -32,7 +33,7 @@ contract ASE
       bytes32(0)
     );
 
-    _makeImmutable(IDelegateService.setDeploymentSalt.selector);
+    ImmutableLogic._makeImmutable(IDelegateService.setDeploymentSalt.selector);
 
   }
 

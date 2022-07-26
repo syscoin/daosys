@@ -8,12 +8,16 @@ import {
   ImmutableStorageUtils
 } from "contracts/security/access/immutable/storage/ImmutableStorageUtils.sol";
 
+interface IImmutableMock {
+  function testImmutable() external returns (bool success);
+}
+
 contract ImmutableMock
   is
     Immutable
 {
 
-  function testImmutable() external isNotImmutable( ImmutableStorageUtils._structSlot() ) returns (bool success) {
+  function testImmutable() external isNotImmutable( IImmutableMock.testImmutable.selector ) returns (bool success) {
     success = true;
   }
 }

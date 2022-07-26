@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">42.86% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/7</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">60% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/5</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">42.86% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>3/7</span>
+        <span class='fraction'>3/3</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -106,7 +106,9 @@
 61
 62
 63
-64</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+64
+65
+66</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -145,10 +147,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -165,7 +168,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -203,20 +207,21 @@ library DelegateServiceRepository {
       );
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function _bulkQueryDelegateService(</span>
-    bytes32 storageSlotSalt,
-    bytes4[] calldata delegateServiceInterfaceIds
-  ) view internal returns (address[] memory delegateServiceAddresses) {
+  // TODO Write unite tests
+  // function _bulkQueryDelegateService(
+  //   bytes32 storageSlotSalt,
+  //   bytes4[] calldata delegateServiceInterfaceIds
+  // ) view internal returns (address[] memory delegateServiceAddresses) {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    delegateServiceAddresses = new address[](delegateServiceInterfaceIds.length)</span>;
+  //   delegateServiceAddresses = new address[](delegateServiceInterfaceIds.length);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    for(uint16 iteration = 0; delegateServiceInterfaceIds.length &gt; iteration; iteration++){</span>
-<span class="cstat-no" title="statement not covered" >      delegateServiceAddresses[iteration] = DelegateServiceRegistryStorageUtils._layout(storageSlotSalt)</span>
-        ._queryDelegateService(
-          delegateServiceInterfaceIds[iteration]
-        );
-    }
-  }
+  //   for(uint16 iteration = 0; delegateServiceInterfaceIds.length &gt; iteration; iteration++){
+  //     delegateServiceAddresses[iteration] = DelegateServiceRegistryStorageUtils._layout(storageSlotSalt)
+  //       ._queryDelegateService(
+  //         delegateServiceInterfaceIds[iteration]
+  //       );
+  //   }
+  // }
 &nbsp;
   function _getAllDelegateServiceIds(
     bytes32 storageSlotSalt
@@ -225,12 +230,13 @@ library DelegateServiceRepository {
       ._getAllDelegateServiceIds();
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function _getAllDelegateServices(</span>
-    bytes32 storageSlotSalt
-  ) view internal returns (address[] memory allDelegateServices) {
-<span class="cstat-no" title="statement not covered" >    allDelegateServices = DelegateServiceRegistryStorageUtils._layout(storageSlotSalt)</span>
-      ._getAllDelegateServices();
-  }
+  // TODO Write unite tests
+  // function _getAllDelegateServices(
+  //   bytes32 storageSlotSalt
+  // ) view internal returns (address[] memory allDelegateServices) {
+  //   allDelegateServices = DelegateServiceRegistryStorageUtils._layout(storageSlotSalt)
+  //     ._getAllDelegateServices();
+  // }
   
 }</pre></td></tr>
 </table></pre>
@@ -238,7 +244,7 @@ library DelegateServiceRepository {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jul 25 2022 23:49:06 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 01:41:07 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../../../../prettify.js"></script>

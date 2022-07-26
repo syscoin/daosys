@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/3</span>
+        <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>0/0</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -92,8 +92,7 @@
 47
 48
 49
-50
-51</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+50</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -125,22 +124,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: AGPL-3.0-or-later
@@ -160,38 +158,37 @@ import {
   Create2Utils
 } from "contracts/evm/create2/utils/Create2Utils.sol";
 &nbsp;
-/**
- * @title A proof of concept of a generalzied contract factory.
- */
+// TODO Write NatSpec comments.
 abstract contract ServiceProxyFactoryLogic
   is
     DelegateServiceFactory
 {
 &nbsp;
-<span class="fstat-no" title="function not covered" >  constructor() {</span>
+  // TODO complete refactor
+  // constructor() {
     
-  }
+  // }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function _calcServiceId(</span>
-    bytes4[] calldata delegateServiceInterfaceIds
-  ) internal pure returns (bytes32 serviceId) {
-<span class="cstat-no" title="statement not covered" >    for(uint16 iteration = 0; delegateServiceInterfaceIds.length &gt; iteration; iteration++) {</span>
-<span class="cstat-no" title="statement not covered" >      serviceId = serviceId ^ delegateServiceInterfaceIds[iteration]</span>;
-    }
-  }
+  // function _calcServiceId(
+  //   bytes4[] calldata delegateServiceInterfaceIds
+  // ) internal pure returns (bytes32 serviceId) {
+  //   for(uint16 iteration = 0; delegateServiceInterfaceIds.length &gt; iteration; iteration++) {
+  //     serviceId = serviceId ^ delegateServiceInterfaceIds[iteration];
+  //   }
+  // }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function deployService(</span>
-    bytes4[] calldata delegateServiceInterfaceIds
-  ) external returns (address newService) {
-<span class="cstat-no" title="statement not covered" >    newService = Create2Utils._deployWithSalt(</span>
-      MinimalProxyGeneratorLogic._generateMinimalProxyInitCode(
-        _queryDelegateService(type(IServiceProxy).interfaceId)
-      ),
-      keccak256(abi.encode(_calcServiceId(delegateServiceInterfaceIds), msg.sender))
-    );
+  // function deployService(
+  //   bytes4[] calldata delegateServiceInterfaceIds
+  // ) external returns (address newService) {
+  //   newService = Create2Utils._deployWithSalt(
+  //     MinimalProxyGeneratorLogic._generateMinimalProxyInitCode(
+  //       _queryDelegateService(type(IServiceProxy).interfaceId)
+  //     ),
+  //     keccak256(abi.encode(_calcServiceId(delegateServiceInterfaceIds), msg.sender))
+  //   );
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    IServiceProxy(newService).initServiceProxy(_bulkQueryDelegateServiceAddress(delegateServiceInterfaceIds))</span>;
-  }
+  //   IServiceProxy(newService).initServiceProxy(_bulkQueryDelegateServiceAddress(delegateServiceInterfaceIds));
+  // }
 &nbsp;
 }</pre></td></tr>
 </table></pre>
@@ -199,7 +196,7 @@ abstract contract ServiceProxyFactoryLogic
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jul 25 2022 23:49:06 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 01:41:07 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../../../../prettify.js"></script>

@@ -3,7 +3,8 @@ pragma solidity ^0.8.0;
 
 import {
   DelegateService,
-  DelegateServiceLogic
+  DelegateServiceLogic,
+  ImmutableLogic
 } from "contracts/service/delegate/DelegateService.sol";
 import {
   IDelegateServiceRegistry,
@@ -65,21 +66,24 @@ abstract contract DelegateServiceRegistry
       );
   }
 
-  function _getAllDelegateServiceIds() internal view returns (bytes4[] memory allDelegateServiceIds) {
-    allDelegateServiceIds = DelegateServiceRegistryLogic._getAllDelegateServiceIds();
-  }
+  // TODO Write unite tests
+  // function _getAllDelegateServiceIds() internal view returns (bytes4[] memory allDelegateServiceIds) {
+  //   allDelegateServiceIds = DelegateServiceRegistryLogic._getAllDelegateServiceIds();
+  // }
 
   function getAllDelegateServiceIds() external view returns (bytes4[] memory allDelegateServiceIds) {
     allDelegateServiceIds = DelegateServiceRegistryLogic._getAllDelegateServiceIds();
   }
 
-  function _getAllDelegateServices() internal view returns (address[] memory allDelegateServices) {
-    allDelegateServices = DelegateServiceRegistryLogic._getAllDelegateServices();
-  }
+  // TODO Write unite tests
+  // function _getAllDelegateServices() internal view returns (address[] memory allDelegateServices) {
+  //   allDelegateServices = DelegateServiceRegistryLogic._getAllDelegateServices();
+  // }
 
-  function getAllDelegateServices() external view returns (address[] memory allDelegateServices) {
-    allDelegateServices = DelegateServiceRegistryLogic._getAllDelegateServices();
-  }
+  // TODO Write unite tests
+  // function getAllDelegateServices() external view returns (address[] memory allDelegateServices) {
+  //   allDelegateServices = DelegateServiceRegistryLogic._getAllDelegateServices();
+  // }
 
   function _queryDelegateService(
     bytes4 delegateServiceInterfaceId
@@ -116,23 +120,24 @@ abstract contract DelegateServiceRegistry
     // }
   }
 
-  function bulkQueryDelegateServiceAddress(
-    bytes4[] calldata delegateServiceInterfaceIds
-  ) view external returns (address[] memory delegateServiceAddresses) {
+  // TODO Write unite tests
+  // function bulkQueryDelegateServiceAddress(
+  //   bytes4[] calldata delegateServiceInterfaceIds
+  // ) view external returns (address[] memory delegateServiceAddresses) {
 
-    // TODO Delete once testing validates refactor.
-    delegateServiceAddresses = _bulkQueryDelegateServiceAddress(
-      delegateServiceInterfaceIds
-    );
+  //   // TODO Delete once testing validates refactor.
+  //   delegateServiceAddresses = _bulkQueryDelegateServiceAddress(
+  //     delegateServiceInterfaceIds
+  //   );
 
-    // delegateServiceAddresses = new address[](delegateServiceInterfaceIds.length);
+  //   // delegateServiceAddresses = new address[](delegateServiceInterfaceIds.length);
 
-    // for(uint16 iteration = 0; delegateServiceInterfaceIds.length > iteration; iteration++){
-    //   delegateServiceAddresses[iteration] = _queryDelegateService(
-    //       delegateServiceInterfaceIds[iteration]
-    //     );
-    // }
-  }
+  //   // for(uint16 iteration = 0; delegateServiceInterfaceIds.length > iteration; iteration++){
+  //   //   delegateServiceAddresses[iteration] = _queryDelegateService(
+  //   //       delegateServiceInterfaceIds[iteration]
+  //   //     );
+  //   // }
+  // }
 
   
   // TDODo secure with RBAC NFT

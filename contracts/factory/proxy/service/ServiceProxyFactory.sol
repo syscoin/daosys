@@ -10,7 +10,8 @@ import {
 } from "contracts/proxies/minimal/generator/logic/MinimalProxyGeneratorLogic.sol";
 import {
   DelegateServiceFactory,
-  DelegateServiceLogic
+  DelegateServiceLogic,
+  ImmutableLogic
 } from "contracts/factory/service/delegate/DelegateServiceFactory.sol";
 import {
   Create2Utils
@@ -29,12 +30,25 @@ contract ServiceProxyFactory
   }
 
   function _calcServiceId(
+    address deployer,
     bytes4[] calldata delegateServiceInterfaceIds
   ) internal pure returns (bytes32 serviceId) {
     for(uint16 iteration = 0; delegateServiceInterfaceIds.length > iteration; iteration++) {
       serviceId = serviceId ^ delegateServiceInterfaceIds[iteration];
     }
+    serviceId = keccak256(abi.encode(serviceId, deployer));
   }
+
+  // TODO Write unit test.
+  // function calcServiceId(
+  //   address deployer,
+  //   bytes4[] calldata delegateServiceInterfaceIds
+  // ) external pure returns (bytes32 serviceId) {
+  //   serviceId = _calcServiceId(
+  //     deployer,
+  //     delegateServiceInterfaceIds
+  //   );
+  // }
 
   function deployService(
     bytes4[] calldata delegateServiceInterfaceIds
@@ -43,14 +57,17 @@ contract ServiceProxyFactory
       MinimalProxyGeneratorLogic._generateMinimalProxyInitCode(
         _queryDelegateService(type(IServiceProxy).interfaceId)
       ),
-      keccak256(abi.encode(_calcServiceId(delegateServiceInterfaceIds), msg.sender))
+      _calcServiceId(
+        msg.sender,
+        delegateServiceInterfaceIds
+      )
     );
 
     IServiceProxy(newService).initServiceProxy(_bulkQueryDelegateServiceAddress(delegateServiceInterfaceIds));
   }
 
-  function supportsInterface(bytes4 interfaceId) override virtual external view returns (bool isSupported) {
-    isSupported = DelegateServiceLogic._supportsInterface(interfaceId);
-  }
+  // function supportsInterface(bytes4 interfaceId) override virtual external view returns (bool isSupported) {
+  //   isSupported = DelegateServiceLogic._supportsInterface(interfaceId);
+  // }
 
 }

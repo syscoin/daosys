@@ -27,6 +27,7 @@ library ERC165Repository {
     ERC165Utils._layout( storageSlotSalt )._setSupportedInterface(interfaceId);
   }
 
+  // NOTE Deprecation considered.
   // function _removeSupportedInterface(
   //   bytes32 storageSlotSalt,
   //   bytes4 interfaceId

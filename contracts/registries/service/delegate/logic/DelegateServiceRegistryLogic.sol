@@ -50,8 +50,9 @@ library DelegateServiceRegistryLogic {
     allDelegateServiceIds = DelegateServiceRepository._getAllDelegateServiceIds(IDELEGATESERVICEREGISTRY_STORAGE_SLOT_SALT);
   }
 
-  function _getAllDelegateServices() view internal returns (address[] memory allDelegateServices) {
-    allDelegateServices = DelegateServiceRepository._getAllDelegateServices(IDELEGATESERVICEREGISTRY_STORAGE_SLOT_SALT);
-  }
+  // TODO Write unite tests
+  // function _getAllDelegateServices() view internal returns (address[] memory allDelegateServices) {
+  //   allDelegateServices = DelegateServiceRepository._getAllDelegateServices(IDELEGATESERVICEREGISTRY_STORAGE_SLOT_SALT);
+  // }
   
 }

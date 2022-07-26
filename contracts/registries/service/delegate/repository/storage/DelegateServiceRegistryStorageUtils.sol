@@ -58,16 +58,17 @@ library DelegateServiceRegistryStorageUtils {
     delegateServiceAddress = layout.delegateServiceForInterfaceId._queryValue(delegateServiceInterfaceId);
   }
 
-  function _unmapDelegateService(
-    DelegateServiceRegistryStorage.Layout storage layout,
-    bytes4 delegateServiceInterfaceId
-  ) internal {
-    layout.allDelegateServices.set._remove(
-      layout.delegateServiceForInterfaceId._queryValue(delegateServiceInterfaceId)
-    );
-    layout.delegateServiceForInterfaceId._unmapValue(delegateServiceInterfaceId);
-    layout.allDelegateServiceInterfaceIds.set._remove(delegateServiceInterfaceId);
-  }
+  // NOTE Considering deprecating.
+  // function _unmapDelegateService(
+  //   DelegateServiceRegistryStorage.Layout storage layout,
+  //   bytes4 delegateServiceInterfaceId
+  // ) internal {
+  //   layout.allDelegateServices.set._remove(
+  //     layout.delegateServiceForInterfaceId._queryValue(delegateServiceInterfaceId)
+  //   );
+  //   layout.delegateServiceForInterfaceId._unmapValue(delegateServiceInterfaceId);
+  //   layout.allDelegateServiceInterfaceIds.set._remove(delegateServiceInterfaceId);
+  // }
 
   function _getAllDelegateServiceIds(
     DelegateServiceRegistryStorage.Layout storage layout
@@ -75,10 +76,11 @@ library DelegateServiceRegistryStorageUtils {
     allDelegateServiceIds = layout.allDelegateServiceInterfaceIds.set._setAsArray();
   }
 
-  function _getAllDelegateServices(
-    DelegateServiceRegistryStorage.Layout storage layout
-  ) internal view returns (address[] memory allDelegateServices) {
-    allDelegateServices = layout.allDelegateServices.set._setAsArray();
-  }
+  // TODO Write unit test
+  // function _getAllDelegateServices(
+  //   DelegateServiceRegistryStorage.Layout storage layout
+  // ) internal view returns (address[] memory allDelegateServices) {
+  //   allDelegateServices = layout.allDelegateServices.set._setAsArray();
+  // }
 
 }

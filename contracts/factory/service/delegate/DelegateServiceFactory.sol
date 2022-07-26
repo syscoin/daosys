@@ -7,7 +7,8 @@ import {
 } from "contracts/factory/service/delegate/logic/DelegateServiceFactoryLogic.sol";
 import {
   DelegateServiceRegistry,
-  DelegateServiceLogic
+  DelegateServiceLogic,
+  ImmutableLogic
 } from "contracts/registries/service/delegate/DelegateServiceRegistry.sol";
 import {
   IDelegateServiceFactory

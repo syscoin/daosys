@@ -15,37 +15,36 @@ import {
   Create2Utils
 } from "contracts/evm/create2/utils/Create2Utils.sol";
 
-/**
- * @title A proof of concept of a generalzied contract factory.
- */
+// TODO Write NatSpec comments.
 abstract contract ServiceProxyFactoryLogic
   is
     DelegateServiceFactory
 {
 
-  constructor() {
+  // TODO complete refactor
+  // constructor() {
     
-  }
+  // }
 
-  function _calcServiceId(
-    bytes4[] calldata delegateServiceInterfaceIds
-  ) internal pure returns (bytes32 serviceId) {
-    for(uint16 iteration = 0; delegateServiceInterfaceIds.length > iteration; iteration++) {
-      serviceId = serviceId ^ delegateServiceInterfaceIds[iteration];
-    }
-  }
+  // function _calcServiceId(
+  //   bytes4[] calldata delegateServiceInterfaceIds
+  // ) internal pure returns (bytes32 serviceId) {
+  //   for(uint16 iteration = 0; delegateServiceInterfaceIds.length > iteration; iteration++) {
+  //     serviceId = serviceId ^ delegateServiceInterfaceIds[iteration];
+  //   }
+  // }
 
-  function deployService(
-    bytes4[] calldata delegateServiceInterfaceIds
-  ) external returns (address newService) {
-    newService = Create2Utils._deployWithSalt(
-      MinimalProxyGeneratorLogic._generateMinimalProxyInitCode(
-        _queryDelegateService(type(IServiceProxy).interfaceId)
-      ),
-      keccak256(abi.encode(_calcServiceId(delegateServiceInterfaceIds), msg.sender))
-    );
+  // function deployService(
+  //   bytes4[] calldata delegateServiceInterfaceIds
+  // ) external returns (address newService) {
+  //   newService = Create2Utils._deployWithSalt(
+  //     MinimalProxyGeneratorLogic._generateMinimalProxyInitCode(
+  //       _queryDelegateService(type(IServiceProxy).interfaceId)
+  //     ),
+  //     keccak256(abi.encode(_calcServiceId(delegateServiceInterfaceIds), msg.sender))
+  //   );
 
-    IServiceProxy(newService).initServiceProxy(_bulkQueryDelegateServiceAddress(delegateServiceInterfaceIds));
-  }
+  //   IServiceProxy(newService).initServiceProxy(_bulkQueryDelegateServiceAddress(delegateServiceInterfaceIds));
+  // }
 
 }

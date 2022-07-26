@@ -2,7 +2,8 @@
 pragma solidity ^0.8.0;
 
 import {
-  Immutable
+  Immutable,
+  ImmutableLogic
 } from "contracts/security/access/immutable/Immutable.sol";
 import {
   DelegateServiceLogic,

@@ -27,12 +27,13 @@ library SelectorProxyRepository {
       ._queryImplementation(functionSelector);
   }
 
-  function _unmapImplementation(
-    bytes32 storageSlotSalt,
-    bytes4 functionSelector
-  ) internal {
-    SelectorProxyStorageUtils._layout( storageSlotSalt )
-      ._unmapImplementation(functionSelector);
-  }
+  // NOTE Considering deprecation
+  // function _unmapImplementation(
+  //   bytes32 storageSlotSalt,
+  //   bytes4 functionSelector
+  // ) internal {
+  //   SelectorProxyStorageUtils._layout( storageSlotSalt )
+  //     ._unmapImplementation(functionSelector);
+  // }
 
 }

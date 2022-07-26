@@ -32,20 +32,21 @@ library DelegateServiceRepository {
       );
   }
 
-  function _bulkQueryDelegateService(
-    bytes32 storageSlotSalt,
-    bytes4[] calldata delegateServiceInterfaceIds
-  ) view internal returns (address[] memory delegateServiceAddresses) {
+  // TODO Write unite tests
+  // function _bulkQueryDelegateService(
+  //   bytes32 storageSlotSalt,
+  //   bytes4[] calldata delegateServiceInterfaceIds
+  // ) view internal returns (address[] memory delegateServiceAddresses) {
 
-    delegateServiceAddresses = new address[](delegateServiceInterfaceIds.length);
+  //   delegateServiceAddresses = new address[](delegateServiceInterfaceIds.length);
 
-    for(uint16 iteration = 0; delegateServiceInterfaceIds.length > iteration; iteration++){
-      delegateServiceAddresses[iteration] = DelegateServiceRegistryStorageUtils._layout(storageSlotSalt)
-        ._queryDelegateService(
-          delegateServiceInterfaceIds[iteration]
-        );
-    }
-  }
+  //   for(uint16 iteration = 0; delegateServiceInterfaceIds.length > iteration; iteration++){
+  //     delegateServiceAddresses[iteration] = DelegateServiceRegistryStorageUtils._layout(storageSlotSalt)
+  //       ._queryDelegateService(
+  //         delegateServiceInterfaceIds[iteration]
+  //       );
+  //   }
+  // }
 
   function _getAllDelegateServiceIds(
     bytes32 storageSlotSalt
@@ -54,11 +55,12 @@ library DelegateServiceRepository {
       ._getAllDelegateServiceIds();
   }
 
-  function _getAllDelegateServices(
-    bytes32 storageSlotSalt
-  ) view internal returns (address[] memory allDelegateServices) {
-    allDelegateServices = DelegateServiceRegistryStorageUtils._layout(storageSlotSalt)
-      ._getAllDelegateServices();
-  }
+  // TODO Write unite tests
+  // function _getAllDelegateServices(
+  //   bytes32 storageSlotSalt
+  // ) view internal returns (address[] memory allDelegateServices) {
+  //   allDelegateServices = DelegateServiceRegistryStorageUtils._layout(storageSlotSalt)
+  //     ._getAllDelegateServices();
+  // }
   
 }

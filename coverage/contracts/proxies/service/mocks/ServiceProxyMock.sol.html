@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>0/0</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -77,7 +77,8 @@
 32
 33
 34
-35</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+35
+36</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -96,19 +97,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: AGPL-3.0-or-later
@@ -124,26 +126,27 @@ import {
   DelegateServiceLogic
 } from "contracts/proxies/service/ServiceProxy.sol";
 &nbsp;
+// TODO Write unit tests
 contract ServiceProxyMock
   is
     ServiceProxy
 {
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function supportsInterface(bytes4 interfaceId) external view virtual override returns (bool isSupported) {</span>
-<span class="cstat-no" title="statement not covered" >    isSupported = DelegateServiceLogic._supportsInterface(interfaceId)</span>;
-  }
+  // function supportsInterface(bytes4 interfaceId) external view virtual override returns (bool isSupported) {
+  //   isSupported = DelegateServiceLogic._supportsInterface(interfaceId);
+  // }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function IServiceProxyInterfaceId() external pure returns (bytes4 interfaceId) {</span>
-<span class="cstat-no" title="statement not covered" >    interfaceId = type(IServiceProxy).interfaceId</span>;
-  }
+  // function IServiceProxyInterfaceId() external pure returns (bytes4 interfaceId) {
+  //   interfaceId = type(IServiceProxy).interfaceId;
+  // }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function initServiceProxyFunctionSelector() external pure returns (bytes4 functionSelector) {</span>
-<span class="cstat-no" title="statement not covered" >    functionSelector = IServiceProxy.initServiceProxy.selector</span>;
-  }
+  // function initServiceProxyFunctionSelector() external pure returns (bytes4 functionSelector) {
+  //   functionSelector = IServiceProxy.initServiceProxy.selector;
+  // }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function queryImplementationFunctionSelector() external pure returns (bytes4 functionSelector) {</span>
-<span class="cstat-no" title="statement not covered" >    functionSelector = ISelectorProxy.queryImplementation.selector</span>;
-  }
+  // function queryImplementationFunctionSelector() external pure returns (bytes4 functionSelector) {
+  //   functionSelector = ISelectorProxy.queryImplementation.selector;
+  // }
 &nbsp;
 }</pre></td></tr>
 </table></pre>
@@ -151,7 +154,7 @@ contract ServiceProxyMock
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jul 25 2022 23:49:06 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 01:41:07 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

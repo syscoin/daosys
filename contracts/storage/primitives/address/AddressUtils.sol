@@ -13,6 +13,7 @@ library AddressUtils {
 
   bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(Address).creationCode);
 
+  // TODO Refator to separate repository.
   function _structSlot() pure internal returns (bytes32 structSlot) {
     structSlot = STRUCT_STORAGE_SLOT;
   }
@@ -24,12 +25,6 @@ library AddressUtils {
       ^ _structSlot();
   }
 
-  /**
-   * @notice Could be optimized by having the exposing interface caclulate and store
-   *  the storage slot as a constant.
-   *  Storage slot is computed during runtime to facilitate development during
-   *  standardization.
-   */
   function _layout( bytes32 salt ) pure internal returns ( Address.Layout storage layout ) {
     bytes32 saltedSlot = _saltStorageSlot(salt);
     assembly{ layout.slot := saltedSlot }

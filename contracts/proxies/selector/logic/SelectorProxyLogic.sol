@@ -32,13 +32,14 @@ library SelectorProxyLogic {
     );
   }
 
-  function _unmapImplementation(
-    bytes4 functionSelector
-  ) internal {
-    SelectorProxyRepository._unmapImplementation(
-      ISERVICEPROXY_STORAGE_SLOT_SALT,
-      functionSelector
-    );
-  }
+  // NOTE Considering deprecation
+  // function _unmapImplementation(
+  //   bytes4 functionSelector
+  // ) internal {
+  //   SelectorProxyRepository._unmapImplementation(
+  //     ISERVICEPROXY_STORAGE_SLOT_SALT,
+  //     functionSelector
+  //   );
+  // }
 
 }

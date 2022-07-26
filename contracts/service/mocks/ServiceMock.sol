@@ -6,52 +6,64 @@ import {
   IService
 } from "contracts/service/logic/ServiceLogic.sol";
 
-contract ServiceMock is IService {
+/* -------------------------------------------------------------------------- */
+/*                             SECTION ServiceMock                            */
+/* -------------------------------------------------------------------------- */
+/* ------------------------- ANCHOR[id=ServiceMock] ------------------------- */
 
-  constructor() {
-    ServiceLogic._initService();
-  }
+// FIXME[epic=refactor] Refactor to Context standard.
+// FIXME[epic=test-coverage] Write unit tests.
+contract ServiceMock
+  // is IService
+{
 
-  function _addServiceDef(
-    bytes4 interfaceId,
-    bytes4[] memory functionSelectors
-  ) internal {
-    ServiceLogic._addServiceDef(
-      interfaceId,
-      functionSelectors
-    );
-  }
+  // constructor() {
+  //   ServiceLogic._initService();
+  // }
 
-  function addServiceDef(
-    bytes4 interfaceId,
-    bytes4[] memory functionSelectors
-  ) external returns (bool success) {
-    _addServiceDef(
-      interfaceId,
-      functionSelectors
-    );
-    success = true;
-  }
+  // function _addServiceDef(
+  //   bytes4 interfaceId,
+  //   bytes4[] memory functionSelectors
+  // ) internal {
+  //   ServiceLogic._addServiceDef(
+  //     interfaceId,
+  //     functionSelectors
+  //   );
+  // }
 
-  function setDeploymentSalt(
-    bytes32 deploymentSalt
-  ) external returns (bool success) {
-    ServiceLogic._setDeploymentSalt(deploymentSalt);
+  // function addServiceDef(
+  //   bytes4 interfaceId,
+  //   bytes4[] memory functionSelectors
+  // ) external returns (bool success) {
+  //   _addServiceDef(
+  //     interfaceId,
+  //     functionSelectors
+  //   );
+  //   success = true;
+  // }
 
-    success = true;
-  }
+  // function setDeploymentSalt(
+  //   bytes32 deploymentSalt
+  // ) external returns (bool success) {
+  //   ServiceLogic._setDeploymentSalt(deploymentSalt);
 
-  function supportsInterface(bytes4 interfaceId) override virtual external view returns (bool isSupported) {
-    isSupported = ServiceLogic._supportsInterface(interfaceId);
-  }
+  //   success = true;
+  // }
 
-  function getCreate2Pedigree() external view returns (Create2Pedigree memory pedigree) {
-    pedigree.factory = ServiceLogic._getFactory();
-    pedigree.deploymentSalt = ServiceLogic._getDeploymentSalt();
-  }
+  // function supportsInterface(bytes4 interfaceId) override virtual external view returns (bool isSupported) {
+  //   isSupported = ServiceLogic._supportsInterface(interfaceId);
+  // }
 
-  function getServiceDefs() external view returns (ServiceDef[] memory serviceDef) {
-    serviceDef = ServiceLogic._getServiceDefs();
-  }
+  // function getCreate2Pedigree() external view returns (Create2Pedigree memory pedigree) {
+  //   pedigree.factory = ServiceLogic._getFactory();
+  //   pedigree.deploymentSalt = ServiceLogic._getDeploymentSalt();
+  // }
+
+  // function getServiceDefs() external view returns (ServiceDef[] memory serviceDef) {
+  //   serviceDef = ServiceLogic._getServiceDefs();
+  // }
 
 }
+/* -------------------------------------------------------------------------- */
+/*                            !SECTION ServiceMock                            */
+/* -------------------------------------------------------------------------- */

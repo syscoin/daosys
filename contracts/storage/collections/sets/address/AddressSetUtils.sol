@@ -11,35 +11,39 @@ library AddressSetUtils {
 
   bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(AddressSet).creationCode);
 
-  function _structSlot() pure internal returns (bytes32 structSlot) {
-    structSlot = STRUCT_STORAGE_SLOT;
-  }
+  /* ------------------- Refactor out to separate repository ------------------ */
+  // function _structSlot() pure internal returns (bytes32 structSlot) {
+  //   structSlot = STRUCT_STORAGE_SLOT;
+  // }
 
-  function _saltStorageSlot(
-    bytes32 storageSlotSalt
-  ) pure internal returns (bytes32 saltedStorageSlot) {
-    saltedStorageSlot = storageSlotSalt
-      ^ _structSlot();
-  }
+  // function _saltStorageSlot(
+  //   bytes32 storageSlotSalt
+  // ) pure internal returns (bytes32 saltedStorageSlot) {
+  //   saltedStorageSlot = storageSlotSalt
+  //     ^ _structSlot();
+  // }
 
-  /**
-   * @notice Could be optimized by having the exposing interface caclulate and store
-   *  the storage slot as a constant.
-   *  Storage slot is computed during runtime to facilitate development during
-   *  standardization.
-   */
-  function _layout( bytes32 salt ) pure internal returns ( AddressSet.Layout storage layout ) {
-    bytes32 saltedSlot = _saltStorageSlot(salt);
-    assembly{ layout.slot := saltedSlot }
-  }
+  // /**
+  //  * @notice Could be optimized by having the exposing interface caclulate and store
+  //  *  the storage slot as a constant.
+  //  *  Storage slot is computed during runtime to facilitate development during
+  //  *  standardization.
+  //  */
+  // function _layout( bytes32 salt ) pure internal returns ( AddressSet.Layout storage layout ) {
+  //   bytes32 saltedSlot = _saltStorageSlot(salt);
+  //   assembly{ layout.slot := saltedSlot }
+  // }
 
-  function _at(
-    AddressSet.Enumerable storage set,
-    uint index
-  ) internal view returns (address) {
-    require(set._values.length > index, 'EnumerableSet: index out of bounds');
-    return set._values[index];
-  }
+  /* ------------------- Refactor out to separate repository ------------------ */
+
+  // TODO Write unit tests
+  // function _at(
+  //   AddressSet.Enumerable storage set,
+  //   uint index
+  // ) internal view returns (address) {
+  //   require(set._values.length > index, 'EnumerableSet: index out of bounds');
+  //   return set._values[index];
+  // }
 
   function _contains(
     AddressSet.Enumerable storage set,
@@ -48,21 +52,24 @@ library AddressSetUtils {
     return set._indexes[value] != 0;
   }
 
-  function _indexOf(
-    AddressSet.Enumerable storage set,
-    address value
-  ) internal view returns (uint) {
-    unchecked {
-      return set._indexes[value] - 1;
-    }
-  }
+  // TODO Write unit tests
+  // function _indexOf(
+  //   AddressSet.Enumerable storage set,
+  //   address value
+  // ) internal view returns (uint) {
+  //   unchecked {
+  //     return set._indexes[value] - 1;
+  //   }
+  // }
 
-  function _length(
-    AddressSet.Enumerable storage set
-  ) internal view returns (uint) {
-    return set._values.length;
-  }
+  // TODO Write unit tests
+  // function _length(
+  //   AddressSet.Enumerable storage set
+  // ) internal view returns (uint) {
+  //   return set._values.length;
+  // }s
 
+  // TODO Write unit tests for failure path.
   function _add(
     AddressSet.Enumerable storage set,
     address value
@@ -76,34 +83,36 @@ library AddressSetUtils {
     }
   }
 
-  function _remove(
-    AddressSet.Enumerable storage set,
-    address value
-  ) internal returns (bool) {
-    uint valueIndex = set._indexes[value];
+  // TODO Write unit tests
+  // function _remove(
+  //   AddressSet.Enumerable storage set,
+  //   address value
+  // ) internal returns (bool) {
+  //   uint valueIndex = set._indexes[value];
 
-    if (valueIndex != 0) {
-      uint index = valueIndex - 1;
-      address last = set._values[set._values.length - 1];
+  //   if (valueIndex != 0) {
+  //     uint index = valueIndex - 1;
+  //     address last = set._values[set._values.length - 1];
 
-      // move last value to now-vacant index
+  //     // move last value to now-vacant index
 
-      set._values[index] = last;
-      set._indexes[last] = index + 1;
+  //     set._values[index] = last;
+  //     set._indexes[last] = index + 1;
 
-      // clear last index
+  //     // clear last index
 
-      set._values.pop();
-      delete set._indexes[value];
+  //     set._values.pop();
+  //     delete set._indexes[value];
 
-      return true;
-    } else {
-      return false;
-    }
-  }
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
-  function _setAsArray( AddressSet.Enumerable storage set ) internal view returns ( address[] storage rawSet ) {
-    rawSet = set._values;
-  }
+  // TODO Write unit tests
+  // function _setAsArray( AddressSet.Enumerable storage set ) internal view returns ( address[] storage rawSet ) {
+  //   rawSet = set._values;
+  // }
 
 }

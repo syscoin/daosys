@@ -10,6 +10,13 @@ import {
   IDelegateService
 } from "contracts/service/delegate/DelegateService.sol";
 
+/* -------------------------------------------------------------------------- */
+/*                         SECTION DelegateServiceMock                        */
+/* -------------------------------------------------------------------------- */
+/* --------------------- ANCHOR[id=DelegateServiceMock] --------------------- */
+
+// FIXME[epic=refactor] Refactor to Context standard for testing.
+// FIXME[epic=test-coverage] Write unit tests
 contract DelegateServiceMock
   is
     DelegateService
@@ -22,16 +29,19 @@ contract DelegateServiceMock
   // IDelegateService.ServiceDef private _serviceDef;
   // IDelegateService.Create2Pedigree private _create2Pedigree;
 
-  constructor() {
+  // constructor() {
     
-  }
+  // }
 
-  function getFactory() external view returns (address factory) {
-    factory = DelegateServiceLogic._getFactory();
-  }
+  // function getFactory() external view returns (address factory) {
+  //   factory = DelegateServiceLogic._getFactory();
+  // }
 
-  function getDeploymentSalt() external view returns (bytes32 deploymentSalt) {
-    deploymentSalt = DelegateServiceLogic._getDeploymentSalt();
-  }
+  // function getDeploymentSalt() external view returns (bytes32 deploymentSalt) {
+  //   deploymentSalt = DelegateServiceLogic._getDeploymentSalt();
+  // }
 
 }
+/* -------------------------------------------------------------------------- */
+/*                        !SECTION DelegateServiceMock                        */
+/* -------------------------------------------------------------------------- */

@@ -33,18 +33,6 @@ library ImmutableStorageUtils {
     assembly{ layout.slot := saltedSlot }
   }
 
-  /*
-   * @dev Used to encode a salt with the immutability storage slot modifier.
-   *  This is donee by passing the idenitifier for what is to immutable.
-   *  If a functrion is intended to be Immutable, the identifier is the function selector.
-   *  If a facet function is to be immutable, the identifier is the XOR (^) of the facet address and the function selector.
-   *  If an entire storage slot is to be immutable, the identifier is the storage slot being made immutable.
-   * @param identifier The identifier of the property being made immutable.
-   */
-  function _encodeImmutableStorage( bytes32 storageSlot ) internal pure returns ( bytes32 immutableSlot ) {
-    immutableSlot = _saltStorageSlot(storageSlot);
-  }
-
   function _makeImmutable( ImmutableStorage.Layout storage l ) internal {
     l.isImmutable._setValue(true);
   }

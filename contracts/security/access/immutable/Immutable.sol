@@ -5,10 +5,10 @@ import {
   ImmutableLogic
 } from "contracts/security/access/immutable/logic/ImmutableLogic.sol";
 
-abstract contract Immutable is ImmutableLogic {
-  modifier isNotImmutable( bytes32 storageSlot ) {
-    require( !_isImmutable(storageSlot), "Immutable:: This function is immutable." );
+abstract contract Immutable {
+  modifier isNotImmutable(bytes4 functionSelector) {
+    require( !ImmutableLogic._isImmutable(functionSelector), "Immutable:: This function is immutable." );
     _;
-    _makeImmutable(storageSlot);
+    ImmutableLogic._makeImmutable(functionSelector);
   }
 }

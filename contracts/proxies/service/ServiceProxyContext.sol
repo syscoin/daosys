@@ -12,15 +12,16 @@ library ServiceProxyContext {
     interfaceId_ = type(IServiceProxy).interfaceId;
   }
 
-  function functionSelectors() external pure returns (bytes4[] memory functionSelectors_) {
-    functionSelectors_ = new bytes4[](2);
-    functionSelectors_[0] = IServiceProxy.initServiceProxy.selector;
-    functionSelectors_[1] = IServiceProxy.queryImplementation.selector;
-  }
+  // TODO Write unit tests
+  // function functionSelectors() external pure returns (bytes4[] memory functionSelectors_) {
+  //   functionSelectors_ = new bytes4[](2);
+  //   functionSelectors_[0] = IServiceProxy.initServiceProxy.selector;
+  //   functionSelectors_[1] = IServiceProxy.queryImplementation.selector;
+  // }
 
-  function creationCode() external pure returns (bytes memory creationCode_) {
-    creationCode_ = type(ServiceProxy).creationCode;
-  }
+  // function creationCode() external pure returns (bytes memory creationCode_) {
+  //   creationCode_ = type(ServiceProxy).creationCode;
+  // }
 
   function codehash() external pure returns (bytes32 codehash_) {
     codehash_ = keccak256(type(ServiceProxy).creationCode);

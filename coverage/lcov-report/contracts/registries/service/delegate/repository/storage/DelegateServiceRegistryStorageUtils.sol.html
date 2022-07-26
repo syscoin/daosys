@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>8/12</span>
+        <span class='fraction'>8/8</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>6/8</span>
+        <span class='fraction'>6/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">69.23% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>9/13</span>
+        <span class='fraction'>9/9</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -126,7 +126,9 @@
 81
 82
 83
-84</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+84
+85
+86</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -190,11 +192,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -206,7 +209,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: AGPL-3.0-or-later
@@ -269,16 +273,17 @@ library DelegateServiceRegistryStorageUtils {
     delegateServiceAddress = layout.delegateServiceForInterfaceId._queryValue(delegateServiceInterfaceId);
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function _unmapDelegateService(</span>
-    DelegateServiceRegistryStorage.Layout storage layout,
-    bytes4 delegateServiceInterfaceId
-  ) internal {
-<span class="cstat-no" title="statement not covered" >    layout.allDelegateServices.set._remove(</span>
-      layout.delegateServiceForInterfaceId._queryValue(delegateServiceInterfaceId)
-    );
-<span class="cstat-no" title="statement not covered" >    layout.delegateServiceForInterfaceId._unmapValue(delegateServiceInterfaceId)</span>;
-<span class="cstat-no" title="statement not covered" >    layout.allDelegateServiceInterfaceIds.set._remove(delegateServiceInterfaceId)</span>;
-  }
+  // NOTE Considering deprecating.
+  // function _unmapDelegateService(
+  //   DelegateServiceRegistryStorage.Layout storage layout,
+  //   bytes4 delegateServiceInterfaceId
+  // ) internal {
+  //   layout.allDelegateServices.set._remove(
+  //     layout.delegateServiceForInterfaceId._queryValue(delegateServiceInterfaceId)
+  //   );
+  //   layout.delegateServiceForInterfaceId._unmapValue(delegateServiceInterfaceId);
+  //   layout.allDelegateServiceInterfaceIds.set._remove(delegateServiceInterfaceId);
+  // }
 &nbsp;
   function _getAllDelegateServiceIds(
     DelegateServiceRegistryStorage.Layout storage layout
@@ -286,11 +291,12 @@ library DelegateServiceRegistryStorageUtils {
     allDelegateServiceIds = layout.allDelegateServiceInterfaceIds.set._setAsArray();
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function _getAllDelegateServices(</span>
-    DelegateServiceRegistryStorage.Layout storage layout
-  ) internal view returns (address[] memory allDelegateServices) {
-<span class="cstat-no" title="statement not covered" >    allDelegateServices = layout.allDelegateServices.set._setAsArray()</span>;
-  }
+  // TODO Write unit test
+  // function _getAllDelegateServices(
+  //   DelegateServiceRegistryStorage.Layout storage layout
+  // ) internal view returns (address[] memory allDelegateServices) {
+  //   allDelegateServices = layout.allDelegateServices.set._setAsArray();
+  // }
 &nbsp;
 }</pre></td></tr>
 </table></pre>
@@ -298,7 +304,7 @@ library DelegateServiceRegistryStorageUtils {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jul 25 2022 23:49:06 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 01:41:07 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../../../../../prettify.js"></script>

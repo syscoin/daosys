@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/3</span>
+        <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>0/0</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -79,7 +79,17 @@
 34
 35
 36
-37</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -108,11 +118,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: AGPL-3.0-or-later
@@ -127,6 +147,13 @@ import {
   IDelegateService
 } from "contracts/service/delegate/DelegateService.sol";
 &nbsp;
+/* -------------------------------------------------------------------------- */
+/*                         SECTION DelegateServiceMock                        */
+/* -------------------------------------------------------------------------- */
+/* --------------------- ANCHOR[id=DelegateServiceMock] --------------------- */
+&nbsp;
+// FIXME[epic=refactor] Refactor to Context standard for testing.
+// FIXME[epic=test-coverage] Write unit tests
 contract DelegateServiceMock
   is
     DelegateService
@@ -139,25 +166,28 @@ contract DelegateServiceMock
   // IDelegateService.ServiceDef private _serviceDef;
   // IDelegateService.Create2Pedigree private _create2Pedigree;
 &nbsp;
-<span class="fstat-no" title="function not covered" >  constructor() {</span>
+  // constructor() {
     
-  }
+  // }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function getFactory() external view returns (address factory) {</span>
-<span class="cstat-no" title="statement not covered" >    factory = DelegateServiceLogic._getFactory()</span>;
-  }
+  // function getFactory() external view returns (address factory) {
+  //   factory = DelegateServiceLogic._getFactory();
+  // }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function getDeploymentSalt() external view returns (bytes32 deploymentSalt) {</span>
-<span class="cstat-no" title="statement not covered" >    deploymentSalt = DelegateServiceLogic._getDeploymentSalt()</span>;
-  }
+  // function getDeploymentSalt() external view returns (bytes32 deploymentSalt) {
+  //   deploymentSalt = DelegateServiceLogic._getDeploymentSalt();
+  // }
 &nbsp;
-}</pre></td></tr>
+}
+/* -------------------------------------------------------------------------- */
+/*                        !SECTION DelegateServiceMock                        */
+/* -------------------------------------------------------------------------- */</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jul 25 2022 23:49:06 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 01:41:07 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

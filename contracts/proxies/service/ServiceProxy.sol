@@ -12,7 +12,8 @@ import {
 import {
   DelegateService,
   IDelegateService,
-  DelegateServiceLogic
+  DelegateServiceLogic,
+  ImmutableLogic
 } from "contracts/service/delegate/DelegateService.sol";
 
 // TODO Write NatSpec comments.
@@ -34,7 +35,7 @@ contract ServiceProxy
     );
 
     // Making initServiceProxy immitable because this is not intended to be directly used as a proxy.
-    _makeImmutable(IServiceProxy.initServiceProxy.selector);
+    ImmutableLogic._makeImmutable(IServiceProxy.initServiceProxy.selector);
   }
 
   // TODO refactor to SelectorProxyInitializer and unmap from SelectorProxy instance on completion.
