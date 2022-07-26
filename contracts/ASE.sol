@@ -2,7 +2,8 @@
 pragma solidity ^0.8.0;
 
 import {
-  ServiceProxyFactory
+  ServiceProxyFactory,
+  DelegateServiceLogic
 } from "contracts/factory/proxy/service/ServiceProxyFactory.sol";
 import {
   ServiceProxy,
@@ -24,17 +25,22 @@ contract ASE
   }
 
   function _deploy() internal {
-    address serviceProxyDelegateService = _deployDelegateService(
+    // address serviceProxyDelegateService =
+    _deployDelegateService(
       type(ServiceProxy).creationCode,
       type(IServiceProxy).interfaceId
     );
 
-    _setDeploymentSalt(
+    DelegateServiceLogic._setDeploymentSalt(
       bytes32(0)
     );
 
     _makeImmutable(IDelegateService.setDeploymentSalt.selector);
 
   }
+
+  // function supportsInterface(bytes4 interfaceId) external view virtual override returns (bool isSupported) {
+  //   isSupported = DelegateServiceLogic._supportsInterface(interfaceId);
+  // }
 
 }

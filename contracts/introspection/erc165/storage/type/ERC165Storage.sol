@@ -4,16 +4,17 @@
 pragma solidity 0.8.13;
 // TODO Write NatSpec comments. See contracts/types/primitives/String.sol
 
-library Bytes4Set {
-  
-  struct Enumerable {
-    // 1-indexed to allow 0 to signify nonexistence
-    mapping( bytes4 => uint256 ) _indexes;
-    bytes4[] _values;
-  }
+import {
+  Bytes4Set,
+  Bytes4SetUtils
+} from "contracts/storage/collections/sets/bytes/Bytes4SetUtils.sol";
+
+library ERC165Storage {
+
+  using Bytes4SetUtils for Bytes4Set.Enumerable;
 
   struct Layout {
-    Enumerable set;
+    Bytes4Set.Layout supportedInterfaces;
   }
 
 }

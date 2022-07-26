@@ -2,9 +2,9 @@
 pragma solidity ^0.8.0;
 
 import {
-  DelegateService
+  DelegateService,
+  DelegateServiceLogic
 } from "contracts/service/delegate/DelegateService.sol";
-
 import {
   IDelegateServiceRegistry,
   DelegateServiceRegistryLogic
@@ -89,6 +89,7 @@ abstract contract DelegateServiceRegistry
     );
   }
 
+  // TODO implement cascade query to this DelegateServiceRegistry's DelegateServiceRegistry if delegate service is not found in this DelegateServiceRegistry.
   function queryDelegateServiceAddress(
     bytes4 delegateServiceInterfaceId
   ) view external returns (address delegateServiceAddress) {

@@ -170,17 +170,18 @@ describe("Proof of Concept", function () {
         ) as IDelegateService;
         tracer.nameTags[serviceProxyDelegateService.address] = "ServiceProxy Delegate Service";
 
-        expect(await serviceProxyDelegateService.getFactory()).to.equal(ase.address);
-        expect(await serviceProxyDelegateService.getDeploymentSalt()).to.equal(
-          await typeCasting.bytes4ToBytes32(
-            IServiceProxyInterfaceId
-          )
-        );
+        // Deprecated
+        // expect(await serviceProxyDelegateService.getFactory()).to.equal(ase.address);
+        // expect(await serviceProxyDelegateService.getDeploymentSalt()).to.equal(
+        //   await typeCasting.bytes4ToBytes32(
+        //     IServiceProxyInterfaceId
+        //   )
+        // );
         expect(await serviceProxyDelegateService.getDelegateServiceRegistry()).to.equal(ase.address);
 
-        const serviceProxyDSServiceDef = await serviceProxyDelegateService.getServiceDef();
-        expect(serviceProxyDSServiceDef.interfaceId).to.equal(IServiceProxyInterfaceId);
-        expect(serviceProxyDSServiceDef.functionSelectors).to.have.members(
+        const serviceProxyDSServiceDef = await serviceProxyDelegateService.getServiceDefs();
+        expect(serviceProxyDSServiceDef[0].interfaceId).to.equal(IServiceProxyInterfaceId);
+        expect(serviceProxyDSServiceDef[0].functionSelectors).to.have.members(
           [
             initServiceProxyFunctionSelector,
             queryImplementationFunctionSelector
@@ -243,9 +244,9 @@ describe("Proof of Concept", function () {
         await messengerDS.setMessage("Hello World!");
         expect(await messengerDS.getMessage()).to.equal("Hello World!");
 
-        const messengerDSServiceDef = await messengerDS.getServiceDef();
-        expect(messengerDSServiceDef.interfaceId).to.equal(IMessengerInterfaceId);
-        expect(messengerDSServiceDef.functionSelectors).to.have.members(
+        const messengerDSServiceDef = await messengerDS.getServiceDefs();
+        expect(messengerDSServiceDef[0].interfaceId).to.equal(IMessengerInterfaceId);
+        expect(messengerDSServiceDef[0].functionSelectors).to.have.members(
           [
             setMessageFunctionSelector,
             getMessageFunctionSelector
@@ -303,9 +304,9 @@ describe("Proof of Concept", function () {
         await messengerDS.setMessage("Hello World!");
         expect(await messengerDS.getMessage()).to.equal("Hello World!");
 
-        const messengerDSServiceDef = await messengerDS.getServiceDef();
-        expect(messengerDSServiceDef.interfaceId).to.equal(IMessengerInterfaceId);
-        expect(messengerDSServiceDef.functionSelectors).to.have.members(
+        const messengerDSServiceDef = await messengerDS.getServiceDefs();
+        expect(messengerDSServiceDef[0].interfaceId).to.equal(IMessengerInterfaceId);
+        expect(messengerDSServiceDef[0].functionSelectors).to.have.members(
           [
             setMessageFunctionSelector,
             getMessageFunctionSelector

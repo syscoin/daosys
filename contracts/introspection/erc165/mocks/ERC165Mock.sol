@@ -2,14 +2,22 @@
 pragma solidity ^0.8.0;
 
 import {
-  IERC165,
-  ERC165
-} from 'contracts/introspection/erc165/ERC165.sol';
+  ERC165Logic,
+  IERC165
+} from 'contracts/introspection/erc165/logic/ERC165Logic.sol';
 
 contract ERC165Mock
   is
-    ERC165
+    IERC165
 {
+
+  constructor() {
+    ERC165Logic._erc165Init();
+  }
+
+  function supportsInterface(bytes4 interfaceId) override virtual external view returns (bool isSupported) {
+    isSupported = ERC165Logic._isSupportedInterface(interfaceId);
+  }
 
   function IERC165InterfaceId() external pure returns ( bytes4 interfaceId ) {
     interfaceId = type(IERC165).interfaceId;

@@ -6,13 +6,18 @@ import {
   IDelegateService
 } from "contracts/factory/service/delegate/logic/DelegateServiceFactoryLogic.sol";
 import {
-  DelegateServiceRegistry
+  DelegateServiceRegistry,
+  DelegateServiceLogic
 } from "contracts/registries/service/delegate/DelegateServiceRegistry.sol";
 import {
   IDelegateServiceFactory
 } from "contracts/factory/service/delegate/interfaces/IDelegateServiceFactory.sol";
 
-abstract contract DelegateServiceFactory is IDelegateServiceFactory, DelegateServiceRegistry {
+abstract contract DelegateServiceFactory
+  is
+    IDelegateServiceFactory,
+    DelegateServiceRegistry
+{
 
   function _deployDelegateService(
     bytes memory creationCode,

@@ -11,13 +11,13 @@ import {
   IDelegateServiceFactory
 } from "contracts/factory/service/delegate/interfaces/IDelegateServiceFactory.sol";
 import {
-  IServiceProxy
-} from "contracts/proxies/service/interfaces/IServiceProxy.sol";
+  IServiceProxyFactory
+} from "contracts/factory/proxy/service/interfaces/IServiceProxyFactory.sol";
 
 interface IASE
   is
     IDelegateService,
     IDelegateServiceRegistry,
     IDelegateServiceFactory,
-    IServiceProxy
+    IServiceProxyFactory
 {}

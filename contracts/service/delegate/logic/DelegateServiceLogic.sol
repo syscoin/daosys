@@ -2,142 +2,104 @@
 pragma solidity ^0.8.0;
 
 import {
-  DelegateServiceStorage,
-  DelegateServiceStorageUtils
-} from "contracts/service/delegate/storage/DelegateServiceStorageUtils.sol";
+  DelegateServiceRepository
+} from "contracts/service/delegate/repository/DelegateServiceRepository.sol";
+import {
+  IDelegateService
+} from "contracts/service/delegate/interfaces/IDelegateService.sol";
+import {
+  ServiceLogic,
+  IService,
+  ERC165Logic
+} from "contracts/service/logic/ServiceLogic.sol";
 
-abstract contract DelegateServiceLogic {
+library DelegateServiceLogic {
 
-  using DelegateServiceStorageUtils for DelegateServiceStorage.Layout;
+  bytes32 internal constant IDELEGATESERVICE_STORAGE_SLOT_SALT = type(IDelegateService).interfaceId;
 
-  function _setFactory(
-    bytes32 storageSlotSalt,
-    address factory
-  ) internal {
-    DelegateServiceStorageUtils._layout(storageSlotSalt)
-      ._setFactory(
-        factory
-      );
-  }
+  function _initDelegateService() internal {
 
-  function _getFactory(
-    bytes32 storageSlotSalt
-  ) internal view returns (
-    address factory
-  ) {
-    factory = DelegateServiceStorageUtils._layout(storageSlotSalt)
-      ._getFactory();
-  }
-
-  function _setDeploymentSalt(
-    bytes32 storageSlotSalt,
-    bytes32 deploymentSalt
-  ) internal {
-    DelegateServiceStorageUtils._layout(storageSlotSalt)
-      ._setDeploymentSalt(
-        deploymentSalt
-      );
-  }
-
-  function _getDeploymentSalt(
-    bytes32 storageSlotSalt
-  ) internal view returns (
-    bytes32 deploymentSalt
-  ) {
-    deploymentSalt = DelegateServiceStorageUtils._layout(storageSlotSalt)
-      ._getDeploymentSalt();
+    ServiceLogic._initService();
+    ERC165Logic._setSupportedInterface(
+      type(IDelegateService).interfaceId
+    );
   }
 
   function _setDelegateServiceRegistry(
-    bytes32 storageSlotSalt,
     address delegateServiceRegistry
   ) internal {
-    DelegateServiceStorageUtils._layout(storageSlotSalt)
-      ._setDelegateServiceRegistry(
+    DelegateServiceRepository._setDelegateServiceRegistry(
+      IDELEGATESERVICE_STORAGE_SLOT_SALT,
         delegateServiceRegistry
       );
   }
 
   function _getDelegateServiceRegistry(
-    bytes32 storageSlotSalt
   ) view internal returns (address delegateServiceRegistry) {
-    delegateServiceRegistry = DelegateServiceStorageUtils._layout(storageSlotSalt)
-      ._getDelegateServiceRegistry();
+    delegateServiceRegistry = DelegateServiceRepository._getDelegateServiceRegistry(IDELEGATESERVICE_STORAGE_SLOT_SALT);
   }
 
-  function _setDelegateServiceInterfaceId(
-    bytes32 storageSlotSalt,
-    bytes4 delegateServiceInterfaceId
-  ) internal {
-    DelegateServiceStorageUtils._layout(storageSlotSalt)
-      ._setDelegateServiceInterfaceId(
-        delegateServiceInterfaceId
-      );
-  }
+  /* -------------------------------- IService -------------------------------- */
 
-  function _getDelegateServiceInterfaceId(
-    bytes32 storageSlotSalt
-  ) view internal returns ( bytes4 delegateServiceInterfaceId ) {
-    delegateServiceInterfaceId = DelegateServiceStorageUtils._layout(storageSlotSalt)
-      ._getDelegateServiceInterfaceId();
-  }
-
-  function _setDelegateServiceUnctionSelectors(
-    bytes32 storageSlotSalt,
-    bytes4[] memory functionSelectors
-  ) internal {
-    DelegateServiceStorageUtils._layout(storageSlotSalt)
-      ._setDelegateServiceUnctionSelectors(
-        functionSelectors
-      );
-  }
-
-  function _getDelegateServiceUnctionSelectors(
-    bytes32 storageSlotSalt
-  ) view internal returns (
-    bytes4[] memory functionSelectors
-  ) {
-    functionSelectors = DelegateServiceStorageUtils._layout(storageSlotSalt)
-      ._getDelegateServiceUnctionSelectors();
-  }
-
-  function _setServiceDef(
-    bytes32 storageSlotSalt,
+  function _addServiceDef(
     bytes4 interfaceId,
     bytes4[] memory functionSelectors
   ) internal {
-    DelegateServiceStorageUtils._layout(storageSlotSalt)
-      ._setDelegateServiceInterfaceId(
-        interfaceId
-      );
-    DelegateServiceStorageUtils._layout(storageSlotSalt)
-      ._setDelegateServiceUnctionSelectors(
-        functionSelectors
-      );
+    ServiceLogic._addServiceDef(
+      interfaceId,
+      functionSelectors
+    );
   }
 
-  function _getServiceDef(
-    bytes32 storageSlotSalt
-  ) view internal returns (
-    bytes4 interfaceId,
-    bytes4[] memory functionSelectors
-  ) {
-    interfaceId = DelegateServiceStorageUtils._layout(storageSlotSalt)
-      ._getDelegateServiceInterfaceId();
-    functionSelectors = DelegateServiceStorageUtils._layout(storageSlotSalt)
-      ._getDelegateServiceUnctionSelectors();
+  function _addServiceDef(
+    IService.ServiceDef memory newServiceDef
+  ) internal {
+    ServiceLogic._addServiceDef(
+      newServiceDef
+    );
   }
 
-  function _getPedigree(
-    bytes32 storageSlotSalt
-  ) internal view returns (
-    address factory,
+  function _setDeploymentSalt(
     bytes32 deploymentSalt
+  ) internal {
+    ServiceLogic._setDeploymentSalt(deploymentSalt);
+  }
+
+  function _getFactory() internal view returns (address factory) {
+    factory = ServiceLogic._getFactory();
+  }
+
+  function _getDeploymentSalt(
+  ) internal view returns (bytes32 deploymentSalt) {
+    deploymentSalt = ServiceLogic._getDeploymentSalt();
+  }
+
+  function _getPedigree() internal view returns (IService.Create2Pedigree memory pedigree) {
+    pedigree.factory = ServiceLogic._getFactory();
+    pedigree.deploymentSalt = ServiceLogic._getDeploymentSalt();
+  }
+
+  function _getServiceDefs(
+  ) view internal returns (
+    IService.ServiceDef[] memory serviceDefs
   ) {
-    factory = DelegateServiceStorageUtils._layout(storageSlotSalt)
-      ._getFactory();
-    deploymentSalt = DelegateServiceStorageUtils._layout(storageSlotSalt)
-      ._getDeploymentSalt();
+    serviceDefs = ServiceLogic._getServiceDefs();
+  }
+
+  function _getServiceInterfaceIds(
+  ) view internal returns ( bytes4[] memory serviceInterfaceIds ) {
+    serviceInterfaceIds = ServiceLogic._getServiceInterfaceIds();
+  }
+
+  function _getServiceFunctionSelectors(
+  ) view internal returns (bytes4[] memory functionSelectors) {
+    functionSelectors = ServiceLogic._getServiceFunctionSelectors();
+  }
+
+  /* --------------------------------- IERC165 -------------------------------- */
+
+  function _supportsInterface(bytes4 interfaceId) internal view returns (bool isSupported) {
+    isSupported = ServiceLogic._supportsInterface(interfaceId);
   }
 
 }

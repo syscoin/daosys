@@ -16,7 +16,7 @@ describe('TypeCasting', function () {
   let deployer: SignerWithAddress;
   
   let typeCasting: TypeCastingMock;
-  const ITypeCastingInterfaceId = '0x12e8858e';
+  const ITypeCastingInterfaceId = '0x4c33aa3d';
   const bytes4ToBytes32FunctionSelector = '0x12e8858e';
 
   beforeEach(async function () {
@@ -43,9 +43,6 @@ describe('TypeCasting', function () {
     describe('#bytes4ToBytes32', function () {
       describe('(bytes4)', function () {
         it('returns expected result of casting a byte4 value to a bytes32 value', async function () {
-          // const initCode = typeCasting.deployTransaction.data;
-          // const initCodeHash = ethers.utils.keccak256(initCode);
-          // const salt = ethers.utils.randomBytes(32);
 
           expect(
             await typeCasting.bytes4ToBytes32(
@@ -53,7 +50,6 @@ describe('TypeCasting', function () {
             )
           ).to.equal(
             ethers.BigNumber.from(bytes4ToBytes32FunctionSelector).shl(224).toHexString()
-            // bytes4ToBytes32FunctionSelector
           );
         });
       });

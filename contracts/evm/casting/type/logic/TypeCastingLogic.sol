@@ -3,9 +3,9 @@ pragma solidity ^0.8.0;
 
 import {
   TypeCastingUtils
-} from "contracts/evm/casting/type/libraries/TypeCastingUtils.sol";
+} from "contracts/evm/casting/type/utils/TypeCastingUtils.sol";
 
-abstract contract TypeCastingLogic {
+library TypeCastingLogic {
 
   function _bytes4ToBytes32(
     bytes4 value

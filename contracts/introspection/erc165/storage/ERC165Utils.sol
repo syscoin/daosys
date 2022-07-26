@@ -1,34 +1,22 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// DO NOT CHANGE COMPILER VERSION FROM DEPLOYED VERSION
-// Optimizer Runs = 200
-pragma solidity 0.8.13;
+pragma solidity ^0.8.0;
 // TODO Write NatSpec comments. See contracts/types/primitives/String.sol
 
 import {
+  ERC165Storage,
   Bytes4Set,
   Bytes4SetUtils
-} from "contracts/types/collections/sets/Bytes4Set.sol";
-
-library ERC165Storage {
-
-  using Bytes4SetUtils for Bytes4Set.Enumerable;
-
-  struct Layout {
-    Bytes4Set.Layout supportedInterfaces;
-  }
-
-}
+} from "contracts/introspection/erc165/storage/type/ERC165Storage.sol";
 
 library ERC165Utils {
 
   using Bytes4SetUtils for Bytes4Set.Enumerable;
-  // using ERC165Lib for ERC165Storage.Layout;
+  using ERC165Utils for ERC165Storage.Layout;
 
   bytes32 private constant STRUCT_STORAGE_SLOT = keccak256(type(ERC165Storage).creationCode);
 
   function _structSlot() pure internal returns (bytes32 structSlot) {
-    structSlot = STRUCT_STORAGE_SLOT
-      ^ Bytes4SetUtils._structSlot();
+    structSlot = STRUCT_STORAGE_SLOT;
   }
 
   function _saltStorageSlot(

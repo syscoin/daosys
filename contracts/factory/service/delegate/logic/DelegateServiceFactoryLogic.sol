@@ -18,9 +18,8 @@ library DelegateServiceFactoryLogic {
       creationCode,
       delegateServiceInterfaceId
     );
+    require(IDelegateService(newDelegateService).getDelegateServiceRegistry() == address(this));
     IDelegateService(newDelegateService).setDeploymentSalt(delegateServiceInterfaceId);
-    require(IDelegateService(newDelegateService).getFactory() == address(this));
-    require(IDelegateService(newDelegateService).getDeploymentSalt() == bytes32(delegateServiceInterfaceId));
     IDelegateService.Create2Pedigree memory newDelegateServicePedigree = IDelegateService(newDelegateService).getCreate2Pedigree();
     require(newDelegateServicePedigree.factory == address(this));
     require(newDelegateServicePedigree.deploymentSalt == bytes32(delegateServiceInterfaceId));

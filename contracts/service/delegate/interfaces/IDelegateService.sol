@@ -1,30 +1,32 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 pragma solidity ^0.8.0;
 
-interface IDelegateService {
+import {
+  IService
+} from "contracts/service/interfaces/IService.sol";
 
-  struct ServiceDef{
-    bytes4 interfaceId;
-    bytes4[] functionSelectors;
-  }
-
-  struct Create2Pedigree {
-    address factory;
-    bytes32 deploymentSalt;
-  }
-
-  function setDeploymentSalt(
-    bytes32 deploymentSalt
-  ) external returns (bool success);
-
-  function getFactory() external view returns (address factory);
-
-  function getDeploymentSalt() external view returns (bytes32 deploymentSalt);
+// TODO Write NatSpec comments.
+interface IDelegateService is IService {
 
   function getDelegateServiceRegistry() external view returns (address delegateServiceRegistry);
 
-  function getServiceDef() external view returns (ServiceDef memory serviceDef);
+  /* -------------------------------- IService -------------------------------- */
 
-  function getCreate2Pedigree() external view returns (IDelegateService.Create2Pedigree memory pedigree);
+  // TODO Document that this should revert after deployment.
+  function setDeploymentSalt(bytes32 deploymentSalt) external returns (bool success);
+
+  function getCreate2Pedigree() external view returns (Create2Pedigree memory pedigree);
+
+  /**
+   * #inheritdoc IService
+   */
+  function getServiceDefs() external view returns (ServiceDef[] memory serviceDef);
+
+  /* --------------------------------- IERC165 -------------------------------- */
+
+  /**
+   * #inheritdoc IERC165
+   */
+  function supportsInterface(bytes4 interfaceId) external view returns (bool isSupported);
   
 }

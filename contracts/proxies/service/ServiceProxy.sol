@@ -11,9 +11,11 @@ import {
 } from "contracts/proxies/service/interfaces/IServiceProxy.sol";
 import {
   DelegateService,
-  IDelegateService
+  IDelegateService,
+  DelegateServiceLogic
 } from "contracts/service/delegate/DelegateService.sol";
 
+// TODO Write NatSpec comments.
 contract ServiceProxy
   is
     IServiceProxy,
@@ -26,7 +28,7 @@ contract ServiceProxy
     iServiceProxyFunctionSelectors[0] = IServiceProxy.initServiceProxy.selector;
     iServiceProxyFunctionSelectors[1] = IServiceProxy.queryImplementation.selector;
 
-    _setServiceDef(
+    _addServiceDef(
       type(IServiceProxy).interfaceId,
       iServiceProxyFunctionSelectors
     );
@@ -52,20 +54,20 @@ contract ServiceProxy
     // Loop through delegate servie addresses.
     for(uint16 iteration0 = 0; iteration0 < delegateServices.length; iteration0++) {
       
-      // Get ServiceDef from Delegate Service.
-      IDelegateService.ServiceDef memory delegateServiceDef = IDelegateService(delegateServices[iteration0]).getServiceDef();
+      // Get ServiceDefs from Delegate Service.
+      IDelegateService.ServiceDef[] memory delegateServiceDefs = IDelegateService(delegateServices[iteration0]).getServiceDefs();
 
-      // Iterate through 
-      for(uint16 iteration1 = 0; iteration1 < delegateServiceDef.functionSelectors.length; iteration1++) {
-        // Map delegate service function selectors as proxy implementations.
-        _mapImplementation(
-          delegateServiceDef.functionSelectors[iteration1],
-          delegateServices[iteration0]
-        );
+      for(uint16 iteration1 = 0; delegateServiceDefs.length > iteration1; iteration1++) {
+        _addServiceDef(delegateServiceDefs[iteration1]);
+
+        for(uint16 iteration2 = 0; delegateServiceDefs[iteration1].functionSelectors.length > iteration2; iteration2++) {
+          _mapImplementations(
+            delegateServices[iteration0],
+            delegateServiceDefs[iteration1].functionSelectors
+          );
+        }
       }
-
     }
-
   }
 
   function queryImplementation(
@@ -74,6 +76,10 @@ contract ServiceProxy
     implementation = _queryImplementation(
       functionSelector
     );
+  }
+
+  function supportsInterface(bytes4 interfaceId) override virtual external view returns (bool isSupported) {
+    isSupported = DelegateServiceLogic._supportsInterface(interfaceId);
   }
 
 }

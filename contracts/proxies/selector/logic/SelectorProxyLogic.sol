@@ -2,37 +2,43 @@
 pragma solidity ^0.8.0;
 
 import {
-  SelectorProxyStorage,
-  SelectorProxyStorageUtils
-} from "contracts/proxies/selector/storage/SelectorProxyStorageUtils.sol";
+  SelectorProxyRepository
+} from "contracts/proxies/selector/repository/SelectorProxyRepository.sol";
+import {
+  ISelectorProxy
+} from "contracts/proxies/selector/interfaces/ISelectorProxy.sol";
 
 library SelectorProxyLogic {
 
-  using SelectorProxyStorageUtils for SelectorProxyStorage.Layout;
+  bytes4 constant internal ISERVICEPROXY_STORAGE_SLOT_SALT = type(ISelectorProxy).interfaceId;
 
   function _mapImplementation(
-    bytes32 storageSlotSalt,
     bytes4 functionSelector,
     address implementation
   ) internal {
-    SelectorProxyStorageUtils._layout( storageSlotSalt )
-      ._mapImplementation(functionSelector, implementation);
+    SelectorProxyRepository._mapImplementation(
+      ISERVICEPROXY_STORAGE_SLOT_SALT,
+      functionSelector,
+      implementation
+    );
   }
 
   function _queryImplementation(
-    bytes32 storageSlotSalt,
     bytes4 functionSelector   
   ) view internal returns (address delegateService) {
-    delegateService = SelectorProxyStorageUtils._layout( storageSlotSalt )
-      ._queryImplementation(functionSelector);
+    delegateService = SelectorProxyRepository._queryImplementation(
+      ISERVICEPROXY_STORAGE_SLOT_SALT,
+      functionSelector
+    );
   }
 
-  function _unmapDelegateService(
-    bytes32 storageSlotSalt,
+  function _unmapImplementation(
     bytes4 functionSelector
   ) internal {
-    SelectorProxyStorageUtils._layout( storageSlotSalt )
-      ._unmapImplementation(functionSelector);
+    SelectorProxyRepository._unmapImplementation(
+      ISERVICEPROXY_STORAGE_SLOT_SALT,
+      functionSelector
+    );
   }
 
 }

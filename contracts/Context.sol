@@ -13,6 +13,7 @@ contract Context {
   mapping(bytes4 => IContext) public contextForInterfaceId;
   mapping(string => IContext) public contextForName;
   mapping(bytes32 => IContext) public contextForCodehash;
+  mapping(bytes4 => address) public mockForInterfaceId;
 
   function deployContext(
     bytes memory creationCode
@@ -37,6 +38,18 @@ contract Context {
       codehash,
       codehash
     );
+  }
+
+  function getMock(
+    bytes4 interfaceId
+  ) external returns (address mock_) {
+    mock_ = mockForInterfaceId[interfaceId];
+    if(mock_ == address(0)) {
+      mockForInterfaceId[interfaceId] =  Create2Utils._deployWithSalt(
+        IContext(contextForInterfaceId[interfaceId]).mock(),
+        interfaceId
+      );
+    }
   }
 
 }

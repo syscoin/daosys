@@ -7,13 +7,18 @@ import {
   SelectorProxy,
   ISelectorProxy,
   Proxy,
-  IDelegateService
+  IDelegateService,
+  DelegateServiceLogic
 } from "contracts/proxies/service/ServiceProxy.sol";
 
 contract ServiceProxyMock
   is
     ServiceProxy
 {
+
+  function supportsInterface(bytes4 interfaceId) external view virtual override returns (bool isSupported) {
+    isSupported = DelegateServiceLogic._supportsInterface(interfaceId);
+  }
 
   function IServiceProxyInterfaceId() external pure returns (bytes4 interfaceId) {
     interfaceId = type(IServiceProxy).interfaceId;

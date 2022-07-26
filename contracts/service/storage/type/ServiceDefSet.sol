@@ -4,12 +4,17 @@
 pragma solidity 0.8.13;
 // TODO Write NatSpec comments. See contracts/types/primitives/String.sol
 
-library Bytes4Set {
+import {
+  IService
+} from "contracts/service/interfaces/IService.sol";
+
+library ServiceDefSet {
   
   struct Enumerable {
     // 1-indexed to allow 0 to signify nonexistence
+    // TODO LOW experiment with refactorting to use Bytes4Set.
     mapping( bytes4 => uint256 ) _indexes;
-    bytes4[] _values;
+    IService.ServiceDef[] _values;
   }
 
   struct Layout {

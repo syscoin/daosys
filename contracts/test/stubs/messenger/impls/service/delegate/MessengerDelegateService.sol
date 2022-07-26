@@ -23,7 +23,7 @@ contract MessengerDelegateService
     iMessengerFunctionSelectors[0] = IMessenger.setMessage.selector;
     iMessengerFunctionSelectors[1] = IMessenger.getMessage.selector;
 
-    _setServiceDef(
+    _addServiceDef(
       type(IMessenger).interfaceId,
       iMessengerFunctionSelectors
     );

@@ -9,8 +9,7 @@ import {
   MinimalProxyGeneratorLogic
 } from "contracts/proxies/minimal/generator/logic/MinimalProxyGeneratorLogic.sol";
 import {
-  DelegateServiceFactory,
-  DelegateServiceLogic
+  DelegateServiceFactory
 } from "contracts/factory/service/delegate/DelegateServiceFactory.sol";
 import {
   Create2Utils
@@ -19,7 +18,7 @@ import {
 /**
  * @title A proof of concept of a generalzied contract factory.
  */
-contract ServiceProxyFactory
+abstract contract ServiceProxyFactoryLogic
   is
     DelegateServiceFactory
 {
@@ -47,10 +46,6 @@ contract ServiceProxyFactory
     );
 
     IServiceProxy(newService).initServiceProxy(_bulkQueryDelegateServiceAddress(delegateServiceInterfaceIds));
-  }
-
-  function supportsInterface(bytes4 interfaceId) override virtual external view returns (bool isSupported) {
-    isSupported = DelegateServiceLogic._supportsInterface(interfaceId);
   }
 
 }

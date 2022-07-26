@@ -4,12 +4,12 @@ pragma solidity ^0.8.0;
 import {
   ERC165Utils,
   ERC165Storage
-} from "contracts/introspection/erc165/storage/ERC165Storage.sol";
+} from "contracts/introspection/erc165/storage/ERC165Utils.sol";
 
 /**
  * @title ERC165 implementation
  */
-library ERC165Logic {
+library ERC165Repository {
 
   using ERC165Utils for ERC165Storage.Layout;
 

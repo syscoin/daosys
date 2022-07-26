@@ -7,4 +7,8 @@ interface ITypeCasting {
     bytes4 value
   ) pure external returns (bytes32 castValue);
 
+  function uint256ToBytes32(
+    uint256 value
+  ) pure external returns (bytes32 castValue);
+
 }

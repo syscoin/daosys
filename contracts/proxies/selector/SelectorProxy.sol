@@ -3,11 +3,9 @@ pragma solidity ^0.8.0;
 
 import {Proxy} from "contracts/proxies/Proxy.sol";
 import {
-  SelectorProxyLogic
-} from "contracts/proxies/selector/logic/SelectorProxyLogic.sol";
-import {
+  SelectorProxyLogic,
   ISelectorProxy
-} from "contracts/proxies/selector/interfaces/ISelectorProxy.sol";
+} from "contracts/proxies/selector/logic/SelectorProxyLogic.sol";
 
 /**
  * @title Base proxy contract
@@ -18,14 +16,11 @@ contract SelectorProxy
     Proxy
 {
 
-  bytes4 constant internal ISELECTOR_PROXY_STORAGE_SLOT_SALT = type(ISelectorProxy).interfaceId;
-
   function _mapImplementation(
     bytes4 functionSelector,
     address implementation
   ) internal {
     SelectorProxyLogic._mapImplementation(
-      ISELECTOR_PROXY_STORAGE_SLOT_SALT,
       functionSelector,
       implementation
     );
@@ -47,7 +42,6 @@ contract SelectorProxy
     bytes4 functionSelector   
   ) view internal returns (address delegateService) {
     delegateService = SelectorProxyLogic._queryImplementation(
-      ISELECTOR_PROXY_STORAGE_SLOT_SALT, 
       functionSelector
     );
   }
