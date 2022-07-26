@@ -9,6 +9,7 @@ import {
   Context__factory,
   IContext,
   ERC165Context__factory,
+  IERC165,
   ERC165Mock,
   ERC165Mock__factory
 } from '../../../../typechain';
@@ -27,7 +28,7 @@ describe("ERC165 Test Suite", function () {
   
   // Test instances
   // let controlERC165Mock: ERC165Mock;
-  let erc165Mock: ERC165Mock;
+  let erc165Mock: IERC165;
   const IERC165InterfaceId = "0x01ffc9a7";
   const supportsInterfaceFunctionSelector = "0x01ffc9a7";
 
@@ -108,14 +109,43 @@ describe("ERC165 Test Suite", function () {
   describe("ERC165", function () {
 
     describe("Validate interface and function selector computation", function () {
-      it("IERC165InterfaceId.", async function () {
-        expect(await erc165Mock.IERC165InterfaceId())
+      it("IMessenger InterfaceId.", async function () {
+        expect(await erc156Context.interfaceId())
           .to.equal(IERC165InterfaceId);
       });
-      it("supportsInterfaceFunctionSelector.", async function () {
-        expect(await erc165Mock.supportsInterfaceFunctionSelector())
-          .to.equal(supportsInterfaceFunctionSelector);
+      it("IMessenger InterfaceId reflects exposed functions.", async function () {
+        expect(await erc156Context.interfaceId())
+          .to.equal(
+            await erc156Context.calcInterfaceId()
+          );
       });
+      it("IMessenger Function Selectors.", async function () {
+        expect(await erc156Context.functionSelectors())
+          .to.have.members(
+            [
+              supportsInterfaceFunctionSelector
+            ]
+          );
+      });
+      it("Messenger Codechash.", async function () {
+        expect(await erc156Context.codehash())
+          .to.equal(
+            ethers.utils.keccak256(
+              await erc156Context.creationCode()
+            )
+          );
+      });
+      it("Messenger name.", async function () {
+        expect(await erc156Context.name())
+          .to.equal("ERC165Logic");
+      });
+      it("No mock needed.", async function () {
+        expect(await erc156Context.mock())
+          .to.equal(
+            await erc156Context.instance()
+          );
+      });
+
     });
 
     describe("Validate implementation of IERC165.", function () {

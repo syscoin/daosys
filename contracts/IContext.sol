@@ -17,4 +17,7 @@ interface IContext {
 
   function instance() external pure returns (bytes memory instance_);
 
+  // TOFO Document that this implementation is optional and if no mock is needed it returns the same as instance.
+  function mock() external pure returns (bytes memory mock_);
+
 }

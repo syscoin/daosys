@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">42.86% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/7</span>
+        <span class='fraction'>13/13</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">60% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/5</span>
+        <span class='fraction'>9/9</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">42.86% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>3/7</span>
+        <span class='fraction'>13/13</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -75,7 +75,26 @@
 30
 31
 32
-33</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -86,25 +105,44 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">64×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: AGPL-3.0-or-later
@@ -121,14 +159,25 @@ library MessengerContext {
     interfaceId_ = type(IMessenger).interfaceId;
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function functionSelectors() external pure returns (bytes4[] memory functionSelectors_) {</span>
-<span class="cstat-no" title="statement not covered" >    functionSelectors_ = new bytes4[](2)</span>;
-<span class="cstat-no" title="statement not covered" >    functionSelectors_[0] = IMessenger.setMessage.selector</span>;
-<span class="cstat-no" title="statement not covered" >    functionSelectors_[1] = IMessenger.getMessage.selector</span>;
+  function _functionSelectors() internal pure returns (bytes4[] memory functionSelectors_) {
+    functionSelectors_ = new bytes4[](2);
+    functionSelectors_[0] = IMessenger.setMessage.selector;
+    functionSelectors_[1] = IMessenger.getMessage.selector;
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function creationCode() external pure returns (bytes memory creationCode_) {</span>
-<span class="cstat-no" title="statement not covered" >    creationCode_ = type(Messenger).creationCode</span>;
+  function calcInterfaceId() external pure returns (bytes4 interfaceId_) {
+    bytes4[] memory functionSelectors_ = _functionSelectors();
+    for(uint8 iteration = 0; functionSelectors_.length &gt; iteration; iteration++) {
+      interfaceId_ = interfaceId_ ^ functionSelectors_[iteration];
+    }
+  }
+&nbsp;
+  function functionSelectors() external pure returns (bytes4[] memory functionSelectors_) {
+    functionSelectors_ = _functionSelectors();
+  }
+&nbsp;
+  function creationCode() external pure returns (bytes memory creationCode_) {
+    creationCode_ = type(Messenger).creationCode;
   }
 &nbsp;
   function codehash() external pure returns (bytes32 codehash_) {
@@ -139,13 +188,21 @@ library MessengerContext {
     name_ = type(Messenger).name;
   }
 &nbsp;
+  function instance() external pure returns (bytes memory instance_) {
+    instance_ = type(Messenger).creationCode;
+  }
+&nbsp;
+  function mock() external pure returns (bytes memory mock_) {
+    mock_ = type(Messenger).creationCode;
+  }
+&nbsp;
 }</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jul 25 2022 21:57:18 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jul 25 2022 23:49:06 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

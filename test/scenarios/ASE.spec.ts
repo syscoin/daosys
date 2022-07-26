@@ -22,10 +22,6 @@ import {
   TypeCastingMock__factory
 } from '../../typechain';
 
-/* -------------------------------------------------------------------------- */
-/*                   SECTION ServiceProxyFactory Unit Tests                   */
-/* -------------------------------------------------------------------------- */
-
 describe("Proof of Concept", function () {
 
   let context: Context;
@@ -55,22 +51,10 @@ describe("Proof of Concept", function () {
   let messengerService: MessengerDelegateService;
   let messengerServiceAsProxy: IServiceProxy;
 
-  /* -------------------------------------------------------------------------- */
-  /*                        SECTION Before All Test Hook                        */
-  /* -------------------------------------------------------------------------- */
-
   before(async function () {
     // Tagging address(0) as "System" in logs.
     tracer.nameTags[ethers.constants.AddressZero] = "System";
   });
-
-  /* -------------------------------------------------------------------------- */
-  /*                        !SECTION Before All Test Hook                       */
-  /* -------------------------------------------------------------------------- */
-
-  /* -------------------------------------------------------------------------- */
-  /*                        SECTION Before Each Test Hook                       */
-  /* -------------------------------------------------------------------------- */
 
   beforeEach(async function () {
 
@@ -131,14 +115,6 @@ describe("Proof of Concept", function () {
     tracer.nameTags[ase.address] = "ASE";
 
   });
-
-  /* -------------------------------------------------------------------------- */
-  /*                       !SECTION Before Each Test Hook                       */
-  /* -------------------------------------------------------------------------- */
-
-  /* -------------------------------------------------------------------------- */
-  /*                             SECTION Test Suite                             */
-  /* -------------------------------------------------------------------------- */
 
   describe("POC", function () {
 
@@ -357,7 +333,3 @@ describe("Proof of Concept", function () {
   
 
 });
-
-/* -------------------------------------------------------------------------- */
-/*                             !SECTION Test Suite                            */
-/* -------------------------------------------------------------------------- */

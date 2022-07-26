@@ -20,8 +20,9 @@ contract StringUtilsMock {
     value = StringUtils._layout(StringUtils._structSlot())._getValue();
   }
 
-  function getStructSlot() pure external returns (bytes32 structSlot) {
-    structSlot = StringUtils._structSlot();
-  }
+  // TODO figure out why struct calculation doesn't match when using Solidity Coverage.
+  // function getStructSlot() pure external returns (bytes32 structSlot) {
+  //   structSlot = StringUtils._structSlot();
+  // }
 
 }

@@ -1,0 +1,1 @@
+Update CONTRIBUTING.adoc with recommended plugins and how to import with https://marketplace.visualstudio.com/items?itemName=aslamanver.vsc-export

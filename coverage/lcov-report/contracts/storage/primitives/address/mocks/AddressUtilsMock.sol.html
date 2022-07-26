@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">41.67% </span>
+        <span class="strong">83.33% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>5/12</span>
+        <span class='fraction'>5/6</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">33.33% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/9</span>
+        <span class='fraction'>3/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">41.67% </span>
+        <span class="strong">83.33% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>5/12</span>
+        <span class='fraction'>5/6</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -96,7 +96,12 @@
 51
 52
 53
-54</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+54
+55
+56
+57
+58
+59</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -129,24 +134,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: AGPL-3.0-or-later
@@ -181,26 +191,31 @@ contract AddressUtilsMock {
     result = true;
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function toString() view external returns (string memory value) {</span>
-<span class="cstat-no" title="statement not covered" >    value = AddressUtils._layout(AddressUtils._structSlot())._getValue()._toString()</span>;
-  }
+  // TODO Write unit test
+  // function toString() view external returns (string memory value) {
+  //   value = AddressUtils._layout(AddressUtils._structSlot())._getValue()._toString();
+  // }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function isContract() view external returns (bool isContract) { </span>
-<span class="cstat-no" title="statement not covered" >    isContract = AddressUtils._layout(AddressUtils._structSlot())._getValue()._isContract()</span>;
-  }
+  // TODO Write unit test
+  // function isContract() view external returns (bool isContract) { 
+  //   isContract = AddressUtils._layout(AddressUtils._structSlot())._getValue()._isContract();
+  // }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function sendValue() payable external returns (bool result) {</span>
-<span class="cstat-no" title="statement not covered" >    payable(AddressUtils._layout(AddressUtils._structSlot())._getValue())._sendValue(msg.value)</span>;
-<span class="cstat-no" title="statement not covered" >    result = true</span>;
-  }
+  // TODO Write unit test
+  // function sendValue() payable external returns (bool result) {
+  //   payable(AddressUtils._layout(AddressUtils._structSlot())._getValue())._sendValue(msg.value);
+  //   result = true;
+  // }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function functionCall(bytes memory data) external returns (bytes memory returnData) {</span>
-<span class="cstat-no" title="statement not covered" >    returnData = AddressUtils._layout(AddressUtils._structSlot())._getValue()._functionCall(data)</span>;
-  }
+  // TODO Write unit test
+  // function functionCall(bytes memory data) external returns (bytes memory returnData) {
+  //   returnData = AddressUtils._layout(AddressUtils._structSlot())._getValue()._functionCall(data);
+  // }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function functionDelegateCall(bytes memory data) external returns (bytes memory returnData) {</span>
-<span class="cstat-no" title="statement not covered" >    returnData = AddressUtils._layout(AddressUtils._structSlot())._getValue()._functionDelegateCall(data)</span>;
-  }
+  // TODO Write unit test
+  // function functionDelegateCall(bytes memory data) external returns (bytes memory returnData) {
+  //   returnData = AddressUtils._layout(AddressUtils._structSlot())._getValue()._functionDelegateCall(data);
+  // }
 &nbsp;
 }</pre></td></tr>
 </table></pre>
@@ -208,7 +223,7 @@ contract AddressUtilsMock {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jul 25 2022 21:57:18 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jul 25 2022 23:49:06 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../../../../prettify.js"></script>

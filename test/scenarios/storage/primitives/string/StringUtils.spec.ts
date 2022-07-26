@@ -41,12 +41,12 @@ describe("String Test Suite", function () {
 
   describe("String", function () {
 
-    describe.skip("Validate structSlot consistency", function () {
-      it("getStructSlot().", async function () {
-        expect(await stringUtilsMock.getStructSlot())
-          .to.equal(structSlot);
-      });
-    });
+    // describe.skip("Validate structSlot consistency", function () {
+    //   it("getStructSlot().", async function () {
+    //     expect(await stringUtilsMock.getStructSlot())
+    //       .to.equal(structSlot);
+    //   });
+    // });
 
     describe("#getValue()", function () {
       describe("()", function () {

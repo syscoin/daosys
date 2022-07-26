@@ -41,8 +41,12 @@ library ERC165Context {
     name_ = type(ERC165Logic).name;
   }
 
-  function instance() external pure returns (bytes memory instance) {
-    instance = type(ERC165Mock).creationCode;
+  function instance() external pure returns (bytes memory instance_) {
+    instance_ = type(ERC165Mock).creationCode;
+  }
+
+  function mock() external pure returns (bytes memory mock_) {
+    mock_ = type(ERC165Mock).creationCode;
   }
 
 }

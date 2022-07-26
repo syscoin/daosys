@@ -26,19 +26,19 @@ describe('TypeCasting', function () {
 
   describe('TypeCasting', function () {
 
-    describe("Validate interface and function selector computation", function () {
-      describe("TypeCastingMock", function () {
-        it("ITypeCastingInterfaceId.", async function () {
-          expect(await typeCasting.ITypeCastingInterfaceId())
-            .to.equal(ITypeCastingInterfaceId);
-        });
-        it("bytes4ToBytes32FunctionSelector.", async function () {
-          expect(await typeCasting.bytes4ToBytes32FunctionSelector())
-            .to.equal(bytes4ToBytes32FunctionSelector);
-        });
-      });
+    // describe("Validate interface and function selector computation", function () {
+    //   describe("TypeCastingMock", function () {
+    //     it("ITypeCastingInterfaceId.", async function () {
+    //       expect(await typeCasting.ITypeCastingInterfaceId())
+    //         .to.equal(ITypeCastingInterfaceId);
+    //     });
+    //     it("bytes4ToBytes32FunctionSelector.", async function () {
+    //       expect(await typeCasting.bytes4ToBytes32FunctionSelector())
+    //         .to.equal(bytes4ToBytes32FunctionSelector);
+    //     });
+    //   });
 
-    });
+    // });
 
     describe('#bytes4ToBytes32', function () {
       describe('(bytes4)', function () {

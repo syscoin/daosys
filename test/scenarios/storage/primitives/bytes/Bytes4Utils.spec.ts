@@ -61,16 +61,16 @@ describe("Bytes4 Test Suite", function () {
     // TODO Test rest of StringUtils on String.
   describe("Bytes4", function () {
 
-    describe.skip("Validate structSlot consistency", function () {
-      it("getStructSlot().", async function () {
-        expect(await bytes4Mock.getStructSlot())
-          .to.equal(structSlot);
-      });
-    });
+    // describe.skip("Validate structSlot consistency", function () {
+    //   it("getStructSlot().", async function () {
+    //     expect(await bytes4Mock.getStructSlot())
+    //       .to.equal(structSlot);
+    //   });
+    // });
 
-    describe("#getUint256()", function () {
+    describe("#getValue()", function () {
       describe("()", function () {
-        describe("#setUint256()", function () {
+        describe("#setValue()", function () {
           describe("(uint256)", function () {
             it("Can set and get uint256", async function () {
               await bytes4Mock.setValue(testBytes4);

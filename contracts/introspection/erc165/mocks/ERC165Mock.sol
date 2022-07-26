@@ -19,12 +19,12 @@ contract ERC165Mock
     isSupported = ERC165Logic._isSupportedInterface(interfaceId);
   }
 
-  function IERC165InterfaceId() external pure returns ( bytes4 interfaceId ) {
-    interfaceId = type(IERC165).interfaceId;
-  }
+  // function IERC165InterfaceId() external pure returns ( bytes4 interfaceId ) {
+  //   interfaceId = type(IERC165).interfaceId;
+  // }
 
-  function supportsInterfaceFunctionSelector() external pure returns ( bytes4 functionSelector ) {
-    functionSelector = IERC165.supportsInterface.selector;
-  }
+  // function supportsInterfaceFunctionSelector() external pure returns ( bytes4 functionSelector ) {
+  //   functionSelector = IERC165.supportsInterface.selector;
+  // }
   
 }

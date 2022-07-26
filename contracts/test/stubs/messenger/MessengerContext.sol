@@ -12,10 +12,21 @@ library MessengerContext {
     interfaceId_ = type(IMessenger).interfaceId;
   }
 
-  function functionSelectors() external pure returns (bytes4[] memory functionSelectors_) {
+  function _functionSelectors() internal pure returns (bytes4[] memory functionSelectors_) {
     functionSelectors_ = new bytes4[](2);
     functionSelectors_[0] = IMessenger.setMessage.selector;
     functionSelectors_[1] = IMessenger.getMessage.selector;
+  }
+
+  function calcInterfaceId() external pure returns (bytes4 interfaceId_) {
+    bytes4[] memory functionSelectors_ = _functionSelectors();
+    for(uint8 iteration = 0; functionSelectors_.length > iteration; iteration++) {
+      interfaceId_ = interfaceId_ ^ functionSelectors_[iteration];
+    }
+  }
+
+  function functionSelectors() external pure returns (bytes4[] memory functionSelectors_) {
+    functionSelectors_ = _functionSelectors();
   }
 
   function creationCode() external pure returns (bytes memory creationCode_) {
@@ -28,6 +39,14 @@ library MessengerContext {
 
   function name() external pure returns (string memory name_) {
     name_ = type(Messenger).name;
+  }
+
+  function instance() external pure returns (bytes memory instance_) {
+    instance_ = type(Messenger).creationCode;
+  }
+
+  function mock() external pure returns (bytes memory mock_) {
+    mock_ = type(Messenger).creationCode;
   }
 
 }

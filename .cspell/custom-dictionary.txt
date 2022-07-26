@@ -15,6 +15,7 @@ daosys
 datatypes
 ddsa
 DELEGATECALL
+fulltrace
 gantt
 Gogs
 GONS

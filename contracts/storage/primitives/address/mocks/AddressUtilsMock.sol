@@ -30,25 +30,30 @@ contract AddressUtilsMock {
     result = true;
   }
 
-  function toString() view external returns (string memory value) {
-    value = AddressUtils._layout(AddressUtils._structSlot())._getValue()._toString();
-  }
+  // TODO Write unit test
+  // function toString() view external returns (string memory value) {
+  //   value = AddressUtils._layout(AddressUtils._structSlot())._getValue()._toString();
+  // }
 
-  function isContract() view external returns (bool isContract) { 
-    isContract = AddressUtils._layout(AddressUtils._structSlot())._getValue()._isContract();
-  }
+  // TODO Write unit test
+  // function isContract() view external returns (bool isContract) { 
+  //   isContract = AddressUtils._layout(AddressUtils._structSlot())._getValue()._isContract();
+  // }
 
-  function sendValue() payable external returns (bool result) {
-    payable(AddressUtils._layout(AddressUtils._structSlot())._getValue())._sendValue(msg.value);
-    result = true;
-  }
+  // TODO Write unit test
+  // function sendValue() payable external returns (bool result) {
+  //   payable(AddressUtils._layout(AddressUtils._structSlot())._getValue())._sendValue(msg.value);
+  //   result = true;
+  // }
 
-  function functionCall(bytes memory data) external returns (bytes memory returnData) {
-    returnData = AddressUtils._layout(AddressUtils._structSlot())._getValue()._functionCall(data);
-  }
+  // TODO Write unit test
+  // function functionCall(bytes memory data) external returns (bytes memory returnData) {
+  //   returnData = AddressUtils._layout(AddressUtils._structSlot())._getValue()._functionCall(data);
+  // }
 
-  function functionDelegateCall(bytes memory data) external returns (bytes memory returnData) {
-    returnData = AddressUtils._layout(AddressUtils._structSlot())._getValue()._functionDelegateCall(data);
-  }
+  // TODO Write unit test
+  // function functionDelegateCall(bytes memory data) external returns (bytes memory returnData) {
+  //   returnData = AddressUtils._layout(AddressUtils._structSlot())._getValue()._functionDelegateCall(data);
+  // }
 
 }
