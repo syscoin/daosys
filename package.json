@@ -7,11 +7,11 @@
   "author": "cyotee doge <cyotee@syscoin.org>",
   "license": "AGPL-3.0-or-later",
   "scripts": {
-    "clean-build": "yarn run hardhat clean && yarn run hardhat compile && yarn run hardhat test --logs",
+    "clean-build": "yarn run hardhat clean && yarn run hardhat compile && yarn test",
     "coverage": "yarn run hardhat coverage",
     "storage-layout": "yarn run hardhat storage-layout",
     "clean-compile": "yarn clean && yarn compile",
-    "test": "yarn run hardhat test",
+    "test": "yarn run hardhat test --fulltrace",
     "clean": "yarn run hardhat clean",
     "compile": "yarn run hardhat compile && yarn run hardhat typechain",
     "typechain": "yarn run hardhat typechain",
