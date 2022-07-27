@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">40% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>2/5</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">33.33% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/6</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">28.57% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>2/7</span>
+        <span class='fraction'>2/2</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -98,7 +98,11 @@
 53
 54
 55
-56</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+56
+57
+58
+59
+60</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -113,13 +117,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -130,27 +127,38 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">38×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: AGPL-3.0-or-later
@@ -163,31 +171,31 @@ import {
   Bytes32
 } from "contracts/types/primitives/bytes/Bytes32.sol";
 &nbsp;
+/* -------------------------------------------------------------------------- */
+/*                            SECTION Bytes32Utils                            */
+/* -------------------------------------------------------------------------- */
+&nbsp;
+// FIXME[epic=docs] Bytes32Utils write NatSpec comments.
+// FIXME[epic=test-coverage] Bytes32Utils needs unit tests.
 library Bytes32Utils {
 &nbsp;
-  bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(Bytes32).creationCode);
+  // bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(Bytes32).creationCode);
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function _structSlot() pure internal returns (bytes32 structSlot) {</span>
-<span class="cstat-no" title="statement not covered" >    structSlot = STRUCT_STORAGE_SLOT</span>;
-  }
+  // function _structSlot() pure internal returns (bytes32 structSlot) {
+  //   structSlot = STRUCT_STORAGE_SLOT;
+  // }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function _saltStorageSlot(</span>
-    bytes32 storageSlotSalt
-  ) pure internal returns (bytes32 saltedStorageSlot) {
-<span class="cstat-no" title="statement not covered" >    saltedStorageSlot = storageSlotSalt</span>
-      ^ _structSlot();
-  }
+  // function _saltStorageSlot(
+  //   bytes32 storageSlotSalt
+  // ) pure internal returns (bytes32 saltedStorageSlot) {
+  //   saltedStorageSlot = storageSlotSalt
+  //     ^ _structSlot();
+  // }
 &nbsp;
-  /**
-   * @notice Could be optimized by having the exposing interface caclulate and store
-   *  the storage slot as a constant.
-   *  Storage slot is computed during runtime to facilitate development during
-   *  standardization.
-   */
-<span class="fstat-no" title="function not covered" >  function _layout( bytes32 salt ) pure internal returns ( Bytes32.Layout storage layout ) {</span>
-<span class="cstat-no" title="statement not covered" >    bytes32 saltedSlot = _saltStorageSlot(salt);</span>
-    assembly{ layout.slot := saltedSlot }
-  }
+  // function _layout( bytes32 salt ) pure internal returns ( Bytes32.Layout storage layout ) {
+  //   bytes32 saltedSlot = _saltStorageSlot(salt);
+  //   assembly{ layout.slot := saltedSlot }
+  // }
 &nbsp;
   function _setValue(
     Bytes32.Layout storage layout,
@@ -202,19 +210,23 @@ library Bytes32Utils {
     value = layout.value;
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function _wipeValue(</span>
-    Bytes32.Layout storage layout
-  ) internal {
-    delete layout.value;
-  }
+  // FIXME[epic=test-coverage] Bytes4SetUtils._wipeValue() test needed
+  // function _wipeValue(
+  //   Bytes32.Layout storage layout
+  // ) internal {
+  //   delete layout.value;
+  // }
 &nbsp;
-}</pre></td></tr>
+}
+/* -------------------------------------------------------------------------- */
+/*                            !SECTION Bytes32Utils                           */
+/* -------------------------------------------------------------------------- */</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 01:41:07 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 16:47:39 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

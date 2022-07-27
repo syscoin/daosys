@@ -9,9 +9,9 @@ import {
   Context__factory,
   IContext,
   MessengerContext__factory,
-  IMessenger,
-  Messenger,
-  Messenger__factory
+  IMessenger
+  // Messenger,
+  // Messenger__factory
 } from '../../../../../typechain';
 
 describe("Messenger", function () {
@@ -73,7 +73,7 @@ describe("Messenger", function () {
       "IMessenger",
       messengerInstanceAddress
     ) as IMessenger;
-    tracer.nameTags[messenger.address] = "Messenger Context";
+    tracer.nameTags[messenger.address] = "Messenger";
 
   });
 

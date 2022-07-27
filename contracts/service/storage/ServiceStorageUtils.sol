@@ -9,9 +9,10 @@ import {
   Bytes4Set,
   Bytes4SetUtils,
   ServiceDefSet,
+  ServiceDefSetUtils,
   ServiceStorage,
   IService
-} from "contracts/service/storage/type/ServiceStorage.sol";
+} from "contracts/service/storage/ServiceStorage.sol";
 import {
   ServiceDefSetUtils
 } from "contracts/service/storage/ServiceDefSetUtils.sol";
@@ -19,30 +20,31 @@ import {
 // TODO Write NatSpec comments
 library ServiceStorageUtils {
 
-  using Bytes32Utils for Bytes32.Layout;
-  using Bytes4SetUtils for Bytes4Set.Enumerable;
   using AddressUtils for Address.Layout;
+  using Bytes32Utils for Bytes32.Layout;
+  using Bytes4SetUtils for Bytes4Set.Layout;
+  using Bytes4SetUtils for Bytes4Set.Enumerable;
   using ServiceDefSetUtils for ServiceDefSet.Layout;
   using ServiceDefSetUtils for ServiceDefSet.Enumerable;
   using ServiceStorageUtils for ServiceStorage.Layout;
 
-  bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(ServiceStorage).creationCode);
+  // bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(ServiceStorage).creationCode);
 
-  function _structSlot() pure internal returns (bytes32 structSlot) {
-    structSlot = STRUCT_STORAGE_SLOT;
-  }
+  // function _structSlot() pure internal returns (bytes32 structSlot) {
+  //   structSlot = STRUCT_STORAGE_SLOT;
+  // }
 
-  function _saltStorageSlot(
-    bytes32 storageSlotSalt
-  ) pure internal returns (bytes32 saltedStorageSlot) {
-    saltedStorageSlot = storageSlotSalt
-      ^ _structSlot();
-  }
+  // function _saltStorageSlot(
+  //   bytes32 storageSlotSalt
+  // ) pure internal returns (bytes32 saltedStorageSlot) {
+  //   saltedStorageSlot = storageSlotSalt
+  //     ^ _structSlot();
+  // }
 
-  function _layout( bytes32 salt ) pure internal returns ( ServiceStorage.Layout storage layout ) {
-    bytes32 saltedSlot = _saltStorageSlot(salt);
-    assembly{ layout.slot := saltedSlot }
-  }
+  // function _layout( bytes32 salt ) pure internal returns ( ServiceStorage.Layout storage layout ) {
+  //   bytes32 saltedSlot = _saltStorageSlot(salt);
+  //   assembly{ layout.slot := saltedSlot }
+  // }
 
   function _setFactory(
     ServiceStorage.Layout storage layout,
@@ -115,27 +117,5 @@ library ServiceStorageUtils {
   ) {
     delegateServiceFunctionSelectors = layout.serviceFunctionSelectors.set._setAsArray();
   }
-
-  /* ----------------------------- Refactor Above ----------------------------- */
-
-  // function _setDelegateServiceInterfaceId(
-  //   ServiceStorage.Layout storage layout,
-  //   bytes4 delegateServiceInterfaceId
-  // ) internal {
-  //   layout.delegateServiceInterfaceId._setValue(delegateServiceInterfaceId);
-  // }
-
-  
-
-  // function _setDelegateServiceUnctionSelectors(
-  //   ServiceStorage.Layout storage layout,
-  //   bytes4[] memory delegateServiceFunctionSelectors
-  // ) internal returns (
-  //   bytes4[] memory delegateServiceFunctionSelectors
-  // ) {
-  //   for(uint16 iteration = 0; delegateServiceFunctionSelectors.length > iteration; iteration++) {
-  //     layout.delegateServiceFunctionSelectors.set._add(delegateServiceFunctionSelectors[iteration]);
-  //   }
-  // }
 
 }

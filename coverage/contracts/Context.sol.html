@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">88.89% </span>
+        <span class="strong">92.31% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>8/9</span>
+        <span class='fraction'>12/13</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>1/2</span>
+        <span class='fraction'>2/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/3</span>
+        <span class='fraction'>3/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">88.89% </span>
+        <span class="strong">92.31% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/9</span>
+        <span class='fraction'>12/13</span>
       </div>
     </div>
   </div>
@@ -98,7 +98,30 @@
 53
 54
 55
-56</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -118,15 +141,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">150×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">140×</span>
-<span class="cline-any cline-yes">140×</span>
-<span class="cline-any cline-yes">140×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">286×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">260×</span>
+<span class="cline-any cline-yes">260×</span>
+<span class="cline-any cline-yes">260×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -143,13 +173,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">60×</span>
-<span class="cline-any cline-yes">60×</span>
-<span class="cline-any cline-yes">60×</span>
+<span class="cline-any cline-yes">187×</span>
+<span class="cline-any cline-yes">187×</span>
+<span class="cline-any cline-yes">187×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">60×</span>
+<span class="cline-any cline-yes">160×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">135×</span>
+<span class="cline-any cline-yes">135×</span>
+<span class="cline-any cline-yes">135×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">117×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -163,12 +209,19 @@ import {
   Create2Utils
 } from "contracts/evm/create2/utils/Create2Utils.sol";
 &nbsp;
+/* -------------------------------------------------------------------------- */
+/*                               SECTION Context                              */
+/* -------------------------------------------------------------------------- */
+&nbsp;
+//FIXME[epic=refactor] Context needs refactor to storage standard.
+//FIXME[epic=docs] Context needs NatSpec comments.
 contract Context {
   
-  mapping(bytes4 =&gt; IContext) public contextForInterfaceId;
-  mapping(string =&gt; IContext) public contextForName;
-  mapping(bytes32 =&gt; IContext) public contextForCodehash;
+  mapping(bytes4 =&gt; address) public contextForInterfaceId;
+  mapping(string =&gt; address) public contextForName;
+  mapping(bytes32 =&gt; address) public contextForCodehash;
   mapping(bytes4 =&gt; address) public instanceForInterfaceId;
+  mapping(bytes4 =&gt; address) public mockForInterfaceId;
 &nbsp;
   function deployContext(
     bytes memory creationCode
@@ -179,9 +232,9 @@ contract Context {
     );
 &nbsp;
 &nbsp;
-    contextForInterfaceId[ IContext(newContext).interfaceId()] = IContext(newContext);
-    contextForName[IContext(newContext).name()] = IContext(newContext);
-    contextForCodehash[IContext(newContext).codehash()] = IContext(newContext);
+    contextForInterfaceId[ IContext(newContext).interfaceId()] = newContext;
+    contextForName[IContext(newContext).name()] = newContext;
+    contextForCodehash[IContext(newContext).codehash()] = newContext;
     
   }
 &nbsp;
@@ -208,13 +261,29 @@ contract Context {
     }
   }
 &nbsp;
-}</pre></td></tr>
+  function getMock(
+    bytes4 interfaceId
+  ) external returns (address mock_) {
+    mock_ = mockForInterfaceId[interfaceId];
+    <span class="missing-if-branch" title="else path not taken" >E</span>if(mock_ == address(0)) {
+      mockForInterfaceId[interfaceId] =  Create2Utils._deployWithSalt(
+        IContext(contextForInterfaceId[interfaceId]).mock(),
+        interfaceId
+      );
+      mock_ = mockForInterfaceId[interfaceId];
+    }
+  }
+&nbsp;
+}
+/* -------------------------------------------------------------------------- */
+/*                              !SECTION Context                              */
+/* -------------------------------------------------------------------------- */</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 01:41:07 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 16:47:39 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../prettify.js"></script>

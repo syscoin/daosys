@@ -22,7 +22,10 @@ import {
   TypeCastingMock__factory
 } from '../../typechain';
 
-describe("Proof of Concept", function () {
+/* -------------------------------------------------------------------------- */
+/*          SECTION Autonomous Service Engine Integration Test Suite          */
+/* -------------------------------------------------------------------------- */
+describe("Autonomous Service Engine Integration Test Suite", function () {
 
   let context: Context;
   let messengerContext: IContext;
@@ -116,14 +119,14 @@ describe("Proof of Concept", function () {
 
   });
 
-  describe("POC", function () {
+  describe("ASE", function () {
 
-    describe("Validate interface and function selector computation", function () {
-      it("IServiceProxyInterfaceId.", async function () {
-        expect(await serviceProxyContext.interfaceId())
-          .to.equal(IServiceProxyInterfaceId);
-      });
-    });
+    // describe("Validate interface and function selector computation", function () {
+    //   it("IServiceProxyInterfaceId.", async function () {
+    //     expect(await serviceProxyContext.interfaceId())
+    //       .to.equal(IServiceProxyInterfaceId);
+    //   });
+    // });
 
     describe("ASE deployed securely", function () {
       it("Create2 deployment salt set and can not be reset.", async function () {
@@ -333,3 +336,6 @@ describe("Proof of Concept", function () {
   
 
 });
+/* -------------------------------------------------------------------------- */
+/*          !SECTION Autonomous Service Engine Integration Test Suite         */
+/* -------------------------------------------------------------------------- */

@@ -12,6 +12,11 @@ import {
   IServiceProxyFactory
 } from "contracts/IASE.sol";
 
+/* -------------------------------------------------------------------------- */
+/*                             SECTION ASEContext                             */
+/* -------------------------------------------------------------------------- */
+//FIXME[epic=refactor] ASEContext refactore must be completed.
+//FIXME[epic=docs] ASEContext needs NatSpec comments.
 library ASEContext {
 
   // TODO complete refactor
@@ -57,3 +62,6 @@ library ASEContext {
   // }
 
 }
+/* -------------------------------------------------------------------------- */
+/*                             !SECTION ASEContext                            */
+/* -------------------------------------------------------------------------- */

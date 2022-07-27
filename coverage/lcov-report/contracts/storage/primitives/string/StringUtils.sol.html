@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>5/5</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">83.33% </span>
+        <span class="strong">66.67% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>5/6</span>
+        <span class='fraction'>2/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">85.71% </span>
+        <span class="strong">66.67% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>6/7</span>
+        <span class='fraction'>2/3</span>
       </div>
     </div>
   </div>
@@ -99,43 +99,7 @@
 54
 55
 56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+57</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -162,46 +126,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4×</span>
-<span class="cline-any cline-yes">4×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">6×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -227,62 +152,26 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: AGPL-3.0-or-later
-// DO NOT CHANGE COMPILER VERSION FROM DEPLOYED VERSION
-// Optimizer Runs = 200
 pragma solidity ^0.8.0;
 &nbsp;
 import {
   String
-} from "contracts/types/primitives/string/String.sol";
+} from "contracts/storage/primitives/string/String.sol";
 &nbsp;
+/* -------------------------------------------------------------------------- */
+/*                             SECTION StringUtils                            */
+/* -------------------------------------------------------------------------- */
+// FIXME[epic=docs] StringUtils needs updated NatSpec comments.
+// FIXME[epic=test-coverage] StringUtils needs unit tests.
 /**
  * @title Library to operate on storage slots containing a String.Layout.
  * @dev This will be externalized in future versions of the library.
  */
 library StringUtils {
-&nbsp;
-  /**
-   * @dev Defines the base storage slot to use for String.Layout instances.
-   *  Must be defined outside the datatype library as a contract can not contain it's own bytecode.
-   */
-  bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(String).creationCode);
-&nbsp;
-  /**
-   * @return structSlot The base storage slot constant for operating on String.Layout instances.
-   */
-  function _structSlot(
-  ) pure internal returns (
-    bytes32 structSlot
-  ) {
-    structSlot = STRUCT_STORAGE_SLOT;
-  }
-&nbsp;
-  /**
-   * @param storageSlotSalt The value to XOR into the base storage slot to calculate the storage slot on which to operate.
-   * @return saltedStorageSlot The result of XORing the base storage slot into the base storage slot.
-   */
-  function _saltStorageSlot(
-    bytes32 storageSlotSalt
-  ) pure internal returns (
-    bytes32 saltedStorageSlot
-  ) {
-    saltedStorageSlot = storageSlotSalt
-      ^ _structSlot();
-  }
-&nbsp;
-  /**
-   * @param storageSlotSalt The value to XOR into the base storage slot to bind to a String.Layout instance.
-   * @return layout A String.Layout instance bound to the storage slot calculated with the provided storageSlotSalt.
-   */
-  function _layout(
-    bytes32 storageSlotSalt
-  ) pure internal returns (
-    String.Layout storage layout
-  ) {
-    bytes32 saltedSlot = _saltStorageSlot(storageSlotSalt);
-    assembly{ layout.slot := saltedSlot }
-  }
   
   /**
    * @dev Stores a provided string value in the storage slot bound to the provided String.Layout instance.
@@ -319,13 +208,16 @@ library StringUtils {
     delete layout.value;
   }
 &nbsp;
-}</pre></td></tr>
+}
+/* -------------------------------------------------------------------------- */
+/*                            !SECTION StringUtils                            */
+/* -------------------------------------------------------------------------- */</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 01:41:07 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 16:47:39 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

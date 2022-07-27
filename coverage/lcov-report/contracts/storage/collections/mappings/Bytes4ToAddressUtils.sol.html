@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/6</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/6</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">37.5% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>3/8</span>
+        <span class='fraction'>2/2</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -106,7 +106,11 @@
 61
 62
 63
-64</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+64
+65
+66
+67
+68</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -124,14 +128,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">137×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -142,8 +138,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -151,7 +145,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">95×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">86×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -165,8 +169,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: AGPL-3.0-or-later
@@ -180,34 +188,34 @@ import {
   Bytes4ToAddress
 } from "contracts/types/collections/mappings/Bytes4ToAddress.sol";
 &nbsp;
+/* -------------------------------------------------------------------------- */
+/*                        SECTION Bytes4ToAddressUtils                        */
+/* -------------------------------------------------------------------------- */
+&nbsp;
+// FIXME[epic=docs] Bytes32Utils write NatSpec comments.
+// FIXME[epic=test-coverage] Bytes32Utils needs unit tests.
 library Bytes4ToAddressUtils {
 &nbsp;
   using AddressUtils for Address.Layout;
 &nbsp;
-  bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(Bytes4ToAddress).creationCode);
+  // bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(Bytes4ToAddress).creationCode);
 &nbsp;
-  function _structSlot() pure internal returns (bytes32 structSlot) {
-    structSlot = STRUCT_STORAGE_SLOT
-      ^ AddressUtils._structSlot();
-  }
+  // function _structSlot() pure internal returns (bytes32 structSlot) {
+  //   structSlot = STRUCT_STORAGE_SLOT
+  //     ^ AddressUtils._structSlot();
+  // }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function _saltStorageSlot(</span>
-    bytes32 storageSlotSalt
-  ) pure internal returns (bytes32 saltedStorageSlot) {
-<span class="cstat-no" title="statement not covered" >    saltedStorageSlot = storageSlotSalt</span>
-      ^ _structSlot();
-  }
+  // function _saltStorageSlot(
+  //   bytes32 storageSlotSalt
+  // ) pure internal returns (bytes32 saltedStorageSlot) {
+  //   saltedStorageSlot = storageSlotSalt
+  //     ^ _structSlot();
+  // }
 &nbsp;
-  /**
-   * @notice Could be optimized by having the exposing interface caclulate and store
-   *  the storage slot as a constant.
-   *  Storage slot is computed during runtime to facilitate development during
-   *  standardization.
-   */
-<span class="fstat-no" title="function not covered" >  function _layout( bytes32 salt ) pure internal returns ( Bytes4ToAddress.Layout storage layout ) {</span>
-<span class="cstat-no" title="statement not covered" >    bytes32 saltedSlot = _saltStorageSlot(salt);</span>
-    assembly{ layout.slot := saltedSlot }
-  }
+  // function _layout( bytes32 salt ) pure internal returns ( Bytes4ToAddress.Layout storage layout ) {
+  //   bytes32 saltedSlot = _saltStorageSlot(salt);
+  //   assembly{ layout.slot := saltedSlot }
+  // }
 &nbsp;
   function _mapValue(
     Bytes4ToAddress.Layout storage layout,
@@ -224,21 +232,25 @@ library Bytes4ToAddressUtils {
     value = layout.value[key]._getValue();
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function _unmapValue(</span>
-    Bytes4ToAddress.Layout storage layout,
-    bytes4 key
-  ) internal {
-<span class="cstat-no" title="statement not covered" >    layout.value[key]._wipeValue()</span>;
-    delete layout.value[key];
-  }
+  // FIXME[epic=test-coverage] Bytes4SetUtils._wipeValue() test needed
+  // function _unmapValue(
+  //   Bytes4ToAddress.Layout storage layout,
+  //   bytes4 key
+  // ) internal {
+  //   layout.value[key]._wipeValue();
+  //   delete layout.value[key];
+  // }
 &nbsp;
-}</pre></td></tr>
+}
+/* -------------------------------------------------------------------------- */
+/*                        !SECTION Bytes4ToAddressUtils                       */
+/* -------------------------------------------------------------------------- */</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 01:41:07 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 16:47:39 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

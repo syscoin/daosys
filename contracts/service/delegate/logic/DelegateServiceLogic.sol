@@ -13,17 +13,15 @@ import {
   ERC165Logic
 } from "contracts/service/logic/ServiceLogic.sol";
 
+/* -------------------------------------------------------------------------- */
+/*                        SECTION DelegateServiceLogic                        */
+/* -------------------------------------------------------------------------- */
+
+// FIXME[epic=docs] DelegateServiceLogic write NatSpec comments.
+// FIXME[epic=test-coverage] DelegateServiceLogic needs unit tests.
 library DelegateServiceLogic {
 
   bytes32 internal constant IDELEGATESERVICE_STORAGE_SLOT_SALT = type(IDelegateService).interfaceId;
-
-  function _initDelegateService() internal {
-
-    ServiceLogic._initService();
-    ERC165Logic._setSupportedInterface(
-      type(IDelegateService).interfaceId
-    );
-  }
 
   function _setDelegateServiceRegistry(
     address delegateServiceRegistry
@@ -86,20 +84,25 @@ library DelegateServiceLogic {
     serviceDefs = ServiceLogic._getServiceDefs();
   }
 
-  function _getServiceInterfaceIds(
-  ) view internal returns ( bytes4[] memory serviceInterfaceIds ) {
-    serviceInterfaceIds = ServiceLogic._getServiceInterfaceIds();
-  }
+  // function _getServiceInterfaceIds(
+  // ) view internal returns ( bytes4[] memory serviceInterfaceIds ) {
+  //   serviceInterfaceIds = ServiceLogic._getServiceInterfaceIds();
+  // }
 
-  function _getServiceFunctionSelectors(
-  ) view internal returns (bytes4[] memory functionSelectors) {
-    functionSelectors = ServiceLogic._getServiceFunctionSelectors();
-  }
+  // FIXME[epic=test-coverage] DelegateServiceRegistryStorageUtils._getAllDelegateServices() test needed
+  // function _getServiceFunctionSelectors(
+  // ) view internal returns (bytes4[] memory functionSelectors) {
+  //   functionSelectors = ServiceLogic._getServiceFunctionSelectors();
+  // }
 
   /* --------------------------------- IERC165 -------------------------------- */
 
-  function _supportsInterface(bytes4 interfaceId) internal view returns (bool isSupported) {
-    isSupported = ServiceLogic._supportsInterface(interfaceId);
-  }
+  // FIXME[epic=test-coverage] DelegateServiceRegistryStorageUtils._getAllDelegateServices() test needed
+  // function _supportsInterface(bytes4 interfaceId) internal view returns (bool isSupported) {
+  //   isSupported = ServiceLogic._supportsInterface(interfaceId);
+  // }
 
 }
+/* -------------------------------------------------------------------------- */
+/*                        !SECTION DelegateServiceLogic                       */
+/* -------------------------------------------------------------------------- */

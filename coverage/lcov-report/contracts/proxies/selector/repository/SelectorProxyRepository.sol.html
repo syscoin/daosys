@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>4/4</span>
       </div>
     </div>
   </div>
@@ -81,7 +81,38 @@
 36
 37
 38
-39</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -104,9 +135,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">72×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -127,26 +181,50 @@ import {
   SelectorProxyStorageUtils
 } from "contracts/proxies/selector/storage/SelectorProxyStorageUtils.sol";
 &nbsp;
+/* -------------------------------------------------------------------------- */
+/*                       SECTION SelectorProxyRepository                      */
+/* -------------------------------------------------------------------------- */
+&nbsp;
+// FIXME[epic=docs] SelectorProxyRepository write NatSpec comments.
+// FIXME[epic=test-coverage] SelectorProxyRepository needs unit tests.
 library SelectorProxyRepository {
 &nbsp;
-  using SelectorProxyStorageUtils for SelectorProxyStorage.Layout;
+  // using SelectorProxyStorageUtils for SelectorProxyStorage.Layout;
 &nbsp;
-  function _mapImplementation(
-    bytes32 storageSlotSalt,
-    bytes4 functionSelector,
-    address implementation
-  ) internal {
-    SelectorProxyStorageUtils._layout( storageSlotSalt )
-      ._mapImplementation(functionSelector, implementation);
+  bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(SelectorProxyStorage).creationCode);
+&nbsp;
+  function _structSlot() pure internal returns (bytes32 structSlot) {
+    structSlot = STRUCT_STORAGE_SLOT;
   }
 &nbsp;
-  function _queryImplementation(
-    bytes32 storageSlotSalt,
-    bytes4 functionSelector   
-  ) view internal returns (address delegateService) {
-    delegateService = SelectorProxyStorageUtils._layout( storageSlotSalt )
-      ._queryImplementation(functionSelector);
+  function _saltStorageSlot(
+    bytes32 storageSlotSalt
+  ) pure internal returns (bytes32 saltedStorageSlot) {
+    saltedStorageSlot = storageSlotSalt
+      ^ _structSlot();
   }
+&nbsp;
+  function _layout( bytes32 salt ) pure internal returns ( SelectorProxyStorage.Layout storage layout ) {
+    bytes32 saltedSlot = _saltStorageSlot(salt);
+    assembly{ layout.slot := saltedSlot }
+  }
+&nbsp;
+  // function _mapImplementation(
+  //   bytes32 storageSlotSalt,
+  //   bytes4 functionSelector,
+  //   address implementation
+  // ) internal {
+  //   SelectorProxyStorageUtils._layout( storageSlotSalt )
+  //     ._mapImplementation(functionSelector, implementation);
+  // }
+&nbsp;
+  // function _queryImplementation(
+  //   bytes32 storageSlotSalt,
+  //   bytes4 functionSelector   
+  // ) view internal returns (address delegateService) {
+  //   delegateService = SelectorProxyStorageUtils._layout( storageSlotSalt )
+  //     ._queryImplementation(functionSelector);
+  // }
 &nbsp;
   // NOTE Considering deprecation
   // function _unmapImplementation(
@@ -157,13 +235,16 @@ library SelectorProxyRepository {
   //     ._unmapImplementation(functionSelector);
   // }
 &nbsp;
-}</pre></td></tr>
+}
+/* -------------------------------------------------------------------------- */
+/*                      !SECTION SelectorProxyRepository                      */
+/* -------------------------------------------------------------------------- */</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 01:41:07 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 16:47:39 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>3/3</span>
+        <span class='fraction'>4/4</span>
       </div>
     </div>
   </div>
@@ -82,61 +82,7 @@
 37
 38
 39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">23×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">33×</span>
+40</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -156,17 +102,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">56×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">56×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">56×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -177,74 +125,48 @@
 pragma solidity ^0.8.0;
 &nbsp;
 import {
-  DelegateServiceRegistryStorage,
-  DelegateServiceRegistryStorageUtils
-} from "contracts/registries/service/delegate/repository/storage/DelegateServiceRegistryStorageUtils.sol";
+  DelegateServiceRegistryStorage
+} from "contracts/registries/service/delegate/type/DelegateServiceRegistryStorage.sol";
 &nbsp;
+/* -------------------------------------------------------------------------- */
+/*                      SECTION DelegateServiceRepository                     */
+/* -------------------------------------------------------------------------- */
+&nbsp;
+// FIXME[epic=docs] DelegateServiceRepository needs NatSpec comments.
+// FIXME[epic=test-coverage] DelegateServiceRepository needs unit test.
 library DelegateServiceRepository {
 &nbsp;
-  using DelegateServiceRegistryStorageUtils for DelegateServiceRegistryStorage.Layout;
+  // using DelegateServiceRegistryStorageUtils for DelegateServiceRegistryStorage.Layout;
 &nbsp;
-  function _registerDelegateService(
-    bytes32 storageSlotSalt,
-    bytes4 delegateServiceInterfaceId,
-    address delegateServiceAddress
-  ) internal {
-    DelegateServiceRegistryStorageUtils._layout(storageSlotSalt)
-      ._mapDelegateServiceAddress(
-        delegateServiceInterfaceId,
-        delegateServiceAddress
-      );
+  bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(DelegateServiceRegistryStorage).creationCode);
+&nbsp;
+  function _structSlot() pure internal returns (bytes32 structSlot) {
+    structSlot = STRUCT_STORAGE_SLOT;
   }
 &nbsp;
-  function _queryDelegateService(
-    bytes32 storageSlotSalt,
-    bytes4 delegateServiceInterfaceId
-  ) view internal returns (address delegateServiceAddress) {
-    delegateServiceAddress = DelegateServiceRegistryStorageUtils._layout(storageSlotSalt)
-      ._queryDelegateService(
-        delegateServiceInterfaceId
-      );
-  }
-&nbsp;
-  // TODO Write unite tests
-  // function _bulkQueryDelegateService(
-  //   bytes32 storageSlotSalt,
-  //   bytes4[] calldata delegateServiceInterfaceIds
-  // ) view internal returns (address[] memory delegateServiceAddresses) {
-&nbsp;
-  //   delegateServiceAddresses = new address[](delegateServiceInterfaceIds.length);
-&nbsp;
-  //   for(uint16 iteration = 0; delegateServiceInterfaceIds.length &gt; iteration; iteration++){
-  //     delegateServiceAddresses[iteration] = DelegateServiceRegistryStorageUtils._layout(storageSlotSalt)
-  //       ._queryDelegateService(
-  //         delegateServiceInterfaceIds[iteration]
-  //       );
-  //   }
-  // }
-&nbsp;
-  function _getAllDelegateServiceIds(
+  function _saltStorageSlot(
     bytes32 storageSlotSalt
-  ) view internal returns (bytes4[] memory allDelegateServiceIds) {
-    allDelegateServiceIds = DelegateServiceRegistryStorageUtils._layout(storageSlotSalt)
-      ._getAllDelegateServiceIds();
+  ) pure internal returns (bytes32 saltedStorageSlot) {
+    saltedStorageSlot = storageSlotSalt
+      ^ _structSlot();
   }
 &nbsp;
-  // TODO Write unite tests
-  // function _getAllDelegateServices(
-  //   bytes32 storageSlotSalt
-  // ) view internal returns (address[] memory allDelegateServices) {
-  //   allDelegateServices = DelegateServiceRegistryStorageUtils._layout(storageSlotSalt)
-  //     ._getAllDelegateServices();
-  // }
+  function _layout( bytes32 salt ) pure internal returns ( DelegateServiceRegistryStorage.Layout storage layout ) {
+    bytes32 saltedSlot = _saltStorageSlot(salt);
+    assembly{ layout.slot := saltedSlot }
+  }
+&nbsp;
   
-}</pre></td></tr>
+}
+/* -------------------------------------------------------------------------- */
+/*                     !SECTION DelegateServiceRepository                     */
+/* -------------------------------------------------------------------------- */</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 01:41:07 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 16:47:39 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../../../../prettify.js"></script>

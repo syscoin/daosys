@@ -7,13 +7,18 @@ import {
 } from "contracts/factory/service/delegate/logic/DelegateServiceFactoryLogic.sol";
 import {
   DelegateServiceRegistry,
-  DelegateServiceLogic,
-  ImmutableLogic
+  DelegateServiceLogic
 } from "contracts/registries/service/delegate/DelegateServiceRegistry.sol";
 import {
   IDelegateServiceFactory
 } from "contracts/factory/service/delegate/interfaces/IDelegateServiceFactory.sol";
 
+/* -------------------------------------------------------------------------- */
+/*                       SECTION DelegateServiceFactory                       */
+/* -------------------------------------------------------------------------- */
+//FIXME[epic=refactor] DelegateServiceFactory refactore must be completed.
+//FIXME[epic=docs] DelegateServiceFactory needs NatSpec comments.
+//FIXME[epic=test-coverage] DelegateServiceFactory needs unit test.
 abstract contract DelegateServiceFactory
   is
     IDelegateServiceFactory,
@@ -40,7 +45,7 @@ abstract contract DelegateServiceFactory
    * @param delegateServiceInterfaceId The ERC165 interface ID the delegate service exposes. This will be used as the create2 deployment salt.
    * @return newDelegateService The address of the newly deployed delegate service.
    */
-  // TODO restrict with RBAC NFT.
+  //FIXME[epic-security] DelegateServiceFactory.deployDelegateService() restrict with RBAC NFT.
   function deployDelegateService(
     bytes memory creationCode,
     bytes4 delegateServiceInterfaceId
@@ -52,3 +57,6 @@ abstract contract DelegateServiceFactory
   }
 
 }
+/* -------------------------------------------------------------------------- */
+/*                       !SECTION DelegateServiceFactory                      */
+/* -------------------------------------------------------------------------- */

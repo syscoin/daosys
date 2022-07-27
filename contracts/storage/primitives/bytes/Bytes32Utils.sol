@@ -8,31 +8,31 @@ import {
   Bytes32
 } from "contracts/types/primitives/bytes/Bytes32.sol";
 
+/* -------------------------------------------------------------------------- */
+/*                            SECTION Bytes32Utils                            */
+/* -------------------------------------------------------------------------- */
+
+// FIXME[epic=docs] Bytes32Utils write NatSpec comments.
+// FIXME[epic=test-coverage] Bytes32Utils needs unit tests.
 library Bytes32Utils {
 
-  bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(Bytes32).creationCode);
+  // bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(Bytes32).creationCode);
 
-  function _structSlot() pure internal returns (bytes32 structSlot) {
-    structSlot = STRUCT_STORAGE_SLOT;
-  }
+  // function _structSlot() pure internal returns (bytes32 structSlot) {
+  //   structSlot = STRUCT_STORAGE_SLOT;
+  // }
 
-  function _saltStorageSlot(
-    bytes32 storageSlotSalt
-  ) pure internal returns (bytes32 saltedStorageSlot) {
-    saltedStorageSlot = storageSlotSalt
-      ^ _structSlot();
-  }
+  // function _saltStorageSlot(
+  //   bytes32 storageSlotSalt
+  // ) pure internal returns (bytes32 saltedStorageSlot) {
+  //   saltedStorageSlot = storageSlotSalt
+  //     ^ _structSlot();
+  // }
 
-  /**
-   * @notice Could be optimized by having the exposing interface caclulate and store
-   *  the storage slot as a constant.
-   *  Storage slot is computed during runtime to facilitate development during
-   *  standardization.
-   */
-  function _layout( bytes32 salt ) pure internal returns ( Bytes32.Layout storage layout ) {
-    bytes32 saltedSlot = _saltStorageSlot(salt);
-    assembly{ layout.slot := saltedSlot }
-  }
+  // function _layout( bytes32 salt ) pure internal returns ( Bytes32.Layout storage layout ) {
+  //   bytes32 saltedSlot = _saltStorageSlot(salt);
+  //   assembly{ layout.slot := saltedSlot }
+  // }
 
   function _setValue(
     Bytes32.Layout storage layout,
@@ -47,10 +47,14 @@ library Bytes32Utils {
     value = layout.value;
   }
 
-  function _wipeValue(
-    Bytes32.Layout storage layout
-  ) internal {
-    delete layout.value;
-  }
+  // FIXME[epic=test-coverage] Bytes4SetUtils._wipeValue() test needed
+  // function _wipeValue(
+  //   Bytes32.Layout storage layout
+  // ) internal {
+  //   delete layout.value;
+  // }
 
 }
+/* -------------------------------------------------------------------------- */
+/*                            !SECTION Bytes32Utils                           */
+/* -------------------------------------------------------------------------- */

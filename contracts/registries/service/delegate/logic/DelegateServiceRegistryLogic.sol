@@ -2,13 +2,19 @@
 pragma solidity ^0.8.0;
 
 import {
-  DelegateServiceRepository
+  DelegateServiceRepository,
+  DelegateServiceRegistryStorage
 } from "contracts/registries/service/delegate/repository/DelegateServiceRepository.sol";
+import {
+  DelegateServiceRegistryStorageUtils
+} from "contracts/registries/service/delegate/storage/DelegateServiceRegistryStorageUtils.sol";
 import {
   IDelegateServiceRegistry
 } from "contracts/registries/service/delegate/interfaces/IDelegateServiceRegistry.sol";
 
 library DelegateServiceRegistryLogic {
+
+  using DelegateServiceRegistryStorageUtils for DelegateServiceRegistryStorage.Layout;
 
   bytes4 constant private IDELEGATESERVICEREGISTRY_STORAGE_SLOT_SALT = type(IDelegateServiceRegistry).interfaceId;
 
@@ -16,8 +22,8 @@ library DelegateServiceRegistryLogic {
     bytes4 delegateServiceInterfaceId,
     address delegateServiceAddress
   ) internal {
-    DelegateServiceRepository._registerDelegateService(
-        IDELEGATESERVICEREGISTRY_STORAGE_SLOT_SALT,
+    DelegateServiceRepository._layout(IDELEGATESERVICEREGISTRY_STORAGE_SLOT_SALT)
+      ._mapDelegateServiceAddress(
         delegateServiceInterfaceId,
         delegateServiceAddress
       );
@@ -26,8 +32,8 @@ library DelegateServiceRegistryLogic {
   function _queryDelegateService(
     bytes4 delegateServiceInterfaceId
   ) view internal returns (address delegateServiceAddress) {
-    delegateServiceAddress = DelegateServiceRepository._queryDelegateService(
-        IDELEGATESERVICEREGISTRY_STORAGE_SLOT_SALT,
+    delegateServiceAddress = DelegateServiceRepository._layout(IDELEGATESERVICEREGISTRY_STORAGE_SLOT_SALT)
+      ._queryDelegateService(
         delegateServiceInterfaceId
       );
   }
@@ -39,15 +45,16 @@ library DelegateServiceRegistryLogic {
     delegateServiceAddresses = new address[](delegateServiceInterfaceIds.length);
 
     for(uint16 iteration = 0; delegateServiceInterfaceIds.length > iteration; iteration++){
-      delegateServiceAddresses[iteration] = DelegateServiceRepository._queryDelegateService(
-        IDELEGATESERVICEREGISTRY_STORAGE_SLOT_SALT,
+      delegateServiceAddresses[iteration] = DelegateServiceRepository._layout(IDELEGATESERVICEREGISTRY_STORAGE_SLOT_SALT)
+        ._queryDelegateService(
           delegateServiceInterfaceIds[iteration]
         );
     }
   }
 
   function _getAllDelegateServiceIds() view internal returns (bytes4[] memory allDelegateServiceIds) {
-    allDelegateServiceIds = DelegateServiceRepository._getAllDelegateServiceIds(IDELEGATESERVICEREGISTRY_STORAGE_SLOT_SALT);
+    allDelegateServiceIds = DelegateServiceRepository._layout(IDELEGATESERVICEREGISTRY_STORAGE_SLOT_SALT)
+      ._getAllDelegateServiceIds();
   }
 
   // TODO Write unite tests

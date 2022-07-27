@@ -12,10 +12,14 @@ import {
 import {
   DelegateService,
   IDelegateService,
-  DelegateServiceLogic,
-  ImmutableLogic
+  DelegateServiceLogic
 } from "contracts/service/delegate/DelegateService.sol";
 
+/* -------------------------------------------------------------------------- */
+/*                            SECTION ServiceProxy                            */
+/* -------------------------------------------------------------------------- */
+// FIXME[epic=docs] ServiceProxy needs NatSpec comments.
+// FIXME[epic=test-coverage] ServiceProxy needs unit test.
 // TODO Write NatSpec comments.
 contract ServiceProxy
   is
@@ -35,7 +39,8 @@ contract ServiceProxy
     );
 
     // Making initServiceProxy immitable because this is not intended to be directly used as a proxy.
-    ImmutableLogic._makeImmutable(IServiceProxy.initServiceProxy.selector);
+    _makeImmutable(IServiceProxy.initServiceProxy.selector);
+
   }
 
   // TODO refactor to SelectorProxyInitializer and unmap from SelectorProxy instance on completion.
@@ -79,8 +84,12 @@ contract ServiceProxy
     );
   }
 
-  function supportsInterface(bytes4 interfaceId) override virtual external view returns (bool isSupported) {
-    isSupported = DelegateServiceLogic._supportsInterface(interfaceId);
-  }
+  // // FIXME[epic=test-coverage] DelegateServiceRegistryStorageUtils._getAllDelegateServices() test needed
+  // function supportsInterface(bytes4 interfaceId) override virtual external view returns (bool isSupported) {
+  //   isSupported = DelegateServiceLogic._supportsInterface(interfaceId);
+  // }
 
 }
+/* -------------------------------------------------------------------------- */
+/*                            !SECTION ServiceProxy                           */
+/* -------------------------------------------------------------------------- */

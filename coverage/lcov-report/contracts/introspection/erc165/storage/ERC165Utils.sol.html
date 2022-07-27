@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>6/6</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">50% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>5/5</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>7/7</span>
+        <span class='fraction'>3/3</span>
       </div>
     </div>
   </div>
@@ -98,7 +98,18 @@
 53
 54
 55
-56</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -116,19 +127,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">193×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">193×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">193×</span>
-<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -142,8 +160,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">191×</span>
-<span class="cline-any cline-yes">191×</span>
+<span class="cline-any cline-yes">164×</span>
+<span class="cline-any cline-yes">164×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -155,36 +177,43 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: AGPL-3.0-or-later
 pragma solidity ^0.8.0;
-// TODO Write NatSpec comments. See contracts/types/primitives/String.sol
 &nbsp;
 import {
   ERC165Storage,
   Bytes4Set,
   Bytes4SetUtils
-} from "contracts/introspection/erc165/storage/type/ERC165Storage.sol";
+} from "contracts/introspection/erc165/storage/ERC165Storage.sol";
 &nbsp;
+/* -------------------------------------------------------------------------- */
+/*                             SECTION ERC165Utils                            */
+/* -------------------------------------------------------------------------- */
+//FIXME[epic=docs] ERC165Utils needs NatSpec comments.
+//FIXME[epic=test-coverage] ERC165Utils needs unit test.
 library ERC165Utils {
 &nbsp;
+  /**
+   * @dev Declared to indicate that this declaration will be needed when using ERC165Storage.
+   */
   using Bytes4SetUtils for Bytes4Set.Enumerable;
   using ERC165Utils for ERC165Storage.Layout;
 &nbsp;
-  bytes32 private constant STRUCT_STORAGE_SLOT = keccak256(type(ERC165Storage).creationCode);
+  // bytes32 private constant STRUCT_STORAGE_SLOT = keccak256(type(ERC165Storage).creationCode);
 &nbsp;
-  function _structSlot() pure internal returns (bytes32 structSlot) {
-    structSlot = STRUCT_STORAGE_SLOT;
-  }
+  // function _structSlot() pure internal returns (bytes32 structSlot) {
+  //   structSlot = STRUCT_STORAGE_SLOT;
+  // }
 &nbsp;
-  function _saltStorageSlot(
-    bytes32 storageSlotSalt
-  ) pure internal returns (bytes32 saltedStorageSlot) {
-    saltedStorageSlot = storageSlotSalt
-      ^ _structSlot();
-  }
+  // function _saltStorageSlot(
+  //   bytes32 storageSlotSalt
+  // ) pure internal returns (bytes32 saltedStorageSlot) {
+  //   saltedStorageSlot = storageSlotSalt
+  //     ^ _structSlot();
+  // }
 &nbsp;
-  function _layout( bytes32 salt ) pure internal returns ( ERC165Storage.Layout storage layout ) {
-    bytes32 saltedSlot = _saltStorageSlot(salt);
-    assembly{ layout.slot := saltedSlot }
-  }
+  // function _layout( bytes32 salt ) pure internal returns ( ERC165Storage.Layout storage layout ) {
+  //   bytes32 saltedSlot = _saltStorageSlot(salt);
+  //   assembly{ layout.slot := saltedSlot }
+  // }
 &nbsp;
   function _isSupportedInterface(
     ERC165Storage.Layout storage layout,
@@ -193,7 +222,7 @@ library ERC165Utils {
     return layout.supportedInterfaces.set._contains(interfaceId);
   }
 &nbsp;
-  function _setSupportedInterface(
+  function _addSupportedInterface(
     ERC165Storage.Layout storage layout,
     bytes4 interfaceId
   ) internal {
@@ -201,6 +230,7 @@ library ERC165Utils {
     layout.supportedInterfaces.set._add(interfaceId);
   }
 &nbsp;
+  //FIXME[epic=test-coverage] ERC165Utils._removeSupportedInterface() test needed
   // function _removeSupportedInterface(
   //   ERC165Storage.Layout storage layout,
   //   bytes4 interfaceId
@@ -208,13 +238,16 @@ library ERC165Utils {
   //   layout.supportedInterfaces.set._remove(interfaceId);
   // }
   
-}</pre></td></tr>
+}
+/* -------------------------------------------------------------------------- */
+/*                            !SECTION ERC165Utils                            */
+/* -------------------------------------------------------------------------- */</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 01:41:07 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 13:27:51 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

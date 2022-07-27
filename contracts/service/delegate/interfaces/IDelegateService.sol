@@ -13,20 +13,21 @@ interface IDelegateService is IService {
   /* -------------------------------- IService -------------------------------- */
 
   // TODO Document that this should revert after deployment.
-  function setDeploymentSalt(bytes32 deploymentSalt) external returns (bool success);
+  // function setDeploymentSalt(bytes32 deploymentSalt) external returns (bool success);
 
-  function getCreate2Pedigree() external view returns (Create2Pedigree memory pedigree);
+  // function getCreate2Pedigree() external view returns (Create2Pedigree memory pedigree);
 
-  /**
-   * #inheritdoc IService
-   */
-  function getServiceDefs() external view returns (ServiceDef[] memory serviceDef);
+  // /**
+  //  * #inheritdoc IService
+  //  */
+  // function getServiceDefs() external view returns (ServiceDef[] memory serviceDef);
 
   /* --------------------------------- IERC165 -------------------------------- */
 
   /**
    * #inheritdoc IERC165
    */
-  function supportsInterface(bytes4 interfaceId) external view returns (bool isSupported);
+  // FIXME[epic=test-coverage] IDelegateService.supportsInterface() test needed
+  // function supportsInterface(bytes4 interfaceId) external view returns (bool isSupported);
   
 }

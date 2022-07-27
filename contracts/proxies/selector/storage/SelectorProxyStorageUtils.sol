@@ -11,24 +11,23 @@ library SelectorProxyStorageUtils {
 
   using Bytes4ToAddressUtils for Bytes4ToAddress.Layout;
 
-  bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(SelectorProxyStorage).creationCode);
+  // bytes32 constant private STRUCT_STORAGE_SLOT = keccak256(type(SelectorProxyStorage).creationCode);
 
-  function _structSlot() pure internal returns (bytes32 structSlot) {
-    structSlot = STRUCT_STORAGE_SLOT
-      ^ Bytes4ToAddressUtils._structSlot();
-  }
+  // function _structSlot() pure internal returns (bytes32 structSlot) {
+  //   structSlot = STRUCT_STORAGE_SLOT;
+  // }
 
-  function _saltStorageSlot(
-    bytes32 storageSlotSalt
-  ) pure internal returns (bytes32 saltedStorageSlot) {
-    saltedStorageSlot = storageSlotSalt
-      ^ _structSlot();
-  }
+  // function _saltStorageSlot(
+  //   bytes32 storageSlotSalt
+  // ) pure internal returns (bytes32 saltedStorageSlot) {
+  //   saltedStorageSlot = storageSlotSalt
+  //     ^ _structSlot();
+  // }
 
-  function _layout( bytes32 salt ) pure internal returns ( SelectorProxyStorage.Layout storage layout ) {
-    bytes32 saltedSlot = _saltStorageSlot(salt);
-    assembly{ layout.slot := saltedSlot }
-  }
+  // function _layout( bytes32 salt ) pure internal returns ( SelectorProxyStorage.Layout storage layout ) {
+  //   bytes32 saltedSlot = _saltStorageSlot(salt);
+  //   assembly{ layout.slot := saltedSlot }
+  // }
 
   function _mapImplementation(
     SelectorProxyStorage.Layout storage layout,
@@ -50,11 +49,12 @@ library SelectorProxyStorageUtils {
     );
   }
 
-  function _unmapImplementation(
-    SelectorProxyStorage.Layout storage layout,
-    bytes4 functionSelector
-  ) internal {
-    layout.implementations._unmapValue(functionSelector);
-  }
+  // FIXME[epic=test-coverage] Bytes4SetUtils._wipeValue() test needed
+  // function _unmapImplementation(
+  //   SelectorProxyStorage.Layout storage layout,
+  //   bytes4 functionSelector
+  // ) internal {
+  //   layout.implementations._unmapValue(functionSelector);
+  // }
 
 }

@@ -3,17 +3,21 @@ pragma solidity ^0.8.0;
 
 import {
   ServiceProxyFactory,
-  DelegateServiceLogic,
-  ImmutableLogic
+  DelegateServiceLogic
 } from "contracts/factory/proxy/service/ServiceProxyFactory.sol";
 import {
   ServiceProxy,
   IServiceProxy
 } from "contracts/proxies/service/ServiceProxy.sol";
 import {
-  IDelegateService
-} from "contracts/service/delegate/interfaces/IDelegateService.sol";
+  IService
+} from "contracts/service/interfaces/IService.sol";
 
+/* -------------------------------------------------------------------------- */
+/*                                 SECTION ASE                                */
+/* -------------------------------------------------------------------------- */
+//FIXME[epic=refactor] ASE refactore must be completed.
+//FIXME[epic=docs] ASE needs NatSpec comments.
 contract ASE 
   is
     ServiceProxyFactory
@@ -29,12 +33,15 @@ contract ASE
       type(IServiceProxy).interfaceId
     );
 
-    DelegateServiceLogic._setDeploymentSalt(
+    _setDeploymentSalt(
       bytes32(0)
     );
 
-    ImmutableLogic._makeImmutable(IDelegateService.setDeploymentSalt.selector);
+    _makeImmutable(IService.setDeploymentSalt.selector);
 
   }
 
 }
+/* -------------------------------------------------------------------------- */
+/*                                !SECTION ASE                                */
+/* -------------------------------------------------------------------------- */

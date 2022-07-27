@@ -11,15 +11,22 @@ import {
 import {
   DelegateServiceFactory,
   DelegateServiceLogic,
-  ImmutableLogic
+  IDelegateService
 } from "contracts/factory/service/delegate/DelegateServiceFactory.sol";
 import {
   Create2Utils
 } from "contracts/evm/create2/utils/Create2Utils.sol";
 
+/* -------------------------------------------------------------------------- */
+/*                         SECTION ServiceProxyFactory                        */
+/* -------------------------------------------------------------------------- */
+
 /**
  * @title A proof of concept of a generalzied contract factory.
  */
+//FIXME[epic=refactor] ServiceProxyFactory refactore must be completed.
+//FIXME[epic=docs] ServiceProxyFactory needs NatSpec comments.
+//FIXME[epic=test-coverage] ServiceProxyFactory needs unit test.
 contract ServiceProxyFactory
   is
     DelegateServiceFactory
@@ -39,7 +46,7 @@ contract ServiceProxyFactory
     serviceId = keccak256(abi.encode(serviceId, deployer));
   }
 
-  // TODO Write unit test.
+  //FIXME[epic=test-coverage] ServiceProxyFactory.calcServiceId() test needed
   // function calcServiceId(
   //   address deployer,
   //   bytes4[] calldata delegateServiceInterfaceIds
@@ -66,8 +73,12 @@ contract ServiceProxyFactory
     IServiceProxy(newService).initServiceProxy(_bulkQueryDelegateServiceAddress(delegateServiceInterfaceIds));
   }
 
+  //FIXME[epic=test-coverage] ServiceProxyFactory.supportsInterface() test needed
   // function supportsInterface(bytes4 interfaceId) override virtual external view returns (bool isSupported) {
   //   isSupported = DelegateServiceLogic._supportsInterface(interfaceId);
   // }
 
 }
+/* -------------------------------------------------------------------------- */
+/*                        !SECTION ServiceProxyFactory                        */
+/* -------------------------------------------------------------------------- */

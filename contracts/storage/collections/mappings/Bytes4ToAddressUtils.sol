@@ -9,34 +9,34 @@ import {
   Bytes4ToAddress
 } from "contracts/types/collections/mappings/Bytes4ToAddress.sol";
 
+/* -------------------------------------------------------------------------- */
+/*                        SECTION Bytes4ToAddressUtils                        */
+/* -------------------------------------------------------------------------- */
+
+// FIXME[epic=docs] Bytes32Utils write NatSpec comments.
+// FIXME[epic=test-coverage] Bytes32Utils needs unit tests.
 library Bytes4ToAddressUtils {
 
   using AddressUtils for Address.Layout;
 
-  bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(Bytes4ToAddress).creationCode);
+  // bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(Bytes4ToAddress).creationCode);
 
-  function _structSlot() pure internal returns (bytes32 structSlot) {
-    structSlot = STRUCT_STORAGE_SLOT
-      ^ AddressUtils._structSlot();
-  }
+  // function _structSlot() pure internal returns (bytes32 structSlot) {
+  //   structSlot = STRUCT_STORAGE_SLOT
+  //     ^ AddressUtils._structSlot();
+  // }
 
-  function _saltStorageSlot(
-    bytes32 storageSlotSalt
-  ) pure internal returns (bytes32 saltedStorageSlot) {
-    saltedStorageSlot = storageSlotSalt
-      ^ _structSlot();
-  }
+  // function _saltStorageSlot(
+  //   bytes32 storageSlotSalt
+  // ) pure internal returns (bytes32 saltedStorageSlot) {
+  //   saltedStorageSlot = storageSlotSalt
+  //     ^ _structSlot();
+  // }
 
-  /**
-   * @notice Could be optimized by having the exposing interface caclulate and store
-   *  the storage slot as a constant.
-   *  Storage slot is computed during runtime to facilitate development during
-   *  standardization.
-   */
-  function _layout( bytes32 salt ) pure internal returns ( Bytes4ToAddress.Layout storage layout ) {
-    bytes32 saltedSlot = _saltStorageSlot(salt);
-    assembly{ layout.slot := saltedSlot }
-  }
+  // function _layout( bytes32 salt ) pure internal returns ( Bytes4ToAddress.Layout storage layout ) {
+  //   bytes32 saltedSlot = _saltStorageSlot(salt);
+  //   assembly{ layout.slot := saltedSlot }
+  // }
 
   function _mapValue(
     Bytes4ToAddress.Layout storage layout,
@@ -53,12 +53,16 @@ library Bytes4ToAddressUtils {
     value = layout.value[key]._getValue();
   }
 
-  function _unmapValue(
-    Bytes4ToAddress.Layout storage layout,
-    bytes4 key
-  ) internal {
-    layout.value[key]._wipeValue();
-    delete layout.value[key];
-  }
+  // FIXME[epic=test-coverage] Bytes4SetUtils._wipeValue() test needed
+  // function _unmapValue(
+  //   Bytes4ToAddress.Layout storage layout,
+  //   bytes4 key
+  // ) internal {
+  //   layout.value[key]._wipeValue();
+  //   delete layout.value[key];
+  // }
 
 }
+/* -------------------------------------------------------------------------- */
+/*                        !SECTION Bytes4ToAddressUtils                       */
+/* -------------------------------------------------------------------------- */

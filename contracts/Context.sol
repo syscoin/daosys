@@ -8,12 +8,19 @@ import {
   Create2Utils
 } from "contracts/evm/create2/utils/Create2Utils.sol";
 
+/* -------------------------------------------------------------------------- */
+/*                               SECTION Context                              */
+/* -------------------------------------------------------------------------- */
+
+//FIXME[epic=refactor] Context needs refactor to storage standard.
+//FIXME[epic=docs] Context needs NatSpec comments.
 contract Context {
   
-  mapping(bytes4 => IContext) public contextForInterfaceId;
-  mapping(string => IContext) public contextForName;
-  mapping(bytes32 => IContext) public contextForCodehash;
+  mapping(bytes4 => address) public contextForInterfaceId;
+  mapping(string => address) public contextForName;
+  mapping(bytes32 => address) public contextForCodehash;
   mapping(bytes4 => address) public instanceForInterfaceId;
+  mapping(bytes4 => address) public mockForInterfaceId;
 
   function deployContext(
     bytes memory creationCode
@@ -24,9 +31,9 @@ contract Context {
     );
 
 
-    contextForInterfaceId[ IContext(newContext).interfaceId()] = IContext(newContext);
-    contextForName[IContext(newContext).name()] = IContext(newContext);
-    contextForCodehash[IContext(newContext).codehash()] = IContext(newContext);
+    contextForInterfaceId[ IContext(newContext).interfaceId()] = newContext;
+    contextForName[IContext(newContext).name()] = newContext;
+    contextForCodehash[IContext(newContext).codehash()] = newContext;
     
   }
 
@@ -53,4 +60,20 @@ contract Context {
     }
   }
 
+  function getMock(
+    bytes4 interfaceId
+  ) external returns (address mock_) {
+    mock_ = mockForInterfaceId[interfaceId];
+    if(mock_ == address(0)) {
+      mockForInterfaceId[interfaceId] =  Create2Utils._deployWithSalt(
+        IContext(contextForInterfaceId[interfaceId]).mock(),
+        interfaceId
+      );
+      mock_ = mockForInterfaceId[interfaceId];
+    }
+  }
+
 }
+/* -------------------------------------------------------------------------- */
+/*                              !SECTION Context                              */
+/* -------------------------------------------------------------------------- */

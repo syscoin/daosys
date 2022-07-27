@@ -3,8 +3,7 @@ pragma solidity ^0.8.0;
 
 import {
   DelegateService,
-  DelegateServiceLogic,
-  ImmutableLogic
+  DelegateServiceLogic
 } from "contracts/service/delegate/DelegateService.sol";
 import {
   IDelegateServiceRegistry,

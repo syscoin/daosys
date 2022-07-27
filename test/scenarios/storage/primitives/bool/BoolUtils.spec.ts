@@ -9,6 +9,10 @@ import {
   BoolUtilsMock__factory
 } from '../../../../../typechain';
 
+/* -------------------------------------------------------------------------- */
+/*                          SECTION Bytes4 Test Suite                         */
+/* -------------------------------------------------------------------------- */
+
 describe("Bytes4 Test Suite", function () {
 
   // Control values for tests
@@ -20,7 +24,7 @@ describe("Bytes4 Test Suite", function () {
   // Test variables
   let boolUtilsMock: BoolUtilsMock;
   const testBytes4 = "0xffffffff";
-  const structSlot = "0xb6ad8ba069e5304e214c46a0a1239dd130d210467bdf9efb2ab1171052222f2a";
+  // const structSlot = "0xb6ad8ba069e5304e214c46a0a1239dd130d210467bdf9efb2ab1171052222f2a";
 
   /* -------------------------------------------------------------------------- */
   /*                        SECTION Before All Test Hook                        */
@@ -55,18 +59,18 @@ describe("Bytes4 Test Suite", function () {
   /* -------------------------------------------------------------------------- */
 
   /* -------------------------------------------------------------------------- */
-  /*                          SECTION Testing Messenger                         */
+  /*                            SECTION Testing Bool                            */
   /* -------------------------------------------------------------------------- */
 
     // TODO Test rest of StringUtils on String.
   describe("Bool", function () {
 
-    describe.skip("Validate structSlot consistency", function () {
-      it("getStructSlot().", async function () {
-        expect(await boolUtilsMock.getStructSlot())
-          .to.equal(structSlot);
-      });
-    });
+    // describe.skip("Validate structSlot consistency", function () {
+    //   it("getStructSlot().", async function () {
+    //     expect(await boolUtilsMock.getStructSlot())
+    //       .to.equal(structSlot);
+    //   });
+    // });
 
     describe("#getUint256()", function () {
       describe("()", function () {
@@ -84,7 +88,10 @@ describe("Bytes4 Test Suite", function () {
   });
 
   /* -------------------------------------------------------------------------- */
-  /*                         !SECTION Testing Messenger                         */
+  /*                            !SECTION Testing Bool                           */
   /* -------------------------------------------------------------------------- */
 
 });
+/* -------------------------------------------------------------------------- */
+/*                         !SECTION Bytes4 Test Suite                         */
+/* -------------------------------------------------------------------------- */

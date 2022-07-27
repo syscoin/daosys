@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 pragma solidity ^0.8.0;
 
+/* -------------------------------------------------------------------------- */
+/*                              SECTION IContext                              */
+/* -------------------------------------------------------------------------- */
+//FIXME[epic=docs] IContext needs NatSpec comments.
 interface IContext {
   
   function interfaceId() external pure returns (bytes4 interfaceId_);
@@ -15,9 +19,14 @@ interface IContext {
 
   function name() external pure returns (string memory name_);
 
+  // FIXME[epic=docs] Document that a implementation is required and if no instance is possible it returns the same as mock.
   function instance() external pure returns (bytes memory instance_);
 
-  // TOFO Document that this implementation is optional and if no mock is needed it returns the same as instance.
+  // FIXME[epic=docs] Document that a mock is required and if no mock is needed it returns the same as instance.
   function mock() external pure returns (bytes memory mock_);
 
 }
+
+/* -------------------------------------------------------------------------- */
+/*                              !SECTION IContext                             */
+/* -------------------------------------------------------------------------- */

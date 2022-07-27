@@ -12,9 +12,9 @@ contract AddressUtilsMock {
   using AddressUtils for address;
   using AddressUtils for address payable;
 
-  function getStructSlot() pure external returns (bytes32 structSlot) {
-    structSlot = AddressUtils._structSlot();
-  }
+  // function getStructSlot() pure external returns (bytes32 structSlot) {
+  //   structSlot = AddressUtils._structSlot();
+  // }
 
   function setValue(address newValue) external returns (bool result) {
     AddressUtils._layout(AddressUtils._structSlot())._setValue(newValue);

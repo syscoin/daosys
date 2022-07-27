@@ -5,31 +5,34 @@ import {
 import { expect } from "chai";
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import {
-  MessengerMock,
-  MessengerMock__factory,
+  Context,
+  Context__factory,
+  IContext,
+  MessengerContext__factory,
+  IMessenger,
+  // MessengerMock,
+  // MessengerMock__factory,
   SelectorProxyMock,
   SelectorProxyMock__factory
 } from '../../../../typechain';
 
 describe("Selector Proxy", function () {
 
-  // Control values for tests
-  const invalidInterfaceId = "0xffffffff";
-
   // Test Wallets
   let deployer: SignerWithAddress;
 
+  // Test Context
+  let context: Context;
+  let messengerContext: IContext;
+
   // TestService test variables
-  let messenger: MessengerMock;
-  const IMessengerInterfaceId = "0xf8e6c6ac";
-  const setMessageFunctionSelector = '0x368b8772';
-  const getMessageFunctionSelector = '0xce6d41de';
+  let messenger: IMessenger;
 
   let proxy: SelectorProxyMock;
   const ISelectorProxyInterfaceId = '0xe21d303a';
   const queryImplementationFunctionSelector = '0xe21d303a';
 
-  let proxyAsMessenger: MessengerMock;
+  let proxyAsMessenger: IMessenger;
 
   before(async function () {
     // Tagging address(0) as "System" in logs.
@@ -43,13 +46,41 @@ describe("Selector Proxy", function () {
     ] = await ethers.getSigners();
     tracer.nameTags[deployer.address] = "Deployer";
 
-    messenger = await new MessengerMock__factory(deployer).deploy() as MessengerMock;
+    context = await new Context__factory(deployer).deploy() as Context;
+    tracer.nameTags[context.address] = "Context";
+
+    const messengerContextAddress = await context.callStatic.deployContext(
+      MessengerContext__factory.bytecode
+    );
+    expect(messengerContextAddress).to.be.properAddress;
+    await context.deployContext(
+      MessengerContext__factory.bytecode
+    );
+
+    messengerContext = await ethers.getContractAt(
+      "IContext",
+      messengerContextAddress
+    ) as IContext;
+    tracer.nameTags[messengerContext.address] = "Messenger Context";
+
+    const messengerInstanceAddress = await context.callStatic.getInstance(
+      await messengerContext.interfaceId()
+    );
+    expect(messengerInstanceAddress).to.be.properAddress;
+    await context.getInstance(
+      await messengerContext.interfaceId()
+    );
+
+    messenger = await ethers.getContractAt(
+      "IMessenger",
+      messengerInstanceAddress
+    ) as IMessenger;
     tracer.nameTags[messenger.address] = "Messenger";
 
     proxy = await new SelectorProxyMock__factory(deployer).deploy() as SelectorProxyMock;
     tracer.nameTags[proxy.address] = "Proxy";
 
-    proxyAsMessenger = await ethers.getContractAt("MessengerMock", proxy.address) as MessengerMock;
+    proxyAsMessenger = await ethers.getContractAt("IMessenger", proxy.address) as IMessenger;
     tracer.nameTags[proxyAsMessenger.address] = "MessengerProxy";
 
   });
@@ -77,43 +108,25 @@ describe("Selector Proxy", function () {
 
     });
 
-    describe("Validate IServiceProxy implementation works as expected.", function () {
-      it("Can set and get delegate service", async function () {
-        await proxy.mapImplementation(
-          await messenger.setMessageFunctionSelector(),
-          messenger.address
-        );
-        expect(
-          await proxy.queryImplementation(
-            await messenger.setMessageFunctionSelector()
-          )
-        ).to.equal(messenger.address);
-
-        await proxy.mapImplementation(
-          await messenger.getMessageFunctionSelector(),
-          messenger.address
-        );
-        expect(
-          await proxy.queryImplementation(
-            await messenger.getMessageFunctionSelector()
-          )
-        ).to.equal(messenger.address);
-      });
-    });
-
     describe("Validate ServiceProxy works as a proxy to configured Messenger test stub.", function () {
 
       it("Can set and get message", async function () {
-        await proxy.mapImplementation(
-          await messenger.setMessageFunctionSelector(),
-          messenger.address
-        );
-        await proxyAsMessenger.setMessage("Hello World!");
 
-        await proxy.mapImplementation(
-          await messenger.getMessageFunctionSelector(),
-          messenger.address
-        );
+        for (let functionSelector of await messengerContext.functionSelectors()) {
+          await proxy.mapImplementation(
+            functionSelector,
+            messenger.address
+          );
+          expect(
+            await proxy.queryImplementation(functionSelector)
+          ).to.equal(messenger.address);
+        }
+        // for (let functionSelector of await messengerContext.functionSelectors()) {
+        //   expect(
+        //     await proxy.queryImplementation(functionSelector)
+        //   ).to.equal(messenger.address);
+        // }
+        await proxyAsMessenger.setMessage("Hello World!");
         expect(await proxyAsMessenger.getMessage()).to.equal("Hello World!");
       });
 

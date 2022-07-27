@@ -24,10 +24,10 @@ interface IService
     bytes32 deploymentSalt;
   }
 
-  /**
-   * #inheritdoc IERC165
-   */
-  function supportsInterface(bytes4 interfaceId) external view returns (bool isSupported);
+  // /**
+  //  * #inheritdoc IERC165
+  //  */
+  // function supportsInterface(bytes4 interfaceId) external view returns (bool isSupported);
 
   // TODO Document that this should revert after deployment.
   function setDeploymentSalt(bytes32 deploymentSalt) external returns (bool success);

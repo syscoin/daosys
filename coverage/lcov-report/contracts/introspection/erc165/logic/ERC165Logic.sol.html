@@ -97,7 +97,16 @@
 52
 53
 54
-55</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -118,15 +127,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">85×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -135,7 +135,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">191×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">305×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">690×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -155,16 +173,25 @@
 pragma solidity ^0.8.0;
 &nbsp;
 import {
-  ERC165Repository
-} from "contracts/introspection/erc165/repository/ERC165Repository.sol";
+  ERC165Repository,
+  ERC165StorageUtils,
+  ERC165Storage
+} from "contracts/introspection/erc165/storage/ERC165Repository.sol";
 import {
   IERC165
 } from "contracts/introspection/erc165/interfaces/IERC165.sol";
 &nbsp;
+/* -------------------------------------------------------------------------- */
+/*                             SECTION ERC165Logic                            */
+/* -------------------------------------------------------------------------- */
 /**
  * @title ERC165 implementation
  */
+//FIXME[epic=docs] ERC165Utils needs NatSpec comments.
+//FIXME[epic=test-coverage] ERC165Utils needs unit test.
 library ERC165Logic {
+&nbsp;
+  using ERC165StorageUtils for ERC165Storage.Layout;
 &nbsp;
   bytes32 internal constant IERC165_STORAGE_SLOT_SALT = type(IERC165).interfaceId;
 &nbsp;
@@ -172,7 +199,7 @@ library ERC165Logic {
    * @dev This is the self initialization hook for contracts that will expose IERC165 to report they support ERC165.
    */
   function _erc165Init() internal {
-    ERC165Logic._setSupportedInterface(
+    ERC165Logic._addSupportedInterface(
         type(IERC165).interfaceId
       );
   }
@@ -180,21 +207,18 @@ library ERC165Logic {
   function _isSupportedInterface(
     bytes4 interfaceId
   ) internal view returns (bool isSupportInterface) {
-    isSupportInterface = ERC165Repository._isSupportedInterface(
-      IERC165_STORAGE_SLOT_SALT,
-      interfaceId
-    );
+    isSupportInterface = ERC165Repository._layout(IERC165_STORAGE_SLOT_SALT)
+      ._isSupportedInterface(interfaceId);
   }
 &nbsp;
-  function _setSupportedInterface(
+  function _addSupportedInterface(
     bytes4 interfaceId
   ) internal {
-    ERC165Repository._setSupportedInterface(
-      IERC165_STORAGE_SLOT_SALT,
-      interfaceId
-    );
+    ERC165Repository._layout(IERC165_STORAGE_SLOT_SALT)
+      ._addSupportedInterface(interfaceId);
   }
 &nbsp;
+  // NOTE Considering deprecating.
   // function _removeSupportedInterface(
   //   bytes4 interfaceId
   // ) internal {
@@ -205,13 +229,16 @@ library ERC165Logic {
   // }
   
 }
+/* -------------------------------------------------------------------------- */
+/*                            !SECTION ERC165Logic                            */
+/* -------------------------------------------------------------------------- */
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 01:41:07 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 16:47:39 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

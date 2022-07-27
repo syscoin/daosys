@@ -14,6 +14,11 @@ import {
   IServiceProxyFactory
 } from "contracts/factory/proxy/service/interfaces/IServiceProxyFactory.sol";
 
+/* -------------------------------------------------------------------------- */
+/*                                SECTION IASE                                */
+/* -------------------------------------------------------------------------- */
+//FIXME[epic=refactor] IASE refactore must be completed.
+//FIXME[epic=docs] IASE needs NatSpec comments.
 interface IASE
   is
     IDelegateService,
@@ -21,3 +26,6 @@ interface IASE
     IDelegateServiceFactory,
     IServiceProxyFactory
 {}
+/* -------------------------------------------------------------------------- */
+/*                                !SECTION IASE                               */
+/* -------------------------------------------------------------------------- */

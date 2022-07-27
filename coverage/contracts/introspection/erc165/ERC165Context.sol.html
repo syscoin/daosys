@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">33.33% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>12/12</span>
+        <span class='fraction'>4/12</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">44.44% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>9/9</span>
+        <span class='fraction'>4/9</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">33.33% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>12/12</span>
+        <span class='fraction'>4/12</span>
       </div>
     </div>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -93,8 +93,7 @@
 48
 49
 50
-51
-52</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+51</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -105,54 +104,52 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">51×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">40×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-yes">35×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-yes">35×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-yes">8×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: AGPL-3.0-or-later
 pragma solidity ^0.8.0;
 &nbsp;
 import {
-  ERC165Mock,
-  ERC165Logic,
+  ERC165,
   IERC165
-} from "contracts/introspection/erc165/mocks/ERC165Mock.sol";
+} from "contracts/introspection/erc165/ERC165.sol";
 &nbsp;
 library ERC165Context {
 &nbsp;
@@ -160,40 +157,40 @@ library ERC165Context {
     interfaceId_ = type(IERC165).interfaceId;
   }
 &nbsp;
-  function _functionSelectors() internal pure returns (bytes4[] memory functionSelectors_) {
-    functionSelectors_ = new bytes4[](1);
-    functionSelectors_[0] = IERC165.supportsInterface.selector;
+<span class="fstat-no" title="function not covered" >  function _functionSelectors() internal pure returns (bytes4[] memory functionSelectors_) {</span>
+<span class="cstat-no" title="statement not covered" >    functionSelectors_ = new bytes4[](1)</span>;
+<span class="cstat-no" title="statement not covered" >    functionSelectors_[0] = IERC165.supportsInterface.selector</span>;
   }
 &nbsp;
-  function calcInterfaceId() external pure returns (bytes4 interfaceId_) {
-    bytes4[] memory functionSelectors_ = _functionSelectors();
-    for(uint8 iteration = 0; functionSelectors_.length &gt; iteration; iteration++) {
-      interfaceId_ = interfaceId_ ^ functionSelectors_[iteration];
+<span class="fstat-no" title="function not covered" >  function calcInterfaceId() external pure returns (bytes4 interfaceId_) {</span>
+<span class="cstat-no" title="statement not covered" >    bytes4[] memory functionSelectors_ = _functionSelectors();</span>
+<span class="cstat-no" title="statement not covered" >    for(uint8 iteration = 0; functionSelectors_.length &gt; iteration; iteration++) {</span>
+<span class="cstat-no" title="statement not covered" >      interfaceId_ = interfaceId_ ^ functionSelectors_[iteration]</span>;
     }
   }
 &nbsp;
-  function functionSelectors() external pure returns (bytes4[] memory functionSelectors_) {
-    functionSelectors_ = _functionSelectors();
+<span class="fstat-no" title="function not covered" >  function functionSelectors() external pure returns (bytes4[] memory functionSelectors_) {</span>
+<span class="cstat-no" title="statement not covered" >    functionSelectors_ = _functionSelectors()</span>;
   }
 &nbsp;
-  function creationCode() external pure returns (bytes memory creationCode_) {
-    creationCode_ = type(ERC165Logic).creationCode;
+<span class="fstat-no" title="function not covered" >  function creationCode() external pure returns (bytes memory creationCode_) {</span>
+<span class="cstat-no" title="statement not covered" >    creationCode_ = type(ERC165).creationCode</span>;
   }
 &nbsp;
   function codehash() external pure returns (bytes32 codehash_) {
-    codehash_ = keccak256(type(ERC165Logic).creationCode);
+    codehash_ = keccak256(type(ERC165).creationCode);
   }
 &nbsp;
   function name() external pure returns (string memory name_) {
-    name_ = type(ERC165Logic).name;
+    name_ = type(ERC165).name;
   }
 &nbsp;
   function instance() external pure returns (bytes memory instance_) {
-    instance_ = type(ERC165Mock).creationCode;
+    instance_ = type(ERC165).creationCode;
   }
 &nbsp;
-  function mock() external pure returns (bytes memory mock_) {
-    mock_ = type(ERC165Mock).creationCode;
+<span class="fstat-no" title="function not covered" >  function mock() external pure returns (bytes memory mock_) {</span>
+<span class="cstat-no" title="statement not covered" >    mock_ = type(ERC165).creationCode</span>;
   }
 &nbsp;
 }</pre></td></tr>
@@ -202,7 +199,7 @@ library ERC165Context {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 01:41:07 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 16:47:39 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

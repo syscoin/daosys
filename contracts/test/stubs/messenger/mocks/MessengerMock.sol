@@ -6,21 +6,22 @@ import {
   IMessenger
 } from "contracts/test/stubs/messenger/Messenger.sol";
 
-contract MessengerMock
-  is
-    Messenger
-{
+// FIXME[epic=refactor] MessengerMock needs refactor as reference implementation of not needing a mock.
+// contract MessengerMock
+//   is
+//     Messenger
+// {
 
-  function IMessengerInterfaceId() pure external returns (bytes4 interfaceId) {
-    interfaceId = type(IMessenger).interfaceId;
-  }
+//   // function IMessengerInterfaceId() pure external returns (bytes4 interfaceId) {
+//   //   interfaceId = type(IMessenger).interfaceId;
+//   // }
 
-  function setMessageFunctionSelector() pure external returns (bytes4 functionSelector) {
-    functionSelector = IMessenger.setMessage.selector;
-  }
+//   // function setMessageFunctionSelector() pure external returns (bytes4 functionSelector) {
+//   //   functionSelector = IMessenger.setMessage.selector;
+//   // }
 
-  function getMessageFunctionSelector() pure external returns (bytes4 functionSelector) {
-    functionSelector = IMessenger.getMessage.selector;
-  }
+//   // function getMessageFunctionSelector() pure external returns (bytes4 functionSelector) {
+//   //   functionSelector = IMessenger.getMessage.selector;
+//   // }
 
-}
+// }

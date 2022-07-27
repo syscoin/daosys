@@ -2,10 +2,9 @@
 pragma solidity ^0.8.0;
 
 import {
-  ERC165Mock,
-  ERC165Logic,
+  ERC165,
   IERC165
-} from "contracts/introspection/erc165/mocks/ERC165Mock.sol";
+} from "contracts/introspection/erc165/ERC165.sol";
 
 library ERC165Context {
 
@@ -30,23 +29,23 @@ library ERC165Context {
   }
 
   function creationCode() external pure returns (bytes memory creationCode_) {
-    creationCode_ = type(ERC165Logic).creationCode;
+    creationCode_ = type(ERC165).creationCode;
   }
 
   function codehash() external pure returns (bytes32 codehash_) {
-    codehash_ = keccak256(type(ERC165Logic).creationCode);
+    codehash_ = keccak256(type(ERC165).creationCode);
   }
 
   function name() external pure returns (string memory name_) {
-    name_ = type(ERC165Logic).name;
+    name_ = type(ERC165).name;
   }
 
   function instance() external pure returns (bytes memory instance_) {
-    instance_ = type(ERC165Mock).creationCode;
+    instance_ = type(ERC165).creationCode;
   }
 
   function mock() external pure returns (bytes memory mock_) {
-    mock_ = type(ERC165Mock).creationCode;
+    mock_ = type(ERC165).creationCode;
   }
 
 }

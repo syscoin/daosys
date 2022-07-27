@@ -8,7 +8,6 @@ interface IDelegateServiceFactory {
    * @param delegateServiceInterfaceId The ERC165 interface ID the delegate service exposes. This will be used as the create2 deployment salt.
    * @return newDelegateService The address of the newly deployed delegate service.
    */
-  // TODO restrict with RBAC NFT.
   function deployDelegateService(
     bytes calldata creationCode,
     bytes4 delegateServiceInterfaceId

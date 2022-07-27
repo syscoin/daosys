@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/10</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/7</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/10</span>
+        <span class='fraction'>4/4</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -93,13 +93,7 @@
 48
 49
 50
-51
-52
-53
-54
-55
-56
-57</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+51</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -110,14 +104,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -127,97 +113,93 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: AGPL-3.0-or-later
 pragma solidity ^0.8.0;
 &nbsp;
 import {
-  ServiceLogic,
+  Service,
   IService
-} from "contracts/service/logic/ServiceLogic.sol";
+} from "contracts/service/Service.sol";
 &nbsp;
-contract ServiceMock is IService {
-&nbsp;
-<span class="fstat-no" title="function not covered" >  constructor() {</span>
-<span class="cstat-no" title="statement not covered" >    ServiceLogic._initService()</span>;
-  }
-&nbsp;
-<span class="fstat-no" title="function not covered" >  function _addServiceDef(</span>
+interface IServiceMock is IService {
+  function addServiceDef(
     bytes4 interfaceId,
     bytes4[] memory functionSelectors
-  ) internal {
-<span class="cstat-no" title="statement not covered" >    ServiceLogic._addServiceDef(</span>
-      interfaceId,
-      functionSelectors
-    );
-  }
+  ) external returns (bool success);
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function addServiceDef(</span>
+  function getServiceDefs() external view returns (ServiceDef[] memory serviceDef);
+}
+&nbsp;
+/* -------------------------------------------------------------------------- */
+/*                             SECTION ServiceMock                            */
+/* -------------------------------------------------------------------------- */
+/* ------------------------- ANCHOR[id=ServiceMock] ------------------------- */
+&nbsp;
+// FIXME[epic=refactor] Refactor to Context standard.
+// FIXME[epic=test-coverage] Write unit tests.
+contract ServiceMock
+  is Service, IServiceMock
+{
+&nbsp;
+  function addServiceDef(
     bytes4 interfaceId,
     bytes4[] memory functionSelectors
   ) external returns (bool success) {
-<span class="cstat-no" title="statement not covered" >    _addServiceDef(</span>
+    _addServiceDef(
       interfaceId,
       functionSelectors
     );
-<span class="cstat-no" title="statement not covered" >    success = true</span>;
+    success = true;
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function setDeploymentSalt(</span>
-    bytes32 deploymentSalt
-  ) external returns (bool success) {
-<span class="cstat-no" title="statement not covered" >    ServiceLogic._setDeploymentSalt(deploymentSalt)</span>;
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    success = true</span>;
+  function supportsInterface(bytes4 interfaceId) public view virtual override(IService,Service) returns (bool isSupported) {
+    isSupported = super.supportsInterface(interfaceId);
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function supportsInterface(bytes4 interfaceId) override virtual external view returns (bool isSupported) {</span>
-<span class="cstat-no" title="statement not covered" >    isSupported = ServiceLogic._supportsInterface(interfaceId)</span>;
+  function getServiceDefs() public view override(Service,IServiceMock) returns (ServiceDef[] memory serviceDef) {
+    serviceDef = super.getServiceDefs();
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function getCreate2Pedigree() external view returns (Create2Pedigree memory pedigree) {</span>
-<span class="cstat-no" title="statement not covered" >    pedigree.factory = ServiceLogic._getFactory()</span>;
-<span class="cstat-no" title="statement not covered" >    pedigree.deploymentSalt = ServiceLogic._getDeploymentSalt()</span>;
-  }
-&nbsp;
-<span class="fstat-no" title="function not covered" >  function getServiceDefs() external view returns (ServiceDef[] memory serviceDef) {</span>
-<span class="cstat-no" title="statement not covered" >    serviceDef = ServiceLogic._getServiceDefs()</span>;
-  }
-&nbsp;
-}</pre></td></tr>
+}
+/* -------------------------------------------------------------------------- */
+/*                            !SECTION ServiceMock                            */
+/* -------------------------------------------------------------------------- */</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 01:41:07 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 26 2022 16:47:39 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../../prettify.js"></script>
