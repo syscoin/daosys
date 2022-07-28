@@ -2,6 +2,7 @@
 Ichi provides vaults to produce filly collateralized stable coins pegged to $1. Below is our due diligence to ensure which information is not readily available for further discussions with ICHI. 
 
 === What stable coins does ICHI accept for the reserve providing collateral for the stable coins.
+https://asciidoctor.org[Asciidoctor]
 
 === What types of vaults does ICHI offer?
 
