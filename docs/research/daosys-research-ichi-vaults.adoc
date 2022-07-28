@@ -38,6 +38,8 @@ These tokens are not active as of yet:
 
 ==== HODL Vaults
 
+To see which tokens ICUI accepts, goto the https://app.ichi.org/hodlvault[HODL vault page], active tokens include:
+
 * wNXM
 * wBTC
 * 1INCH
@@ -65,7 +67,13 @@ Non-active LP vaults with no liquidity include:
 
 === What strategies are implemented in the types of ICHI vaults?
 
+* https://app.ichi.org/vault[Angel Vaults]: Works by continually establishing new price floors via buyers of last resort by building buy-walls of liquidity to protect a token's price. It works by pairing dollar pegged assets (called the deposit token) to provide this price protection for the other token (called the paired token). Rebalancing is done on an as-needed basis. Monitoring is done automatically, but rebalancing is done via ICHI governance. The deposit tokens utilizes 'Branded Dollars' which empower communities claim ownership of their own liqudity; these are on-chain stable tokens worth $1, and are supported by a community treasury.
+
+* https://app.ichi.org/hodlvault[HODL Vaults]: Works by users earning trading fees in exchange for the liquidity deposits of users. The HODL vault takes single-sided deposits called the deposit token. At the point of withdraw, users will receive a combination of the project's token and ICHI. Rebalances happen on an as-needed basis, and are managed in the same way as Angel vaults. 
+
 === What defi protocols are ICHI vaults dependent upon?
+
+Both Angel and HODL vault depend on Uniswap v3
 
 === Identify which defi protocol dependencies have compatible versions on the Syscoin NEVM chain.
 
