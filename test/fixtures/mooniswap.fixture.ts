@@ -26,7 +26,10 @@ export interface mooniswapInitializeArgs {
 }
 
 export const initializeMooniswap = async (params: mooniswapInitializeArgs) => {
-    return await new MooniFactory__factory(params.deployer).deploy();
+    const factory = await new MooniFactory__factory(params.deployer).deploy();
+    await factory.deployed();
+
+    return factory;
 }
 
 export interface mooniswapPairCreateArgs {

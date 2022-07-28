@@ -21,26 +21,32 @@ contract MooniswapManagerInternalMock is MooniswapManagerInternal {
         _setMooniswapPoolAddress(IDELEGATESERVICEREGISTRY_STORAGE_SLOT_SALT, mooniswapPair);
     }
 
+    function getMooniswapFactoryAddress() public view returns(address) {
+        return _getMooniswapFactory(IDELEGATESERVICEREGISTRY_STORAGE_SLOT_SALT);
+    }
+
+    function getMooniswapPoolAddress() public view returns(address) {
+        return _getMooniswapPool(IDELEGATESERVICEREGISTRY_STORAGE_SLOT_SALT);
+    }
+
     /**
     
      */
     function deposit(
-        bytes32 storageSlotSalt,
         IERC20[2] calldata tokens,
         uint256[] calldata amounts,
         uint256[] calldata minAmounts
     )  public {
-        _deposit(storageSlotSalt, tokens, amounts, minAmounts);
+        _deposit(IDELEGATESERVICEREGISTRY_STORAGE_SLOT_SALT, tokens, amounts, minAmounts);
     }
 
     function swap(
-        bytes32 storageSlotSalt,
         IERC20 src,
         uint256 amount,
         uint256 minReturn,
         address ref
     ) public  {
-        _swap(storageSlotSalt, src, amount, minReturn, ref);
+        _swap(IDELEGATESERVICEREGISTRY_STORAGE_SLOT_SALT, src, amount, minReturn, ref);
     }
 
 
