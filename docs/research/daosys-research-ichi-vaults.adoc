@@ -2,7 +2,16 @@
 Ichi provides vaults to produce filly collateralized stable coins pegged to $1. Below is our due diligence to ensure which information is not readily available for further discussions with ICHI. 
 
 === What stable coins does ICHI accept for the reserve providing collateral for the stable coins.
-https://asciidoctor.org[Asciidoctor]
+To see which tokens ICUI accepts, goto the https://app.ichi.org/vault/[vault page]. The active tokens include:
+* USDC (stable)
+* QRDO
+* oneICHI (stable)
+* ICHI
+These tokens are not active as of yet:
+* oneFUSE (stable)
+* FUSE
+* oneGIV (stable)
+* GIV
 
 === What types of vaults does ICHI offer?
 
