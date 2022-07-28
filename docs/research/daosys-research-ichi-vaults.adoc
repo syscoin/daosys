@@ -19,7 +19,10 @@ endif::[]
 Ichi provides vaults to produce filly collateralized stable coins pegged to $1. Below is our due diligence to ensure which information is not readily available for further discussions with ICHI. 
 
 === What stable coins does ICHI accept for the reserve providing collateral for the stable coins.
-To see which tokens ICUI accepts, goto the https://app.ichi.org/vault/[vault page]. The active tokens include:
+
+==== Angel Vaults
+
+To see which tokens ICUI accepts, goto the https://app.ichi.org/vault/[LP vault page], active tokens include:
 
 * USDC (stable)
 * QRDO
@@ -33,7 +36,32 @@ These tokens are not active as of yet:
 * oneGIV (stable)
 * GIV
 
+==== HODL Vaults
+
+* wNXM
+* wBTC
+* 1INCH
+* CEL
+* GNO
+* FUSE
+* BNT
+* ALLY
+
 === What types of vaults does ICHI offer?
+
+* https://app.ichi.org/vault[Angel Vaults]: Uniswap v3 liquidty management protocol claiming to be the most successful liquidity strategy in DeFi without having to actively manage their pool positions.
+* https://app.ichi.org/hodlvault[HODL Vaults]: Uniswap v3 liquidty management protocol that Utilize single-sided concentrated liquidty pools created with a project's native token
+
+Goto https://app.ichi.org/vault/[LP vault page], active LP vaults with liquidity include:
+
+* oneICHI-IHCI
+* USDC-ICHI
+
+Non-active LP vaults with no liquidity include:
+
+* USDC-QRDO
+* oneFUSE-FUSE
+* oneGIV-GIV
 
 === What strategies are implemented in the types of ICHI vaults?
 
