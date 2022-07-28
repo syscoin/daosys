@@ -1,4 +1,21 @@
-==  ICHI Vaults Review
+= ICHI Vaults Review
+ifndef::compositing[]
+:author: Ian Moore
+:email: imoore@syscoin.org
+:revdate: 2022-07-01
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 5
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
 Ichi provides vaults to produce filly collateralized stable coins pegged to $1. Below is our due diligence to ensure which information is not readily available for further discussions with ICHI. 
 
 === What stable coins does ICHI accept for the reserve providing collateral for the stable coins.
