@@ -51,8 +51,8 @@ To see which tokens ICUI accepts, goto the https://app.ichi.org/hodlvault[HODL v
 
 === What types of vaults does ICHI offer?
 
-* https://app.ichi.org/vault[Angel Vaults]: Uniswap v3 liquidty management protocol claiming to be the most successful liquidity strategy in DeFi without having to actively manage their pool positions.
-* https://app.ichi.org/hodlvault[HODL Vaults]: Uniswap v3 liquidty management protocol that Utilize single-sided concentrated liquidty pools created with a project's native token
+* https://docs.ichi.org/ichi-docs-v3/ichi-vaults/angel-vaults[Angel Vaults]: Uniswap v3 liquidty management protocol claiming to be the most successful liquidity strategy in DeFi without having to actively manage their pool positions.
+* https://docs.ichi.org/ichi-docs-v3/ichi-vaults/hodl-vaults[HODL Vaults]: Uniswap v3 liquidty management protocol that Utilize single-sided concentrated liquidty pools created with a project's native token
 
 Goto https://app.ichi.org/vault/[LP vault page], active LP vaults with liquidity include:
 
@@ -67,9 +67,9 @@ Non-active LP vaults with no liquidity include:
 
 === What strategies are implemented in the types of ICHI vaults?
 
-* https://app.ichi.org/vault[Angel Vaults]: Works by continually establishing new price floors via buyers of last resort by building buy-walls of liquidity to protect a token's price. It works by pairing dollar pegged assets (called the deposit token) to provide this price protection for the other token (called the paired token). Rebalancing is done on an as-needed basis. Monitoring is done automatically, but rebalancing is done via ICHI governance. The deposit tokens utilizes 'Branded Dollars' which empower communities claim ownership of their own liqudity; these are on-chain stable tokens worth $1, and are supported by a community treasury.
+* https://docs.ichi.org/ichi-docs-v3/ichi-vaults/angel-vaults[Angel Vaults]: Works by continually establishing new price floors via buyers of last resort by building buy-walls of liquidity to protect a token's price. It works by pairing dollar pegged assets (called the deposit token) to provide this price protection for the other token (called the paired token). Rebalancing is done on an as-needed basis. Monitoring is done automatically, but rebalancing is done via ICHI governance. The deposit tokens utilizes 'Branded Dollars' which empower communities claim ownership of their own liqudity; these are on-chain stable tokens worth $1, and are supported by a community treasury.
 
-* https://app.ichi.org/hodlvault[HODL Vaults]: Works by users earning trading fees in exchange for the liquidity deposits of users. The HODL vault takes single-sided deposits called the deposit token. At the point of withdraw, users will receive a combination of the project's token and ICHI. Rebalances happen on an as-needed basis, and are managed in the same way as Angel vaults. 
+* https://docs.ichi.org/ichi-docs-v3/ichi-vaults/hodl-vaults[HODL Vaults]: Works by users earning trading fees in exchange for the liquidity deposits of users. The HODL vault takes single-sided deposits called the deposit token. At the point of withdraw, users will receive a combination of the project's token and ICHI. Rebalances happen on an as-needed basis, and are managed in the same way as Angel vaults. 
 
 === What defi protocols are ICHI vaults dependent upon?
 
@@ -77,8 +77,15 @@ Both Angel and HODL vault depend on Uniswap v3
 
 === Identify which defi protocol dependencies have compatible versions on the Syscoin NEVM chain.
 
+Since they depend on Uniswap v3
+
 === Define the revenue stream source for projects the vaults are intended to support.
 
+This is not that explicit on their docs page, the best we can do it seems is to filter through their blog and medium page. 
+
+ICHI has this unique feature called a Branded Dollar, which is an token created and managed on-chain by a community and is pegged to $1. They are also referred to as Decentralized Monetary Authorites (DMAs). The benefit is that the minter does not require users to take out a debt position, or over collateralize to mint one of these dollars. Instead Branded Dollars enable minters to deposit 1 USD of value to receive 1 USD in value back, which does not pose the risk of being liquidated; kind of like a swap into a stable token. All managment is done on-chain making the collateral backing 100% transparent, where other more popular stable tokens like Tether and USDC are not. If you goto their vault page, it doesn't seem like their has been much uptake on these Branded dollars as of yet, one can only speculate that projects like oneGIV and oneFUSE are projects that are still in the launch phase.  
+
 === How is the interest of the integrated strategies distributed?
+
 
 === Define the value proposition to users depositing into the vaults.
