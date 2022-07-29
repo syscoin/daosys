@@ -68,7 +68,6 @@ Non-active LP vaults with no liquidity include:
 === What strategies are implemented in the types of ICHI vaults?
 
 * https://docs.ichi.org/ichi-docs-v3/ichi-vaults/angel-vaults[Angel Vaults]: Works by continually establishing new price floors via buyers of last resort by building buy-walls of liquidity to protect a token's price. It works by pairing dollar pegged assets (called the deposit token) to provide this price protection for the other token (called the paired token). Rebalancing is done on an as-needed basis. Monitoring is done automatically, but rebalancing is done via ICHI governance. The deposit tokens utilizes 'Branded Dollars' which empower communities claim ownership of their own liqudity; these are on-chain stable tokens worth $1, and are supported by a community treasury.
-
 * https://docs.ichi.org/ichi-docs-v3/ichi-vaults/hodl-vaults[HODL Vaults]: Works by users earning trading fees in exchange for the liquidity deposits of users. The HODL vault takes single-sided deposits called the deposit token. At the point of withdraw, users will receive a combination of the project's token and ICHI. Rebalances happen on an as-needed basis, and are managed in the same way as Angel vaults. 
 
 === What defi protocols are ICHI vaults dependent upon?
@@ -77,7 +76,7 @@ Both Angel and HODL vault depend on Uniswap v3
 
 === Identify which defi protocol dependencies have compatible versions on the Syscoin NEVM chain.
 
-Since they depend on Uniswap v3
+Since they depend on Uniswap v3, not sure how this relates to Syscoin NEVM chain,ie, I'm assuming NEVM supports Uniswap v3
 
 === Define the revenue stream source for projects the vaults are intended to support.
 
@@ -89,8 +88,9 @@ ICHI has this unique feature called a https://docs.ichi.org/ichi-docs-v3/branded
 
 === Define the value proposition to users depositing into the vaults.
 
-* When using Angel Vaults, token price is protected during bear markets by creating buy walls, as the liquidity in the vault become buyer of last resort
+* When using Angel Vaults, token price is protected during bear markets by creating buy walls, as the liquidity in the vault becomes the buyer of last resort
 * Angel Vaults uses Branded Dollars as one of the liquidity pair tokens which empower communities to have ownership over their own capital
 * The collateral backing on Branded dollars is 100% transparent on-chain, unlike popular stable coins like Tether and USDC
 * Upward price pressure is created by committing the branded dollar to the Angel Vault, hence making liquidity rewards deflationary
 * By creating a Branded Dollar, communities are able to introduce a stable medium of exchange for their economy without having to sell-off their native project tokens while earning yield on those dollars simultaneously when committed to a vault 
+* Not having to sell off native tokens, while at the same time use Branded dollar to conduct business is possibly a way around tax events? This is what I am deducing from reading their docs, however it is not clear; it would be good if they provided some usecase examples on how this works.
