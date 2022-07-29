@@ -83,9 +83,14 @@ Since they depend on Uniswap v3
 
 This is not that explicit on their docs page, the best we can do it seems is to filter through their blog and medium page. 
 
-ICHI has this unique feature called a Branded Dollar, which is an token created and managed on-chain by a community and is pegged to $1. They are also referred to as Decentralized Monetary Authorites (DMAs). The benefit is that the minter does not require users to take out a debt position, or over collateralize to mint one of these dollars. Instead Branded Dollars enable minters to deposit 1 USD of value to receive 1 USD in value back, which does not pose the risk of being liquidated; kind of like a swap into a stable token. All managment is done on-chain making the collateral backing 100% transparent, where other more popular stable tokens like Tether and USDC are not. If you goto their vault page, it doesn't seem like their has been much uptake on these Branded dollars as of yet, one can only speculate that projects like oneGIV and oneFUSE are projects that are still in the launch phase.  
+ICHI has this unique feature called a https://docs.ichi.org/ichi-docs-v3/branded-dollars/overview[Branded Dollar], which is an token created and managed on-chain by a community and is pegged to $1. They are also referred to as Decentralized Monetary Authorites (DMAs). The benefit is that the minter does not require users to take out a debt position, or over collateralize to mint one of these dollars. Instead Branded Dollars enable minters to deposit 1 USD of value to receive 1 USD in value back, which does not pose the risk of being liquidated; kind of like a swap into a stable token. All managment is done on-chain making the collateral backing 100% transparent, where other more popular stable tokens like Tether and USDC are not. If you goto their vault page, it doesn't seem like their has been much uptake on these Branded dollars as of yet, one can only speculate that projects like oneGIV and oneFUSE are projects that are still in the launch phase.  
 
 === How is the interest of the integrated strategies distributed?
 
-
 === Define the value proposition to users depositing into the vaults.
+
+* When using Angel Vaults, token price is protected during bear markets by creating buy walls, as the liquidity in the vault become buyer of last resort
+* Angel Vaults uses Branded Dollars as one of the liquidity pair tokens which empower communities to have ownership over their own capital
+* The collateral backing on Branded dollars is 100% transparent on-chain, unlike popular stable coins like Tether and USDC
+* Upward price pressure is created by committing the branded dollar to the Angel Vault, hence making liquidity rewards deflationary
+* By creating a Branded Dollar, communities are able to introduce a stable medium of exchange for their economy without having to sell-off their native project tokens while earning yield on those dollars simultaneously when committed to a vault 
