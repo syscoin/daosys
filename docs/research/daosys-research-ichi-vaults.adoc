@@ -100,8 +100,8 @@ ICHI has this unique feature called a https://docs.ichi.org/ichi-docs-v3/branded
 === Branded Dollar
 
 * If we refer to subheader https://docs.ichi.org/ichi-docs-v3/branded-dollars/technical-guide/subcomponent-guide[Mint Masters] we find some explaination on how ICHI maintains the $1 peg.
-* * Have you ever experienced any events where this project went significantly off peg?
-* * Can we drill a bit further into this relationship between collateral reserve and community treasury; and a simple step-by-step example walk through would be good on how this works?
+** Have you ever experienced any events where this project went significantly off peg?
+** Can we drill a bit further into this relationship between collateral reserve and community treasury; and a simple step-by-step example walk through would be good on how this works?
 * The mechanism on how someone fresh off the street creates a Branded Dollar is not clear; can you provide us the process on how this happends?
 * Can we go into some more detail on risks behind owning a Branded Dollar; once created is the dollar value in reserve fixed, or does it fluctuate with the TLV in the community treasury? 
 * It seems one of the big advantages of creating a branded dollar, would be a way of a community to get around creating tax events, what is your thinking on this?
@@ -111,19 +111,19 @@ ICHI has this unique feature called a https://docs.ichi.org/ichi-docs-v3/branded
 === Angel Vault
 
 * One of the main boasting features that you advertise is that AVLPs are continually creating price floors by employing a 'buyers of last resort' mechanisim
-* * Do you have any raw price action data on any existing projects validating this?
-* * When price is falling, who are the buyers of last resort? Your docs say the Angel Vault liquidty becomes the buyer; however what happens when the liquidty buyer becomes exhausted?
+** Do you have any raw price action data on any existing projects validating this?
+** When price is falling, who are the buyers of last resort? Your docs say the Angel Vault liquidty becomes the buyer; however what happens when the liquidty buyer becomes exhausted?
 
 === Partnerships
 
 * Who are your most successful partners with their own branded dollars?
-* * How long have each of them been involved?
-* * What purpose do each of these communities serve?
+** How long have each of them been involved?
+** What purpose do each of these communities serve?
 * How exactly are DAOSYS and ICHI going to help each other?
-* * What ideas have been discussed so far?
-* * Does anyone have ideas in mind that have not been brought to light?
-* * Is DAOSYS creating its own branded dollar?
-* * Is ICHI going to be utilizing DAOSYS tools?
+** What ideas have been discussed so far?
+** Does anyone have ideas in mind that have not been brought to light?
+** Is DAOSYS creating its own branded dollar?
+** Is ICHI going to be utilizing DAOSYS tools?
 
 
   
