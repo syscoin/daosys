@@ -9,8 +9,8 @@ import {
 /*                              SECTION IService                              */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[IService]
-// FIXME[epic=docs] IService needs updated NatSpec comments.
-// FIXME[epic=refactor] IService needs implementation
+// FIXME[epic=docs] #36 IService needs updated NatSpec comments.
+// FIXME[epic=refactor] #37 IService needs implementation
 interface IService
   is
     IERC165
