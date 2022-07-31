@@ -5,7 +5,12 @@ import {
   IERC165
 } from "contracts/introspection/erc165/IERC165.sol";
 
-// TODO Write NatSpec comments.
+/* -------------------------------------------------------------------------- */
+/*                              SECTION IService                              */
+/* -------------------------------------------------------------------------- */
+// ANCHOR[IService]
+// FIXME[epic=docs] IService needs updated NatSpec comments.
+// FIXME[epic=refactor] IService needs implementation
 interface IService
   is
     IERC165
@@ -24,9 +29,9 @@ interface IService
     bytes32 deploymentSalt;
   }
 
-  // /**
-  //  * #inheritdoc IERC165
-  //  */
+  /**
+   * #inheritdoc IERC165
+   */
   function supportsInterface(bytes4 interfaceId) external view returns (bool isSupported);
 
   // TODO Document that this should revert after deployment.
@@ -42,3 +47,6 @@ interface IService
   function getServiceDefs() external view returns (ServiceDef[] memory serviceDef);
 
 }
+/* -------------------------------------------------------------------------- */
+/*                              !SECTION IService                             */
+/* -------------------------------------------------------------------------- */
