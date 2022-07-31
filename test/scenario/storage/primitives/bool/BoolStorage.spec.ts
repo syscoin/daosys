@@ -58,10 +58,9 @@ describe("BoolStorage Test Suite", function () {
   /* -------------------------------------------------------------------------- */
 
   /* -------------------------------------------------------------------------- */
-  /*                            SECTION Testing Bool                            */
+  /*                    SECTION Testing BoolStorageUtilsMock                    */
   /* -------------------------------------------------------------------------- */
 
-    // TODO Test rest of StringUtils on String.
   describe("BoolStorageUtilsMock", function () {
 
     it("Can set and get a bool", async function () {
@@ -77,9 +76,8 @@ describe("BoolStorage Test Suite", function () {
     });
 
   });
-
   /* -------------------------------------------------------------------------- */
-  /*                            !SECTION Testing Bool                           */
+  /*                    !SECTION Testing BoolStorageUtilsMock                   */
   /* -------------------------------------------------------------------------- */
 
 });

@@ -9,7 +9,7 @@ import {
 /*                         SECTION Bytes4StorageUtils                         */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[Bytes4StorageUtils]
-// FIXME[epic=docs] BoolStorageUtils meeds NatSpec comments.
+// FIXME[epic=docs] #21 BoolStorageUtils meeds NatSpec comments.
 library Bytes4StorageUtils {
 
   using Bytes4StorageUtils for Bytes4Storage.Layout;

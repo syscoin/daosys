@@ -7,7 +7,7 @@ pragma solidity 0.8.13;
 /*                            SECTION Bytes4Storage                           */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[Bytes4Storage]
-// FIXME[epic=docs] Bytes4Storage meeds NatSpec comments.
+// FIXME[epic=docs] #20 Bytes4Storage meeds NatSpec comments.
 library Bytes4Storage {
 
   struct Layout {

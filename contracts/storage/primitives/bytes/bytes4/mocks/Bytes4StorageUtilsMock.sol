@@ -13,8 +13,8 @@ import {
 /*                       SECTION Bytes4StorageUtilsMock                       */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[Bytes4StorageUtilsMock]
-// FIXME[epic=test-coverage] Bytes4StorageUtilsMock need unit tests.
-// FIXME[epic=docs] Bytes4StorageUtilsMock meeds NatSpec comments.
+// FIXME[epic=test-coverage] #25 Bytes4StorageUtilsMock need unit tests.
+// FIXME[epic=docs] #24 Bytes4StorageUtilsMock meeds NatSpec comments.
 contract Bytes4StorageUtilsMock {
 
   function setValue(bytes4 newValue) external returns (bool success) {

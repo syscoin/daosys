@@ -11,7 +11,7 @@ import {
 /*                       SECTION Bytes4StorageRepository                      */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[Bytes4StorageRepository]
-// FIXME[epic=docs] Bytes4StorageRepository meeds NatSpec comments.
+// FIXME[epic=docs] #23 Bytes4StorageRepository meeds NatSpec comments.
 library Bytes4StorageRepository {
 
   using Bytes4StorageUtils for Bytes4Storage.Layout;
