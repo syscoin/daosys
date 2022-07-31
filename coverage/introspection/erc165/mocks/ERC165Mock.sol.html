@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for introspection/erc165/storage/ERC165StorageBinder.sol</title>
+    <title>Code coverage report for introspection/erc165/mocks/ERC165Mock.sol</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../../index.html">all files</a> / <a href="index.html">introspection/erc165/storage/</a> ERC165StorageBinder.sol
+      <a href="../../../index.html">all files</a> / <a href="index.html">introspection/erc165/mocks/</a> ERC165Mock.sol
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>1/1</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/1</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>3/3</span>
       </div>
     </div>
   </div>
@@ -78,9 +78,7 @@
 33
 34
 35
-36
-37
-38</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+36</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -103,14 +101,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">36×</span>
-<span class="cline-any cline-yes">36×</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -121,38 +117,36 @@
 pragma solidity ^0.8.0;
 &nbsp;
 import {
-  BoolStorage,
-  BoolStorageUtils,
-  ERC165Storage,
-  ERC165StorageUtils
-} from "contracts/introspection/erc165/storage/ERC165StorageUtils.sol";
+  IERC165,
+  ERC165Logic,
+  ERC165
+} from "contracts/introspection/erc165/ERC165.sol";
 &nbsp;
 /* -------------------------------------------------------------------------- */
-/*                         SECTION ERC165StorageBinder                        */
+/*                             SECTION ERC165Mock                             */
 /* -------------------------------------------------------------------------- */
-/**
- * @title ERC165 implementation
- */
-// ANCHOR[ERC165StorageBinder]
-// FIXME[epic=docs] #29 ERC165StorageBinder needs NatSpec comments.
-library ERC165StorageBinder {
+// ANCHOR[ERC165Mock]
+// FIXME[epic=docs] #33 ERC165Mock needs updated NatSpec comments.
+// FIXME[epic=test-coverage] #34 ERC165Mock needs unit tests.
+contract ERC165Mock
+  is
+    ERC165
+{
 &nbsp;
-  /**
-   * @dev Declared to indicate that this declaration will be needed when using ERC165Storage.
-   */
-  using BoolStorageUtils for BoolStorage.Layout;
-  using ERC165StorageUtils for ERC165Storage.Layout;
+  function addSupportedInterface(
+    bytes4 interfaceId
+  ) external returns (bool success) {
+    _addSupportedInterface(interfaceId);
+    success = true;
+  }
 &nbsp;
-  bytes32 private constant STRUCT_STORAGE_SLOT = keccak256(type(ERC165Storage).creationCode);
-&nbsp;
-  function _layout( bytes32 storageSlotSalt ) pure internal returns ( ERC165Storage.Layout storage layout ) {
-    bytes32 saltedSlot = storageSlotSalt ^STRUCT_STORAGE_SLOT;
-    assembly{ layout.slot := saltedSlot }
+  function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool isSupported) {
+    isSupported = super.supportsInterface(interfaceId);
   }
   
 }
 /* -------------------------------------------------------------------------- */
-/*                        !SECTION ERC165StorageBinder                        */
+/*                             !SECTION ERC165Mock                            */
 /* -------------------------------------------------------------------------- */
 &nbsp;</pre></td></tr>
 </table></pre>

@@ -4,8 +4,7 @@ pragma solidity ^0.8.0;
 import {
   IERC165,
   ERC165,
-  ERC165Mock,
-  IERC165Mock
+  ERC165Mock
 } from "contracts/introspection/erc165/mocks/ERC165Mock.sol";
 
 library ERC165Context {
@@ -48,10 +47,6 @@ library ERC165Context {
 
   function mock() external pure returns (bytes memory mock_) {
     mock_ = type(ERC165Mock).creationCode;
-  }
-
-  function mockInterfaceId() external pure returns (bytes4 mockInterfaceId_) {
-    mockInterfaceId_ = type(IERC165Mock).interfaceId;
   }
 
 }

@@ -21,8 +21,6 @@ library ERC165StorageUtils {
 
   using BoolStorageUtils for BoolStorage.Layout;
 
-  bytes4 internal constant INVALID_INTERFACE_ID = 0xffffffff;
-
   /**
    * @dev Declared to indicate that this declaration will be needed when using ERC165Storage.
    */
@@ -40,7 +38,6 @@ library ERC165StorageUtils {
     ERC165Storage.Layout storage layout
     // bytes4 interfaceId
   ) internal {
-    // require(interfaceId != INVALID_INTERFACE_ID, "ERC165: invalid interface id");
     layout.supportedInterfaces._setValue(true);
   }
   
