@@ -1,8 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// DO NOT CHANGE COMPILER VERSION FROM DEPLOYED VERSION
-// Optimizer Runs = 200
 pragma solidity ^0.8.0;
-// TODO Write NatSpec comments. See contracts/types/primitives/String.sol
 
 import {
   BoolStorage
@@ -12,13 +9,12 @@ import {
 /*                          SECTION BoolStorageUtils                          */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[BoolStorageUtils]
-// FIXME[epic=test-coverage] BoolStorageUtils meeds units tests.
-// FIXME[epic=docs] BoolStorageUtils meeds NatSpec comments.
+// FIXME[epic=test-coverage] #12 BoolStorageUtils meeds units tests.
+// FIXME[epic=docs] #11 BoolStorageUtils meeds NatSpec comments.
 library BoolStorageUtils {
 
   using BoolStorageUtils for BoolStorage.Layout;
   
-  // FIXME[epic=test-coverage] BoolStorageUtils._setValue() unit test needed
   function _setValue(
     BoolStorage.Layout storage layout,
     bool newValue
@@ -26,7 +22,6 @@ library BoolStorageUtils {
     layout.value = newValue;
   }
 
-  // FIXME[epic=test-coverage] BoolStorageUtils._getValue() unit test needed
   function _getValue(
     BoolStorage.Layout storage layout
   ) view internal returns (
@@ -35,7 +30,6 @@ library BoolStorageUtils {
     value = layout.value;
   }
 
-  // FIXME[epic=test-coverage] BoolStorageUtils._wipeValue() unit test needed
   function _wipeValue(
     BoolStorage.Layout storage layout
   ) internal {

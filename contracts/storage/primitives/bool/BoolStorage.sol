@@ -7,7 +7,7 @@ pragma solidity 0.8.13;
 /*                             SECTION BoolStorage                            */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[BoolStorage]
-// FIXME[epic=docs] BoolStorage meeds NatSpec comments.
+// FIXME[epic=docs] #10 BoolStorage meeds NatSpec comments.
 library BoolStorage {
 
   struct Layout {
