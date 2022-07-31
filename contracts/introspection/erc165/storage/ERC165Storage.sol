@@ -16,7 +16,7 @@ import {
 /*                            SECTION ERC165Storage                           */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[ERC165Storage]
-//FIXME[epic=docs] ERC165Storage needs NatSpec comments.
+// FIXME[epic=docs] #27 ERC165Storage needs NatSpec comments.
 library ERC165Storage {
 
   /**

@@ -10,7 +10,7 @@ import {
 /*                               SECTION ERC165                               */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[ERC165]
-// FIXME[epic=docs] ERC165 needs updated NatSpec comments.
+// FIXME[epic=docs] #32 ERC165 needs updated NatSpec comments.
 contract ERC165
   is
     IERC165

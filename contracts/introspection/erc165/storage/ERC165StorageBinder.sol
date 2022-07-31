@@ -15,7 +15,7 @@ import {
  * @title ERC165 implementation
  */
 // ANCHOR[ERC165StorageBinder]
-// FIXME[epic=docs] ERC165StorageBinder needs NatSpec comments.
+// FIXME[epic=docs] #29 ERC165StorageBinder needs NatSpec comments.
 library ERC165StorageBinder {
 
   /**

@@ -20,8 +20,8 @@ interface IERC165Mock is IERC165 {
 /*                             SECTION ERC165Mock                             */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[ERC165Mock]
-// FIXME[epic=docs] ERC165Mock needs updated NatSpec comments.
-// FIXME[epic=test-coverage] ERC165Mock needs unit tests.
+// FIXME[epic=docs] #33 ERC165Mock needs updated NatSpec comments.
+// FIXME[epic=test-coverage] #34 ERC165Mock needs unit tests.
 contract ERC165Mock
   is
     ERC165

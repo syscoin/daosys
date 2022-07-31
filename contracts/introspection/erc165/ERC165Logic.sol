@@ -17,7 +17,7 @@ import {
 /*                             SECTION ERC165Logic                            */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[ERC165Logic]
-//FIXME[epic=docs] ERC165Logic needs NatSpec comments.
+// FIXME[epic=docs] #31 ERC165Logic needs NatSpec comments.
 library ERC165Logic {
 
   using ERC165StorageUtils for ERC165Storage.Layout;

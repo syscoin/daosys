@@ -16,7 +16,7 @@ import {
 /*                         SECTION ERC165StorageUtils                         */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[ERC165StorageUtils]
-//FIXME[epic=docs] ERC165Utils needs NatSpec comments.
+// FIXME[epic=docs] #28 ERC165Utils needs NatSpec comments.
 library ERC165StorageUtils {
 
   using BoolStorageUtils for BoolStorage.Layout;

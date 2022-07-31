@@ -19,7 +19,7 @@ import {
  * @title ERC165 implementation
  */
 // ANCHOR[ERC16StorageRepository]
-//FIXME[epic=docs] ERC16StorageRepository needs NatSpec comments.
+// FIXME[epic=docs] #30 ERC16StorageRepository needs NatSpec comments.
 library ERC16StorageRepository {
 
   using ERC165StorageUtils for ERC165Storage.Layout;
