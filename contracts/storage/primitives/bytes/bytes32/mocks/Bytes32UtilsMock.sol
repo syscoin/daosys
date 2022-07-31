@@ -13,8 +13,8 @@ import {
 /*                          SECTION Bytes32UtilsMock                          */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[Bytes32UtilsMock]
-// FIXME[epic=docs] Bytes32UtilsMock meeds unit tests.
-// FIXME[epic=docs] Bytes32UtilsMock meeds NatSpec comments.
+// FIXME[epic=docs] #47 Bytes32UtilsMock meeds unit tests.
+// FIXME[epic=docs] #46 Bytes32UtilsMock meeds NatSpec comments.
 contract Bytes32UtilsMock {
 
   function setValue(bytes32 newValue) external returns (bool result) {

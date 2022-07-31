@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// DO NOT CHANGE COMPILER VERSION FROM DEPLOYED VERSION
-// Optimizer Runs = 200
 pragma solidity ^0.8.0;
-// TODO Write NatSpec comments. See contracts/types/primitives/String.sol
+
 
 import {
   Bytes32Storage
@@ -12,7 +10,7 @@ import {
 /*                         SECTION Bytes32StorageUtils                        */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[Bytes32StorageUtils]
-// FIXME[epic=docs] Bytes32StorageUtils write NatSpec comments.
+// FIXME[epic=docs] #43 Bytes32StorageUtils write NatSpec comments.
 library Bytes32StorageUtils {
 
   using Bytes32StorageUtils for Bytes32Storage.Layout;

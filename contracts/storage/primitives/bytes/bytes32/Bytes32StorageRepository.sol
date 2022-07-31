@@ -11,7 +11,7 @@ import {
 /*                      SECTION Bytes32StorageRepository                      */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[Bytes32StorageRepository]
-// FIXME[epic=docs] Bytes32StorageRepository meeds NatSpec comments.
+// FIXME[epic=docs] #45 Bytes32StorageRepository meeds NatSpec comments.
 library Bytes32StorageRepository {
 
   using Bytes32StorageUtils for Bytes32Storage.Layout;
