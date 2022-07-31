@@ -11,7 +11,6 @@ import {
 /*                         SECTION AddressStorageUtils                        */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[AddressStorageUtils]
-// FIXME[epic=test-coverage] AddressStorageUtils meeds units tests.
 // FIXME[epic=docs] AddressStorageUtils meeds NatSpec comments.
 library AddressStorageUtils {
 

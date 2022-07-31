@@ -12,7 +12,6 @@ import {
 /*                        SECTION AddressStorageBinder                        */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[AddressStorageBinder]
-// FIXME[epic=test-coverage] AddressStorageBinder meeds units tests.
 // FIXME[epic=docs] AddressStorageBinder meeds NatSpec comments.
 library AddressStorageBinder {
 

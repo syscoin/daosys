@@ -11,7 +11,6 @@ import {
 /*                       SECTION AddressStorageUtilsMock                      */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[AddressStorageUtilsMock]
-// FIXME[epic=test-coverage] AddressStorageUtilsMock meeds units tests.
 // FIXME[epic=docs] AddressStorageUtilsMock meeds NatSpec comments.
 contract AddressStorageUtilsMock {
 

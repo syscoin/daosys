@@ -10,8 +10,8 @@ import {
 /* -------------------------------------------------------------------------- */
 /*                            SECTION ServiceDefSet                           */
 /* -------------------------------------------------------------------------- */
-// FIXME[epic=docs] ServiceStorage needs updated NatSpec comments.
-library ServiceDefSetStorage {
+// FIXME[epic=docs] ServiceDefSet needs NatSpec comments.
+library ServiceDefSet {
   
   // TODO refactor separate library like Bytes4Set and Bytes4SetStorage.
   struct Enumerable {
@@ -19,10 +19,6 @@ library ServiceDefSetStorage {
     // TODO LOW experiment with refactorting to use Bytes4Set.
     mapping( bytes4 => uint256 ) _indexes;
     IService.ServiceDef[] _values;
-  }
-
-  struct Layout {
-    Enumerable set;
   }
 
 }
