@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for service/ServiceLogic.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">service/</a> ServiceLogic.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/11</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/12</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: AGPL-3.0-or-later
+pragma solidity ^0.8.0;
+&nbsp;
+import {
+  IService,
+  ServiceStorage,
+  ServiceStorageUtils,
+  ServiceStorageRepository
+} from "contracts/service/storage/ServiceStorageRepository.sol";
+&nbsp;
+/* -------------------------------------------------------------------------- */
+/*                            SECTION ServiceLogic                            */
+/* -------------------------------------------------------------------------- */
+// ANCHOR[ServiceLogic]
+// FIXME[epic=docs] ServiceLogic needs NatSpec comments.
+library ServiceLogic {
+&nbsp;
+  using ServiceStorageUtils for ServiceStorage.Layout;
+&nbsp;
+  bytes32 internal constant ISERVICE_STORAGE_SLOT_SALT = type(IService).interfaceId;
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _initService() internal {</span>
+<span class="cstat-no" title="statement not covered" >    ServiceStorageRepository._setFactory(</span>
+      ISERVICE_STORAGE_SLOT_SALT,
+      msg.sender
+    );
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _addServiceDef(</span>
+    bytes4 interfaceId,
+    bytes4[] memory functionSelectors
+  ) internal {
+<span class="cstat-no" title="statement not covered" >    ServiceStorageRepository._addServiceDef(</span>
+      ISERVICE_STORAGE_SLOT_SALT,
+      IService.ServiceDef(
+        {
+          interfaceId: interfaceId,
+          functionSelectors: functionSelectors
+        }
+      )
+    );
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _addServiceDef(</span>
+    IService.ServiceDef memory newServiceDef
+  ) internal {
+<span class="cstat-no" title="statement not covered" >    ServiceStorageRepository._addServiceDef(</span>
+      ISERVICE_STORAGE_SLOT_SALT,
+      newServiceDef
+    );
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _setFactory(</span>
+    address factory
+  ) internal {
+<span class="cstat-no" title="statement not covered" >    ServiceStorageRepository._setFactory(</span>
+      ISERVICE_STORAGE_SLOT_SALT,
+      factory
+    );
+  }
+&nbsp;
+  /**
+   * @dev Intended to be called by factory to deploys a service.
+   *  Should be exposed by target of prosy produced by factory and made immutable once called.
+   */
+<span class="fstat-no" title="function not covered" >  function _setDeploymentSalt(</span>
+    bytes32 deploymentSalt
+  ) internal {
+<span class="cstat-no" title="statement not covered" >    ServiceStorageRepository._setDeploymentSalt(</span>
+      ISERVICE_STORAGE_SLOT_SALT,
+        deploymentSalt
+      );
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _getFactory() internal view returns (address factory) {</span>
+<span class="cstat-no" title="statement not covered" >    factory = ServiceStorageRepository._getFactory(ISERVICE_STORAGE_SLOT_SALT)</span>;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _getDeploymentSalt(</span>
+  ) internal view returns (bytes32 deploymentSalt) {
+<span class="cstat-no" title="statement not covered" >    deploymentSalt = ServiceStorageRepository._getDeploymentSalt(ISERVICE_STORAGE_SLOT_SALT)</span>;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _getPedigree() internal view returns (IService.Create2Pedigree memory pedigree) {</span>
+<span class="cstat-no" title="statement not covered" >    pedigree.factory = ServiceStorageRepository._getFactory(ISERVICE_STORAGE_SLOT_SALT)</span>;
+<span class="cstat-no" title="statement not covered" >    pedigree.deploymentSalt = ServiceStorageRepository._getDeploymentSalt(ISERVICE_STORAGE_SLOT_SALT)</span>;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _getServiceDefs(</span>
+  ) view internal returns (
+    IService.ServiceDef[] memory serviceDefs
+  ) {
+<span class="cstat-no" title="statement not covered" >    serviceDefs = ServiceStorageRepository._getServiceDefs(ISERVICE_STORAGE_SLOT_SALT)</span>;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _getServiceInterfaceIds(</span>
+  ) view internal returns ( bytes4[] memory serviceInterfaceIds ) {
+<span class="cstat-no" title="statement not covered" >    serviceInterfaceIds = ServiceStorageRepository._getServiceInterfaceIds(ISERVICE_STORAGE_SLOT_SALT)</span>;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _getServiceFunctionSelectors(</span>
+  ) view internal returns (bytes4[] memory functionSelectors) {
+<span class="cstat-no" title="statement not covered" >    functionSelectors = ServiceStorageRepository._getServiceFunctionSelectors(ISERVICE_STORAGE_SLOT_SALT)</span>;
+  }
+&nbsp;
+}
+/* -------------------------------------------------------------------------- */
+/*                            !SECTION ServiceLogic                           */
+/* -------------------------------------------------------------------------- */</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jul 31 2022 15:08:36 GMT-0700 (Pacific Daylight Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

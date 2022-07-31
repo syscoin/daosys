@@ -16,8 +16,7 @@ import {
 /* -------------------------------------------------------------------------- */
 /*                               SECTION Service                              */
 /* -------------------------------------------------------------------------- */
-/* ------------------------- ANCHOR[id=ServiceMock] ------------------------- */
-// FIXME[epic=refactor] Refactor to Context standard.
+// ANCHOR[Service]
 // FIXME[epic=test-coverage] Service needs unit tests.
 contract Service
   is

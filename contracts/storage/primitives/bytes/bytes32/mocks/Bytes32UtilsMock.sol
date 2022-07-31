@@ -13,7 +13,6 @@ import {
 /*                          SECTION Bytes32UtilsMock                          */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[Bytes32UtilsMock]
-// FIXME[epic=docs] #47 Bytes32UtilsMock meeds unit tests.
 // FIXME[epic=docs] #46 Bytes32UtilsMock meeds NatSpec comments.
 contract Bytes32UtilsMock {
 
