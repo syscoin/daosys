@@ -5,22 +5,25 @@ import {
 import { expect } from "chai";
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import {
-  Bytes4UtilsMock,
-  Bytes4UtilsMock__factory
-} from '../../../../../typechain';
+  Bytes4StorageUtilsMock,
+  Bytes4StorageUtilsMock__factory
+} from '../../../../../../typechain';
 
-describe("Bytes4 Test Suite", function () {
+/* -------------------------------------------------------------------------- */
+/*                      SECTION Bytes4Storage Test Suite                      */
+/* -------------------------------------------------------------------------- */
+describe("Bytes4Storage Test Suite", function () {
 
-  // Control values for tests
-  const invalidInterfaceId = "0xffffffff";
 
   // Test Wallets
   let deployer: SignerWithAddress;
 
   // Test variables
-  let bytes4Mock: Bytes4UtilsMock;
+  let bytes4Mock: Bytes4StorageUtilsMock;
+
+  // Control values for tests
   const testBytes4 = "0xffffffff";
-  const structSlot = "0x09a0c36da86963ec829a8d20d1c47c3fa9c347505cf20e86c7c4323a30d28b61";
+  const bytes4Null = "0x00000000";
 
   /* -------------------------------------------------------------------------- */
   /*                        SECTION Before All Test Hook                        */
@@ -45,7 +48,7 @@ describe("Bytes4 Test Suite", function () {
     ] = await ethers.getSigners();
     tracer.nameTags[deployer.address] = "Deployer";
 
-    bytes4Mock = await new Bytes4UtilsMock__factory(deployer).deploy() as Bytes4UtilsMock;
+    bytes4Mock = await new Bytes4StorageUtilsMock__factory(deployer).deploy() as Bytes4StorageUtilsMock;
     tracer.nameTags[bytes4Mock.address] = "Bytes4Mock";
 
   });
@@ -55,36 +58,30 @@ describe("Bytes4 Test Suite", function () {
   /* -------------------------------------------------------------------------- */
 
   /* -------------------------------------------------------------------------- */
-  /*                          SECTION Testing Messenger                         */
+  /*                   SECTION Testing Bytes4StorageUtilsMock                   */
   /* -------------------------------------------------------------------------- */
 
-    // TODO Test rest of StringUtils on String.
-  describe("Bytes4", function () {
+  describe("Bytes4StorageUtilsMock", function () {
 
-    // describe.skip("Validate structSlot consistency", function () {
-    //   it("getStructSlot().", async function () {
-    //     expect(await bytes4Mock.getStructSlot())
-    //       .to.equal(structSlot);
-    //   });
-    // });
-
-    describe("#getValue()", function () {
-      describe("()", function () {
-        describe("#setValue()", function () {
-          describe("(uint256)", function () {
-            it("Can set and get uint256", async function () {
-              await bytes4Mock.setValue(testBytes4);
-              expect(await bytes4Mock.getValue()).to.equal(testBytes4);
-            });
-          });
-        });
-      });
+    it("Can set and get a bytes4", async function () {
+      await bytes4Mock.setValue(testBytes4);
+      expect(await bytes4Mock.getValue()).to.equal(testBytes4);
     });
 
-  });
+    it("Can wipe a set bytes4", async function () {
+      await bytes4Mock.setValue(testBytes4);
+      expect(await bytes4Mock.getValue()).to.equal(testBytes4);
+      await bytes4Mock.wipeValue();
+      expect(await bytes4Mock.getValue()).to.equal(bytes4Null);
+    });
 
+
+  });
   /* -------------------------------------------------------------------------- */
-  /*                         !SECTION Testing Messenger                         */
+  /*                   !SECTION Testing Bytes4StorageUtilsMock                  */
   /* -------------------------------------------------------------------------- */
 
 });
+/* -------------------------------------------------------------------------- */
+/*                      !SECTION Bytes4Storage Test Suite                     */
+/* -------------------------------------------------------------------------- */

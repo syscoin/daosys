@@ -10,7 +10,7 @@ import {
 /*                         SECTION Bytes4StorageBinder                        */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[Bytes4StorageBinder]
-// FIXME[epic=docs] Bytes4StorageBinder meeds NatSpec comments.
+// FIXME[epic=docs] #22 Bytes4StorageBinder meeds NatSpec comments.
 library Bytes4StorageBinder {
 
   bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(Bytes4Storage).creationCode);
