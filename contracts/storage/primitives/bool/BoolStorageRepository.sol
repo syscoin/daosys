@@ -11,8 +11,8 @@ import {
 /*                          SECTION BoolStorageUtils                          */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[BoolStorageUtils]
-// FIXME[epic=test-coverage] BoolStorageRepository meeds units tests.
-// FIXME[epic=docs] BoolStorageRepository meeds NatSpec comments.
+// FIXME[epic=test-coverage] #15 BoolStorageRepository meeds units tests.
+// FIXME[epic=docs] #16 BoolStorageRepository meeds NatSpec comments.
 library BoolStorageRepository {
 
   using BoolStorageUtils for BoolStorage.Layout;
