@@ -10,16 +10,15 @@ import {
 /*                          SECTION BoolStorageBinder                         */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[BoolStorageBinder]
-// FIXME[epic=test-coverage] BoolStorageBinder meeds units tests.
-// FIXME[epic=docs] BoolStorageBinder meeds NatSpec comments.
+// FIXME[epic=test-coverage] #13 BoolStorageBinder meeds units tests.
+// FIXME[epic=docs] #14 BoolStorageBinder meeds NatSpec comments.
 library BoolStorageBinder {
 
   using BoolStorageUtils for BoolStorage.Layout;
 
   bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(BoolStorage).creationCode);
 
-  // FIXME[epic=test-coverage] BoolStorageBinder._layout() unit test needed
-  function _layout(
+  function _bindLayout(
     bytes32 storageSlotSalt
   ) pure internal returns (
     BoolStorage.Layout storage layout

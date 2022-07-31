@@ -4,8 +4,9 @@ pragma solidity ^0.8.0;
 import {
   BoolStorage,
   BoolStorageUtils,
-  BoolStorageBinder
-} from "contracts/storage/primitives/bool/BoolStorageBinder.sol";
+  BoolStorageBinder,
+  BoolStorageRepository
+} from "contracts/storage/primitives/bool/BoolStorageRepository.sol";
 
 /* -------------------------------------------------------------------------- */
 /*                            SECTION BoolUtilsMock                           */
@@ -17,26 +18,20 @@ contract BoolStorageUtilsMock {
 
   using BoolStorageUtils for BoolStorage.Layout;
 
-  // FIXME[epic=test-coverage] BoolStorageUtilsMock.setValue() unit test needed
   function setValue(bool newValue) external returns (bool success) {
-    BoolStorageBinder._layout(
-      BoolStorageBinder.STRUCT_STORAGE_SLOT
-    )._setValue(newValue);
+    BoolStorageRepository._setValue(
+      BoolStorageBinder.STRUCT_STORAGE_SLOT,
+      newValue
+    );
     success = true;
   }
 
-  // FIXME[epic=test-coverage] BoolStorageUtilsMock.getValue() unit test needed
   function getValue() view external returns (bool value) {
-    value = BoolStorageBinder._layout(
-      BoolStorageBinder.STRUCT_STORAGE_SLOT
-    )._getValue();
+    value = BoolStorageRepository._getValue(BoolStorageBinder.STRUCT_STORAGE_SLOT);
   }
 
-  // FIXME[epic=test-coverage] BoolStorageUtilsMock.wipeValue() unit test needed
   function wipeValue() external returns (bool result) {
-    BoolStorageBinder._layout(
-      BoolStorageBinder.STRUCT_STORAGE_SLOT
-    )._wipeValue();
+    BoolStorageRepository._wipeValue(BoolStorageBinder.STRUCT_STORAGE_SLOT);
     result = true;
   }
   
