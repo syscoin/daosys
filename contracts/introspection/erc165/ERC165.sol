@@ -28,7 +28,7 @@ contract ERC165
    * @dev We initialize new proxies with an internal initialization function to be exposed by the ServiceProxy.
    */
   function _initERC165() internal {
-    ERC165Logic._initERC165();
+    _addSupportedInterface(type(IERC165).interfaceId);
   }
 
   function _addSupportedInterface(

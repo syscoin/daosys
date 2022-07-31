@@ -24,6 +24,8 @@ library ERC16StorageRepository {
 
   using ERC165StorageUtils for ERC165Storage.Layout;
 
+  bytes4 internal constant INVALID_INTERFACE_ID = 0xffffffff;
+
   function _isSupportedInterface(
     bytes32 storageSlotSalt,
     bytes4 interfaceId
@@ -37,6 +39,7 @@ library ERC16StorageRepository {
     bytes32 storageSlotSalt,
     bytes4 interfaceId
   ) internal {
+    require(interfaceId != INVALID_INTERFACE_ID, "ERC165: invalid interface id");
     ERC165StorageBinder._layout(
       storageSlotSalt ^ interfaceId
     )._addSupportedInterface();

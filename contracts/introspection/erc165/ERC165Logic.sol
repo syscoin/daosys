@@ -24,15 +24,6 @@ library ERC165Logic {
 
   bytes32 internal constant IERC165_STORAGE_SLOT_SALT = type(IERC165).interfaceId;
 
-  /**
-   * @dev This is the self initialization hook for contracts that will expose IERC165 to report they support ERC165.
-   */
-  function _initERC165() internal {
-    ERC165Logic._addSupportedInterface(
-      type(IERC165).interfaceId
-    );
-  }
-
   function _isSupportedInterface(
     bytes4 interfaceId
   ) internal view returns (bool isSupportInterface) {

@@ -7,15 +7,6 @@ import {
   ERC165
 } from "contracts/introspection/erc165/ERC165.sol";
 
-interface IERC165Mock is IERC165 {
-
-  function addSupportedInterface(
-    bytes4 interfaceId
-  ) external returns (bool success);
-
-  function supportsInterface(bytes4 interfaceId) external view returns (bool isSupported);
-}
-
 /* -------------------------------------------------------------------------- */
 /*                             SECTION ERC165Mock                             */
 /* -------------------------------------------------------------------------- */

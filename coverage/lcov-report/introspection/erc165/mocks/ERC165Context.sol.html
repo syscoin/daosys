@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for introspection/erc165/storage/ERC165StorageBinder.sol</title>
+    <title>Code coverage report for introspection/erc165/mocks/ERC165Context.sol</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../../index.html">all files</a> / <a href="index.html">introspection/erc165/storage/</a> ERC165StorageBinder.sol
+      <a href="../../../index.html">all files</a> / <a href="index.html">introspection/erc165/mocks/</a> ERC165Context.sol
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>1/1</span>
+        <span class='fraction'>12/12</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/1</span>
+        <span class='fraction'>9/9</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>12/12</span>
       </div>
     </div>
   </div>
@@ -80,7 +80,21 @@
 35
 36
 37
-38</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -92,69 +106,97 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">36×</span>
-<span class="cline-any cline-yes">36×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: AGPL-3.0-or-later
 pragma solidity ^0.8.0;
 &nbsp;
 import {
-  BoolStorage,
-  BoolStorageUtils,
-  ERC165Storage,
-  ERC165StorageUtils
-} from "contracts/introspection/erc165/storage/ERC165StorageUtils.sol";
+  IERC165,
+  ERC165,
+  ERC165Mock
+} from "contracts/introspection/erc165/mocks/ERC165Mock.sol";
 &nbsp;
-/* -------------------------------------------------------------------------- */
-/*                         SECTION ERC165StorageBinder                        */
-/* -------------------------------------------------------------------------- */
-/**
- * @title ERC165 implementation
- */
-// ANCHOR[ERC165StorageBinder]
-// FIXME[epic=docs] #29 ERC165StorageBinder needs NatSpec comments.
-library ERC165StorageBinder {
+library ERC165Context {
 &nbsp;
-  /**
-   * @dev Declared to indicate that this declaration will be needed when using ERC165Storage.
-   */
-  using BoolStorageUtils for BoolStorage.Layout;
-  using ERC165StorageUtils for ERC165Storage.Layout;
-&nbsp;
-  bytes32 private constant STRUCT_STORAGE_SLOT = keccak256(type(ERC165Storage).creationCode);
-&nbsp;
-  function _layout( bytes32 storageSlotSalt ) pure internal returns ( ERC165Storage.Layout storage layout ) {
-    bytes32 saltedSlot = storageSlotSalt ^STRUCT_STORAGE_SLOT;
-    assembly{ layout.slot := saltedSlot }
+  function interfaceId() external pure returns (bytes4 interfaceId_) {
+    interfaceId_ = type(IERC165).interfaceId;
   }
-  
-}
-/* -------------------------------------------------------------------------- */
-/*                        !SECTION ERC165StorageBinder                        */
-/* -------------------------------------------------------------------------- */
-&nbsp;</pre></td></tr>
+&nbsp;
+  function _functionSelectors() internal pure returns (bytes4[] memory functionSelectors_) {
+    functionSelectors_ = new bytes4[](1);
+    functionSelectors_[0] = IERC165.supportsInterface.selector;
+  }
+&nbsp;
+  function calcInterfaceId() external pure returns (bytes4 interfaceId_) {
+    bytes4[] memory functionSelectors_ = _functionSelectors();
+    for(uint8 iteration = 0; functionSelectors_.length &gt; iteration; iteration++) {
+      interfaceId_ = interfaceId_ ^ functionSelectors_[iteration];
+    }
+  }
+&nbsp;
+  function functionSelectors() external pure returns (bytes4[] memory functionSelectors_) {
+    functionSelectors_ = _functionSelectors();
+  }
+&nbsp;
+  function creationCode() external pure returns (bytes memory creationCode_) {
+    creationCode_ = type(ERC165).creationCode;
+  }
+&nbsp;
+  function codehash() external pure returns (bytes32 codehash_) {
+    codehash_ = keccak256(type(ERC165).creationCode);
+  }
+&nbsp;
+  function name() external pure returns (string memory name_) {
+    name_ = type(ERC165).name;
+  }
+&nbsp;
+  function instance() external pure returns (bytes memory instance_) {
+    instance_ = type(ERC165).creationCode;
+  }
+&nbsp;
+  function mock() external pure returns (bytes memory mock_) {
+    mock_ = type(ERC165Mock).creationCode;
+  }
+&nbsp;
+}</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
