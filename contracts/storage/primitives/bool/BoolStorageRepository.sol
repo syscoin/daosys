@@ -11,7 +11,6 @@ import {
 /*                          SECTION BoolStorageUtils                          */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[BoolStorageUtils]
-// FIXME[epic=test-coverage] #15 BoolStorageRepository meeds units tests.
 // FIXME[epic=docs] #16 BoolStorageRepository meeds NatSpec comments.
 library BoolStorageRepository {
 

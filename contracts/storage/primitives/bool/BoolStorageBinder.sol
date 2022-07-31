@@ -10,7 +10,6 @@ import {
 /*                          SECTION BoolStorageBinder                         */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[BoolStorageBinder]
-// FIXME[epic=test-coverage] #13 BoolStorageBinder meeds units tests.
 // FIXME[epic=docs] #14 BoolStorageBinder meeds NatSpec comments.
 library BoolStorageBinder {
 

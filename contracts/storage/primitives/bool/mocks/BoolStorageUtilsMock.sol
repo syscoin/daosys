@@ -12,7 +12,6 @@ import {
 /*                            SECTION BoolUtilsMock                           */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[BoolUtilsMock]
-// FIXME[epic=test-coverage] #17 BoolUtilsMock meeds units tests.
 // FIXME[epic=docs] #18 BoolUtilsMock meeds NatSpec comments.
 contract BoolStorageUtilsMock {
 
