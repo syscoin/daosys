@@ -9,13 +9,13 @@ import {
 } from "contracts/introspection/erc165/storage/ERC165StorageUtils.sol";
 
 /* -------------------------------------------------------------------------- */
-/*                          SECTION ERC165Repository                          */
+/*                         SECTION ERC165StorageBinder                        */
 /* -------------------------------------------------------------------------- */
 /**
  * @title ERC165 implementation
  */
-//FIXME[epic=docs] ERC165Utils needs NatSpec comments.
-//FIXME[epic=test-coverage] ERC165Utils needs unit test.
+// ANCHOR[ERC165StorageBinder]
+// FIXME[epic=docs] ERC165StorageBinder needs NatSpec comments.
 library ERC165StorageBinder {
 
   /**
@@ -33,5 +33,5 @@ library ERC165StorageBinder {
   
 }
 /* -------------------------------------------------------------------------- */
-/*                          !SECTION ERC165Repository                         */
+/*                        !SECTION ERC165StorageBinder                        */
 /* -------------------------------------------------------------------------- */

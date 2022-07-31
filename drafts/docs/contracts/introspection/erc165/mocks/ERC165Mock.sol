@@ -17,10 +17,11 @@ interface IERC165Mock is IERC165 {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                               SECTION ERC165                               */
+/*                             SECTION ERC165Mock                             */
 /* -------------------------------------------------------------------------- */
-// FIXME[epic=docs] StringRepository needs updated NatSpec comments.
-// FIXME[epic=test-coverage] StringRepository needs unit test.
+// ANCHOR[ERC165Mock]
+// FIXME[epic=docs] ERC165Mock needs updated NatSpec comments.
+// FIXME[epic=test-coverage] ERC165Mock needs unit tests.
 contract ERC165Mock
   is
     ERC165
@@ -39,5 +40,5 @@ contract ERC165Mock
   
 }
 /* -------------------------------------------------------------------------- */
-/*                               !SECTION ERC165                              */
+/*                             !SECTION ERC165Mock                            */
 /* -------------------------------------------------------------------------- */

@@ -13,10 +13,10 @@ import {
 } from "contracts/introspection/erc165/storage/ERC165Storage.sol";
 
 /* -------------------------------------------------------------------------- */
-/*                             SECTION ERC165Utils                            */
+/*                         SECTION ERC165StorageUtils                         */
 /* -------------------------------------------------------------------------- */
+// ANCHOR[ERC165StorageUtils]
 //FIXME[epic=docs] ERC165Utils needs NatSpec comments.
-//FIXME[epic=test-coverage] ERC165Utils needs unit test.
 library ERC165StorageUtils {
 
   using BoolStorageUtils for BoolStorage.Layout;
@@ -43,16 +43,8 @@ library ERC165StorageUtils {
     // require(interfaceId != INVALID_INTERFACE_ID, "ERC165: invalid interface id");
     layout.supportedInterfaces._setValue(true);
   }
-
-  //FIXME[epic=test-coverage] ERC165Utils._removeSupportedInterface() test needed
-  // function _removeSupportedInterface(
-  //   ERC165Storage.Layout storage layout,
-  //   bytes4 interfaceId
-  // ) internal {
-  //   layout.supportedInterfaces.set._remove(interfaceId);
-  // }
   
 }
 /* -------------------------------------------------------------------------- */
-/*                            !SECTION ERC165Utils                            */
+/*                         !SECTION ERC165StorageUtils                        */
 /* -------------------------------------------------------------------------- */

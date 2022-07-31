@@ -9,8 +9,8 @@ import {
 /* -------------------------------------------------------------------------- */
 /*                               SECTION ERC165                               */
 /* -------------------------------------------------------------------------- */
-// FIXME[epic=docs] StringRepository needs updated NatSpec comments.
-// FIXME[epic=test-coverage] StringRepository needs unit tests.
+// ANCHOR[ERC165]
+// FIXME[epic=docs] ERC165 needs updated NatSpec comments.
 contract ERC165
   is
     IERC165
