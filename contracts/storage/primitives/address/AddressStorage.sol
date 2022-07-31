@@ -7,7 +7,7 @@ pragma solidity 0.8.13;
 /*                           SECTION AddressStorage                           */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[AddressStorage]
-// FIXME[epic=docs] AddressStorage meeds NatSpec comments.
+// FIXME[epic=docs] #38 AddressStorage meeds NatSpec comments.
 library AddressStorage {
 
   struct Layout {

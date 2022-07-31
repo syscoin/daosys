@@ -11,7 +11,7 @@ import {
 /*                         SECTION AddressStorageUtils                        */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[AddressStorageUtils]
-// FIXME[epic=docs] AddressStorageUtils meeds NatSpec comments.
+// FIXME[epic=docs] #39 AddressStorageUtils meeds NatSpec comments.
 library AddressStorageUtils {
 
   // Included here to indicate these will be needed in any usage of this library.

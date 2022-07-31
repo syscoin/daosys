@@ -12,7 +12,7 @@ import {
 /*                        SECTION AddressStorageBinder                        */
 /* -------------------------------------------------------------------------- */
 // ANCHOR[AddressStorageBinder]
-// FIXME[epic=docs] AddressStorageBinder meeds NatSpec comments.
+// FIXME[epic=docs] #40 AddressStorageBinder meeds NatSpec comments.
 library AddressStorageBinder {
 
   using AddressStorageUtils for address;
