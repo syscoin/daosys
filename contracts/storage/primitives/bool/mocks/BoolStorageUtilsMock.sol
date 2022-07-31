@@ -9,10 +9,10 @@ import {
 } from "contracts/storage/primitives/bool/BoolStorageRepository.sol";
 
 /* -------------------------------------------------------------------------- */
-/*                            SECTION BoolUtilsMock                           */
+/*                        SECTION BoolStorageUtilsMock                        */
 /* -------------------------------------------------------------------------- */
-// ANCHOR[BoolUtilsMock]
-// FIXME[epic=docs] #18 BoolUtilsMock meeds NatSpec comments.
+// ANCHOR[BoolStorageUtilsMock]
+// FIXME[epic=docs] #18 BoolStorageUtilsMock meeds NatSpec comments.
 contract BoolStorageUtilsMock {
 
   using BoolStorageUtils for BoolStorage.Layout;
@@ -36,5 +36,5 @@ contract BoolStorageUtilsMock {
   
 }
 /* -------------------------------------------------------------------------- */
-/*                           !SECTION BoolUtilsMock                           */
+/*                        !SECTION BoolStorageUtilsMock                       */
 /* -------------------------------------------------------------------------- */

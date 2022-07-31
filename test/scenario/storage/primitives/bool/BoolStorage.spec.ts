@@ -10,10 +10,10 @@ import {
 } from '../../../../../typechain';
 
 /* -------------------------------------------------------------------------- */
-/*                          SECTION Bytes4 Test Suite                         */
+/*                       SECTION BoolStorage Test Suite                       */
 /* -------------------------------------------------------------------------- */
 
-describe("Bytes4 Test Suite", function () {
+describe("BoolStorage Test Suite", function () {
 
   // Control values for tests
   const invalidInterfaceId = "0xffffffff";
@@ -62,7 +62,7 @@ describe("Bytes4 Test Suite", function () {
   /* -------------------------------------------------------------------------- */
 
     // TODO Test rest of StringUtils on String.
-  describe("BoolMock", function () {
+  describe("BoolStorageUtilsMock", function () {
 
     it("Can set and get a bool", async function () {
       await boolUtilsMock.setValue(true);
@@ -84,5 +84,5 @@ describe("Bytes4 Test Suite", function () {
 
 });
 /* -------------------------------------------------------------------------- */
-/*                         !SECTION Bytes4 Test Suite                         */
+/*                       !SECTION BoolStorage Test Suite                      */
 /* -------------------------------------------------------------------------- */
