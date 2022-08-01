@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">33.33% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/18</span>
+        <span class='fraction'>6/18</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">25% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>1/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>3/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">30% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/20</span>
+        <span class='fraction'>6/20</span>
       </div>
     </div>
   </div>
@@ -161,7 +161,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -183,10 +183,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -223,7 +223,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -248,13 +248,13 @@ library ServiceDefSetUtils {
 &nbsp;
   using ServiceDefSetUtils for ServiceDefSet.Enumerable;
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function _contains(</span>
+  function _contains(
     ServiceDefSet.Enumerable storage set,
     bytes4 interfaceId
   ) 
     internal view returns (bool isPresent)
   {
-<span class="cstat-no" title="statement not covered" >    isPresent = set._indexes[interfaceId] != 0</span>;
+    isPresent = set._indexes[interfaceId] != 0;
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  function _indexOf(</span>
@@ -272,14 +272,14 @@ library ServiceDefSetUtils {
 <span class="cstat-no" title="statement not covered" >    return set._values.length;</span>
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function _add(</span>
+  function _add(
     ServiceDefSet.Enumerable storage set,
     IService.ServiceDef memory value
   ) internal returns (bool) {
-<span class="cstat-no" title="statement not covered" >    if (!_contains(set, value.interfaceId)) {</span>
-<span class="cstat-no" title="statement not covered" >      set._values.push(value)</span>;
-<span class="cstat-no" title="statement not covered" >      set._indexes[value.interfaceId] = set._values.length</span>;
-<span class="cstat-no" title="statement not covered" >      return true;</span>
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!_contains(set, value.interfaceId)) {
+      set._values.push(value);
+      set._indexes[value.interfaceId] = set._values.length;
+      return true;
     } else {
 <span class="cstat-no" title="statement not covered" >      return false;</span>
     }
@@ -311,12 +311,12 @@ library ServiceDefSetUtils {
     }
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function _setAsArray(</span>
+  function _setAsArray(
     ServiceDefSet.Enumerable storage set
   ) internal view returns (
     IService.ServiceDef[] storage rawSet
   ) {
-<span class="cstat-no" title="statement not covered" >    rawSet = set._values</span>;
+    rawSet = set._values;
   }
 &nbsp;
 }
@@ -328,7 +328,7 @@ library ServiceDefSetUtils {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jul 31 2022 15:08:36 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jul 31 2022 18:01:53 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../prettify.js"></script>

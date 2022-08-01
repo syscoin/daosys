@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>6/8</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>6/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>6/8</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -163,7 +163,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">238×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -174,7 +174,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -182,26 +182,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -210,7 +191,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -254,58 +254,58 @@ library ServiceStorageRepository {
 &nbsp;
   bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(ServiceStorage).creationCode);
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function _setFactory(</span>
+  function _setFactory(
     bytes32 storageSlotSalt,
     address factory
   ) internal {
-<span class="cstat-no" title="statement not covered" >    ServiceStorageBinder._bindLayout(storageSlotSalt)</span>
+    ServiceStorageBinder._bindLayout(storageSlotSalt)
       ._setFactory(
         factory
       );
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function _getFactory(</span>
+  function _getFactory(
     bytes32 storageSlotSalt
   ) internal view returns (
     address factory
   ) {
-<span class="cstat-no" title="statement not covered" >    factory = ServiceStorageBinder._bindLayout(storageSlotSalt)</span>
+    factory = ServiceStorageBinder._bindLayout(storageSlotSalt)
       ._getFactory();
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function _setDeploymentSalt(</span>
+  function _setDeploymentSalt(
     bytes32 storageSlotSalt,
     bytes32 deploymentSalt
   ) internal {
-<span class="cstat-no" title="statement not covered" >    ServiceStorageBinder._bindLayout(storageSlotSalt)</span>
+    ServiceStorageBinder._bindLayout(storageSlotSalt)
       ._setDeploymentSalt(
         deploymentSalt
       );
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function _getDeploymentSalt(</span>
+  function _getDeploymentSalt(
     bytes32 storageSlotSalt
   ) internal view returns (
     bytes32 deploymentSalt
   ) {
-<span class="cstat-no" title="statement not covered" >    deploymentSalt = ServiceStorageBinder._bindLayout(storageSlotSalt)</span>
+    deploymentSalt = ServiceStorageBinder._bindLayout(storageSlotSalt)
       ._getDeploymentSalt();
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function _addServiceDef(</span>
+  function _addServiceDef(
     bytes32 storageSlotSalt,
     IService.ServiceDef memory newServiceDef
   ) internal {
-<span class="cstat-no" title="statement not covered" >    ServiceStorageBinder._bindLayout(storageSlotSalt)</span>
+    ServiceStorageBinder._bindLayout(storageSlotSalt)
       ._addServiceDef(
         newServiceDef
       );
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function _getServiceDefs(</span>
+  function _getServiceDefs(
     bytes32 storageSlotSalt
   ) internal view returns (IService.ServiceDef[] memory serviceDefs) {
-<span class="cstat-no" title="statement not covered" >    serviceDefs = ServiceStorageBinder._bindLayout(storageSlotSalt)</span>
+    serviceDefs = ServiceStorageBinder._bindLayout(storageSlotSalt)
       ._getServiceDefs();
   }
 &nbsp;
@@ -334,7 +334,7 @@ library ServiceStorageRepository {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jul 31 2022 15:08:36 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jul 31 2022 18:01:53 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../prettify.js"></script>

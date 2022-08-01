@@ -1,0 +1,71 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+pragma solidity ^0.8.0;
+
+import {
+  ServiceMock,
+  IServiceMock
+} from "contracts/service/mocks/ServiceMock.sol";
+import {
+  DelegateService,
+  IDelegateService,
+  Service,
+  IService,
+  ERC165,
+  IERC165
+} from "contracts/service/delegate/DelegateService.sol";
+
+interface IDelegateServiceMock is IServiceMock {
+  function addServiceDef(
+    bytes4 interfaceId,
+    bytes4[] memory functionSelectors
+  ) external returns (bool success);
+
+  function getServiceDefs() external view returns (ServiceDef[] memory serviceDef);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                             SECTION ServiceMock                            */
+/* -------------------------------------------------------------------------- */
+/* ------------------------- ANCHOR[id=ServiceMock] ------------------------- */
+
+// FIXME[epic=refactor] Refactor to Context standard.
+// FIXME[epic=test-coverage] Write unit tests.
+contract DelegateServiceMock
+  is ServiceMock, IDelegateServiceMock, DelegateService
+{
+
+  function addServiceDef(
+    bytes4 interfaceId,
+    bytes4[] memory functionSelectors
+  ) public virtual
+  override(IDelegateServiceMock, ServiceMock)
+  returns (bool success) {
+    success = super.addServiceDef(interfaceId, functionSelectors);
+  }
+
+  function getDelegateServiceRegistry() public view override returns (address delegateServiceRegistry) {
+    delegateServiceRegistry = super.getDelegateServiceRegistry();
+  }
+
+  function setDeploymentSalt(
+    bytes32 deploymentSalt
+  ) public virtual isNotImmutable(IService.setDeploymentSalt.selector) override(DelegateService,IService,Service) returns (bool success) {
+    success = super.setDeploymentSalt(deploymentSalt);
+  }
+
+  function supportsInterface(bytes4 interfaceId) public view virtual override(ServiceMock,DelegateService,IService) returns (bool isSupported) {
+    isSupported = super.supportsInterface(interfaceId);
+  }
+
+  function getCreate2Pedigree() public virtual view override(DelegateService,IService,Service)  returns (Create2Pedigree memory pedigree) {
+    pedigree = super.getCreate2Pedigree();
+  }
+
+  function getServiceDefs() public view virtual override(IDelegateServiceMock,DelegateService,ServiceMock)  returns (ServiceDef[] memory serviceDef) {
+    serviceDef = super.getServiceDefs();
+  }
+
+}
+/* -------------------------------------------------------------------------- */
+/*                            !SECTION ServiceMock                            */
+/* -------------------------------------------------------------------------- */
