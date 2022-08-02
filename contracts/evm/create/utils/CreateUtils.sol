@@ -12,6 +12,7 @@ library CreateUtils {
    * @return deploymentAddress address of deployed contract
    */
   function _deploy(bytes memory creationCode) internal returns (address deploymentAddress) {
+    // TODO refactor to accept calldata for creationCode.
     assembly {
       let encoded_data := add(0x20, creationCode)
       let encoded_size := mload(creationCode)

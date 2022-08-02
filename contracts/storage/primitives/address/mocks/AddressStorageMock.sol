@@ -13,30 +13,30 @@ import {
 /* -------------------------------------------------------------------------- */
 // ANCHOR[AddressStorageUtilsMock]
 // FIXME[epic=docs] #41 AddressStorageUtilsMock meeds NatSpec comments.
-contract AddressStorageMock {
+// contract AddressStorageMock {
 
-  using AddressStorageUtils for address;
-  using AddressStorageUtils for address payable;
-  using AddressStorageUtils for AddressStorage.Layout;
+//   using AddressStorageUtils for address;
+//   using AddressStorageUtils for address payable;
+//   using AddressStorageUtils for AddressStorage.Layout;
 
-  function setValue(address newValue) external returns (bool result) {
-    AddressStorageRepository._setValue(
-      AddressStorageBinder.STRUCT_STORAGE_SLOT,
-      newValue
-    );
-    result = true;
-  }
+//   function setValue(address newValue) external returns (bool result) {
+//     AddressStorageRepository._setValue(
+//       AddressStorageBinder.STRUCT_STORAGE_SLOT,
+//       newValue
+//     );
+//     result = true;
+//   }
 
-  function getValue() view external returns (address value) {
-    value = AddressStorageRepository._getValue(AddressStorageBinder.STRUCT_STORAGE_SLOT);
-  }
+//   function getValue() view external returns (address value) {
+//     value = AddressStorageRepository._getValue(AddressStorageBinder.STRUCT_STORAGE_SLOT);
+//   }
 
-  function wipeValue() external returns (bool result) {
-    AddressStorageRepository._wipeValue(AddressStorageBinder.STRUCT_STORAGE_SLOT);
-    result = true;
-  }
+//   function wipeValue() external returns (bool result) {
+//     AddressStorageRepository._wipeValue(AddressStorageBinder.STRUCT_STORAGE_SLOT);
+//     result = true;
+//   }
 
-}
+// }
 /* -------------------------------------------------------------------------- */
 /*                      !SECTION AddressStorageUtilsMock                      */
 /* -------------------------------------------------------------------------- */

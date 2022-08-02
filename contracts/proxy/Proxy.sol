@@ -11,6 +11,8 @@ import { IProxy } from './IProxy.sol';
 abstract contract Proxy is IProxy {
     // using AddressUtils for address;
 
+    receive() external payable {}
+
     /**
      * @notice delegate all calls to implementation contract
      * @dev reverts if implementation address contains no code, for compatibility with metamorphic contracts
@@ -50,5 +52,9 @@ abstract contract Proxy is IProxy {
      * @notice get logic implementation address
      * @return implementation address
      */
-    function _getImplementation() internal virtual returns (address);
+    function _getImplementation() internal virtual view returns (address);
+
+    function getImplementation() public virtual view returns (address implementation) {
+      implementation = _getImplementation();
+    }
 }

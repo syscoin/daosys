@@ -111,6 +111,10 @@ library GreeterBinder {
 library GreeterStorageRepository {
 
   using GreeterStorageUtils for GreeterStorage.Layout;
+
+  function name() external pure returns (string memory name_) {
+    name_ = type(GreeterStorageRepository).name;
+  }
   
   function setGreeting(
     bytes32 storageSLotSalt,

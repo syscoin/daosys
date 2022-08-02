@@ -75,6 +75,10 @@ library StringStorageBinder {
 library StringStorageRepository {
 
   using StringStorageUtils for StringStorage.Layout;
+
+  function name() external pure returns (string memory name_) {
+    name_ = type(StringStorageRepository).name;
+  }
   
   function setValue(
     bytes32 storageSLotSalt,

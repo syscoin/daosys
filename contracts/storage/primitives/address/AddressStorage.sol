@@ -3,18 +3,10 @@
 // Optimizer Runs = 200
 pragma solidity 0.8.13;
 
-/* -------------------------------------------------------------------------- */
-/*                           SECTION AddressStorage                           */
-/* -------------------------------------------------------------------------- */
-// ANCHOR[AddressStorage]
-// FIXME[epic=docs] #38 AddressStorage meeds NatSpec comments.
-library AddressStorage {
+// library AddressStorage {
 
-  struct Layout {
-    address value;
-  }
+//   struct Layout {
+//     address value;
+//   }
   
-}
-/* -------------------------------------------------------------------------- */
-/*                           !SECTION AddressStorage                          */
-/* -------------------------------------------------------------------------- */
+// }

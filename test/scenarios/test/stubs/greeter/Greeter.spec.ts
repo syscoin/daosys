@@ -5,33 +5,33 @@ import {
 import { expect } from "chai";
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import {
+  Seed,
+  Seed__factory,
+  DiamondTestContext,
+  DiamondTestContext__factory,
   ProxyMock,
   ProxyMock__factory,
   IGreeter,
   StringStorageRepository,
   GreeterStorageRepository,
-  Greeter,
-  Greeter__factory
+  GreeterFacet,
+  GreeterFacet__factory
 } from '../../../../../typechain';
 
-describe("Greeter Test Suite", function () {
+describe.only("Greeter Test Suite", function () {
 
   // Control values for tests
   const invalidInterfaceId = "0xffffffff";
 
   // Test Wallets
   let deployer: SignerWithAddress;
+  
+  let seed: Seed;
 
-  // Test Context
-  // let context: Context;
-  // let messengerContext: IContext;
+  let context: DiamondTestContext;
 
   // TestService test variables
   let greeter: IGreeter;
-  // const IMessengerInterfaceId = "0x6c23efe2";
-  // const setMessageFunctionSelector = '0x368b8772';
-  // const getMessageFunctionSelector = '0xce6d41de';
-  // const wipeMessageFunctionSelector = "0x94c5294e";
 
   const testString = "Hello World!";
 
@@ -47,38 +47,57 @@ describe("Greeter Test Suite", function () {
     ] = await ethers.getSigners();
     tracer.nameTags[deployer.address] = "Deployer";
 
+    context = await new DiamondTestContext__factory(deployer).deploy();
+    tracer.nameTags[context.address] = "Context";
+
+    await context.deployStorageRepo(
+      await (
+        await ethers.getContractFactory(
+          "StringStorageRepository"
+        )
+      ).bytecode
+    );
+
+    await context.deployStorageRepo(
+      await (
+        await ethers.getContractFactory(
+          "GreeterStorageRepository",
+          {
+            libraries: {
+              StringStorageRepository: await context.getSRepoForName("StringStorageRepository")
+            }
+          }
+        )
+      ).bytecode
+    );
+
+    await context.deployFacet(
+      await (
+        await ethers.getContractFactory(
+          "GreeterFacet",
+          {
+            libraries: {
+              GreeterStorageRepository: await context.getSRepoForName("GreeterStorageRepository")
+            }
+          }
+        )
+      ).bytecode
+    );
+
+    // Artifact from how ethers returns a ContractTransaction' from a state changing call.
+    // This is the easiest way to get the return value of a state changing function.
+    const greeterAddress = await context.callStatic.deployMockFacet(
+      await context.facetInterfaceIdForName("GreeterFacet")
+    );
+    await context.deployMockFacet(
+      await context.facetInterfaceIdForName("GreeterFacet")
+    )
+
     greeter = await ethers.getContractAt(
       "IGreeter",
-      await (
-        await new ProxyMock__factory(deployer).deploy(
-          await (
-            await (
-              await ethers.getContractFactory(
-                "Greeter",
-                {
-                  libraries: {
-                    GreeterStorageRepository: await (
-                      await (
-                        await ethers.getContractFactory(
-                          "GreeterStorageRepository",
-                          {
-                            libraries: {
-                              StringStorageRepository: await (await (await ethers.getContractFactory("StringStorageRepository")).deploy()).address
-                            }
-                          }
-                        )
-                      ).deploy()
-                    ).address
-                  }
-                }
-              )
-            ).deploy()
-          ).address
-        )
-      ).address
+      greeterAddress
     ) as IGreeter;
-    
-    // await new Greeter__factory(deployer).deploy() as Greeter;
+
     tracer.nameTags[greeter.address] = "Greeter";
 
   });
