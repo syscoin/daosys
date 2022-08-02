@@ -5,24 +5,20 @@ import {
 import { expect } from "chai";
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import {
-  AddressStorageUtilsMock,
-  AddressStorageUtilsMock__factory
+  AddressStorageMock,
+  AddressStorageMock__factory
 } from '../../../../../typechain';
 
-/* -------------------------------------------------------------------------- */
-/*                   SECTION AddressStorageUtils Test Suite                   */
-/* -------------------------------------------------------------------------- */
-// LINK contracts/storage/primitives/address/AddressStorageUtils.sol#AddressStorageUtils
 /**
  * @dev Deliberately NOT using the Context process to unit test Address storage libraries.
  */
-describe("AddressStorageUtils Test Suite", function () {
+describe("AddressStorage Test Suite", function () {
 
   // Test Wallets
   let deployer: SignerWithAddress;
 
   // Test variables
-  let addressMock: AddressStorageUtilsMock;
+  let addressMock: AddressStorageMock;
   const testAddress = ethers.constants.AddressZero;
 
   before(async function () {
@@ -37,7 +33,7 @@ describe("AddressStorageUtils Test Suite", function () {
     ] = await ethers.getSigners();
     tracer.nameTags[deployer.address] = "Deployer";
 
-    addressMock = await new AddressStorageUtilsMock__factory(deployer).deploy() as AddressStorageUtilsMock;
+    addressMock = await new AddressStorageMock__factory(deployer).deploy() as AddressStorageMock;
     tracer.nameTags[addressMock.address] = "AddressMock";
 
   });
@@ -59,6 +55,3 @@ describe("AddressStorageUtils Test Suite", function () {
   });
 
 });
-/* -------------------------------------------------------------------------- */
-/*                   !SECTION AddressStorageUtils Test Suite                  */
-/* -------------------------------------------------------------------------- */

@@ -1,7 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// DO NOT CHANGE COMPILER VERSION FROM DEPLOYED VERSION
-// Optimizer Runs = 200
-pragma solidity 0.8.13;
+pragma solidity ^0.8.0;
 
 import {
   AddressStorage,
@@ -21,7 +19,7 @@ library AddressStorageBinder {
 
   bytes32 constant internal STRUCT_STORAGE_SLOT = keccak256(type(AddressStorage).creationCode);
 
-  function _layout(
+  function _bindLayout(
     bytes32 storageSlotSalt
   ) pure internal returns (
     AddressStorage.Layout storage layout
