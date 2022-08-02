@@ -145,6 +145,7 @@ abstract contract MooniswapManagerInternal {
         uint256 srcIdx = address(allowedTokens[0]) == address(src) ? 0 : 1;
         // do we have enough in our pocket to complete a swap?
         uint256 allownance = src.allowance(msg.sender, address(this));
+        console.log(allownance);
         require(allownance >= amount, "MooniManager: allowance low.");
 
         // are we estimated to get the minimum amount we specified?
