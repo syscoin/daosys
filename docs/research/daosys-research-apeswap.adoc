@@ -1,0 +1,18 @@
+= ApeSwap Review
+ifndef::compositing[]
+:author: Ian Moore
+:email: imoore@syscoin.org
+:revdate: 2022-08-03
+:revnumber: 0.1
+:revremark: Initial draft.
+:toc:
+:toclevels: 5
+:sectnums:
+:data-uri:
+:stem: asciimath
+:pathtoroot: ../
+:imagesdir: {pathtoroot}
+:includeprefix: {pathtoroot}
+:compositing:
+endif::[]
+
